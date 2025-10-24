@@ -43,7 +43,6 @@ func _physics_process(delta):
 #allows you to hit the escape key to get mouse cursor back
 	if Input.is_action_just_pressed("escape"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
 
 # handle jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
