@@ -40,6 +40,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 columns = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="GridContainer"]
 layout_mode = 2
