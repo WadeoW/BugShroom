@@ -1,12 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsr8xxcnyfj1u"]
+[gd_scene load_steps=5 format=3 uid="uid://dsr8xxcnyfj1u"]
 
-[ext_resource type="PackedScene" uid="uid://66d8l1lfh5q3" path="res://player.tscn" id="1_glv2v"]
+[ext_resource type="PackedScene" uid="uid://66d8l1lfh5q3" path="res://player/player.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
+
+[sub_resource type="Environment" id="Environment_glv2v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glv2v"]
+albedo_color = Color(0.43, 0.345935, 0.2107, 1)
 
 [node name="World" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_glv2v")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.0366437, 0.999328, 0, -0.999328, 0.0366437, 0, 31.6039, 0)
+
 [node name="Floor" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_glv2v")
 use_collision = true
 size = Vector3(200, 1, 200)
 
-[node name="Player" parent="." instance=ExtResource("1_glv2v")]
+[node name="Player" parent="." instance=ExtResource("1_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55173, 0)
+
+[node name="Ant" parent="." instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3941, 1.5, 17.4941)
