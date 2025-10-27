@@ -28,8 +28,8 @@ var base_fov = 75.0
 const FOV_CHANGE = 1.5
 
 
-func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#func _ready():
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 #func _unhandled_input(event):
 	#if event is InputEventMouseMotion: #how the player turns and looks around
@@ -37,11 +37,11 @@ func _ready():
 		#camera.rotate_x(-event.relative.y * SENSITIVITY)
 		#camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(80))
 
-func _input(event):
-	if event is InputEventMouseMotion:
-		rotate_y(deg_to_rad(-event.relative.x * sens_horizontal))
-		camera_mount.rotate_x(deg_to_rad(-event.relative.y * sens_vertical))
-		camera_mount.rotation.x = clamp(camera_mount.rotation.x, deg_to_rad(-80), deg_to_rad(60))
+#func _input(event):
+	#if event is InputEventMouseMotion:
+		#rotate_y(deg_to_rad(-event.relative.x * sens_horizontal))
+		#camera_mount.rotate_x(deg_to_rad(-event.relative.y * sens_vertical))
+		#camera_mount.rotation.x = clamp(camera_mount.rotation.x, deg_to_rad(-80), deg_to_rad(60))
 
 
 func _physics_process(delta):

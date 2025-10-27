@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://66d8l1lfh5q3"]
+[gd_scene load_steps=7 format=3 uid="uid://66d8l1lfh5q3"]
 
 [ext_resource type="Script" uid="uid://bwy3vmah16igp" path="res://player/player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_rkbax"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i3pqv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_oul6g"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rkbax"]
+radius = 0.07
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
@@ -26,11 +30,17 @@ mesh = SubResource("BoxMesh_oul6g")
 
 [node name="CameraMount" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00626266, 1.78082, -0.00825548)
+script = ExtResource("2_rkbax")
 
 [node name="CameraYaw" type="Node3D" parent="CameraMount"]
 
 [node name="CameraPitch" type="Node3D" parent="CameraMount/CameraYaw"]
 
-[node name="Camera3D" type="Camera3D" parent="CameraMount/CameraYaw/CameraPitch"]
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraMount/CameraYaw/CameraPitch"]
+shape = SubResource("SphereShape3D_rkbax")
+spring_length = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraMount/CameraYaw/CameraPitch/SpringArm3D"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.974342, 0.645015, 2.09019)
 fov = 85.0
