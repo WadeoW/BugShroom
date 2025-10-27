@@ -15,6 +15,10 @@ var gravity = 9.8
 @export var current_stamina = 100.0
 var stamina_drain_rate = 5.0 #stamina drained per second during action
 
+#Root Down Mechanic
+var is_rooted = false
+@export var root_stamina_regen = 15.0 #stamina regained per second while rooted
+
 #bob variables
 const BOB_FREQ = 3.0
 const BOB_AMP = 0.04
@@ -33,6 +37,9 @@ func _unhandled_input(event):
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(80))
+	#root down input
+	if event is InputEventKey and event.is_pressed() and event.scancode == KEY_R:
+		toggle_root()
 
 
 func _physics_process(delta):
@@ -58,16 +65,25 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if is_on_floor():
-		if direction:
-			velocity.x = direction.x * speed
-			velocity.z = direction.z * speed
+	
+	if not is_rooted:
+		if is_on_floor():
+			if direction:
+				velocity.x = direction.x * speed
+				velocity.z = direction.z * speed
+			else:
+				velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
+				velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 		else:
-			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * 4.0)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * 4.0)
 	else:
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * 4.0)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * 4.0)
+		#stop movement when rooted
+		velocity.x = 0
+		velocity.z = 0
+	#stamina regeneration
+	if is_rooted:
+		current_stamina = clamp(current_stamina + root_stamina_regen * delta, 0, max_stamina)
 
 	#head bob 
 	t_bob += delta * velocity.length() * float(is_on_floor())
@@ -83,3 +99,11 @@ func _headbob(time) -> Vector3:
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
+
+#Root down toggle function
+func toggle_root():
+	is_rooted = !is_rooted
+	if is_rooted:
+		print("Rooting Down")
+	else:
+		print("Uprooted")
