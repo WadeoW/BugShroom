@@ -16,12 +16,7 @@ var gravity = 9.8
 @export var current_stamina = 100.0
 var stamina_drain_rate = 5.0 #stamina drained per second during action
 
-@onready var camera_mount: Node3D = $CameraMount
 
-#bob variables
-#const BOB_FREQ = 3.0
-#const BOB_AMP = 0.04
-#var t_bob = 0.0
 
 #fov variables
 var base_fov = 75.0
@@ -67,6 +62,7 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left_%s" % [player_id], "move_right_%s" % [player_id], "move_up_%s" % [player_id], "move_down_%s" % [player_id])
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
 	if is_on_floor():
 		if direction:
 			velocity.x = direction.x * speed
@@ -78,17 +74,5 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 4.0)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 4.0)
 
-	#head bob 
-	#t_bob += delta * velocity.length() * float(is_on_floor())
-	#camera.transform.origin = _headbob(t_bob)
-#
-	#var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
-	#var target_fov = base_fov + FOV_CHANGE * velocity_clamped
-	#camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+	
 	move_and_slide()
-
-#func _headbob(time) -> Vector3:
-	#var pos = Vector3.ZERO
-	#pos.y = sin(time * BOB_FREQ) * BOB_AMP
-	#pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
-	#return pos

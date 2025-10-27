@@ -22,19 +22,19 @@ use_collision = true
 size = Vector3(200, 1, 200)
 
 [node name="Ant" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61086, 1.5, -14.0326)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.58596, 1.5, 0.681435)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6398, 1, -1.31006)
 use_collision = true
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.24437, 1.73529, -1.22918)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.14656, 1.73529, 2.6986)
 use_collision = true
 size = Vector3(1, 2.47058, 1)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0688376, 3.03879, -1.68196)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0645694, 3.03879, -2.40313)
 use_collision = true
 size = Vector3(6.47913, 5.07758, 1)
 
@@ -55,11 +55,11 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(574, 648)
 render_target_update_mode = 4
 
 [node name="Player" parent="GridContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.550118, 1.5, 2.14531)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.90183, 1.5, 6.72644)
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="GridContainer"]
 layout_mode = 2
@@ -69,9 +69,9 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer2"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(574, 648)
 render_target_update_mode = 4
 
 [node name="Player2" parent="GridContainer/SubViewportContainer2/SubViewport" instance=ExtResource("1_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.70491, 1.5, 2.39353)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.31205, 1.5, 6.35862)
 player_id = 2
