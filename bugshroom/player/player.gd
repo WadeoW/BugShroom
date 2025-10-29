@@ -11,12 +11,11 @@ var gravity = 9.8
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
 
+
 #stamina variables
 @export var max_stamina = 100.0
 @export var current_stamina = 100.0
 var stamina_drain_rate = 5.0 #stamina drained per second during action
-
-
 
 #fov variables
 var base_fov = 75.0
@@ -74,5 +73,5 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 4.0)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 4.0)
 
-	
+
 	move_and_slide()

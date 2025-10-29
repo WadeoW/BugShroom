@@ -1,13 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://66d8l1lfh5q3"]
+[gd_scene load_steps=6 format=3 uid="uid://66d8l1lfh5q3"]
 
 [ext_resource type="Script" uid="uid://bwy3vmah16igp" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_rkbax"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+radius = 0.500378
+height = 2.00576
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_i3pqv"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_oul6g"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rkbax"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rkbax"]
 radius = 0.07
@@ -18,15 +18,11 @@ sens_horizontal = 0.2
 sens_vertical = 0.2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_onrkg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
-mesh = SubResource("CapsuleMesh_i3pqv")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D/MeshInstance3D"]
-transform = Transform3D(0.463588, 0, 0, 0, 0.526258, 0, 0, 0, 0.973331, 0, 0.229248, -0.918878)
-mesh = SubResource("BoxMesh_oul6g")
+mesh = SubResource("CapsuleMesh_rkbax")
 
 [node name="CameraMount" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00626266, 1.78082, -0.00825548)
