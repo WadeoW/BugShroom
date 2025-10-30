@@ -25,6 +25,7 @@ shape = SubResource("CapsuleShape3D_onrkg")
 mesh = SubResource("CapsuleMesh_rkbax")
 
 [node name="CameraMount" type="Node3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00626266, 1.78082, -0.00825548)
 script = ExtResource("2_rkbax")
 

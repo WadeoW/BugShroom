@@ -21,21 +21,8 @@ var stamina_drain_rate = 5.0 #stamina drained per second during action
 var base_fov = 75.0
 const FOV_CHANGE = 1.5
 
+@onready var camera_mount = $CameraMount
 
-#func _ready():
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-#func _unhandled_input(event):
-	#if event is InputEventMouseMotion: #how the player turns and looks around
-		#head.rotate_y(-event.relative.x * SENSITIVITY)
-		#camera.rotate_x(-event.relative.y * SENSITIVITY)
-		#camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(80))
-
-#func _input(event):
-	#if event is InputEventMouseMotion:
-		#rotate_y(deg_to_rad(-event.relative.x * sens_horizontal))
-		#camera_mount.rotate_x(deg_to_rad(-event.relative.y * sens_vertical))
-		#camera_mount.rotation.x = clamp(camera_mount.rotation.x, deg_to_rad(-80), deg_to_rad(60))
 
 
 func _physics_process(delta):
@@ -60,6 +47,9 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left_%s" % [player_id], "move_right_%s" % [player_id], "move_up_%s" % [player_id], "move_down_%s" % [player_id])
+	var camera_basis = camera_mount.global_transform.basis
+	
+	#new vector3 direction taking into account movement inputs and camera rotation
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if is_on_floor():
