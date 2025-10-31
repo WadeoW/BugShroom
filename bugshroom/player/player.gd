@@ -21,9 +21,13 @@ var stamina_drain_rate = 5.0 #stamina drained per second during action
 var base_fov = 75.0
 const FOV_CHANGE = 1.5
 
+@onready var animation_player: AnimationPlayer = $PlayerModel/AnimationPlayer
 @onready var camera_mount = $CameraMount
 @onready var camera_yaw = $CameraMount/CameraYaw
 @onready var camera_pitch = $CameraMount/CameraYaw/CameraPitch
+
+var last_direction = Vector3.FORWARD
+@export var rotation_speed = 3
 
 
 func _physics_process(delta):
@@ -54,14 +58,20 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		if direction:
+			last_direction = direction
+			if animation_player.current_animation != "walk":
+				animation_player.play("walk")
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 		else:
 			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+			if animation_player.current_animation != "idle":
+				animation_player.play("idle")
 	else:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 4.0)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 4.0)
-
+	
+	$PlayerModel.rotation.y = lerp_angle($PlayerModel.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
 
 	move_and_slide()
