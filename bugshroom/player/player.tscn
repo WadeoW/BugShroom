@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://66d8l1lfh5q3"]
+[gd_scene load_steps=11 format=4 uid="uid://66d8l1lfh5q3"]
 
 [ext_resource type="Script" uid="uid://bwy3vmah16igp" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_rkbax"]
@@ -113,6 +113,9 @@ bind/25/pose = Transform3D(0.0284893, 0.71806, -0.0607588, 5.74663e-08, -0.06080
 bind/26/name = &"footIK.R"
 bind/26/bone = -1
 bind/26/pose = Transform3D(-0.0356344, -0.720309, -5.33354e-09, -1.0799e-07, -4.4293e-07, 0.721189, -0.720308, 0.0356342, 9.36335e-10, 0.311387, -0.414426, 1.04986)
+
+[sub_resource type="Animation" id="Animation_rkbax"]
+resource_name = "idle"
 
 [sub_resource type="Animation" id="Animation_wcui0"]
 resource_name = "walk"
@@ -287,9 +290,6 @@ tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = PackedFloat32Array(0, 1, 0.0246858, 0.067353, -0.215671, 0.973828, 0.0333333, 1, 0.0246858, 0.067353, -0.215671, 0.973828, 0.0666667, 1, 0.0470246, 0.0891336, -0.260701, 0.960145, 0.1, 1, 0.0906864, 0.131299, -0.347159, 0.924131, 0.133333, 1, 0.140366, 0.178583, -0.442879, 0.867331, 0.166667, 1, 0.169335, 0.205781, -0.49726, 0.825659, 0.2, 1, 0.156172, 0.153382, -0.411526, 0.884721, 0.233333, 1, 0.12558, 0.0601465, -0.253152, 0.957354, 0.266667, 1, 0.0883706, -0.021176, -0.108558, 0.989928, 0.3, 1, 0.0573995, -0.0603455, -0.0354303, 0.995896, 0.333333, 1, 0.038673, -0.0555906, -0.042976, 0.996778, 0.366667, 1, 0.0257376, -0.0489339, -0.0603746, 0.996643, 0.4, 1, 0.016337, -0.0410785, -0.0815202, 0.995691, 0.433333, 1, 0.0100327, -0.0322286, -0.103883, 0.994017, 0.466667, 1, 0.00639726, -0.0226229, -0.12489, 0.991892, 0.5, 1, 0.00501348, -0.012532, -0.141932, 0.989784, 0.533333, 1, 0.00577866, -0.00233705, -0.148541, 0.988887, 0.566667, 1, 0.00710801, 0.00742455, -0.146981, 0.989086, 0.6, 1, 0.00860154, 0.0158517, -0.138735, 0.990165, 0.633333, 1, 0.0100512, 0.0219468, -0.124621, 0.991911, 0.666667, 1, 0.0114405, 0.0246149, -0.104797, 0.994123, 0.7, 1, 0.0179627, 0.0137985, -0.0793328, 0.996591, 0.733333, 1, 0.0276141, -0.00371035, -0.0559237, 0.998046, 0.766667, 1, 0.0357566, -0.0188671, -0.039638, 0.998396, 0.8, 1, 0.0397426, -0.0254108, -0.0349945, 0.998274, 0.833333, 1, 0.0388838, -0.0198584, -0.0459095, 0.997991, 0.866667, 1, 0.0367013, -0.00590251, -0.0732878, 0.996618, 0.9, 1, 0.0339707, 0.0112604, -0.106847, 0.993631, 0.933333, 1, 0.0310164, 0.0294757, -0.14233, 0.988894, 0.966667, 1, 0.0281881, 0.0465866, -0.175536, 0.982966, 1, 1, 0.0258562, 0.0604641, -0.202377, 0.977097, 1.04167, 1, 0.0246858, 0.067353, -0.215671, 0.973828)
 
-[sub_resource type="Animation" id="Animation_rkbax"]
-resource_name = "idle"
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xu6he"]
 _data = {
 &"idle": SubResource("Animation_rkbax"),
@@ -297,10 +297,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
-radius = 0.500378
-height = 2.00576
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_rkbax"]
+radius = 0.594269
+height = 2.3091
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rkbax"]
 radius = 0.07
@@ -517,15 +515,8 @@ libraries = {
 }
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00598, 0)
 shape = SubResource("CapsuleShape3D_onrkg")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-visible = false
-mesh = SubResource("CapsuleMesh_rkbax")
-skeleton = NodePath("../CollisionShape3D")
 
 [node name="CameraMount" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -542,5 +533,5 @@ spring_length = 3.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraMount/CameraYaw/CameraPitch/SpringArm3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.974342, 0.645015, 2.09019)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1002, 0.645015, 2.21963)
 fov = 85.0
