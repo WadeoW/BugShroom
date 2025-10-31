@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var bug_scene: PackedScene          # The bug scene to spawn (e.g. ant.tscn)
-@export var max_bugs: int = 3               # Maximum number of bugs active at once
+@export var max_bugs: int = 5               # Maximum number of bugs active at once
 @export var spawn_points: Array[Node3D] = []  # List of spawn point nodes
 
 var active_bugs: Array = []
