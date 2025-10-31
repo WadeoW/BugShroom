@@ -22,7 +22,8 @@ var base_fov = 75.0
 const FOV_CHANGE = 1.5
 
 @onready var camera_mount = $CameraMount
-
+@onready var camera_yaw = $CameraMount/CameraYaw
+@onready var camera_pitch = $CameraMount/CameraYaw/CameraPitch
 
 
 func _physics_process(delta):
@@ -47,10 +48,9 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left_%s" % [player_id], "move_right_%s" % [player_id], "move_up_%s" % [player_id], "move_down_%s" % [player_id])
-	var camera_basis = camera_mount.global_transform.basis
 	
 	#new vector3 direction taking into account movement inputs and camera rotation
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = (camera_yaw.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if is_on_floor():
 		if direction:
