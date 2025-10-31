@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=4 uid="uid://bivqmpnyrqg2u"]
+[gd_scene load_steps=14 format=4 uid="uid://bivqmpnyrqg2u"]
 
 [ext_resource type="Script" uid="uid://bwy3vmah16igp" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="AnimationLibrary" uid="uid://cthqi1j6uwl07" path="res://player/Mushroomdude_crouch.glb" id="2_g1dw6"]
 [ext_resource type="Script" path="res://player/camera_mount.gd" id="2_rkbax"]
+[ext_resource type="AnimationLibrary" uid="uid://dii6jm5nghrn6" path="res://player/Mushroomdude_idle.glb" id="3_qjkh3"]
 [ext_resource type="AnimationLibrary" uid="uid://c011881k1f5eb" path="res://player/Mushroomdude_uncrouch.glb" id="3_yw30f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_73yp8"]
@@ -515,6 +516,7 @@ skin = SubResource("Skin_5k5vn")
 libraries = {
 &"": SubResource("AnimationLibrary_xu6he"),
 &"player_crouch": ExtResource("2_g1dw6"),
+&"player_idle": ExtResource("3_qjkh3"),
 &"player_uncrouch": ExtResource("3_yw30f")
 }
 
