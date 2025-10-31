@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=4 uid="uid://bivqmpnyrqg2u"]
+[gd_scene load_steps=13 format=4 uid="uid://bivqmpnyrqg2u"]
 
 [ext_resource type="Script" uid="uid://bwy3vmah16igp" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="AnimationLibrary" uid="uid://cthqi1j6uwl07" path="res://player/Mushroomdude_crouch.glb" id="2_g1dw6"]
+[ext_resource type="AnimationLibrary" uid="uid://bcdslk2bcmp04" path="res://player/Mushroomdude_Idle_v2.fbx" id="2_qjkh3"]
 [ext_resource type="Script" path="res://player/camera_mount.gd" id="2_rkbax"]
-[ext_resource type="AnimationLibrary" uid="uid://dii6jm5nghrn6" path="res://player/Mushroomdude_idle.glb" id="3_qjkh3"]
 [ext_resource type="AnimationLibrary" uid="uid://c011881k1f5eb" path="res://player/Mushroomdude_uncrouch.glb" id="3_yw30f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_73yp8"]
@@ -116,9 +116,6 @@ bind/25/pose = Transform3D(0.0284893, 0.71806, -0.0607588, 5.74663e-08, -0.06080
 bind/26/name = &"footIK.R"
 bind/26/bone = -1
 bind/26/pose = Transform3D(-0.0356344, -0.720309, -5.33354e-09, -1.0799e-07, -4.4293e-07, 0.721189, -0.720308, 0.0356342, 9.36335e-10, 0.311387, -0.414426, 1.04986)
-
-[sub_resource type="Animation" id="Animation_rkbax"]
-resource_name = "idle"
 
 [sub_resource type="Animation" id="Animation_wcui0"]
 resource_name = "walk"
@@ -295,7 +292,6 @@ tracks/23/keys = PackedFloat32Array(0, 1, 0.0246858, 0.067353, -0.215671, 0.9738
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xu6he"]
 _data = {
-&"idle": SubResource("Animation_rkbax"),
 &"walk": SubResource("Animation_wcui0")
 }
 
@@ -338,7 +334,7 @@ bones/2/rest = Transform3D(-0.235155, -0.97132, 0.0352184, 0.971851, -0.234439, 
 bones/2/enabled = true
 bones/2/position = Vector3(2.56114e-09, 1.83483, -2.13445e-08)
 bones/2/rotation = Quaternion(0.121936, 0.107124, 0.790191, 0.590978)
-bones/2/scale = Vector3(1, 1, 1)
+bones/2/scale = Vector3(0.999999, 1, 1)
 bones/3/name = "upperarm.L"
 bones/3/parent = 2
 bones/3/rest = Transform3D(0.823018, -0.566492, 0.0415748, 0.56624, 0.824027, 0.0187456, -0.044878, 0.00811337, 0.99896, -7.45058e-08, 1.38594, 9.31323e-09)
@@ -380,7 +376,7 @@ bones/8/rest = Transform3D(0.999672, -0.0255592, 0.00115428, 0.025542, 0.994343,
 bones/8/enabled = true
 bones/8/position = Vector3(2.56114e-09, 1.83483, -2.13445e-08)
 bones/8/rotation = Quaternion(0.0798163, 0.00787187, 0.0998632, 0.991764)
-bones/8/scale = Vector3(1, 1, 1)
+bones/8/scale = Vector3(0.999999, 1, 1)
 bones/9/name = "clavicle.R"
 bones/9/parent = 1
 bones/9/rest = Transform3D(-0.174944, 0.970393, -0.166528, -0.873562, -0.231004, -0.4284, -0.454185, 0.0705264, 0.888111, 2.56114e-09, 1.83483, -2.13445e-08)
@@ -515,8 +511,8 @@ skin = SubResource("Skin_5k5vn")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerModel"]
 libraries = {
 &"": SubResource("AnimationLibrary_xu6he"),
+&"Mushroomdude_Idle_v2": ExtResource("2_qjkh3"),
 &"player_crouch": ExtResource("2_g1dw6"),
-&"player_idle": ExtResource("3_qjkh3"),
 &"player_uncrouch": ExtResource("3_yw30f")
 }
 
