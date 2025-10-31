@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvb0ywner3ya"]
+
+[ext_resource type="PackedScene" uid="uid://dnt1ecofakbd2" path="res://assets/environment/tree/tree_scale_thick.glb" id="1_jhgom"]
+
+[node name="tree_scale_thick" instance=ExtResource("1_jhgom")]
