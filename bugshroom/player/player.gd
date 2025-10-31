@@ -82,8 +82,8 @@ func _physics_process(delta):
 			else:
 				velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 				velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
-				if animation_player.current_animation != "idle": 
-					animation_player.play("idle")
+				if animation_player.current_animation != "Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001": 
+					animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	else:
 		velocity.x = 0 #lerp(velocity.x, direction.x * speed, delta * 4.0)
 		velocity.z = 0 #lerp(velocity.z, direction.z * speed, delta * 4.0)
