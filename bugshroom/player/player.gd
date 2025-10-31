@@ -15,6 +15,17 @@ var gravity = 9.8
 @export var current_stamina = 100.0
 var stamina_drain_rate = 5.0 #stamina drained per second during action
 
+# health variables
+@export var max_health: float = 100.0
+var current_health: float = max_health
+
+# attack variables
+@export var attack_damage: float = 25.0
+@export var attack_range: float = 3.0
+@export var attack_cooldown: float = 1.0
+var can_attack: bool = true
+
+
 #Root Down Mechanic
 var is_rooted = false
 @export var root_stamina_regen = 15.0 #stamina regained per second while rooted
@@ -40,6 +51,8 @@ func _unhandled_input(event):
 	#root down input
 	if event is InputEventKey and event.is_pressed() and event.scancode == KEY_R:
 		toggle_root()
+	if event.is_action_pressed("attack") and can_attack:
+		perform_attack()
 
 
 func _physics_process(delta):
@@ -108,3 +121,33 @@ func toggle_root():
 		print("Rooting Down")
 	else:
 		print("Uprooted")
+
+func perform_attack():
+	can_attack = false
+	#raycast forward from camera to detect hit
+	var from = camera.global_position
+	var to = from + -camera.global_transform.basis.z * attack_range
+	
+	var space_state = get_world_3d().physics_direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	var result = space_state.intersect_ray(query)
+	
+	if result and result.has("collider"):
+		var hit_object = result.collider
+		if hit_object.has_method("take_damage"):
+			hit_object.take_damage(attack_damage)
+			print("Player attacked", hit_object.name, "for", attack_damage, "damage")
+		await get_tree().create_timer(attack_cooldown).timeout
+		can_attack = true
+
+func take_damage(amount: float):
+	current_health -= amount
+	print("player health:", current_health)
+	if current_health <= 0:
+		die()
+func die():
+	print("Player has died")
+	
+
+	
+	

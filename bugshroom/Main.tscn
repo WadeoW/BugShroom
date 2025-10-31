@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsr8xxcnyfj1u"]
+[gd_scene load_steps=6 format=3 uid="uid://ctkgi8arduukx"]
 
-[ext_resource type="PackedScene" uid="uid://66d8l1lfh5q3" path="res://player/player.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bivqmpnyrqg2u" path="res://player/player.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://ru3incdx0121" path="res://entities/bug/bug_manager.gd" id="3_r0du0"]
 
 [sub_resource type="Environment" id="Environment_glv2v"]
 
@@ -26,3 +27,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55173, 0)
 
 [node name="Ant" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3941, 1.5, 17.4941)
+
+[node name="BugManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_points")]
+script = ExtResource("3_r0du0")
+bug_scene = ExtResource("2_h2yge")
+spawn_points = [NodePath("../SpawnPoint1"), NodePath("../SpawnPoint2"), NodePath("../SpawnPoint3")]
+
+[node name="SpawnPoint1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.054, 1, 61.3269)
+
+[node name="SpawnPoint2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.254, 1, -75.277)
+
+[node name="SpawnPoint3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.949, 1, -84.088)
