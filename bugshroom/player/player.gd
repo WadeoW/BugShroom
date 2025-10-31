@@ -35,6 +35,8 @@ const FOV_CHANGE = 1.5
 var last_direction = Vector3.FORWARD
 @export var rotation_speed = 3
 
+func _ready() -> void:
+	animation_player.play("player_uncrouch/Armature_002Action")
 
 func _unhandled_input(event):
 	#root down input
