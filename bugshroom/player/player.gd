@@ -11,6 +11,9 @@ var gravity = 9.8
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
 
+#health variables
+@export var current_health = 100
+@export var max_health = 100
 
 #stamina variables
 @export var max_stamina = 100.0
