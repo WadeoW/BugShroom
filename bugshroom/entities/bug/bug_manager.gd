@@ -29,7 +29,11 @@ func spawn_bug():
 	bug.connect("tree_exited", Callable(self, "_on_bug_despawned").bind(bug))
 
 func _on_bug_despawned(bug):
+	if not is_inside_tree():
+		return
 	if bug in active_bugs:
 		active_bugs.erase(bug)
+	#wait 2 seconds before spawning in replacement
 	await get_tree().create_timer(2.0).timeout
-	spawn_bug()
+	if is_inside_tree():
+		spawn_bug()
