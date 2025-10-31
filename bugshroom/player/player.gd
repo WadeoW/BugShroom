@@ -39,10 +39,6 @@ var last_direction = Vector3.FORWARD
 func _unhandled_input(event):
 	#root down input
 	if event.is_action_pressed("root_%s" % [player_id]):
-		#if is_rooted == true:
-			#animation_player.play("player_uncrouch/Armature_002Action")
-		#if is_rooted == false:
-			#animation_player.play("player_crouch/Armature_002Action")
 		toggle_root()
 
 func _physics_process(delta):
@@ -74,14 +70,14 @@ func _physics_process(delta):
 		if is_on_floor():
 			if direction:
 				last_direction = direction
-				if animation_player.current_animation != "walk": #and animation_player.current_animation != "player_uncrouch/Armature_002Action":
+				if animation_player.current_animation != "walk": 
 					animation_player.play("walk")
 				velocity.x = direction.x * speed
 				velocity.z = direction.z * speed
 			else:
 				velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 				velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
-				if animation_player.current_animation != "idle": # and animation_player.current_animation != "player_uncrouch/Armature_002Action":
+				if animation_player.current_animation != "idle": 
 					animation_player.play("idle")
 	else:
 		velocity.x = 0 #lerp(velocity.x, direction.x * speed, delta * 4.0)
