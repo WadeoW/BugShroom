@@ -31,13 +31,19 @@ const FOV_CHANGE = 1.5
 @onready var camera_yaw = $CameraMount/CameraYaw
 @onready var camera_pitch = $CameraMount/CameraYaw/CameraPitch
 
-func _unhandled_input(event):
-	#root down input
-	if event is InputEventKey and event.is_pressed() and event.scancode == KEY_R:
-		toggle_root()
+
 var last_direction = Vector3.FORWARD
 @export var rotation_speed = 3
 
+
+func _unhandled_input(event):
+	#root down input
+	if event.is_action_pressed("root_%s" % [player_id]):
+		#if is_rooted == true:
+			#animation_player.play("player_uncrouch/Armature_002Action")
+		#if is_rooted == false:
+			#animation_player.play("player_crouch/Armature_002Action")
+		toggle_root()
 
 func _physics_process(delta):
 	# add the gravity
@@ -64,33 +70,38 @@ func _physics_process(delta):
 	
 	#new vector3 direction taking into account movement inputs and camera rotation
 	var direction = (camera_yaw.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if not is_rooted:
+	if not is_rooted and animation_player.current_animation != "player_uncrouch/Armature_002Action":
 		if is_on_floor():
 			if direction:
 				last_direction = direction
-				if animation_player.current_animation != "walk":
+				if animation_player.current_animation != "walk": #and animation_player.current_animation != "player_uncrouch/Armature_002Action":
 					animation_player.play("walk")
 				velocity.x = direction.x * speed
 				velocity.z = direction.z * speed
 			else:
 				velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 				velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
-				if animation_player.current_animation != "idle":
+				if animation_player.current_animation != "idle": # and animation_player.current_animation != "player_uncrouch/Armature_002Action":
 					animation_player.play("idle")
 	else:
 		velocity.x = 0 #lerp(velocity.x, direction.x * speed, delta * 4.0)
 		velocity.z = 0 #lerp(velocity.z, direction.z * speed, delta * 4.0)
 	
 	if is_rooted:
-		current stamina += root_stamina_regen * delta
+		current_stamina += root_stamina_regen * delta
 	
 	$PlayerModel.rotation.y = lerp_angle($PlayerModel.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
 
 	move_and_slide()
+	
+	
 #Root down toggle function
 func toggle_root():
 	is_rooted = !is_rooted
 	if is_rooted:
 		print("Rooting Down")
+		animation_player.play("player_crouch/Armature_002Action")
 	else:
+		animation_player.play("player_uncrouch/Armature_002Action")
 		print("Uprooted")
+	
