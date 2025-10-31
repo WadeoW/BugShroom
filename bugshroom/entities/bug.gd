@@ -5,7 +5,6 @@ class_name BugBase
 static var bug_count: int = 0
 const MAX_BUGS: int = 3
 
-
 @export var speed: float = 5.0
 @export var health: float = 50.0
 @export var damage: float = 20.0
@@ -24,11 +23,8 @@ var random := RandomNumberGenerator.new()
 
 var target: Node3D = null
 var is_dead: bool = false
-
-#state control
 var is_chasing: bool = false
 
-#connect signals for player detection
 func _ready():
 	#limit bugs
 	if bug_count >= MAX_BUGS:
@@ -39,22 +35,22 @@ func _ready():
 	target = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta):
+	# gravity
 	if not is_on_floor():
 		velocity.y -= 9.8 * delta
 	else:
 		velocity.y = 0
-		
+	
 	if is_dead:
 		return
+	
 	if target:
 		var distance = global_position.distance_to(target.global_position)
 		
 		if distance <= detection_range:
-			if not is_chasing:
-				is_chasing = true
+			is_chasing = true
 			_chase_player()
 			_try_attack()
-			
 		else:
 			is_chasing = false
 			_idle_behavior(delta)
@@ -62,24 +58,24 @@ func _physics_process(delta):
 		_idle_behavior(delta)
 	
 	move_and_slide()
-	
-#behavior func
+
+# Behavior
+
 func _chase_player():
 	if not target:
 		return
 	var direction = (target.global_position - global_position).normalized()
+	direction.y = 0
 	look_at(target.global_position, Vector3.UP)
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
-	
+
 func _idle_behavior(delta):
 	wander_timer -= delta
 	if wander_timer <= 0.0:
-		#pick random direction
 		var angle = random.randf() * TAU
 		wander_direction = Vector3(cos(angle), 0, sin(angle)).normalized()
 		wander_timer = wander_interval
-		
 	velocity.x = wander_direction.x * wander_speed
 	velocity.z = wander_direction.z * wander_speed
 
@@ -92,23 +88,24 @@ func _try_attack():
 		print("Bug attacked the player!") #for now prints to console
 		await get_tree().create_timer(attack_cooldown).timeout
 		can_attack = true
-#damage/death
+
+
+# Damage and Death
+
 func take_damage(amount: float):
 	if is_dead:
 		return
 	health -= amount
 	if health <= 0:
 		die()
-		
+
 func die():
 	if is_dead:
 		return
 	is_dead = true
 	velocity = Vector3.ZERO
-	bug_count -= 1 #decrease global bug count
+	bug_count -= 1
 	await get_tree().create_timer(despawn_timer).timeout
 	queue_free()
-
-		
 		
 	
