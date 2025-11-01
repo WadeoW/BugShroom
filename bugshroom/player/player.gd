@@ -79,7 +79,7 @@ func _physics_process(delta):
 	#new vector3 direction taking into account movement inputs and camera rotation
 	var direction = (camera_yaw.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if not is_rooted and animation_player.current_animation != "player_uncrouch/Armature_002Action":
-		if is_on_floor():
+		#if is_on_floor():
 			if direction:
 				last_direction = direction
 				if animation_player.current_animation != "walk": 
