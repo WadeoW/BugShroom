@@ -1,6 +1,7 @@
 extends CharacterBody3D
 class_name Player
 
+
 var speed
 const WALK_SPEED = 4.0
 const SPRINT_SPEED = 8.0
@@ -14,11 +15,13 @@ var gravity = 9.8
 #health variables
 @export var current_health = 100
 @export var max_health = 100
+@export var health_bar = ProgressBar
 
 #stamina variables
 @export var max_stamina = 100.0
 @export var current_stamina = 100.0
 var stamina_drain_rate = 5.0 #stamina drained per second during action
+@export var stamina_bar = ProgressBar
 
 #Root Down Mechanic
 var is_rooted = false
@@ -34,7 +37,7 @@ const FOV_CHANGE = 1.5
 @onready var camera_yaw = $CameraMount/CameraYaw
 @onready var camera_pitch = $CameraMount/CameraYaw/CameraPitch
 
-
+#used for making smooth player turning
 var last_direction = Vector3.FORWARD
 @export var rotation_speed = 3
 
@@ -45,6 +48,9 @@ func _unhandled_input(event):
 	#root down input
 	if event.is_action_pressed("root_%s" % [player_id]):
 		toggle_root()
+	if event.is_action_pressed("interact_1"):
+		take_damage(25)
+		print("interact pressed")
 
 func _physics_process(delta):
 	# add the gravity
@@ -62,6 +68,7 @@ func _physics_process(delta):
 	# handle sprint
 	if Input.is_action_pressed("sprint_%s" % [player_id]) and current_stamina > 0:
 		current_stamina -= stamina_drain_rate * delta
+		stamina_bar.update()
 		speed = SPRINT_SPEED
 	else:
 		speed = WALK_SPEED
@@ -90,12 +97,18 @@ func _physics_process(delta):
 	
 	if is_rooted:
 		current_stamina += root_stamina_regen * delta
+		stamina_bar.update()
 	
 	$PlayerModel.rotation.y = lerp_angle($PlayerModel.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
 
 	move_and_slide()
 	
 	
+
+func take_damage(amount):
+	current_health -= amount
+	health_bar.update()
+
 #Root down toggle function
 func toggle_root():
 	is_rooted = !is_rooted

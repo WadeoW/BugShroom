@@ -1,13 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://os7sdo5jepfk"]
+[gd_scene load_steps=12 format=3 uid="uid://bjmx82cbebnil"]
 
 [ext_resource type="PackedScene" uid="uid://bivqmpnyrqg2u" path="res://player/player.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://b2362xpns3grh" path="res://entities/bug_manager.gd" id="3_r0du0"]
+[ext_resource type="Script" uid="uid://brrncwvvflgvk" path="res://player/health_bar.gd" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://duk35nosf216h" path="res://player/stamina_bar.gd" id="5_lquwl"]
 
 [sub_resource type="Environment" id="Environment_glv2v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glv2v"]
 albedo_color = Color(0.43, 0.345935, 0.2107, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
+bg_color = Color(0.808137, 3.27289e-06, 7.70092e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0.197707, 0.719829, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mycd"]
+bg_color = Color(0.73, 0.73, 0, 0.686275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
+bg_color = Color(0.9, 0.66, 0, 1)
 
 [node name="World" type="Node3D"]
 
@@ -73,8 +87,42 @@ handle_input_locally = false
 size = Vector2i(574, 648)
 render_target_update_mode = 4
 
-[node name="Player" parent="GridContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_0xm2m")]
+[node name="Player" parent="GridContainer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("health_bar", "stamina_bar") instance=ExtResource("1_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.90183, 1.5, 6.72644)
+health_bar = NodePath("../CanvasLayer/HealthBar")
+stamina_bar = NodePath("../CanvasLayer/StaminaBar")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GridContainer/SubViewportContainer/SubViewport"]
+
+[node name="HealthBar" type="ProgressBar" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer" node_paths=PackedStringArray("player")]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 170.0
+offset_bottom = 60.0
+theme_override_styles/background = SubResource("StyleBoxFlat_1bvp3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lquwl")
+value = 100.0
+show_percentage = false
+script = ExtResource("4_1bvp3")
+player = NodePath("../../Player")
+
+[node name="StaminaBar" type="ProgressBar" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer" node_paths=PackedStringArray("player")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -70.0
+offset_right = -30.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_7mycd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_272bh")
+show_percentage = false
+script = ExtResource("5_lquwl")
+player = NodePath("../../Player")
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="GridContainer"]
 layout_mode = 2
@@ -87,6 +135,40 @@ handle_input_locally = false
 size = Vector2i(574, 648)
 render_target_update_mode = 4
 
-[node name="Player2" parent="GridContainer/SubViewportContainer2/SubViewport" instance=ExtResource("1_0xm2m")]
+[node name="Player2" parent="GridContainer/SubViewportContainer2/SubViewport" node_paths=PackedStringArray("health_bar", "stamina_bar") instance=ExtResource("1_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.31205, 1.5, 6.35862)
 player_id = 2
+health_bar = NodePath("../CanvasLayer/HealthBar2")
+stamina_bar = NodePath("../CanvasLayer/StaminaBar2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GridContainer/SubViewportContainer2/SubViewport"]
+
+[node name="HealthBar2" type="ProgressBar" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer" node_paths=PackedStringArray("player")]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 170.0
+offset_bottom = 60.0
+theme_override_styles/background = SubResource("StyleBoxFlat_1bvp3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lquwl")
+value = 100.0
+show_percentage = false
+script = ExtResource("4_1bvp3")
+player = NodePath("../../Player2")
+
+[node name="StaminaBar2" type="ProgressBar" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer" node_paths=PackedStringArray("player")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -70.0
+offset_right = -30.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_7mycd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_272bh")
+show_percentage = false
+script = ExtResource("5_lquwl")
+player = NodePath("../../../../SubViewportContainer/SubViewport/Player")
