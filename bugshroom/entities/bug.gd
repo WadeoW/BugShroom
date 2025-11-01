@@ -37,7 +37,7 @@ func _ready():
 		return
 	
 	bug_count += 1
-	target = get_tree().get_first_node_in_group("player")
+	target = get_tree().get_first_node_in_group("Player")
 
 #-----------------------------------
 # Main update loop

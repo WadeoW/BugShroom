@@ -4,7 +4,7 @@ class_name Player
 var speed
 const WALK_SPEED = 4.0
 const SPRINT_SPEED = 8.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 6
 const SENSITIVITY = 0.005
 var gravity = 9.8
 @export var player_id = 1
