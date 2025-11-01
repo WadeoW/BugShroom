@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdrrgugynpifx"]
+
+[ext_resource type="Script" uid="uid://bwy3vmah16igp" path="res://player/player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://6ime7wr2s8vr" path="res://player/Mushroomdude_walkanimation.blend" id="2_onrkg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+radius = 3.56674
+height = 12.6214
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_4flbx")
+
+[node name="Mushroomdude_walkanimation" parent="." instance=ExtResource("2_onrkg")]
+
+[node name="Skeleton3D" parent="Mushroomdude_walkanimation/Armature_002" index="0"]
+bones/12/rotation = Quaternion(-0.159911, -0.0181408, 0.2901, 0.943367)
+bones/15/rotation = Quaternion(0.580086, -0.455273, -0.54782, -0.39512)
+bones/16/rotation = Quaternion(-0.573388, 0.0366109, 0.0374719, 0.817608)
+bones/17/rotation = Quaternion(-0.0140261, 0.00198301, -0.0258482, 0.999566)
+bones/19/rotation = Quaternion(0.00593772, -5.12226e-09, -0.150192, 0.988639)
+bones/25/rotation = Quaternion(0.00593769, 2.32827e-07, -0.150192, 0.988639)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.74184, 0)
+shape = SubResource("CapsuleShape3D_onrkg")
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[editable path="Mushroomdude_walkanimation"]
