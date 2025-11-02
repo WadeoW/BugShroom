@@ -18,7 +18,7 @@ height = 13.9033
 radius = 16.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unby7"]
-transparency = 1
+cull_mode = 2
 albedo_color = Color(0.392157, 0.780392, 0.988235, 0.415686)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_moiim"]
@@ -27,6 +27,7 @@ material = SubResource("StandardMaterial3D_unby7")
 top_radius = 16.0
 bottom_radius = 16.0
 height = 0.1
+cap_top = false
 cap_bottom = false
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_moiim"]
@@ -65,7 +66,7 @@ transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, 0, 1.63586, 0)
 shape = SubResource("CylinderShape3D_tx05i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DetectionArea3D"]
-transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, 0, -2.72077, 0)
+transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, 0, -2.73699, 0)
 mesh = SubResource("CylinderMesh_moiim")
 skeleton = NodePath("../CollisionShape3D")
 
