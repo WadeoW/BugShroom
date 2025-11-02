@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjmx82cbebnil"]
+[gd_scene load_steps=12 format=3 uid="uid://cqrgkcye10qph"]
 
 [ext_resource type="PackedScene" uid="uid://bivqmpnyrqg2u" path="res://player/player.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
@@ -34,7 +34,7 @@ transform = Transform3D(1, 0, 0, 0, 0.0366437, 0.999328, 0, -0.999328, 0.0366437
 [node name="Floor" type="CSGBox3D" parent="."]
 material_override = SubResource("StandardMaterial3D_glv2v")
 use_collision = true
-size = Vector3(200, 1, 200)
+size = Vector3(800, 1, 800)
 
 [node name="BugManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_points")]
 script = ExtResource("3_r0du0")
