@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://c86brgigfa1ak"]
+
+[ext_resource type="Script" uid="uid://byrtannhqb5qu" path="res://tasks/dead_bug_task.gd" id="1_d74cn"]
+[ext_resource type="PackedScene" uid="uid://d2fk73r1df5o3" path="res://entities/beetle/Bettle.glb" id="1_tx05i"]
+[ext_resource type="PackedScene" uid="uid://cfnt3o6vlqwns" path="res://tasks/nutrient_bar_3d.tscn" id="3_unby7"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_unby7"]
+points = PackedVector3Array(-7.37327, -0.735845, -1.02345, -4.02207, 0.507884, 2.98379, -3.50517, 0.765781, 2.72442, -5.82885, 5.67341, 0.141836, -2.72981, -1.04177, -1.92377, -7.63754, 0.765781, 1.69162, -2.98874, -2.07564, 1.17464, -5.05541, 0.507884, -2.95715, -3.12059, 2.44937, -0.746468, -7.63754, 1.02444, -1.40678, -6.6763, -0.727917, 1.73586, -4.79695, 5.1561, -0.632183, -2.98874, -2.07564, -1.14858, -3.09956, 1.79889, 1.43873, -4.79695, 5.41475, 0.400037, -6.9402, -1.24636, 0.364101, -5.05541, 0.507884, 2.98379, -5.82885, 5.67341, -0.373983, -4.28053, 0.507884, -2.95715, -5.06689, -1.2578, -1.98545, -2.72981, -1.30043, 1.69162, -3.08652, 1.57848, -1.64217, -7.3786, 0.249228, -1.92377, -7.63754, 1.54099, 0.916438, -4.83201, -1.254, 2.00908, -5.57039, 5.67341, 0.400037, -6.23531, -1.47469, -0.33732, -7.39733, -0.997035, 0.595105, -5.82885, 0.507884, -2.69837, -3.13746, 2.44405, 0.766407, -6.34527, 0.507884, 2.4668, -7.63754, 1.54099, -0.632183)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_moiim"]
+points = PackedVector3Array(-8.41244, -0.783119, -0.632436, -7.63754, 0.76669, 1.69228, -7.63754, 1.02519, 1.43377, -9.70395, 3.60659, 0.400365, -8.41244, 4.8985, -0.115429, -7.63754, 0.76669, -1.40734, -9.70395, 1.28309, -0.373629, -9.18735, 0.25029, 0.91707, -7.63754, -1.30073, 0.400365, -9.44545, 4.12299, -0.373629, -8.15414, -0.266718, -1.40734, -8.92905, 4.8985, 0.400365, -7.89604, -0.524615, 1.69228, -9.70395, 3.09019, 0.658566, -8.92905, -0.524615, 0.400365, -7.63754, -1.04162, -0.890333, -7.63754, 1.5416, -0.632436, -8.41244, 4.8985, 0.400365, -9.44545, 0.25029, -0.115429, -9.70395, 1.5416, 0.658566, -9.70395, 3.34869, -0.373629, -8.15414, 0.76669, -1.40734, -8.67074, -0.00821435, -1.14884, -7.89604, 0.76669, 1.69228, -9.44545, 1.02519, 0.91707, -9.18735, 4.3815, -0.373629, -7.63754, 1.5416, 0.91707, -7.89604, -1.30073, 0.400365, -7.63754, -0.524615, 1.69228, -9.44545, 3.60659, 0.658566, -9.44545, 0.25029, 0.400365, -7.89604, -0.524615, -1.40734)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8j8ec"]
+points = PackedVector3Array(0.112439, -2.83441, -0.100517, -0.87075, 2.25248, 0.129996, 0.358002, 1.92154, 1.25341, 5.53541, -2.33359, -2.18222, 5.53541, -2.33359, 2.20886, -2.29544, -1.25327, 1.77421, -2.33412, 0.63642, -2.00042, 4.63297, 0.563373, -1.22241, 4.99735, -3.85186, 0.83892, -2.15368, -1.91899, -1.23577, -1.81092, 1.32074, 2.00196, 5.93688, -0.5496, 1.07382, -2.72981, 2.05643, -1.40701, 5.6744, -3.59147, -1.03938, 1.7134, 1.00442, -2.11128, 3.52904, 0.581914, 1.94979, -0.921469, -0.268741, 2.72548, 6.56932, -2.73872, -0.841587, -0.865994, 0.147685, -2.43533, -2.72981, 2.31478, 0.917019, -2.33643, -1.96834, 1.07992, 3.97724, 1.03081, 0.353435, -1.65808, -1.45778, -1.89658, 3.76733, -3.53486, -1.01815, 0.348071, 1.93743, -1.23406, 1.93815, -2.34446, 1.9083, 5.60706, -0.78413, -1.70844, 6.56582, -2.73721, 0.86756, 6.50316, -1.50599, -0.829074, 2.38768, 0.797243, 2.16036, 3.07324, 0.581469, -2.15005, -1.41114, 1.60221, -2.01517)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tx05i"]
+height = 13.9033
+radius = 16.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unby7"]
+cull_mode = 2
+albedo_color = Color(0.392157, 0.780392, 0.988235, 0.415686)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_moiim"]
+lightmap_size_hint = Vector2i(504, 164)
+material = SubResource("StandardMaterial3D_unby7")
+top_radius = 16.0
+bottom_radius = 16.0
+height = 0.1
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_moiim"]
+viewport_path = NodePath("SubViewport")
+
+[node name="dead_bug_task" type="StaticBody3D" node_paths=PackedStringArray("nutrient_bar")]
+script = ExtResource("1_d74cn")
+nutrient_bar = NodePath("SubViewport/NutrientBar3D")
+
+[node name="Bettle" parent="." instance=ExtResource("1_tx05i")]
+transform = Transform3D(0.561334, -0.286014, -5.50763e-08, -0.286014, -0.561334, 5.50763e-08, -7.40775e-08, -2.40692e-08, -0.63, 0, 0, 0)
+
+[node name="Leg_002" parent="Bettle" index="0"]
+transform = Transform3D(0.508871, -0.371416, -2.13163e-14, 0.371416, 0.508871, -5.32907e-15, -7.10543e-15, 1.77636e-14, 0.63, 4.61039, -4.90395, -5.44637)
+
+[node name="Cube" parent="Bettle" index="1"]
+transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, -0.198534, 1.17859, -0.0049305)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.35364, -0.180189, -3.46981e-08, -0.180189, -0.35364, 3.46981e-08, -4.66688e-08, -1.51636e-08, -0.3969, -0.448539, -0.604801, 0.0031062)
+shape = SubResource("ConvexPolygonShape3D_unby7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.35364, -0.180189, -3.46981e-08, -0.180189, -0.35364, 3.46981e-08, -4.66688e-08, -1.51636e-08, -0.3969, -0.448539, -0.604801, 0.0031062)
+shape = SubResource("ConvexPolygonShape3D_moiim")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.35364, -0.180189, -3.46981e-08, -0.180189, -0.35364, 3.46981e-08, -4.66688e-08, -1.51636e-08, -0.3969, -0.448539, -0.604801, 0.0031062)
+shape = SubResource("ConvexPolygonShape3D_8j8ec")
+
+[node name="DetectionArea3D" type="Area3D" parent="."]
+transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea3D"]
+transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, 0, 1.63586, 0)
+shape = SubResource("CylinderShape3D_tx05i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DetectionArea3D"]
+transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, 0, -2.73699, 0)
+mesh = SubResource("CylinderMesh_moiim")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="NutrientBar3D" parent="SubViewport" instance=ExtResource("3_unby7")]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3.97, 0, 0, 0, 3.97, 0, 0, 0, 3.97, 0, 3.85921, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_moiim")
+
+[connection signal="body_entered" from="DetectionArea3D" to="." method="_on_detection_area_3d_body_entered"]
+[connection signal="body_exited" from="DetectionArea3D" to="." method="_on_detection_area_3d_body_exited"]
+
+[editable path="Bettle"]

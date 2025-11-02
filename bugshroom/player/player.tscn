@@ -297,12 +297,12 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 radius = 0.594269
-height = 2.12592
+height = 2.33677
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rkbax"]
 radius = 0.07
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_4flbx")
 sens_horizontal = 0.2
 sens_vertical = 0.2

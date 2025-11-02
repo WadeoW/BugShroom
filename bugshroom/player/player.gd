@@ -41,9 +41,12 @@ const FOV_CHANGE = 1.5
 var last_direction = Vector3.FORWARD
 @export var rotation_speed = 3
 
+var current_animation 
+
 func _ready() -> void:
 	animation_player.play("player_uncrouch/Armature_002Action")
-
+	if animation_player.current_animation:
+		var current_animation = animation_player.current_animation
 func _unhandled_input(event):
 	#root down input
 	if event.is_action_pressed("root_%s" % [player_id]):
@@ -53,6 +56,9 @@ func _unhandled_input(event):
 		print("interact pressed")
 
 func _physics_process(delta):
+	if animation_player.animation_changed:
+		current_animation = animation_player.current_animation
+	
 	# add the gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -70,7 +76,9 @@ func _physics_process(delta):
 		current_stamina -= stamina_drain_rate * delta
 		stamina_bar.update()
 		speed = SPRINT_SPEED
+		animation_player.speed_scale = 2
 	else:
+		animation_player.speed_scale = 1
 		speed = WALK_SPEED
 
 	# Get the input direction and handle the movement/deceleration.
