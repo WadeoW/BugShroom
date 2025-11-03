@@ -42,4 +42,5 @@ func _on_bug_despawned(bug):
 		active_bugs.erase(bug)
 	# Wait 2 seconds before spawning a replacement
 	await get_tree().create_timer(2.0).timeout
-	spawn_bug()
+	if is_inside_tree():
+		spawn_bug()

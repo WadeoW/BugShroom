@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BugShroom"
-run/main_scene="uid://bjmx82cbebnil"
+run/main_scene="uid://card22cwsdck6"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
