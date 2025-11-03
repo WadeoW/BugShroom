@@ -35,13 +35,10 @@ func _ready():
 	if bug_count >= MAX_BUGS:
 		queue_free()
 		return
-	
 	bug_count += 1
-	target = get_tree().get_first_node_in_group("Player")
+	#find closest player
+	target = _get_closest_player()
 
-#-----------------------------------
-# Main update loop
-#-----------------------------------
 func _physics_process(delta):
 	# Gravity
 	if not is_on_floor():
@@ -51,6 +48,8 @@ func _physics_process(delta):
 	
 	if is_dead:
 		return
+	
+	target = _get_closest_player()
 
 	if target:
 		var distance = global_position.distance_to(target.global_position)
@@ -67,6 +66,20 @@ func _physics_process(delta):
 		_idle_behavior(delta)
 
 	move_and_slide()
+	
+func _get_closest_player() -> Node3D:
+	var players = get_tree().get_nodes_in_group("player")
+	if players.is_empty():
+		return null
+	var closest = null
+	var closest_dist = INF
+	for p in players:
+		if p and p.is_inside_tree():
+			var dist = global_position.distance_to(p.global_position)
+			if dist < closest_dist:
+				closest_dist = dist
+				closest = p 
+	return closest
 
 #-----------------------------------
 # Behavior
@@ -95,9 +108,12 @@ func _try_attack():
 	var distance = global_position.distance_to(target.global_position)
 	if distance <= attack_range:
 		can_attack = false
-		print("Bug attacked the player!") # Temporary debug output
+		if target.has_method("take_damage"):
+			target.take_damage(damage)
+			print("Bug attacked player for ", damage, " damage!")
 		await get_tree().create_timer(attack_cooldown).timeout
 		can_attack = true
+
 
 #-----------------------------------
 # Damage & Death
