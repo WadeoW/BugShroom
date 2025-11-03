@@ -202,7 +202,7 @@ script = ExtResource("5_lquwl")
 player = NodePath("../../../../SubViewportContainer/SubViewport/Player")
 
 [node name="dead_bug_task" parent="." instance=ExtResource("6_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5734, 2.37678, -9.29211)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9964, 2.37678, -34.4365)
 
 [node name="dead_bug_task4" parent="." instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.442, 2.37679, 200.258)

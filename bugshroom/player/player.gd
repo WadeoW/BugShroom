@@ -16,6 +16,7 @@ var gravity = 9.8
 @export var current_health = 100
 @export var max_health = 100
 @export var health_bar = ProgressBar
+var is_dead = false
 
 #stamina variables
 @export var max_stamina = 100.0
@@ -86,19 +87,18 @@ func _physics_process(delta):
 	
 	#new vector3 direction taking into account movement inputs and camera rotation
 	var direction = (camera_yaw.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if not is_rooted and animation_player.current_animation != "player_uncrouch/Armature_002Action":
-		#if is_on_floor():
-			if direction:
-				last_direction = direction
-				if animation_player.current_animation != "walk": 
-					animation_player.play("walk")
-				velocity.x = direction.x * speed
-				velocity.z = direction.z * speed
-			else:
-				velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-				velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
-				if animation_player.current_animation != "Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001": 
-					animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
+	if not is_rooted and animation_player.current_animation != "player_uncrouch/Armature_002Action" and !is_dead:
+		if direction:
+			last_direction = direction
+			if animation_player.current_animation != "walk": 
+				animation_player.play("walk")
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+			if animation_player.current_animation != "Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001": 
+				animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	else:
 		velocity.x = 0 #lerp(velocity.x, direction.x * speed, delta * 4.0)
 		velocity.z = 0 #lerp(velocity.z, direction.z * speed, delta * 4.0)
@@ -116,6 +116,8 @@ func _physics_process(delta):
 func take_damage(amount):
 	current_health -= amount
 	health_bar.update()
+	if current_health <= 0:
+		die()
 
 #Root down toggle function
 func toggle_root():
@@ -127,3 +129,5 @@ func toggle_root():
 		animation_player.play("player_uncrouch/Armature_002Action")
 		print("Uprooted")
 	
+func die():
+	is_dead = true
