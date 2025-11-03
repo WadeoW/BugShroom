@@ -53,7 +53,6 @@ func _unhandled_input(event):
 	if event.is_action_pressed("root_%s" % [player_id]):
 		toggle_root()
 	if event.is_action_pressed("interact_1"):
-		take_damage(25)
 		print("interact pressed")
 
 func _physics_process(delta):
@@ -110,8 +109,8 @@ func _physics_process(delta):
 	$PlayerModel.rotation.y = lerp_angle($PlayerModel.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
 
 	move_and_slide()
-	
-	
+
+
 
 func take_damage(amount):
 	current_health -= amount
@@ -130,4 +129,4 @@ func toggle_root():
 		print("Uprooted")
 	
 func die():
-	is_dead = true
+	is_dead = false
