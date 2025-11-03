@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bu311vsdevd1u" path="res://assets/environment/mother/mother.tscn" id="7_272bh"]
 
 [sub_resource type="Environment" id="Environment_glv2v"]
+fog_density = 0.0025
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycdy4"]
 albedo_texture = ExtResource("1_4c57u")
