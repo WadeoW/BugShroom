@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://coie8o1b7vxn8" path="res://assets/environment/ground/ground textures/ground_v01_gorund_mat_Normal.png" id="2_efxa6"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://ndh70acbw2sg" path="res://assets/environment/ground/ground textures/ground_v01_gorund_mat_Roughness.png" id="3_dg77c"]
-[ext_resource type="Script" uid="uid://b2362xpns3grh" path="res://entities/bug_manager.gd" id="3_r0du0"]
-[ext_resource type="Script" uid="uid://brrncwvvflgvk" path="res://player/health_bar.gd" id="4_1bvp3"]
-[ext_resource type="Script" uid="uid://duk35nosf216h" path="res://player/stamina_bar.gd" id="5_lquwl"]
+[ext_resource type="Script" path="res://entities/bug_manager.gd" id="3_r0du0"]
+[ext_resource type="Script" path="res://player/health_bar.gd" id="4_1bvp3"]
+[ext_resource type="Script" path="res://player/stamina_bar.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bu311vsdevd1u" path="res://assets/environment/mother/mother.tscn" id="7_272bh"]
 
@@ -202,7 +202,19 @@ script = ExtResource("5_lquwl")
 player = NodePath("../../../../SubViewportContainer/SubViewport/Player")
 
 [node name="dead_bug_task" parent="." instance=ExtResource("6_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.254, 2.37678, 3.17409)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5734, 2.37678, -9.29211)
+
+[node name="dead_bug_task4" parent="." instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.442, 2.37679, 200.258)
+
+[node name="dead_bug_task5" parent="." instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 240.549, 2.37679, 189.272)
+
+[node name="dead_bug_task3" parent="." instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.299, 2.37678, -138.467)
+
+[node name="dead_bug_task2" parent="." instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.3928, 2.37678, -120.522)
 
 [node name="mothermushroom" parent="." instance=ExtResource("7_272bh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762088, 0.600646, 36.9483)
