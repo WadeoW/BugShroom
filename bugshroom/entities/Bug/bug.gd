@@ -3,7 +3,7 @@ class_name BugBase
 
 # Bug counter to limit total bugs in scene
 static var bug_count: int = 0
-const MAX_BUGS: int = 3
+const MAX_BUGS: int = 5
 
 # Stats
 @export var speed: float = 5.0
