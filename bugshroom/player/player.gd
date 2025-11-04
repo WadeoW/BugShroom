@@ -58,9 +58,7 @@ func _unhandled_input(event):
 	#root down input
 	if event.is_action_pressed("root_%s" % [player_id]):
 		toggle_root()
-	if event.is_action_pressed("interact_1"):
-		print("interact pressed")
-	if event.is_action_pressed("attack"):
+	if event.is_action_pressed("attack_%s" % [player_id]):
 		attack()
 
 func _physics_process(delta):
