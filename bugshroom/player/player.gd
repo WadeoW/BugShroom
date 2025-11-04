@@ -18,8 +18,6 @@ var gravity = 9.8
 @export var health_bar = ProgressBar
 var is_dead = false
 
-var is_dead: bool = false
-
 #stamina variables
 @export var max_stamina = 100.0
 @export var current_stamina = 100.0
