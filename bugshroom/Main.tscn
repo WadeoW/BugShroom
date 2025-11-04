@@ -1,8 +1,5 @@
-<<<<<<< Updated upstream
 [gd_scene load_steps=17 format=3 uid="uid://ch8yce5nnahu3"]
-=======
 [gd_scene load_steps=21 format=3 uid="uid://ch8yce5nnahu3"]
->>>>>>> Stashed changes
 
 [ext_resource type="PackedScene" uid="uid://bivqmpnyrqg2u" path="res://player/player.tscn" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://cguu5ppjm4whn" path="res://assets/environment/ground/ground textures/ground_v01_gorund_mat_BaseColor.png" id="1_4c57u"]
