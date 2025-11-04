@@ -7,8 +7,6 @@ var player_nutrient_drain_rate = 10
 
 @export var nutrient_bar = ProgressBar
 
-
-
 func _on_detection_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		player_in_radius = true

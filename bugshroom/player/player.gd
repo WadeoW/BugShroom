@@ -1,6 +1,7 @@
 extends CharacterBody3D
 class_name Player
 
+signal player_death
 
 var speed
 const WALK_SPEED = 4.0
@@ -74,7 +75,7 @@ func _physics_process(delta):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 # handle jump
-	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor():
+	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor and !is_rooted:
 		velocity.y = JUMP_VELOCITY
 
 	# handle sprint

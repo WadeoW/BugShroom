@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cga0d7eksud76"]
+
+[ext_resource type="PackedScene" uid="uid://h8adxjmidj8y" path="res://assets/environment/mushroom_base/straight_wall_mushroom.fbx" id="1_aq1w6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aq1w6"]
+size = Vector3(2.0961, 8.85132, 7.68842)
+
+[node name="straight_wall_mushroom" instance=ExtResource("1_aq1w6")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00838, 4.34631, 0.0856018)
+shape = SubResource("BoxShape3D_aq1w6")
+
+[node name="straight_wall" parent="." index="1"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)

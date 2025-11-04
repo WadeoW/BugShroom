@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqb8hv0d2mywp"]
+
+[ext_resource type="PackedScene" uid="uid://cu6mg2j27oc10" path="res://assets/environment/mushroom_base/curved_wall_mushroom.fbx" id="1_wo6k3"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wo6k3"]
+height = 7.69403
+radius = 0.997559
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_up6jf"]
+height = 4.59178
+radius = 1.0498
+
+[node name="curved_wall_mushroom" instance=ExtResource("1_wo6k3")]
+
+[node name="curved_wall" parent="." index="0"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.14372, 4.04109, -6.57072)
+shape = SubResource("CylinderShape3D_wo6k3")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.27376, 4.04109, -3.00208)
+shape = SubResource("CylinderShape3D_wo6k3")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.80992, 2.40243, -1.00725)
+shape = SubResource("CylinderShape3D_up6jf")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.4388, 2.40243, -4.93302)
+shape = SubResource("CylinderShape3D_up6jf")

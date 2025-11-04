@@ -1,16 +1,19 @@
-[gd_scene load_steps=20 format=3 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=25 format=3 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="PackedScene" uid="uid://bivqmpnyrqg2u" path="res://player/player.tscn" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://cguu5ppjm4whn" path="res://assets/environment/ground/ground textures/ground_v01_gorund_mat_BaseColor.png" id="1_4c57u"]
+[ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="Texture2D" uid="uid://c471r6e2fi8ws" path="res://assets/environment/rock/rock textures/ground_v01_gorund_mat_BaseColor.png" id="1_20pc6"]
 [ext_resource type="Texture2D" uid="uid://coie8o1b7vxn8" path="res://assets/environment/ground/ground textures/ground_v01_gorund_mat_Normal.png" id="2_efxa6"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://bxwpkxvlm8a0x" path="res://levels/colony_nutrient_bar.gd" id="3_c6i3y"]
 [ext_resource type="Texture2D" uid="uid://ndh70acbw2sg" path="res://assets/environment/ground/ground textures/ground_v01_gorund_mat_Roughness.png" id="3_dg77c"]
 [ext_resource type="Script" uid="uid://b2362xpns3grh" path="res://entities/bug_manager.gd" id="3_r0du0"]
 [ext_resource type="Script" path="res://player/health_bar.gd" id="4_1bvp3"]
 [ext_resource type="Script" path="res://player/stamina_bar.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://bu311vsdevd1u" path="res://assets/environment/mother/mother.tscn" id="7_272bh"]
+[ext_resource type="Script" uid="uid://xmhd01mihknq" path="res://tasks/dead_bug_task_manager.gd" id="12_c2ibq"]
+[ext_resource type="PackedScene" uid="uid://cpgvg8cpqanlu" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vvyt"]
 panorama = ExtResource("1_20pc6")
@@ -24,6 +27,12 @@ background_color = Color(0.627258, 0.868996, 1, 1)
 sky = SubResource("Sky_c6i3y")
 ambient_light_source = 3
 fog_light_energy = 0.8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6i3y"]
+bg_color = Color(0.828566, 0.595706, 0.566381, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2ibq"]
+bg_color = Color(0.827451, 0.054902, 0.121569, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycdy4"]
 albedo_texture = ExtResource("1_4c57u")
@@ -44,7 +53,11 @@ bg_color = Color(0.73, 0.73, 0, 0.686275)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
 bg_color = Color(0.9, 0.66, 0, 1)
 
-[node name="World" type="Node3D"]
+[node name="World" type="Node3D" node_paths=PackedStringArray("player1", "player2", "colony_nutrient_bar")]
+script = ExtResource("1_5vvyt")
+player1 = NodePath("GridContainer/SubViewportContainer/SubViewport/Player")
+player2 = NodePath("GridContainer/SubViewportContainer2/SubViewport/Player2")
+colony_nutrient_bar = NodePath("CanvasLayer/ColonyNutrientBar")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_glv2v")
@@ -53,12 +66,39 @@ environment = SubResource("Environment_glv2v")
 transform = Transform3D(0.947154, 0.00741801, 0.320693, -0.320614, -0.0101743, 0.947156, 0.0102889, -0.999921, -0.00725836, 0, 55.6146, 0)
 shadow_enabled = true
 
+[node name="NutrientDrainTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="NutrientGainTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColonyNutrientBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("main")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -172.0
+offset_top = 20.0
+offset_right = 172.0
+offset_bottom = 47.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_c6i3y")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c2ibq")
+max_value = 1000.0
+step = 1.0
+value = 1000.0
+show_percentage = false
+script = ExtResource("3_c6i3y")
+main = NodePath("../..")
+
 [node name="Floor" type="CSGBox3D" parent="."]
 material_override = SubResource("StandardMaterial3D_ycdy4")
 use_collision = true
 size = Vector3(800, 1, 800)
 
 [node name="boxes" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.5949, 0, 43.7411)
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="boxes"]
@@ -110,7 +150,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288.937, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.61, 1, 122.368)
 
 [node name="Ant" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.753, 1.5, -21.7004)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7138, 1.5, -70.3092)
 
 [node name="GridContainer" type="GridContainer" parent="."]
 anchors_preset = 15
@@ -133,7 +173,7 @@ size = Vector2i(574, 648)
 render_target_update_mode = 4
 
 [node name="Player" parent="GridContainer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("health_bar", "stamina_bar") instance=ExtResource("1_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.90183, 1.5, 6.72644)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.16733, 1.5, 14.6198)
 health_bar = NodePath("../CanvasLayer/HealthBar")
 stamina_bar = NodePath("../CanvasLayer/StaminaBar")
 
@@ -181,7 +221,7 @@ size = Vector2i(574, 648)
 render_target_update_mode = 4
 
 [node name="Player2" parent="GridContainer/SubViewportContainer2/SubViewport" node_paths=PackedStringArray("health_bar", "stamina_bar") instance=ExtResource("1_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.31205, 1.5, 6.35862)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.60489, 1.5, 17.2759)
 player_id = 2
 health_bar = NodePath("../CanvasLayer/HealthBar2")
 stamina_bar = NodePath("../CanvasLayer/StaminaBar2")
@@ -189,10 +229,14 @@ stamina_bar = NodePath("../CanvasLayer/StaminaBar2")
 [node name="CanvasLayer" type="CanvasLayer" parent="GridContainer/SubViewportContainer2/SubViewport"]
 
 [node name="HealthBar2" type="ProgressBar" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer" node_paths=PackedStringArray("player")]
-offset_left = 30.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -170.0
 offset_top = 30.0
-offset_right = 170.0
+offset_right = -30.0
 offset_bottom = 60.0
+grow_horizontal = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_1bvp3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lquwl")
 value = 100.0
@@ -218,20 +262,28 @@ show_percentage = false
 script = ExtResource("5_lquwl")
 player = NodePath("../../../../SubViewportContainer/SubViewport/Player")
 
-[node name="dead_bug_task" parent="." instance=ExtResource("6_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9964, 2.37678, -34.4365)
+[node name="DeadBugTaskManager" type="Node3D" parent="."]
+script = ExtResource("12_c2ibq")
 
-[node name="dead_bug_task4" parent="." instance=ExtResource("6_7mycd")]
+[node name="dead_bug_task" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.92439, 2.37678, -132.984)
+
+[node name="dead_bug_task6" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9002, 2.37678, -7.8503)
+
+[node name="dead_bug_task4" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.442, 2.37679, 200.258)
 
-[node name="dead_bug_task5" parent="." instance=ExtResource("6_7mycd")]
+[node name="dead_bug_task5" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 240.549, 2.37679, 189.272)
 
-[node name="dead_bug_task3" parent="." instance=ExtResource("6_7mycd")]
+[node name="dead_bug_task3" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.299, 2.37678, -138.467)
 
-[node name="dead_bug_task2" parent="." instance=ExtResource("6_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.3928, 2.37678, -120.522)
+[node name="dead_bug_task2" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190.492, 2.37678, -92.2028)
 
-[node name="mothermushroom" parent="." instance=ExtResource("7_272bh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762088, 0.600646, 36.9483)
+[node name="MushroomBase" parent="." instance=ExtResource("12_c6i3y")]
+
+[connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
+[connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]
