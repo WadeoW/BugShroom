@@ -2,7 +2,7 @@ extends BugBase
 
 @export var ant_speed: float = 5.0
 @export var ant_health: float = 50.0
-@export var ant_damage: float = 10.0
+@export var ant_damage: float = 5.0
 
 func _ready():
 	# Initialize Ant stats based on exported variables

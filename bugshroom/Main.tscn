@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://ndh70acbw2sg" path="res://assets/environment/ground/ground textures/ground_v01_gorund_mat_Roughness.png" id="3_dg77c"]
 [ext_resource type="Script" uid="uid://b2362xpns3grh" path="res://entities/bug_manager.gd" id="3_r0du0"]
-[ext_resource type="Script" path="res://player/health_bar.gd" id="4_1bvp3"]
-[ext_resource type="Script" path="res://player/stamina_bar.gd" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://brrncwvvflgvk" path="res://player/health_bar.gd" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://duk35nosf216h" path="res://player/stamina_bar.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bu311vsdevd1u" path="res://assets/environment/mother/mother.tscn" id="7_272bh"]
 
@@ -92,16 +92,22 @@ size = Vector3(6.47913, 5.07758, 1)
 [node name="BugManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_points")]
 script = ExtResource("3_r0du0")
 bug_scene = ExtResource("2_h2yge")
-spawn_points = [NodePath("SpawnPoint1"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3")]
+spawn_points = [NodePath("SpawnPoint1"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5")]
 
 [node name="SpawnPoint1" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.793, 1, 62.124)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.956, 1, 135.718)
 
 [node name="SpawnPoint2" type="Node3D" parent="BugManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.937, 1, -68.536)
 
 [node name="SpawnPoint3" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.912, 1, -72.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.912, 1, -250.145)
+
+[node name="SpawnPoint4" type="Node3D" parent="BugManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288.937, 1, 0)
+
+[node name="SpawnPoint5" type="Node3D" parent="BugManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.61, 1, 122.368)
 
 [node name="Ant" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.753, 1.5, -21.7004)
