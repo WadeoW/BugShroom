@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=20 format=3 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="PackedScene" uid="uid://bivqmpnyrqg2u" path="res://player/player.tscn" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://cguu5ppjm4whn" path="res://assets/environment/ground/ground textures/ground_v01_gorund_mat_BaseColor.png" id="1_4c57u"]
+[ext_resource type="Texture2D" uid="uid://c471r6e2fi8ws" path="res://assets/environment/rock/rock textures/ground_v01_gorund_mat_BaseColor.png" id="1_20pc6"]
 [ext_resource type="Texture2D" uid="uid://coie8o1b7vxn8" path="res://assets/environment/ground/ground textures/ground_v01_gorund_mat_Normal.png" id="2_efxa6"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://ndh70acbw2sg" path="res://assets/environment/ground/ground textures/ground_v01_gorund_mat_Roughness.png" id="3_dg77c"]
@@ -11,7 +12,18 @@
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bu311vsdevd1u" path="res://assets/environment/mother/mother.tscn" id="7_272bh"]
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vvyt"]
+panorama = ExtResource("1_20pc6")
+
+[sub_resource type="Sky" id="Sky_c6i3y"]
+sky_material = SubResource("PanoramaSkyMaterial_5vvyt")
+
 [sub_resource type="Environment" id="Environment_glv2v"]
+background_mode = 1
+background_color = Color(0.627258, 0.868996, 1, 1)
+sky = SubResource("Sky_c6i3y")
+ambient_light_source = 3
+fog_light_energy = 0.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycdy4"]
 albedo_texture = ExtResource("1_4c57u")
@@ -83,19 +95,19 @@ bug_scene = ExtResource("2_h2yge")
 spawn_points = [NodePath("SpawnPoint1"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5")]
 
 [node name="SpawnPoint1" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -147.204, 1, 145.179)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.956, 1, 135.718)
 
 [node name="SpawnPoint2" type="Node3D" parent="BugManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.937, 1, -68.536)
 
 [node name="SpawnPoint3" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -188.422, 1, -129.27)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.912, 1, -250.145)
 
 [node name="SpawnPoint4" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 152.88, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288.937, 1, 0)
 
 [node name="SpawnPoint5" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99.3813, 0, 124.932)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.61, 1, 122.368)
 
 [node name="Ant" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.753, 1.5, -21.7004)
@@ -207,7 +219,19 @@ script = ExtResource("5_lquwl")
 player = NodePath("../../../../SubViewportContainer/SubViewport/Player")
 
 [node name="dead_bug_task" parent="." instance=ExtResource("6_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.395, 2.37678, -46.6709)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9964, 2.37678, -34.4365)
+
+[node name="dead_bug_task4" parent="." instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.442, 2.37679, 200.258)
+
+[node name="dead_bug_task5" parent="." instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 240.549, 2.37679, 189.272)
+
+[node name="dead_bug_task3" parent="." instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.299, 2.37678, -138.467)
+
+[node name="dead_bug_task2" parent="." instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.3928, 2.37678, -120.522)
 
 [node name="mothermushroom" parent="." instance=ExtResource("7_272bh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762088, 0.600646, 36.9483)
