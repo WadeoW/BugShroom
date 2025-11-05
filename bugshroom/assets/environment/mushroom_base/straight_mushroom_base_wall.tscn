@@ -162,13 +162,13 @@ shadow_mesh = SubResource("ArrayMesh_w5e76")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00838, 4.34631, 0.0856018)
 shape = SubResource("BoxShape3D_aq1w6")
 
-[node name="@Node3D@26128" type="Node3D" parent="." index="1"]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
-
-[node name="@AnimationPlayer@26133" type="AnimationPlayer" parent="." index="2"]
+[node name="@AnimationPlayer@26133" type="AnimationPlayer" parent="." index="1"]
 libraries = {
 &"": SubResource("AnimationLibrary_3j8gx")
 }
+
+[node name="straight_wall" parent="." index="2"]
+transform = Transform3D(106.42, 0, 0, 0, 106.42, 0, 0, 0, 106.42, 0, 0, 0)
 
 [node name="@MeshInstance3D@26129" type="MeshInstance3D" parent="straight_wall" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01, 0.065114, -0.0268229)
