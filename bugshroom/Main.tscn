@@ -209,7 +209,6 @@ shadow_enabled = true
 autostart = true
 
 [node name="NutrientGainTimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -230,6 +229,19 @@ value = 1000.0
 show_percentage = false
 script = ExtResource("3_c6i3y")
 main = NodePath("../..")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -172.0
+offset_top = 20.0
+offset_right = 172.0
+offset_bottom = 47.0
+grow_horizontal = 2
+text = "Colony nutrients"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Floor" type="CSGBox3D" parent="."]
 material_override = ExtResource("4_c2ibq")
@@ -312,7 +324,7 @@ size = Vector2i(574, 648)
 render_target_update_mode = 4
 
 [node name="Player" parent="GridContainer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("health_bar", "stamina_bar") instance=ExtResource("1_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.16733, 1.5, 14.6198)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13452, 1.5, 19.8727)
 health_bar = NodePath("../CanvasLayer/HealthBar")
 stamina_bar = NodePath("../CanvasLayer/StaminaBar")
 
@@ -348,6 +360,31 @@ show_percentage = false
 script = ExtResource("5_lquwl")
 player = NodePath("../../Player")
 
+[node name="HealthText" type="RichTextLabel" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer"]
+offset_left = 30.0
+offset_top = 31.0
+offset_right = 170.0
+offset_bottom = 61.0
+text = "heath"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaminaText" type="RichTextLabel" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -70.0
+offset_right = -30.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Stamina"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -360,7 +397,7 @@ size = Vector2i(574, 648)
 render_target_update_mode = 4
 
 [node name="Player2" parent="GridContainer/SubViewportContainer2/SubViewport" node_paths=PackedStringArray("health_bar", "stamina_bar") instance=ExtResource("1_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.60489, 1.5, 17.2759)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.42046, 1.5, 20.1738)
 player_id = 2
 health_bar = NodePath("../CanvasLayer/HealthBar2")
 stamina_bar = NodePath("../CanvasLayer/StaminaBar2")
@@ -401,6 +438,35 @@ show_percentage = false
 script = ExtResource("5_lquwl")
 player = NodePath("../../../../SubViewportContainer/SubViewport/Player")
 
+[node name="HealthText2" type="RichTextLabel" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -170.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = 60.0
+grow_horizontal = 0
+text = "heath"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaminaText2" type="RichTextLabel" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -70.0
+offset_right = -30.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Stamina"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="DeadBugTaskManager" type="Node3D" parent="."]
 script = ExtResource("12_c2ibq")
 
@@ -408,7 +474,7 @@ script = ExtResource("12_c2ibq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.92439, 2.37678, -132.984)
 
 [node name="dead_bug_task6" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9002, 2.37678, -7.8503)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2604, 2.37678, -8.08423)
 
 [node name="dead_bug_task4" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.442, 2.37679, 200.258)

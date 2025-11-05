@@ -18,13 +18,15 @@ var colony_nutrient_gain_rate = 15
 @onready var players = {"player_1": player1, "player_2": player2}
 
 func _ready() -> void:
-	#mushroom_base.connect("")
+	SignalBus.start_player_harvesting_nutrients.connect(Callable(self, "_on_start_player_harvesting_nutrients"))
+	SignalBus.stop_player_harvesting_nutrients.connect(Callable(self, "_on_stop_player_harvesting_nutrients"))
 	pass
 
 
 func _process(delta: float) -> void:
-	if dead_bug_task_manager.player_harvesting and nutrient_gain_timer.is_stopped():
-		player_harvest()
+	#if dead_bug_task_manager.player_harvesting and nutrient_gain_timer.is_stopped():
+		#player_harvest()
+		pass
 
 
 
@@ -45,3 +47,9 @@ func player_harvest():
 
 func _on_nutrient_gain_timer_timeout() -> void:
 	current_colony_nutrients += colony_nutrient_gain_rate
+
+func _on_start_player_harvesting_nutrients():
+	nutrient_gain_timer.start()
+
+func _on_stop_player_harvesting_nutrients():
+	nutrient_gain_timer.stop()

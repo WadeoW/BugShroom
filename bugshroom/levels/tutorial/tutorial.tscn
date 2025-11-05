@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwi5kj1jesmn4"]
+
+[ext_resource type="Script" uid="uid://d22w8ev48bl8x" path="res://levels/tutorial/tutorial.gd" id="1_f3ams"]
+
+[node name="tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f3ams")
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 30.0
+offset_right = 134.0
+offset_bottom = 67.0
+text = "back
+"
+
+[node name="description" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -264.5
+offset_top = 50.0
+offset_right = 264.5
+offset_bottom = 338.0
+grow_horizontal = 2
+text = "Welcome to Bugshroom!
+the goal of the game is to keep the colony alive for as long as possible. 
+To do this, you and your friend must go out into the world and harvest nutrients from dead bugs.
+Be careful though, the local wildlife has a taste for fungi"
+
+[node name="controls" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 56.0
+offset_top = -112.0
+offset_right = 420.0
+offset_bottom = 297.0
+grow_vertical = 2
+text = "Controls:
+
+left joystick to move
+
+right joy stick to look around
+
+hold down left joystick to sprint
+
+press x to jump
+
+press triangle to toggle your root down ability and regain stamina
+
+press circle to attack(if its implemented yet)"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

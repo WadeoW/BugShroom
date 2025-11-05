@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="BugShroom"
-run/main_scene="uid://ch8yce5nnahu3"
+run/main_scene="uid://btwanigppk4jf"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SignalBus="*res://common/SignalBus.gd"
 
 [global_group]
 
@@ -167,6 +171,10 @@ attack_1={
 "deadzone": 0.2,
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":1,"pressure":0.0,"pressed":true,"script":null)
 ]
+}
+attack={
+"deadzone": 0.2,
+"events": []
 }
 
 [physics]
