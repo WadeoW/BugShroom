@@ -10,9 +10,9 @@
 [ext_resource type="Material" uid="uid://c7knj8a6ayrlr" path="res://assets/environment/ground/ground.tres" id="4_c2ibq"]
 [ext_resource type="Script" path="res://player/stamina_bar.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="6_7mycd"]
-[ext_resource type="Script" path="res://tasks/dead_bug_task_manager.gd" id="12_c2ibq"]
+[ext_resource type="Script" uid="uid://xmhd01mihknq" path="res://tasks/dead_bug_task_manager.gd" id="12_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://cpgvg8cpqanlu" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
-[ext_resource type="PackedScene" uid="uid://cngsg8b0vyg7p" path="res://assets/environment/tree/redwood.tscn" id="13_j4qnp"]
+[ext_resource type="PackedScene" uid="uid://ddxy8prak70er" path="res://assets/environment/tree/redwood.tscn" id="13_j4qnp"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vvyt"]
