@@ -474,7 +474,7 @@ script = ExtResource("12_c2ibq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.92439, 2.37678, -132.984)
 
 [node name="dead_bug_task6" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2604, 2.37678, -8.08423)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.0627, 2.37678, -18.4488)
 
 [node name="dead_bug_task4" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.442, 2.37679, 200.258)
