@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://br8pxy0qpu7g8"]
+
+[ext_resource type="Texture2D" uid="uid://ch7xin28vsi4e" path="res://assets/environment/grass/grass_textures/grass_bugshroom_AFTERpush_grass1_mat_BaseColor.png" id="1_ap2ed"]
+[ext_resource type="Texture2D" uid="uid://ulpgadum52n4" path="res://assets/environment/grass/grass_textures/grass_bugshroom_AFTERpush_grass1_mat_Normal.png" id="2_dieg8"]
+[ext_resource type="Texture2D" uid="uid://dhm260sxnxhxx" path="res://assets/environment/grass/grass_textures/grass_bugshroom_AFTERpush_grass1_mat_Roughness.png" id="3_0ut5q"]
+
+[resource]
+albedo_texture = ExtResource("1_ap2ed")
+roughness_texture = ExtResource("3_0ut5q")
+normal_enabled = true
+normal_texture = ExtResource("2_dieg8")

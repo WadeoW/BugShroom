@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddxy8prak70er"]
+
+[ext_resource type="PackedScene" uid="uid://dbhvxbg2vbt1q" path="res://assets/environment/tree/redwood.fbx" id="1_ok2yn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4vwfx"]
+size = Vector3(6.80624, 33.6299, 6.7803)
+
+[node name="redwood" instance=ExtResource("1_ok2yn")]
+
+[node name="Plane_013" parent="." index="0"]
+transform = Transform3D(-731.059, 300.805, 202.333, 468.128, -1.09573e-05, 461.66, 496.396, 443.007, -137.386, 8.22162, 30.2097, -4.60115)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262694, 16.6549, 0.2603)
+shape = SubResource("BoxShape3D_4vwfx")
