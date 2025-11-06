@@ -10,7 +10,7 @@
 [ext_resource type="Material" uid="uid://c7knj8a6ayrlr" path="res://assets/environment/ground/ground.tres" id="4_c2ibq"]
 [ext_resource type="Script" path="res://player/stamina_bar.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="6_7mycd"]
-[ext_resource type="Script" uid="uid://xmhd01mihknq" path="res://tasks/dead_bug_task_manager.gd" id="12_c2ibq"]
+[ext_resource type="PackedScene" uid="uid://bebvxslem4ljs" path="res://tasks/dead_bug_task_spawner.tscn" id="10_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://cpgvg8cpqanlu" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
 [ext_resource type="PackedScene" uid="uid://ddxy8prak70er" path="res://assets/environment/tree/redwood.tscn" id="13_j4qnp"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
@@ -467,25 +467,24 @@ text = "Stamina"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DeadBugTaskManager" type="Node3D" parent="."]
-script = ExtResource("12_c2ibq")
+[node name="DeadBugTaskSpawner" parent="." instance=ExtResource("10_c2ibq")]
 
-[node name="dead_bug_task" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
+[node name="dead_bug_task" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.92439, 2.37678, -132.984)
 
-[node name="dead_bug_task6" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
+[node name="dead_bug_task6" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.0627, 2.37678, -18.4488)
 
-[node name="dead_bug_task4" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
+[node name="dead_bug_task4" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.442, 2.37679, 200.258)
 
-[node name="dead_bug_task5" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
+[node name="dead_bug_task5" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 240.549, 2.37679, 189.272)
 
-[node name="dead_bug_task3" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
+[node name="dead_bug_task3" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.299, 2.37678, -138.467)
 
-[node name="dead_bug_task2" parent="DeadBugTaskManager" instance=ExtResource("6_7mycd")]
+[node name="dead_bug_task2" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190.492, 2.37678, -92.2028)
 
 [node name="MushroomBase" parent="." instance=ExtResource("12_c6i3y")]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bebvxslem4ljs"]
+
+[ext_resource type="Script" uid="uid://qytwb6qucvpk" path="res://tasks/dead_bug_task_spawner.gd" id="1_bmo4w"]
+[ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="2_b30ft"]
+
+[node name="DeadBugTaskSpawner" type="Node3D"]
+script = ExtResource("1_bmo4w")
+dead_bug_scene = ExtResource("2_b30ft")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 30.0
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

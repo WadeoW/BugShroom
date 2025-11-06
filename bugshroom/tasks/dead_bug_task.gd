@@ -7,6 +7,9 @@ var player_nutrient_drain_rate = 10
 var bodies_in_radius = []
 @export var nutrient_bar = ProgressBar
 
+func _ready() -> void:
+	SignalBus.dead_bug_task_finished.connect(Callable(self, "_on_dead_bug_task_finished"))
+
 func _on_detection_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		bodies_in_radius.append(body)
@@ -33,4 +36,5 @@ func _process(delta: float) -> void:
 
 func despawn():
 	player_in_radius = false
+	SignalBus.dead_bug_task_finished.emit()
 	queue_free()

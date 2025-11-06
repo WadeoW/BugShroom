@@ -11,3 +11,5 @@ signal player_exit_base
 signal start_player_harvesting_nutrients
 
 signal stop_player_harvesting_nutrients
+
+signal dead_bug_task_finished
