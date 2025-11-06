@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bwy3vmah16igp" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="AnimationLibrary" uid="uid://cthqi1j6uwl07" path="res://player/Mushroomdude_crouch.glb" id="2_g1dw6"]
 [ext_resource type="AnimationLibrary" uid="uid://bcdslk2bcmp04" path="res://player/Mushroomdude_Idle_v2.fbx" id="2_qjkh3"]
-[ext_resource type="Script" path="res://player/camera_mount.gd" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_rkbax"]
 [ext_resource type="AnimationLibrary" uid="uid://c011881k1f5eb" path="res://player/Mushroomdude_uncrouch.glb" id="3_yw30f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_73yp8"]
@@ -303,6 +303,8 @@ height = 2.33677
 radius = 0.07
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_4flbx")
 sens_horizontal = 0.2
 sens_vertical = 0.2
