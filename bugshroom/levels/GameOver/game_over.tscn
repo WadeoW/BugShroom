@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://sv3p68isjnny"]
+
+[ext_resource type="Script" path="res://levels/gameover/game_over.gd" id="1_vfsup"]
+[ext_resource type="Texture2D" path="res://assets/simple-cursor.png" id="2_gygv7"]
+
+[node name="game_over" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vfsup")
+
+[node name="TryAgain" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -34.0
+offset_right = 129.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Try again"
+
+[node name="ReturnToTitle" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = 52.0
+offset_right = 119.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Return to title screen"
+
+[node name="cursor" type="Sprite2D" parent="."]
+position = Vector2(573, 332)
+rotation = -0.453786
+scale = Vector2(0.186747, 0.186747)
+texture = ExtResource("2_gygv7")
+
+[connection signal="pressed" from="TryAgain" to="." method="_on_try_again_pressed"]
+[connection signal="pressed" from="ReturnToTitle" to="." method="_on_return_to_title_pressed"]

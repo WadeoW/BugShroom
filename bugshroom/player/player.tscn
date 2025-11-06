@@ -591,8 +591,7 @@ radius = 0.07
 [sub_resource type="BoxShape3D" id="BoxShape3D_rgyib"]
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
-collision_layer = 8
-collision_mask = 3
+safe_margin = 0.01
 script = ExtResource("1_4flbx")
 sens_horizontal = 0.2
 sens_vertical = 0.2
