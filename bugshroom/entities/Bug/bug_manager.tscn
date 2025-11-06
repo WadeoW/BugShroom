@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl4amiog7pmhe"]
+
+[ext_resource type="Script" uid="uid://b2362xpns3grh" path="res://entities/bug_manager.gd" id="1_t1ml5"]
+[ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_3cw5g"]
+
+[node name="BugManager" type="Node3D" node_paths=PackedStringArray("spawn_points")]
+script = ExtResource("1_t1ml5")
+bug_scene = ExtResource("2_3cw5g")
+spawn_points = [null, null, null, null, null]
+
+[node name="SpawnPoint1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.956, 1, 135.718)
+
+[node name="SpawnPoint2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.937, 1, -68.536)
+
+[node name="SpawnPoint3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.912, 1, -250.145)
+
+[node name="SpawnPoint4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288.937, 1, 0)
+
+[node name="SpawnPoint5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.61, 1, 122.368)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 15.0

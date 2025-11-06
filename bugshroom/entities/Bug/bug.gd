@@ -3,16 +3,16 @@ class_name BugBase
 
 # Bug counter to limit total bugs in scene
 static var bug_count: int = 0
-const MAX_BUGS: int = 5
+const MAX_BUGS: int = 15
 
 # Stats
 @export var speed: float = 5.0
 @export var health: float = 50.0
 @export var damage: float = 20.0
-@export var detection_range: float = 20.0
+@export var detection_range: float = 25.0
 @export var despawn_timer: float = 2.0
 @export var attack_range: float = 2.0
-@export var attack_cooldown: float = 1.5
+@export var attack_cooldown: float = 1
 var can_attack: bool = true
 
 # Wandering / idle variables
@@ -111,7 +111,7 @@ func _try_attack():
 		if target.has_method("take_damage"):
 			target.take_damage(damage)
 			print("Bug attacked player for ", damage, " damage!")
-		await get_tree().create_timer(attack_cooldown).timeout
+			await get_tree().create_timer(attack_cooldown).timeout
 		can_attack = true
 
 

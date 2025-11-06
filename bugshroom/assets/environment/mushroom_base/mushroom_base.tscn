@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2acess6c7nob"]
+[gd_scene load_steps=6 format=3 uid="uid://8gxwurqg07or"]
 
 [ext_resource type="PackedScene" uid="uid://bu311vsdevd1u" path="res://assets/environment/mother/mother.tscn" id="1_3kbck"]
-[ext_resource type="Script" uid="uid://dgjrp3rpuqtp" path="res://assets/environment/mushroom_base/mushroom_base.gd" id="1_bq6hn"]
+[ext_resource type="Script" path="res://assets/environment/mushroom_base/mushroom_base.gd" id="1_bq6hn"]
 [ext_resource type="PackedScene" uid="uid://cqb8hv0d2mywp" path="res://assets/environment/mushroom_base/curved_mushroom_base_wall.tscn" id="2_bq6hn"]
 [ext_resource type="PackedScene" uid="uid://cga0d7eksud76" path="res://assets/environment/mushroom_base/straight_mushroom_base_wall.tscn" id="3_i3ik1"]
 

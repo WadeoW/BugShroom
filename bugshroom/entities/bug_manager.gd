@@ -6,41 +6,44 @@ extends Node3D
 
 var active_bugs: Array = []
 
-func _ready():
-	# Wait one frame to ensure the scene tree is ready
-	await get_tree().process_frame
-	spawn_initial_bugs()
+@onready var current_bugs = get_children()
 
-#-----------------------------------
-# Spawning
-#-----------------------------------
-func spawn_initial_bugs():
-	for i in range(max_bugs):
+
+#spawn area variables
+var spawn_area_min_x = -350
+var spawn_area_max_x = 350
+var spawn_area_min_z = -350
+var spawn_area_max_z = 350
+
+@onready var spawn_timer: Timer = $SpawnTimer
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if bug_scene == null:
+		print("dead bug scene not set")
+	spawn_timer.start()
+
+func _on_bug_died():
+	if current_bugs.size() > 0:
+		current_bugs.erase(bug_scene)
+	else:
+		print("no more bugs!")
+
+func _on_spawn_timer_timeout() -> void:
+	if current_bugs.size() < max_bugs:
 		spawn_bug()
-
+	
+	
 func spawn_bug():
-	if active_bugs.size() >= max_bugs:
+	if bug_scene == null:
 		return
-	if spawn_points.is_empty():
-		push_warning("No spawn points assigned for BugManager!")
-		return
-
-	var spawn_point = spawn_points.pick_random()
-	var bug = bug_scene.instantiate()
-	bug.global_position = spawn_point.global_position
-	add_child(bug)
-	active_bugs.append(bug)
-
-	# When the bug is removed (dies or despawns), update list
-	bug.connect("tree_exited", Callable(self, "_on_bug_despawned").bind(bug))
-
-#-----------------------------------
-# Bug Tracking
-#-----------------------------------
-func _on_bug_despawned(bug):
-	if bug in active_bugs:
-		active_bugs.erase(bug)
-	# Wait 2 seconds before spawning a replacement
-		await get_tree().create_timer(2.0).timeout
-	if is_inside_tree():
-		spawn_bug()
+		
+	var bug_instance = bug_scene.instantiate()
+	
+	var random_x = randf_range(spawn_area_min_x, spawn_area_max_x)
+	var random_z = randf_range(spawn_area_min_z, spawn_area_max_z)
+	
+	bug_instance.position = Vector3(random_x, 1.0, random_z)
+	
+	add_child(bug_instance)
+	current_bugs.append(bug_instance)

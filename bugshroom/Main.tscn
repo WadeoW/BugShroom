@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://c471r6e2fi8ws" path="res://assets/environment/rock/rock textures/ground_v01_gorund_mat_BaseColor.png" id="1_20pc6"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://bxwpkxvlm8a0x" path="res://levels/colony_nutrient_bar.gd" id="3_c6i3y"]
-[ext_resource type="Script" uid="uid://b2362xpns3grh" path="res://entities/bug_manager.gd" id="3_r0du0"]
 [ext_resource type="Script" path="res://player/health_bar.gd" id="4_1bvp3"]
-[ext_resource type="Material" path="res://assets/environment/ground/ground.tres" id="4_c2ibq"]
+[ext_resource type="Material" uid="uid://b3rnns3b04fv" path="res://assets/environment/ground/ground.tres" id="4_c2ibq"]
+[ext_resource type="PackedScene" uid="uid://dl4amiog7pmhe" path="res://entities/Bug/bug_manager.tscn" id="5_c2ibq"]
 [ext_resource type="Script" path="res://player/stamina_bar.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bwv1obth85s1a" path="res://tasks/dead_bug_task_spawner.tscn" id="10_c2ibq"]
-[ext_resource type="PackedScene" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
+[ext_resource type="PackedScene" uid="uid://8gxwurqg07or" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
 [ext_resource type="PackedScene" path="res://assets/environment/tree/redwood.tscn" id="13_j4qnp"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
 
@@ -280,28 +280,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0645694, 3.03879, -14.5176
 use_collision = true
 size = Vector3(6.47913, 5.07758, 1)
 
-[node name="BugManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_points")]
-script = ExtResource("3_r0du0")
-bug_scene = ExtResource("2_h2yge")
-spawn_points = [NodePath("SpawnPoint1"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5")]
+[node name="BugManager" parent="." instance=ExtResource("5_c2ibq")]
 
-[node name="SpawnPoint1" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.956, 1, 135.718)
-
-[node name="SpawnPoint2" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.937, 1, -68.536)
-
-[node name="SpawnPoint3" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.912, 1, -250.145)
-
-[node name="SpawnPoint4" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288.937, 1, 0)
-
-[node name="SpawnPoint5" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.61, 1, 122.368)
-
-[node name="Ant" parent="." instance=ExtResource("2_h2yge")]
+[node name="Ant" parent="BugManager" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7138, 1.5, -70.3092)
+
+[node name="Ant2" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.24, 1.5, -161.928)
+
+[node name="Ant3" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -142.578, 1.5, -236.822)
+
+[node name="Ant4" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148.746, 1.5, 97.6984)
+
+[node name="Ant5" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.3889, 1.5, 171.411)
+
+[node name="Ant6" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 179.894, 1.5, 64.5364)
+
+[node name="Ant7" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 272.756, 1.5, -131.106)
+
+[node name="Ant8" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 308.737, 1.50002, 219.229)
+
+[node name="Ant9" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.4366, 1.50003, 315.06)
+
+[node name="Ant10" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -262.011, 1.50003, 281.31)
+
+[node name="Ant11" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.323, 1.50003, 98.1383)
+
+[node name="Ant12" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -345.618, 1.50003, 95.511)
 
 [node name="GridContainer" type="GridContainer" parent="."]
 anchors_preset = 15
@@ -985,6 +1000,9 @@ material_override = ExtResource("14_fpfj3")
 size = Vector3(2, 23.9198, 800)
 
 [node name="rocks" type="Node" parent="environment"]
+
+[node name="player_spawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.838978, 0, 16.4432)
 
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]

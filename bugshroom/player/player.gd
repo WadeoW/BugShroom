@@ -14,7 +14,7 @@ var gravity = 9.8
 @export var sens_vertical = 0.5
 
 #respawn
-@export var respawn_delay: float = 2.0
+@export var respawn_delay: float = 5.0
 
 #health variables
 @export var current_health = 100
@@ -31,12 +31,14 @@ var stamina_drain_rate = 5.0 #stamina drained per second during action
 #attack variables
 @export var attack_range: float = 3.0
 @export var attack_damage: float = 25.0
-@export var attack_cooldown: float = 0.8
 var can_attack: bool = true
+@onready var attack_cooldown: Timer = $AttackCooldown
+@onready var attack_hit_box: ShapeCast3D = $AttackHitBox
 
 #Root Down Mechanic
 var is_rooted = false
 @export var root_stamina_regen = 15.0 #stamina regained per second while rooted
+
 
 
 #fov variables
@@ -86,6 +88,15 @@ func _physics_process(delta):
 		#current_stamina -= 15
 		#stamina_bar.update()
 
+	if Input.is_action_pressed("attack_%s" % [player_id]):
+		can_attack = false
+		attack_cooldown.start()
+		if attack_hit_box.is_colliding():
+			var total_collisions = attack_hit_box.get_collision_count()
+			for i in total_collisions:
+				if attack_hit_box.get_collider(i).has_method("take_damage"):
+					attack_hit_box.get_collider(i).take_damage(attack_damage)
+
 	# handle sprint
 	if Input.is_action_pressed("sprint_%s" % [player_id]) and current_stamina > 0:
 		current_stamina -= stamina_drain_rate * delta
@@ -126,39 +137,40 @@ func _physics_process(delta):
 	move_and_slide()
 
 func attack():
-	if not can_attack or is_dead:
-		return
-	can_attack = false
-	print("Player attacking!")
-
-	# --- RAYCAST SECTION ---
-	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
-
-	var from: Vector3 = camera_yaw.global_position
-	var to: Vector3 = from + -camera_yaw.transform.basis.z * attack_range
-
-	var query := PhysicsRayQueryParameters3D.create(from, to)
-	query.exclude = [self]
-	query.collision_mask = 3
-
-	get_world_3d().debug_draw_line(from, to, Color.RED)
-
-	#debug prints
-	print("Attack called!")
-	print("From:", from, "To:", to)
-
-	var result: Dictionary = space_state.intersect_ray(query)
-
-	print("Raycast result:", result)  # Shows what the raycast hit
-
-	if result and result.has("collider"):
-		var collider: Node3D = result.collider
-		if collider and collider.has_method("take_damage"):
-			collider.take_damage(attack_damage)
-			print("Hit ", collider.name, " for ", attack_damage, " damage!")
-
-	await get_tree().create_timer(attack_cooldown).timeout
-	can_attack = true	
+	pass
+	#if not can_attack or is_dead:
+		#return
+	#can_attack = false
+	#print("Player attacking!")
+#
+	## --- RAYCAST SECTION ---
+	#var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+#
+	#var from: Vector3 = camera_yaw.global_position
+	#var to: Vector3 = from + -camera_yaw.transform.basis.z * attack_range
+#
+	#var query := PhysicsRayQueryParameters3D.create(from, to)
+	#query.exclude = [self]
+	#query.collision_mask = 3
+#
+	##get_world_3d().debug_draw_line(from, to, Color.RED)
+#
+	##debug prints
+	#print("Attack called!")
+	#print("From:", from, "To:", to)
+#
+	#var result: Dictionary = space_state.intersect_ray(query)
+#
+	#print("Raycast result:", result)  # Shows what the raycast hit
+#
+	#if result and result.has("collider"):
+		#var collider: Node3D = result.collider
+		#if collider and collider.has_method("take_damage"):
+			#collider.take_damage(attack_damage)
+			#print("Hit ", collider.name, " for ", attack_damage, " damage!")
+#
+	#await get_tree().create_timer(attack_cooldown).timeout
+	#can_attack = true	
 	
 func take_damage(amount):
 	current_health -= amount
@@ -194,6 +206,7 @@ func respawn():
 		push_warning("No shared spawn point found!")
 	
 	current_health = max_health
+	current_stamina = max_stamina
 	is_dead = false
 	set_physics_process(true)
 	
