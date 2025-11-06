@@ -61,14 +61,9 @@ func _ready() -> void:
 	#if animation_player.current_animation:
 	var current_animation = animation_player.current_animation
 func _unhandled_input(event):
-	#debug test
-	if event.is_action_pressed("attack_1"):
-		print("H key pressed!")
 	#root down input
 	if event.is_action_pressed("root_%s" % [player_id]):
 		toggle_root()
-	if event.is_action_pressed("attack_%s" % [player_id]) or event.is_action_pressed("attack_1"):
-		attack()
 
 func _physics_process(delta):
 	if animation_player.animation_changed:
@@ -89,13 +84,8 @@ func _physics_process(delta):
 		#stamina_bar.update()
 
 	if Input.is_action_pressed("attack_%s" % [player_id]):
-		can_attack = false
-		attack_cooldown.start()
-		if attack_hit_box.is_colliding():
-			var total_collisions = attack_hit_box.get_collision_count()
-			for i in total_collisions:
-				if attack_hit_box.get_collider(i).has_method("take_damage"):
-					attack_hit_box.get_collider(i).take_damage(attack_damage)
+		attack()
+		
 
 	# handle sprint
 	if Input.is_action_pressed("sprint_%s" % [player_id]) and current_stamina > 0:
@@ -136,46 +126,11 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func attack():
-	pass
-	#if not can_attack or is_dead:
-		#return
-	#can_attack = false
-	#print("Player attacking!")
-#
-	## --- RAYCAST SECTION ---
-	#var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
-#
-	#var from: Vector3 = camera_yaw.global_position
-	#var to: Vector3 = from + -camera_yaw.transform.basis.z * attack_range
-#
-	#var query := PhysicsRayQueryParameters3D.create(from, to)
-	#query.exclude = [self]
-	#query.collision_mask = 3
-#
-	##get_world_3d().debug_draw_line(from, to, Color.RED)
-#
-	##debug prints
-	#print("Attack called!")
-	#print("From:", from, "To:", to)
-#
-	#var result: Dictionary = space_state.intersect_ray(query)
-#
-	#print("Raycast result:", result)  # Shows what the raycast hit
-#
-	#if result and result.has("collider"):
-		#var collider: Node3D = result.collider
-		#if collider and collider.has_method("take_damage"):
-			#collider.take_damage(attack_damage)
-			#print("Hit ", collider.name, " for ", attack_damage, " damage!")
-#
-	#await get_tree().create_timer(attack_cooldown).timeout
-	#can_attack = true	
 	
 func take_damage(amount):
 	current_health -= amount
 	health_bar.update()
-	if current_health <= 0:
+	if current_health <= 0 and !is_dead:
 		die()
 
 #Root down toggle function
@@ -187,6 +142,17 @@ func toggle_root():
 	else:
 		animation_player.play("player_uncrouch/Armature_002Action")
 		print("Uprooted")
+
+func attack():
+	if animation_player.has_animation("attack"):
+		animation_player.play("attack")
+	can_attack = false
+	attack_cooldown.start()
+	if attack_hit_box.is_colliding():
+		var total_collisions = attack_hit_box.get_collision_count()
+		for i in total_collisions:
+			if attack_hit_box.get_collider(i).has_method("take_damage"):
+				attack_hit_box.get_collider(i).take_damage(attack_damage)
 	
 func die():
 	is_dead = true
@@ -197,17 +163,13 @@ func die():
 	respawn()
 	
 func respawn():
-	var spawn_point = get_tree().get_first_node_in_group("player_spawn")
-	
-	if spawn_point:
-		global_position = spawn_point.global_position
-		print("player", player_id, "respawned!")
-	else:
-		push_warning("No shared spawn point found!")
-	
-	current_health = max_health
-	current_stamina = max_stamina
 	is_dead = false
+	global_position = Vector3(5, 1, 5)
+	print("player", player_id, "respawned!")
+	current_health = max_health
+	health_bar.update()
+	current_stamina = max_stamina
+	stamina_bar.update()
 	set_physics_process(true)
 	
 	
