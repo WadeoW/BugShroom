@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://btwanigppk4jf"]
+[gd_scene load_steps=3 format=3 uid="uid://btwanigppk4jf"]
 
 [ext_resource type="Script" uid="uid://bjvnturu0wkvw" path="res://levels/Title Screen/title_screen.gd" id="1_xrj4a"]
+[ext_resource type="Texture2D" uid="uid://bruuc4kk4l72o" path="res://assets/simple-cursor.png" id="2_aklpn"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -25,6 +26,7 @@ offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 27
+action_mode = 0
 text = "Start
 "
 
@@ -41,7 +43,14 @@ offset_right = 56.0
 offset_bottom = 49.0
 grow_horizontal = 2
 grow_vertical = 2
+action_mode = 0
 text = "controls"
+
+[node name="cursor" type="Sprite2D" parent="."]
+position = Vector2(581, 321)
+rotation = -0.459022
+scale = Vector2(0.222892, 0.175389)
+texture = ExtResource("2_aklpn")
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="TutorialButton" to="." method="_on_tutorial_button_pressed"]

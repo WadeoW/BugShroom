@@ -5,7 +5,6 @@ extends Node3D
 @export var player2 = CharacterBody3D
 @onready var mushroom_base = $MushroomBase
 @onready var nutrient_drain_timer: Timer = $NutrientDrainTimer
-@onready var dead_bug_task_manager: Node3D = $DeadBugTaskManager
 @onready var nutrient_gain_timer: Timer = $NutrientGainTimer
 
 
@@ -20,26 +19,19 @@ var colony_nutrient_gain_rate = 15
 func _ready() -> void:
 	SignalBus.start_player_harvesting_nutrients.connect(Callable(self, "_on_start_player_harvesting_nutrients"))
 	SignalBus.stop_player_harvesting_nutrients.connect(Callable(self, "_on_stop_player_harvesting_nutrients"))
-	pass
+	SignalBus.game_over.connect(Callable(self, "_on_game_over"))
 
 
-func _process(delta: float) -> void:
-	#if dead_bug_task_manager.player_harvesting and nutrient_gain_timer.is_stopped():
-		#player_harvest()
-		pass
-
-
-
-
-func game_over():
-	pass
+func _on_game_over():
+	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://levels/game over/game_over.tscn")
 
 
 func _on_nutrient_drain_timer_timeout() -> void:
 	current_colony_nutrients -= colony_nutrient_drain_rate
 	colony_nutrient_bar.update()
 	if current_colony_nutrients <= 0:
-		game_over()
+		SignalBus.game_over.emit()
 
 func player_harvest():
 	nutrient_gain_timer.start()

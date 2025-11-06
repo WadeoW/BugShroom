@@ -53,8 +53,8 @@ var current_animation
 
 func _ready() -> void:
 	animation_player.play("player_uncrouch/Armature_002Action")
-	if animation_player.current_animation:
-		var current_animation = animation_player.current_animation
+	#if animation_player.current_animation:
+	var current_animation = animation_player.current_animation
 func _unhandled_input(event):
 	#root down input
 	if event.is_action_pressed("root_%s" % [player_id]):
@@ -78,6 +78,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor and !is_rooted and current_stamina > 0:
 		velocity.y = JUMP_VELOCITY
 		current_stamina -= 15
+		stamina_bar.update()
 
 	# handle sprint
 	if Input.is_action_pressed("sprint_%s" % [player_id]) and current_stamina > 0:
