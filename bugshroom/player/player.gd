@@ -128,11 +128,7 @@ func attack():
 	can_attack = false
 	print("Player attacking!")
 
-	# Optional animation
-	if animation_player.has_animation("attack"):
-		animation_player.play("attack")
-
-	# --- FIXED RAYCAST SECTION ---
+	# --- RAYCAST SECTION ---
 	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 
 	var from: Vector3 = camera_yaw.global_position
@@ -141,12 +137,16 @@ func attack():
 	var query := PhysicsRayQueryParameters3D.create(from, to)
 	query.exclude = [self]
 	query.collision_mask = 3
-	
+
 	get_world_3d().debug_draw_line(from, to, Color.RED)
 
-	var result: Dictionary = space_state.intersect_ray(query)
-	print("raycast result:", result)
+	#debug prints
+	print("Attack called!")
+	print("From:", from, "To:", to)
 
+	var result: Dictionary = space_state.intersect_ray(query)
+
+	print("Raycast result:", result)  # Shows what the raycast hit
 
 	if result and result.has("collider"):
 		var collider: Node3D = result.collider
@@ -155,7 +155,7 @@ func attack():
 			print("Hit ", collider.name, " for ", attack_damage, " damage!")
 
 	await get_tree().create_timer(attack_cooldown).timeout
-	can_attack = true
+	can_attack = true	
 	
 func take_damage(amount):
 	current_health -= amount
