@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bwv1obth85s1a" path="res://tasks/dead_bug_task_spawner.tscn" id="10_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://8gxwurqg07or" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
-[ext_resource type="PackedScene" path="res://assets/environment/tree/redwood.tscn" id="13_j4qnp"]
+[ext_resource type="PackedScene" uid="uid://ddxy8prak70er" path="res://assets/environment/tree/redwood.tscn" id="13_j4qnp"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vvyt"]
@@ -488,7 +488,7 @@ vertical_alignment = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.816, 2.37677, -161.419)
 
 [node name="dead_bug_task6" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.0627, 2.37678, -18.4488)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.5465, 2.37678, -17.782)
 
 [node name="dead_bug_task4" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.442, 2.37679, 200.258)
