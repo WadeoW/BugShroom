@@ -77,8 +77,8 @@ func _physics_process(delta):
 # handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor and !is_rooted and current_stamina > 0:
 		velocity.y = JUMP_VELOCITY
-		current_stamina -= 15
-		stamina_bar.update()
+		#current_stamina -= 15
+		#stamina_bar.update()
 
 	# handle sprint
 	if Input.is_action_pressed("sprint_%s" % [player_id]) and current_stamina > 0:
