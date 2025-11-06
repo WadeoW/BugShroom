@@ -30,7 +30,7 @@ var stamina_drain_rate = 5.0 #stamina drained per second during action
 
 #attack variables
 @export var attack_range: float = 3.0
-@export var attack_damage: float = 25.0
+@export var attack_damage: float = 10.0
 var can_attack: bool = true
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var attack_hit_box: ShapeCast3D = $AttackHitBox
