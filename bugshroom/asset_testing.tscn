@@ -1,9 +1,16 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=18 format=3 uid="uid://dvkjwfgw62l5d"]
 
 [ext_resource type="PackedScene" uid="uid://ch8yce5nnahu3" path="res://Main.tscn" id="1_0w8fc"]
 [ext_resource type="PackedScene" uid="uid://doubu1dyh7q7p" path="res://assets/environment/rock/rock_asset_v03.fbx" id="2_jinpx"]
 [ext_resource type="Material" uid="uid://c2esv5ixbxwqs" path="res://assets/environment/ground/ground.tres" id="2_y4v2s"]
 [ext_resource type="Material" uid="uid://dntwgj1etfrl0" path="res://assets/environment/rock/rock_texture.tres" id="3_yom5l"]
+=======
+[gd_scene load_steps=16 format=3 uid="uid://ca47fj8qolm31"]
+
+[ext_resource type="PackedScene" uid="uid://ch8yce5nnahu3" path="res://Main.tscn" id="1_0w8fc"]
+[ext_resource type="PackedScene" uid="uid://doubu1dyh7q7p" path="res://assets/environment/rock/rock_asset_v03.fbx" id="2_jinpx"]
+>>>>>>> Stashed changes
 [ext_resource type="PackedScene" uid="uid://ryixh4gb24y8" path="res://assets/environment/grass/grass_bugshroom.fbx" id="4_yom5l"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_k6y4p"]
@@ -46,11 +53,17 @@ data = PackedVector3Array(0.003, 0.0012, 0.0052, 0.003, 0.0013, 0.0052, 0.0043, 
 
 [node name="World" parent="." instance=ExtResource("1_0w8fc")]
 
+<<<<<<< Updated upstream
 [node name="Floor" parent="World" index="1"]
 material_override = ExtResource("2_y4v2s")
 
 [node name="redwood" parent="World" index="8"]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -133.615, 0, -283.237)
+=======
+[node name="Ant" parent="World" index="7"]
+collision_layer = 1
+collision_mask = 1
+>>>>>>> Stashed changes
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/redwood" index="1"]
 
