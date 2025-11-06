@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bebvxslem4ljs"]
 
-[ext_resource type="Script" uid="uid://qytwb6qucvpk" path="res://tasks/dead_bug_task_spawner.gd" id="1_bmo4w"]
+[ext_resource type="Script" path="res://tasks/dead_bug_task_spawner.gd" id="1_bmo4w"]
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="2_b30ft"]
 
 [node name="DeadBugTaskSpawner" type="Node3D"]

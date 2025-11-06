@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=34 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="PackedScene" uid="uid://bivqmpnyrqg2u" path="res://player/player.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cpgvg8cpqanlu" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
 [ext_resource type="PackedScene" uid="uid://ddxy8prak70er" path="res://assets/environment/tree/redwood.tscn" id="13_j4qnp"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
+[ext_resource type="PackedScene" uid="uid://bl8w6vskntj54" path="res://assets/environment/rock/rock_1.tscn" id="16_sc1dx"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vvyt"]
 panorama = ExtResource("1_20pc6")
@@ -302,6 +303,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.61, 1, 122.368)
 
 [node name="Ant" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7138, 1.5, -70.3092)
+collision_layer = 1
+collision_mask = 1
 
 [node name="GridContainer" type="GridContainer" parent="."]
 anchors_preset = 15
@@ -985,6 +988,9 @@ material_override = ExtResource("14_fpfj3")
 size = Vector3(2, 23.9198, 800)
 
 [node name="rocks" type="Node" parent="environment"]
+
+[node name="RigidBody3D" parent="environment" instance=ExtResource("16_sc1dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74, 1, 39)
 
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://co35e2ab5f844"]
+[gd_scene load_steps=3 format=3 uid="uid://dkfhi8nnschhs"]
 
 [ext_resource type="PackedScene" uid="uid://doubu1dyh7q7p" path="res://assets/environment/rock/rock_asset_v03.fbx" id="1_3o3x2"]
 [ext_resource type="Material" uid="uid://dntwgj1etfrl0" path="res://assets/environment/rock/rock_texture.tres" id="2_p0gm0"]
