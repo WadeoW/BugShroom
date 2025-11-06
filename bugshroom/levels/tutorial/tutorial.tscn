@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwi5kj1jesmn4"]
+[gd_scene load_steps=3 format=3 uid="uid://bwi5kj1jesmn4"]
 
 [ext_resource type="Script" uid="uid://d22w8ev48bl8x" path="res://levels/tutorial/tutorial.gd" id="1_f3ams"]
+[ext_resource type="Texture2D" uid="uid://bruuc4kk4l72o" path="res://assets/simple-cursor.png" id="2_4g1xg"]
 
 [node name="tutorial" type="Control"]
 layout_mode = 3
@@ -58,5 +59,11 @@ press x to jump
 press triangle to toggle your root down ability and regain stamina
 
 press circle to attack(if its implemented yet)"
+
+[node name="cursor" type="Sprite2D" parent="."]
+position = Vector2(506.25, 356.687)
+rotation = -0.453786
+scale = Vector2(0.23494, 0.18884)
+texture = ExtResource("2_4g1xg")
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

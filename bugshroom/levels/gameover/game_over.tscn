@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dv4t40wp5r12a"]
+[gd_scene load_steps=3 format=3 uid="uid://dv4t40wp5r12a"]
 
-[ext_resource type="Script" uid="uid://gl5pnaiuknn1" path="res://levels/game over/game_over.gd" id="1_eys7b"]
+[ext_resource type="Script" uid="uid://gl5pnaiuknn1" path="res://levels/gameover/game_over.gd" id="1_eys7b"]
+[ext_resource type="Texture2D" uid="uid://bruuc4kk4l72o" path="res://assets/simple-cursor.png" id="2_o8i6d"]
 
 [node name="game_over" type="Control"]
 layout_mode = 3
@@ -40,6 +41,12 @@ offset_bottom = 122.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Return to title screen"
+
+[node name="cursor" type="Sprite2D" parent="."]
+position = Vector2(573, 332)
+rotation = -0.453786
+scale = Vector2(0.186747, 0.186747)
+texture = ExtResource("2_o8i6d")
 
 [connection signal="pressed" from="TryAgain" to="." method="_on_try_again_pressed"]
 [connection signal="pressed" from="ReturnToTitle" to="." method="_on_return_to_title_pressed"]

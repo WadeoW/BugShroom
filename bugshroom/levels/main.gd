@@ -23,8 +23,8 @@ func _ready() -> void:
 
 
 func _on_game_over():
-	get_tree().reload_current_scene()
-	get_tree().change_scene_to_file("res://levels/game over/game_over.tscn")
+	#get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://levels/gameover/game_over.tscn")
 
 
 func _on_nutrient_drain_timer_timeout() -> void:

@@ -48,7 +48,7 @@ text = "controls"
 
 [node name="cursor" type="Sprite2D" parent="."]
 position = Vector2(581, 321)
-rotation = -0.459022
+rotation = -0.453786
 scale = Vector2(0.222892, 0.175389)
 texture = ExtResource("2_aklpn")
 
