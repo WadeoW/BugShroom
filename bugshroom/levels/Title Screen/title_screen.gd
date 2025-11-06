@@ -25,6 +25,9 @@ func _input(event: InputEvent) -> void:
 		print("button is being pressed")
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("escape"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
 	var direction = Vector2.ZERO
 	
 	direction.x = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
