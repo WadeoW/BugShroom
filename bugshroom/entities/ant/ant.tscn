@@ -10,7 +10,7 @@ albedo_color = Color(0.588159, 0.192564, 0.191977, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oav7h"]
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
-collision_layer = 3
+collision_layer = 7
 collision_mask = 3
 script = ExtResource("1_oav7h")
 
