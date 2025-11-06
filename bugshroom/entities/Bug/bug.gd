@@ -122,6 +122,7 @@ func take_damage(amount: float):
 	if is_dead:
 		return
 	health -= amount
+	print(name, "took", amount, "damage! Health:", health)
 	if health <= 0:
 		die()
 

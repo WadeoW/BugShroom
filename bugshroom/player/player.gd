@@ -13,6 +13,9 @@ var gravity = 9.8
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
 
+#respawn
+@export var respawn_delay: float = 2.0
+
 #health variables
 @export var current_health = 100
 @export var max_health = 100
@@ -56,10 +59,13 @@ func _ready() -> void:
 	#if animation_player.current_animation:
 	var current_animation = animation_player.current_animation
 func _unhandled_input(event):
+	#debug test
+	if event.is_action_pressed("attack_1"):
+		print("H key pressed!")
 	#root down input
 	if event.is_action_pressed("root_%s" % [player_id]):
 		toggle_root()
-	if event.is_action_pressed("attack_%s" % [player_id]):
+	if event.is_action_pressed("attack_%s" % [player_id]) or event.is_action_pressed("attack_1"):
 		attack()
 
 func _physics_process(delta):
@@ -125,23 +131,25 @@ func attack():
 	can_attack = false
 	print("Player attacking!")
 
-	# Optional animation
-	if animation_player.has_animation("attack"):
-		animation_player.play("attack")
-
-	# --- FIXED RAYCAST SECTION ---
+	# --- RAYCAST SECTION ---
 	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 
 	var from: Vector3 = camera_yaw.global_position
 	var to: Vector3 = from + -camera_yaw.transform.basis.z * attack_range
 
-	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(from, to)
+	var query := PhysicsRayQueryParameters3D.create(from, to)
 	query.exclude = [self]
-	query.collide_with_areas = true
-	query.collide_with_bodies = true
+	query.collision_mask = 3
+
+	get_world_3d().debug_draw_line(from, to, Color.RED)
+
+	#debug prints
+	print("Attack called!")
+	print("From:", from, "To:", to)
 
 	var result: Dictionary = space_state.intersect_ray(query)
-	# --- END FIX ---
+
+	print("Raycast result:", result)  # Shows what the raycast hit
 
 	if result and result.has("collider"):
 		var collider: Node3D = result.collider
@@ -150,7 +158,7 @@ func attack():
 			print("Hit ", collider.name, " for ", attack_damage, " damage!")
 
 	await get_tree().create_timer(attack_cooldown).timeout
-	can_attack = true
+	can_attack = true	
 	
 func take_damage(amount):
 	current_health -= amount
@@ -169,4 +177,24 @@ func toggle_root():
 		print("Uprooted")
 	
 func die():
+	is_dead = true
+	print("Player", player_id, "has died!")
+	set_physics_process(false)
+	
+	await get_tree().create_timer(respawn_delay).timeout
+	respawn()
+	
+func respawn():
+	var spawn_point = get_tree().get_first_node_in_group("player_spawn")
+	
+	if spawn_point:
+		global_position = spawn_point.global_position
+		print("player", player_id, "respawned!")
+	else:
+		push_warning("No shared spawn point found!")
+	
+	current_health = max_health
 	is_dead = false
+	set_physics_process(true)
+	
+	
