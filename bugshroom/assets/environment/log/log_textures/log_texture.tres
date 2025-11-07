@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c8ct5wrjs116m"]
+
+[ext_resource type="Texture2D" uid="uid://bkgnvpd0yy2wp" path="res://assets/environment/log/log_textures/log_bugshroom_v01_DefaultMaterial_BaseColor.png" id="1_m8ssb"]
+
+[resource]
+albedo_texture = ExtResource("1_m8ssb")
