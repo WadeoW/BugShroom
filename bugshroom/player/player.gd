@@ -57,9 +57,9 @@ var last_direction = Vector3.FORWARD
 var current_animation 
 
 func _ready() -> void:
-	animation_player.play("player_uncrouch/Armature_002Action")
-	#if animation_player.current_animation:
+	animation_player.play("uncrouch")
 	var current_animation = animation_player.current_animation
+	
 func _unhandled_input(event):
 	#root down input
 	if event.is_action_pressed("root_%s" % [player_id]):
@@ -80,8 +80,8 @@ func _physics_process(delta):
 # handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
 		velocity.y = JUMP_VELOCITY
-		#current_stamina -= 15
-		#stamina_bar.update()
+		#animation_player.play("jump")
+
 
 	if Input.is_action_pressed("attack_%s" % [player_id]):
 		attack()
@@ -102,11 +102,11 @@ func _physics_process(delta):
 	
 	#new vector3 direction taking into account movement inputs and camera rotation
 	var direction = (camera_yaw.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if not is_rooted and animation_player.current_animation != "player_uncrouch/Armature_002Action" and !is_dead:
+	if not is_rooted and animation_player.current_animation != "uncrouch" and animation_player.current_animation != "jump" and !is_dead:
 		if direction:
 			last_direction = direction
-			if animation_player.current_animation != "walk": 
-				animation_player.play("walk")
+			if animation_player.current_animation != "walkanimation": 
+				animation_player.play("walkanimation")
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 		else:
@@ -138,9 +138,9 @@ func toggle_root():
 	is_rooted = !is_rooted
 	if is_rooted:
 		print("Rooting Down")
-		animation_player.play("player_crouch/Armature_002Action")
+		animation_player.play("crouch")
 	else:
-		animation_player.play("player_uncrouch/Armature_002Action")
+		animation_player.play("uncrouch")
 		print("Uprooted")
 
 func attack():
@@ -157,6 +157,7 @@ func attack():
 func die():
 	is_dead = true
 	print("Player", player_id, "has died!")
+	animation_player.play("die")
 	set_physics_process(false)
 	
 	await get_tree().create_timer(respawn_delay).timeout

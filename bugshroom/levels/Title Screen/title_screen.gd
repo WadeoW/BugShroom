@@ -1,7 +1,7 @@
 extends Control
 
 var cursor_speed = 500
-@onready var cursor: Sprite2D = $cursor
+@onready var cursor: Sprite2D = $CanvasLayer2/cursor
 
 func _on_start_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main.tscn")
@@ -11,7 +11,7 @@ func _on_tutorial_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://levels/tutorial/tutorial.tscn")
 
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
 
 
