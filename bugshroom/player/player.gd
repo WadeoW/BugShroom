@@ -45,6 +45,7 @@ var is_rooted = false
 var base_fov = 75.0
 const FOV_CHANGE = 1.5
 
+
 @onready var animation_player: AnimationPlayer = $PlayerModel/AnimationPlayer
 @onready var camera_mount = $CameraMount
 @onready var camera_yaw = $CameraMount/CameraYaw
@@ -60,10 +61,12 @@ func _ready() -> void:
 	animation_player.play("uncrouch")
 	var current_animation = animation_player.current_animation
 	
+	
 func _unhandled_input(event):
 	#root down input
 	if event.is_action_pressed("root_%s" % [player_id]):
 		toggle_root()
+		
 
 func _physics_process(delta):
 	if animation_player.animation_changed:
@@ -77,7 +80,6 @@ func _physics_process(delta):
 # handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
 		velocity.y = JUMP_VELOCITY
-		#animation_player.play("jump")
 
 
 	if Input.is_action_just_pressed("attack_%s" % [player_id]) and attack_cooldown.is_stopped():
@@ -112,8 +114,8 @@ func _physics_process(delta):
 			if animation_player.current_animation != "Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001" and animation_player.current_animation != "take_damage": 
 				animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	else:
-		velocity.x = 0 #lerp(velocity.x, direction.x * speed, delta * 4.0)
-		velocity.z = 0 #lerp(velocity.z, direction.z * speed, delta * 4.0)
+		velocity.x = 0
+		velocity.z = 0 
 	
 	if is_rooted:
 		current_stamina += root_stamina_regen * delta
@@ -157,6 +159,7 @@ func die():
 	print("Player", player_id, "has died!")
 	animation_player.play("die")
 	set_physics_process(false)
+	SignalBus.player_died.emit()
 	
 	await get_tree().create_timer(respawn_delay).timeout
 	respawn()
