@@ -91,7 +91,8 @@ func _physics_process(delta):
 		current_stamina -= stamina_drain_rate * delta
 		stamina_bar.update()
 		speed = SPRINT_SPEED
-		animation_player.speed_scale = 2
+		if animation_player.current_animation == "walkanimation":
+			animation_player.speed_scale = 2
 	else:
 		animation_player.speed_scale = 1
 		speed = WALK_SPEED
@@ -104,14 +105,15 @@ func _physics_process(delta):
 	if not is_rooted and animation_player.current_animation != "uncrouch" and animation_player.current_animation != "jump" and !is_dead:
 		if direction:
 			last_direction = direction
-			if animation_player.current_animation != "walkanimation": 
+			if animation_player.current_animation != "walkanimation" and animation_player.current_animation != "mushroomdude_allanimations2/attack": 
 				animation_player.play("walkanimation")
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 		else:
 			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
-			if animation_player.current_animation != "Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001" and animation_player.current_animation != "take_damage": 
+			#if animation_player.current_animation != "Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001" and animation_player.current_animation != "take_damage": 
+			if !animation_player.is_playing():
 				animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	else:
 		velocity.x = 0
@@ -144,8 +146,7 @@ func toggle_root():
 		print("Uprooted")
 
 func attack():
-	if animation_player.has_animation("attack"):
-		animation_player.play("attack")
+	animation_player.play("mushroomdude_allanimations2/attack")
 	can_attack = false
 	attack_cooldown.start()
 	if attack_hit_box.is_colliding():
