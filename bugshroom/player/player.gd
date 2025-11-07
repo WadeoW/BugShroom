@@ -128,6 +128,7 @@ func _physics_process(delta):
 
 	
 func take_damage(amount):
+	animation_player.play("take_damage")
 	current_health -= amount
 	health_bar.update()
 	if current_health <= 0 and !is_dead:

@@ -1,6 +1,7 @@
 extends Control
 
-
+var cursor_speed = 500
+@onready var cursor: Sprite2D = $cursor
 
 func _on_try_again_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main.tscn")
@@ -9,23 +10,28 @@ func _on_try_again_pressed() -> void:
 func _on_return_to_title_pressed() -> void:
 	get_tree().change_scene_to_file("res://levels/Title Screen/title_screen.tscn")
 
-var cursor_speed = 500
-@onready var cursor: Sprite2D = $cursor
 
 
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("jump_1"):
+	if event.is_action_pressed("click"):
 		var mouse_click_event = InputEventMouseButton.new()
 		mouse_click_event.button_index = MOUSE_BUTTON_LEFT
 		mouse_click_event.pressed = true
 		mouse_click_event.position = cursor.global_position
 		Input.parse_input_event(mouse_click_event)
 		print("button is being pressed")
+	if event.is_action_released("click"):
+		var mouse_click_event = InputEventMouseButton.new()
+		mouse_click_event.button_index = MOUSE_BUTTON_LEFT
+		mouse_click_event.pressed = false
+		mouse_click_event.position = cursor.global_position
+		Input.parse_input_event(mouse_click_event)
+		print("button is being released")
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("escape"):
