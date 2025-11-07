@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=33 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="PackedScene" uid="uid://bivqmpnyrqg2u" path="res://player/player.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
@@ -7,14 +7,13 @@
 [ext_resource type="Script" uid="uid://bxwpkxvlm8a0x" path="res://levels/colony_nutrient_bar.gd" id="3_c6i3y"]
 [ext_resource type="Script" path="res://player/health_bar.gd" id="4_1bvp3"]
 [ext_resource type="Material" uid="uid://b3rnns3b04fv" path="res://assets/environment/ground/ground.tres" id="4_c2ibq"]
-[ext_resource type="PackedScene" uid="uid://dwglrgk1ii20r" path="res://entities/Bug/bug_manager.tscn" id="5_c2ibq"]
+[ext_resource type="PackedScene" uid="uid://br8ol81o0k04s" path="res://entities/Bug/bug_manager.tscn" id="5_c2ibq"]
 [ext_resource type="Script" path="res://player/stamina_bar.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bwv1obth85s1a" path="res://tasks/dead_bug_task_spawner.tscn" id="10_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://8gxwurqg07or" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
 [ext_resource type="PackedScene" uid="uid://ddxy8prak70er" path="res://assets/environment/tree/redwood.tscn" id="13_j4qnp"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
-[ext_resource type="PackedScene" uid="uid://bl8w6vskntj54" path="res://assets/environment/rock/rock_1.tscn" id="16_sc1dx"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vvyt"]
 panorama = ExtResource("1_20pc6")
@@ -1022,9 +1021,6 @@ material_override = ExtResource("14_fpfj3")
 size = Vector3(2, 23.9198, 800)
 
 [node name="rocks" type="Node" parent="environment"]
-
-[node name="rock1" parent="environment" instance=ExtResource("16_sc1dx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74, 1, 39)
 
 [node name="player_spawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.838978, 0, 16.4432)
