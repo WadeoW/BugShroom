@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c86brgigfa1ak"]
+[gd_scene load_steps=12 format=3 uid="uid://c86brgigfa1ak"]
 
 [ext_resource type="Script" uid="uid://byrtannhqb5qu" path="res://tasks/dead_bug_task.gd" id="1_d74cn"]
 [ext_resource type="PackedScene" uid="uid://d2fk73r1df5o3" path="res://entities/beetle/Bettle.glb" id="1_tx05i"]
@@ -32,6 +32,10 @@ cap_bottom = false
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_moiim"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_unby7"]
+height = 1.69922
+radius = 5.23779
 
 [node name="dead_bug_task" type="StaticBody3D" node_paths=PackedStringArray("nutrient_bar")]
 script = ExtResource("1_d74cn")
@@ -80,6 +84,12 @@ transparent_bg = true
 transform = Transform3D(3.97, 0, 0, 0, 3.97, 0, 0, 0, 3.97, 0, 3.85921, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_moiim")
+
+[node name="OverlappingBodiesDetector" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverlappingBodiesDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.716797, 0)
+shape = SubResource("CylinderShape3D_unby7")
 
 [connection signal="body_entered" from="DetectionArea3D" to="." method="_on_detection_area_3d_body_entered"]
 [connection signal="body_exited" from="DetectionArea3D" to="." method="_on_detection_area_3d_body_exited"]

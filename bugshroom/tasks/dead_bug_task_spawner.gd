@@ -19,6 +19,18 @@ func _ready() -> void:
 		print("dead bug scene not set")
 	spawn_timer.start()
 
+func get_random_pos():
+	var random_x = randf_range(spawn_area_min_x, spawn_area_max_x)
+	var random_z = randf_range(spawn_area_min_z, spawn_area_max_z)
+	return Vector3(random_x, 1, random_z)
+
+#func check_valid_spawn_point(dead_bug_instance: PackedScene):
+	#var dead_bug_area = dead_bug_instance.get_tree().get_nodes_in_group("OverlappingBodiesDetector")
+	#if dead_bug_area.has_overlapping_bodies():
+		#return false
+	#else:
+		#return true
+
 func _on_dead_bug_task_finished():
 	if current_dead_bugs.size() > 0:
 		current_dead_bugs.erase(dead_bug_scene)
@@ -35,11 +47,11 @@ func spawn_dead_bug_task():
 		return
 		
 	var dead_bug_instance = dead_bug_scene.instantiate()
+	dead_bug_instance.position = Vector3(get_random_pos())
 	
-	var random_x = randf_range(spawn_area_min_x, spawn_area_max_x)
-	var random_z = randf_range(spawn_area_min_z, spawn_area_max_z)
-	
-	dead_bug_instance.position = Vector3(random_x, 1.0, random_z)
+	#if check_valid_spawn_point(dead_bug_scene) == false:
+		#get_random_pos()
+		#dead_bug_instance.position = Vector3(get_random_pos())
 	
 	add_child(dead_bug_instance)
 	current_dead_bugs.append(dead_bug_instance)

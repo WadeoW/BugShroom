@@ -6,6 +6,7 @@ var player_in_radius = false
 var player_nutrient_drain_rate = 10
 var bodies_in_radius = []
 @export var nutrient_bar = ProgressBar
+@onready var overlapping_bodies_detector: Area3D = $OverlappingBodiesDetector
 
 func _ready() -> void:
 	SignalBus.dead_bug_task_finished.connect(Callable(self, "_on_dead_bug_task_finished"))

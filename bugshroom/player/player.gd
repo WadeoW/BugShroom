@@ -78,7 +78,7 @@ func _physics_process(delta):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 # handle jump
-	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor and !is_rooted and current_stamina > 0:
+	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
 		velocity.y = JUMP_VELOCITY
 		#current_stamina -= 15
 		#stamina_bar.update()

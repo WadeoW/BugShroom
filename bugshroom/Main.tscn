@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://bxwpkxvlm8a0x" path="res://levels/colony_nutrient_bar.gd" id="3_c6i3y"]
 [ext_resource type="Script" path="res://player/health_bar.gd" id="4_1bvp3"]
 [ext_resource type="Material" uid="uid://b3rnns3b04fv" path="res://assets/environment/ground/ground.tres" id="4_c2ibq"]
-[ext_resource type="PackedScene" uid="uid://dl4amiog7pmhe" path="res://entities/Bug/bug_manager.tscn" id="5_c2ibq"]
+[ext_resource type="PackedScene" uid="uid://dwglrgk1ii20r" path="res://entities/Bug/bug_manager.tscn" id="5_c2ibq"]
 [ext_resource type="Script" path="res://player/stamina_bar.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bwv1obth85s1a" path="res://tasks/dead_bug_task_spawner.tscn" id="10_c2ibq"]
@@ -285,41 +285,60 @@ size = Vector3(6.47913, 5.07758, 1)
 
 [node name="Ant" parent="BugManager" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7138, 1.5, -70.3092)
-collision_layer = 1
 collision_mask = 1
 
 [node name="Ant2" parent="BugManager" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.24, 1.5, -161.928)
+collision_mask = 5
 
 [node name="Ant3" parent="BugManager" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -142.578, 1.5, -236.822)
+collision_mask = 5
 
 [node name="Ant4" parent="BugManager" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148.746, 1.5, 97.6984)
+collision_layer = 5
+collision_mask = 5
 
 [node name="Ant5" parent="BugManager" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.3889, 1.5, 171.411)
+collision_layer = 5
+collision_mask = 5
 
 [node name="Ant6" parent="BugManager" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 179.894, 1.5, 64.5364)
+collision_layer = 5
+collision_mask = 5
 
 [node name="Ant7" parent="BugManager" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 272.756, 1.5, -131.106)
+collision_layer = 5
+collision_mask = 5
 
 [node name="Ant8" parent="BugManager" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 308.737, 1.50002, 219.229)
+collision_layer = 5
+collision_mask = 5
 
 [node name="Ant9" parent="BugManager" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.4366, 1.50003, 315.06)
+collision_layer = 5
+collision_mask = 5
 
 [node name="Ant10" parent="BugManager" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -262.011, 1.50003, 281.31)
+collision_layer = 5
+collision_mask = 5
 
 [node name="Ant11" parent="BugManager" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.323, 1.50003, 98.1383)
+collision_layer = 5
+collision_mask = 5
 
 [node name="Ant12" parent="BugManager" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -345.618, 1.50003, 95.511)
+collision_layer = 5
+collision_mask = 5
 
 [node name="GridContainer" type="GridContainer" parent="."]
 anchors_preset = 15
@@ -1004,10 +1023,11 @@ size = Vector3(2, 23.9198, 800)
 
 [node name="rocks" type="Node" parent="environment"]
 
+[node name="rock1" parent="environment" instance=ExtResource("16_sc1dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74, 1, 39)
+
 [node name="player_spawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.838978, 0, 16.4432)
-[node name="RigidBody3D" parent="environment" instance=ExtResource("16_sc1dx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74, 1, 39)
 
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]

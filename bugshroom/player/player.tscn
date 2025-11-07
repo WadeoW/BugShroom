@@ -1043,7 +1043,7 @@ fov = 85.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06981, 0)
 shape = SubResource("BoxShape3D_rgyib")
 target_position = Vector3(0, 0, -1)
-collision_mask = 2
+collision_mask = 6
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.8
