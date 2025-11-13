@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cguu5ppjm4whn"
 path.s3tc="res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-3c84a328a23948276756134911c183fa.s3tc.ctex"
+path.etc2="res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-3c84a328a23948276756134911c183fa.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/environment/ground/ground textures/ground_v01_gorund_mat_BaseColor.png"
-dest_files=["res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-3c84a328a23948276756134911c183fa.s3tc.ctex"]
+dest_files=["res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-3c84a328a23948276756134911c183fa.s3tc.ctex", "res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-3c84a328a23948276756134911c183fa.etc2.ctex"]
 
 [params]
 

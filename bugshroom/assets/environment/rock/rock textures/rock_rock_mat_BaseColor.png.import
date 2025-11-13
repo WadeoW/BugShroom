@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bkbvn3vfnvsck"
 path.s3tc="res://.godot/imported/rock_rock_mat_BaseColor.png-e84861f4177ed696ff6faf6d2a2e0166.s3tc.ctex"
+path.etc2="res://.godot/imported/rock_rock_mat_BaseColor.png-e84861f4177ed696ff6faf6d2a2e0166.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/environment/rock/rock textures/rock_rock_mat_BaseColor.png"
-dest_files=["res://.godot/imported/rock_rock_mat_BaseColor.png-e84861f4177ed696ff6faf6d2a2e0166.s3tc.ctex"]
+dest_files=["res://.godot/imported/rock_rock_mat_BaseColor.png-e84861f4177ed696ff6faf6d2a2e0166.s3tc.ctex", "res://.godot/imported/rock_rock_mat_BaseColor.png-e84861f4177ed696ff6faf6d2a2e0166.etc2.ctex"]
 
 [params]
 
