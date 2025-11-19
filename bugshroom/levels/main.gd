@@ -20,12 +20,21 @@ func _ready() -> void:
 	SignalBus.start_player_harvesting_nutrients.connect(Callable(self, "_on_start_player_harvesting_nutrients"))
 	SignalBus.stop_player_harvesting_nutrients.connect(Callable(self, "_on_stop_player_harvesting_nutrients"))
 	SignalBus.game_over.connect(Callable(self, "_on_game_over"))
+	SignalBus.player_died.connect(Callable(self, "_on_player_death"))
 
+func _process(delta: float) -> void:
+	#allows you to hit the escape key to get mouse cursor back
+	if Input.is_action_just_pressed("escape"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		#get_tree().paused = true
+		#get_tree().change_scene_to_file("res://levels/tutorial/tutorial.tscn")
 
 func _on_game_over():
 	#get_tree().reload_current_scene()
 	get_tree().change_scene_to_file("res://levels/gameover/game_over.tscn")
 
+func _on_player_death():
+	current_colony_nutrients -= 100
 
 func _on_nutrient_drain_timer_timeout() -> void:
 	current_colony_nutrients -= colony_nutrient_drain_rate

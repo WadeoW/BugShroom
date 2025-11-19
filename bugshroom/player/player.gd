@@ -45,6 +45,7 @@ var is_rooted = false
 var base_fov = 75.0
 const FOV_CHANGE = 1.5
 
+
 @onready var animation_player: AnimationPlayer = $PlayerModel/AnimationPlayer
 @onready var camera_mount = $CameraMount
 @onready var camera_yaw = $CameraMount/CameraYaw
@@ -57,13 +58,15 @@ var last_direction = Vector3.FORWARD
 var current_animation 
 
 func _ready() -> void:
-	animation_player.play("player_uncrouch/Armature_002Action")
-	#if animation_player.current_animation:
+	animation_player.play("uncrouch")
 	var current_animation = animation_player.current_animation
+	
+	
 func _unhandled_input(event):
 	#root down input
 	if event.is_action_pressed("root_%s" % [player_id]):
 		toggle_root()
+		
 
 func _physics_process(delta):
 	if animation_player.animation_changed:
@@ -73,17 +76,13 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-#allows you to hit the escape key to get mouse cursor back
-	if Input.is_action_just_pressed("escape"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 # handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
 		velocity.y = JUMP_VELOCITY
-		#current_stamina -= 15
-		#stamina_bar.update()
 
-	if Input.is_action_pressed("attack_%s" % [player_id]):
+
+	if Input.is_action_just_pressed("attack_%s" % [player_id]) and attack_cooldown.is_stopped():
 		attack()
 		
 
@@ -92,7 +91,8 @@ func _physics_process(delta):
 		current_stamina -= stamina_drain_rate * delta
 		stamina_bar.update()
 		speed = SPRINT_SPEED
-		animation_player.speed_scale = 2
+		if animation_player.current_animation == "walkanimation":
+			animation_player.speed_scale = 2
 	else:
 		animation_player.speed_scale = 1
 		speed = WALK_SPEED
@@ -102,21 +102,22 @@ func _physics_process(delta):
 	
 	#new vector3 direction taking into account movement inputs and camera rotation
 	var direction = (camera_yaw.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if not is_rooted and animation_player.current_animation != "player_uncrouch/Armature_002Action" and !is_dead:
+	if not is_rooted and animation_player.current_animation != "uncrouch" and animation_player.current_animation != "jump" and !is_dead:
 		if direction:
 			last_direction = direction
-			if animation_player.current_animation != "walk": 
-				animation_player.play("walk")
+			if animation_player.current_animation != "walkanimation" and animation_player.current_animation != "mushroomdude_allanimations2/attack": 
+				animation_player.play("walkanimation")
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 		else:
 			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
-			if animation_player.current_animation != "Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001": 
+			#if animation_player.current_animation != "Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001" and animation_player.current_animation != "take_damage": 
+			if !animation_player.is_playing():
 				animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	else:
-		velocity.x = 0 #lerp(velocity.x, direction.x * speed, delta * 4.0)
-		velocity.z = 0 #lerp(velocity.z, direction.z * speed, delta * 4.0)
+		velocity.x = 0
+		velocity.z = 0 
 	
 	if is_rooted:
 		current_stamina += root_stamina_regen * delta
@@ -128,6 +129,7 @@ func _physics_process(delta):
 
 	
 func take_damage(amount):
+	animation_player.play("take_damage")
 	current_health -= amount
 	health_bar.update()
 	if current_health <= 0 and !is_dead:
@@ -138,14 +140,13 @@ func toggle_root():
 	is_rooted = !is_rooted
 	if is_rooted:
 		print("Rooting Down")
-		animation_player.play("player_crouch/Armature_002Action")
+		animation_player.play("crouch")
 	else:
-		animation_player.play("player_uncrouch/Armature_002Action")
+		animation_player.play("uncrouch")
 		print("Uprooted")
 
 func attack():
-	if animation_player.has_animation("attack"):
-		animation_player.play("attack")
+	animation_player.play("mushroomdude_allanimations2/attack")
 	can_attack = false
 	attack_cooldown.start()
 	if attack_hit_box.is_colliding():
@@ -157,13 +158,16 @@ func attack():
 func die():
 	is_dead = true
 	print("Player", player_id, "has died!")
+	animation_player.play("die")
 	set_physics_process(false)
+	SignalBus.player_died.emit()
 	
 	await get_tree().create_timer(respawn_delay).timeout
 	respawn()
 	
 func respawn():
 	is_dead = false
+	animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	global_position = Vector3(5, 1, 5)
 	print("player", player_id, "respawned!")
 	current_health = max_health
