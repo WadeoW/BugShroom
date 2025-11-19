@@ -13,6 +13,7 @@ const MAX_BUGS: int = 15
 @export var despawn_timer: float = 2.0
 @export var attack_range: float = 2.0
 @export var attack_cooldown: float = 1
+@export var aggressive: bool = true
 var can_attack: bool = true
 
 # Wandering / idle variables
@@ -48,8 +49,11 @@ func _physics_process(delta):
 	
 	if is_dead:
 		return
-	
-	target = _get_closest_player()
+	#aggressive bugs look for players
+	if aggressive:
+		target = _get_closest_player()
+	else:
+		target = null #passive bugs dont chase
 
 	if target:
 		var distance = global_position.distance_to(target.global_position)

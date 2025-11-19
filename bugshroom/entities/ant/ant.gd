@@ -9,6 +9,7 @@ func _ready():
 	speed = ant_speed
 	health = ant_health
 	damage = ant_damage
+	aggressive = true
 
 	# Call parent _ready() so BugBase setup runs (like target assignment and bug_count)
 	super._ready()
