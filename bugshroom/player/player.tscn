@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bwy3vmah16igp" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="AnimationLibrary" uid="uid://bcdslk2bcmp04" path="res://player/Mushroomdude_Idle_v2.fbx" id="2_qjkh3"]
-[ext_resource type="Script" path="res://player/camera_mount.gd" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_rkbax"]
 [ext_resource type="AnimationLibrary" uid="uid://dktwwac5krlof" path="res://player/mushroomdude_allanimations2.glb" id="3_yw30f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0l28a"]
