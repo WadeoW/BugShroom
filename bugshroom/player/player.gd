@@ -154,6 +154,9 @@ func attack():
 			if attack_hit_box.get_collider(i).has_method("take_damage"):
 				attack_hit_box.get_collider(i).take_damage(attack_damage)
 	
+func apply_knockback(direction: Vector3, force: float):
+	velocity += direction.normalized() * force
+
 func die():
 	is_dead = true
 	print("Player", player_id, "has died!")

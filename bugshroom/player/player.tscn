@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://c4sfeh0tmjyf4" path="res://player/brown mushroom/Material.006.tres" id="2_boad6"]
 [ext_resource type="AnimationLibrary" uid="uid://cthqi1j6uwl07" path="res://player/Mushroomdude_crouch.glb" id="2_g1dw6"]
 [ext_resource type="AnimationLibrary" uid="uid://bcdslk2bcmp04" path="res://player/Mushroomdude_Idle_v2.fbx" id="2_qjkh3"]
-[ext_resource type="Script" path="res://player/camera_mount.gd" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_rkbax"]
 [ext_resource type="Material" uid="uid://b5n7m8sn6ytbk" path="res://player/brown mushroom/Material.tres" id="3_rgyib"]
 [ext_resource type="AnimationLibrary" uid="uid://c011881k1f5eb" path="res://player/Mushroomdude_uncrouch.glb" id="3_yw30f"]
 [ext_resource type="AnimationLibrary" uid="uid://dii6jm5nghrn6" path="res://player/Mushroomdude_idle.glb" id="7_rgyib"]
