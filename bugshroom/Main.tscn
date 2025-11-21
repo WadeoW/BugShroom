@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=41 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="PackedScene" uid="uid://bivqmpnyrqg2u" path="res://player/player.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://ba406h63j4154" path="res://assets/environment/rock/big_rock.tscn" id="17_5tuhn"]
 [ext_resource type="Material" uid="uid://c8ct5wrjs116m" path="res://assets/environment/log/log_textures/log_texture.tres" id="17_sc1dx"]
 [ext_resource type="PackedScene" uid="uid://cj7pwf21i24i8" path="res://assets/environment/rock/rock_type_2.tscn" id="18_kjvhd"]
+[ext_resource type="PackedScene" uid="uid://dnn5p52tfmf1d" path="res://entities/abilities/SporeRingAbility.tscn" id="20_2gh4u"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vvyt"]
 panorama = ExtResource("1_20pc6")
@@ -3456,6 +3457,9 @@ surface_material_override/0 = ExtResource("17_sc1dx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="environment/log/log_bugshroom_v03/Cylinder/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_kjvhd")
+
+[node name="Area3D" parent="." instance=ExtResource("20_2gh4u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.59868, 1, 14.7848)
 
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]

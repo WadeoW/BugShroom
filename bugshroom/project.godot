@@ -23,6 +23,7 @@ PlayerData="*res://common/PlayerData.gd"
 [global_group]
 
 player=""
+bug="group for all bugs"
 
 [input]
 
