@@ -22,6 +22,7 @@ SignalBus="*res://common/SignalBus.gd"
 [global_group]
 
 player=""
+bug=""
 
 [input]
 
