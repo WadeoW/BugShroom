@@ -35,6 +35,10 @@ var can_attack: bool = true
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var attack_hit_box: ShapeCast3D = $AttackHitBox
 
+#ability variables
+var ability_active = false
+@onready var ability_type = load("res://entities/abilities/SporeRingAbility.tscn")
+
 #Root Down Mechanic
 var is_rooted = false
 @export var root_stamina_regen = 15.0 #stamina regained per second while rooted
@@ -67,6 +71,12 @@ func _unhandled_input(event):
 	if event.is_action_pressed("root_%s" % [player_id]):
 		toggle_root()
 		
+	if event.is_action_pressed("interact_%s" % [player_id]) and ability_active == false:
+		cast_ability(ability_type)	
+		if ability_active:
+			print("abilty active = true")
+		else:
+			print("ability active = false")
 
 func _physics_process(delta):
 	if animation_player.animation_changed:
@@ -154,6 +164,14 @@ func attack():
 		for i in total_collisions:
 			if attack_hit_box.get_collider(i).has_method("take_damage"):
 				attack_hit_box.get_collider(i).take_damage(attack_damage)
+	
+	
+func cast_ability(ability_type):
+	ability_active = true
+	var spawn = ability_type.instantiate()
+	add_sibling(spawn)
+	print("ability has been cast")
+	
 	
 func die():
 	is_dead = true
