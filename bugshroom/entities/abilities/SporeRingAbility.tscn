@@ -61,7 +61,7 @@ autostart = true
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0148623, 0)
-amount = 500
+amount = 550
 lifetime = 5.0
 explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_8y0x8")
