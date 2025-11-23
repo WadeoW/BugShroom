@@ -13,7 +13,7 @@ emission_ring_height = 0.1
 emission_ring_radius = 5.0
 emission_ring_inner_radius = 0.0
 emission_ring_cone_angle = 90.0
-gravity = Vector3(0, -0.005, 0)
+gravity = Vector3(0, -0.007, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gruh6"]
 albedo_color = Color(0.541176, 0.701961, 0.345098, 1)
