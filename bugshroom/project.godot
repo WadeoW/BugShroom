@@ -24,6 +24,7 @@ PlayerData="*res://common/PlayerData.gd"
 
 player=""
 bug="group for all bugs"
+dead_bug_task=""
 
 [input]
 

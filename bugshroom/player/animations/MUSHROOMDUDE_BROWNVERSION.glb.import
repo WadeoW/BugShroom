@@ -1,15 +1,15 @@
 [remap]
 
-importer="animation_library"
+importer="scene"
 importer_version=1
-type="AnimationLibrary"
-uid="uid://c011881k1f5eb"
-path="res://.godot/imported/Mushroomdude_uncrouch.glb-177524bccdad49883b1c7b55cae44fca.res"
+type="PackedScene"
+uid="uid://pch2acw61msy"
+path="res://.godot/imported/MUSHROOMDUDE_BROWNVERSION.glb-df0c2c3efd1a85274ab6059b9e1a052a.scn"
 
 [deps]
 
-source_file="res://player/Mushroomdude_uncrouch.glb"
-dest_files=["res://.godot/imported/Mushroomdude_uncrouch.glb-177524bccdad49883b1c7b55cae44fca.res"]
+source_file="res://player/animations/MUSHROOMDUDE_BROWNVERSION.glb"
+dest_files=["res://.godot/imported/MUSHROOMDUDE_BROWNVERSION.glb-df0c2c3efd1a85274ab6059b9e1a052a.scn"]
 
 [params]
 
@@ -32,6 +32,17 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"Material": {
+"use_external/enabled": true,
+"use_external/path": "res://player/brown mushroom/Material.tres"
+},
+"Material.006": {
+"use_external/enabled": true,
+"use_external/path": "res://player/brown mushroom/Material.006.tres"
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

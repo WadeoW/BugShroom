@@ -2,7 +2,7 @@ extends Node3D
 
 @export var dead_bug_scene: PackedScene
 
-@onready var current_dead_bugs = get_children()
+@onready var current_dead_bugs = get_tree().get_nodes_in_group("dead_bug_task")
 var max_dead_bugs = 8
 
 #spawn area variables
@@ -18,6 +18,11 @@ func _ready() -> void:
 	if dead_bug_scene == null:
 		print("dead bug scene not set")
 	spawn_timer.start()
+	print(current_dead_bugs)
+	print("current dead bug size: ", current_dead_bugs.size())
+	
+	SignalBus.dead_bug_task_finished.connect(Callable(self, "_on_dead_bug_task_finished"))
+
 
 func get_random_pos():
 	var random_x = randf_range(spawn_area_min_x, spawn_area_max_x)
@@ -33,13 +38,15 @@ func get_random_pos():
 
 func _on_dead_bug_task_finished():
 	if current_dead_bugs.size() > 0:
-		current_dead_bugs.erase(dead_bug_scene)
+		current_dead_bugs.remove_at(0)
+		print("dead bug go bye bye ", current_dead_bugs.size(), current_dead_bugs)
 	else:
 		print("no more bugs!")
 
 func _on_spawn_timer_timeout() -> void:
 	if current_dead_bugs.size() < max_dead_bugs:
 		spawn_dead_bug_task()
+	
 	
 	
 func spawn_dead_bug_task():
@@ -55,3 +62,4 @@ func spawn_dead_bug_task():
 	
 	add_child(dead_bug_instance)
 	current_dead_bugs.append(dead_bug_instance)
+	print("spawned a new bug task. currently there are: ", current_dead_bugs.size())

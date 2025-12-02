@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://6ime7wr2s8vr"
-path="res://.godot/imported/Mushroomdude_walkanimation.blend-7a9e0a51b8a0f313bddde88b125355be.scn"
+path="res://.godot/imported/Mushroomdude_walkanimation.blend-b6a1e062cd4430810ed9d61d0bf77d41.scn"
 
 [deps]
 
-source_file="res://player/Mushroomdude_walkanimation.blend"
-dest_files=["res://.godot/imported/Mushroomdude_walkanimation.blend-7a9e0a51b8a0f313bddde88b125355be.scn"]
+source_file="res://player/animations/Mushroomdude_walkanimation.blend"
+dest_files=["res://.godot/imported/Mushroomdude_walkanimation.blend-b6a1e062cd4430810ed9d61d0bf77d41.scn"]
 
 [params]
 

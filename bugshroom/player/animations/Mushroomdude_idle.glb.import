@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
-uid="uid://pch2acw61msy"
-path="res://.godot/imported/MUSHROOMDUDE_BROWNVERSION.glb-03fd131a8e18b2eec94a48c6534b74dc.scn"
+type="AnimationLibrary"
+uid="uid://dii6jm5nghrn6"
+path="res://.godot/imported/Mushroomdude_idle.glb-b0b3494d51f2c3b1f1f244cd9f006395.res"
 
 [deps]
 
-source_file="res://player/MUSHROOMDUDE_BROWNVERSION.glb"
-dest_files=["res://.godot/imported/MUSHROOMDUDE_BROWNVERSION.glb-03fd131a8e18b2eec94a48c6534b74dc.scn"]
+source_file="res://player/animations/Mushroomdude_idle.glb"
+dest_files=["res://.godot/imported/Mushroomdude_idle.glb-b0b3494d51f2c3b1f1f244cd9f006395.res"]
 
 [params]
 
@@ -32,17 +32,6 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"materials": {
-"Material": {
-"use_external/enabled": true,
-"use_external/path": "res://player/brown mushroom/Material.tres"
-},
-"Material.006": {
-"use_external/enabled": true,
-"use_external/path": "res://player/brown mushroom/Material.006.tres"
-}
-}
-}
+_subresources={}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

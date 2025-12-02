@@ -9,9 +9,10 @@ const MAX_BUGS: int = 15
 @export var speed: float = 5.0
 @export var health: float = 50.0
 @export var damage: float = 20.0
+@export var bug_nutrient_value: float = 50
 @export var detection_range: float = 40.0
 @export var despawn_timer: float = 1.0
-@export var attack_range: float = 2.0
+@export var attack_range: float = 2.3
 @export var attack_cooldown: float = 1
 var can_attack: bool = true
 
@@ -38,6 +39,7 @@ func _ready():
 	bug_count += 1
 	#find closest player
 	target = _get_closest_player()
+	
 
 func _physics_process(delta):
 	# Gravity
@@ -122,7 +124,7 @@ func take_damage(amount: float):
 	if is_dead:
 		return
 	health -= amount
-	print(name, "took", amount, "damage! Health:", health)
+	print(name, " took ", amount, " damage! Health: ", health)
 	if health <= 0:
 		die()
 
@@ -132,5 +134,7 @@ func die():
 	is_dead = true
 	velocity = Vector3.ZERO
 	bug_count -= 1
+	SignalBus.emit_signal("bug_died")
+	#Main.current_colony_nutrients += bug_nutrient_value
 	await get_tree().create_timer(despawn_timer).timeout
 	queue_free()

@@ -3,13 +3,13 @@
 importer="animation_library"
 importer_version=1
 type="AnimationLibrary"
-uid="uid://dii6jm5nghrn6"
-path="res://.godot/imported/Mushroomdude_idle.glb-1f754b462ea277d50e2d2c46fafa9bfa.res"
+uid="uid://cthqi1j6uwl07"
+path="res://.godot/imported/Mushroomdude_crouch.glb-2aa9d27b18b14cfe8f96ba2a6b961b6a.res"
 
 [deps]
 
-source_file="res://player/Mushroomdude_idle.glb"
-dest_files=["res://.godot/imported/Mushroomdude_idle.glb-1f754b462ea277d50e2d2c46fafa9bfa.res"]
+source_file="res://player/animations/Mushroomdude_crouch.glb"
+dest_files=["res://.godot/imported/Mushroomdude_crouch.glb-2aa9d27b18b14cfe8f96ba2a6b961b6a.res"]
 
 [params]
 

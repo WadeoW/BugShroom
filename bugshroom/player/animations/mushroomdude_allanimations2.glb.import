@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
-uid="uid://dhyxdwf8plr5y"
-path="res://.godot/imported/Mushroomdude_walkanimation_v2.glb-6b4f00c70b55dad42e23ba33daf55f22.scn"
+type="AnimationLibrary"
+uid="uid://dktwwac5krlof"
+path="res://.godot/imported/mushroomdude_allanimations2.glb-50b70a148fd11739b6738090c7be0008.res"
 
 [deps]
 
-source_file="res://player/Mushroomdude_walkanimation_v2.glb"
-dest_files=["res://.godot/imported/Mushroomdude_walkanimation_v2.glb-6b4f00c70b55dad42e23ba33daf55f22.scn"]
+source_file="res://player/animations/mushroomdude_allanimations2.glb"
+dest_files=["res://.godot/imported/mushroomdude_allanimations2.glb-50b70a148fd11739b6738090c7be0008.res"]
 
 [params]
 

@@ -38,4 +38,5 @@ func _process(delta: float) -> void:
 func despawn():
 	player_in_radius = false
 	SignalBus.dead_bug_task_finished.emit()
+	print("dead_bug_task_finished signal emitted")
 	queue_free()

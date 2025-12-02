@@ -24,6 +24,8 @@ emission_energy_multiplier = 0.87
 material = SubResource("StandardMaterial3D_gruh6")
 radius = 0.1
 height = 0.05
+radial_segments = 16
+rings = 8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8y0x8"]
 albedo_color = Color(0.298039, 0.505882, 0.34902, 1)
@@ -32,6 +34,8 @@ albedo_color = Color(0.298039, 0.505882, 0.34902, 1)
 material = SubResource("StandardMaterial3D_8y0x8")
 inner_radius = 0.05
 outer_radius = 0.1
+rings = 16
+ring_segments = 8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jykvw"]
 transparency = 1
@@ -60,7 +64,7 @@ wait_time = 0.5
 autostart = true
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0148623, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00237805, 0.0148625, -0.00145125)
 amount = 550
 lifetime = 5.0
 explosiveness = 0.9

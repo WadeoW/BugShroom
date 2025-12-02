@@ -35,6 +35,7 @@ var can_attack: bool = true
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var attack_hit_box: ShapeCast3D = $AttackHitBox
 
+
 #ability variables
 var ability_active = false
 @onready var ability_type = load("res://entities/abilities/SporeRingAbility.tscn")
@@ -43,11 +44,6 @@ var ability_active = false
 var is_rooted = false
 @export var root_stamina_regen = 15.0 #stamina regained per second while rooted
 
-
-
-#fov variables
-var base_fov = 75.0
-const FOV_CHANGE = 1.5
 
 
 @onready var animation_player: AnimationPlayer = $PlayerModel/AnimationPlayer
@@ -130,7 +126,8 @@ func _physics_process(delta):
 		velocity.z = 0 
 	
 	if is_rooted:
-		current_stamina += root_stamina_regen * delta
+		if current_stamina <= max_stamina:
+			current_stamina += root_stamina_regen * delta
 		stamina_bar.update()
 	
 	$PlayerModel.rotation.y = lerp_angle($PlayerModel.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
@@ -161,10 +158,17 @@ func attack():
 	attack_cooldown.start()
 	if attack_hit_box.is_colliding():
 		var total_collisions = attack_hit_box.get_collision_count()
-		for i in total_collisions:
-			if attack_hit_box.get_collider(i).has_method("take_damage"):
+		print(total_collisions)
+		var i = 0
+		for collision in total_collisions:
+			if attack_hit_box.get_collider(i).is_in_group("bug"):
+				print(i, "has taken damage")
 				attack_hit_box.get_collider(i).take_damage(attack_damage)
-	
+			elif attack_hit_box.get_collider(i).is_in_group("player"):
+				attack_hit_box.get_collider(i).take_damage(0)
+				print("player was attacked")
+			i += 1
+
 	
 func cast_ability(ability_type):
 	ability_active = true

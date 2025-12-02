@@ -1,15 +1,15 @@
 [remap]
 
-importer="animation_library"
+importer="scene"
 importer_version=1
-type="AnimationLibrary"
-uid="uid://bcdslk2bcmp04"
-path="res://.godot/imported/Mushroomdude_Idle_v2.fbx-a2088a4b8fa6d13584467b16adfeaa2c.res"
+type="PackedScene"
+uid="uid://dhyxdwf8plr5y"
+path="res://.godot/imported/Mushroomdude_walkanimation_v2.glb-5e466ae934ed7f1b9816424d9f4d8b80.scn"
 
 [deps]
 
-source_file="res://player/Mushroomdude_Idle_v2.fbx"
-dest_files=["res://.godot/imported/Mushroomdude_Idle_v2.fbx-a2088a4b8fa6d13584467b16adfeaa2c.res"]
+source_file="res://player/animations/Mushroomdude_walkanimation_v2.glb"
+dest_files=["res://.godot/imported/Mushroomdude_walkanimation_v2.glb-5e466ae934ed7f1b9816424d9f4d8b80.scn"]
 
 [params]
 
@@ -28,11 +28,10 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
+gltf/naming_version=1
+gltf/embedded_image_handling=1

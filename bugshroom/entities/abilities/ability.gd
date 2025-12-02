@@ -1,4 +1,5 @@
 extends Area3D
+class_name AbilityBase
 
 #@export var AbilType: Resource
 @export var abilDamage: int = 15
@@ -8,22 +9,19 @@ extends Area3D
 
 @onready var lifetime: Timer = $Lifetime
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
-@onready var player = get_tree().get_first_node_in_group("player")
+@onready var player: CharacterBody3D
 
 var bodies_in_area = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if get_parent().get_node("Player"):
+		player = get_parent().get_node("Player")
+	elif get_parent().get_node("Player2"):
+		player = get_parent().get_node("Player2")
 	position = player.position
 	print(position)
 	print(player.position)
-	
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 
 
 func _on_lifetime_timeout() -> void:

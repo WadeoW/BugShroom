@@ -3,13 +3,13 @@
 importer="animation_library"
 importer_version=1
 type="AnimationLibrary"
-uid="uid://cthqi1j6uwl07"
-path="res://.godot/imported/Mushroomdude_crouch.glb-762368d1992e1624ba7eddbad89f08f4.res"
+uid="uid://bcdslk2bcmp04"
+path="res://.godot/imported/Mushroomdude_Idle_v2.fbx-e373e216aaecf884a345778eb0d05e5a.res"
 
 [deps]
 
-source_file="res://player/Mushroomdude_crouch.glb"
-dest_files=["res://.godot/imported/Mushroomdude_crouch.glb-762368d1992e1624ba7eddbad89f08f4.res"]
+source_file="res://player/animations/Mushroomdude_Idle_v2.fbx"
+dest_files=["res://.godot/imported/Mushroomdude_Idle_v2.fbx-e373e216aaecf884a345778eb0d05e5a.res"]
 
 [params]
 
@@ -28,10 +28,11 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-gltf/naming_version=1
-gltf/embedded_image_handling=1
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1

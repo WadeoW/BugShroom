@@ -32,8 +32,7 @@ background_color = Color(0.627258, 0.868996, 1, 1)
 sky = SubResource("Sky_c6i3y")
 ambient_light_source = 3
 fog_light_color = Color(0.556907, 0.63771, 0.707714, 1)
-fog_light_energy = 0.5
-fog_sun_scatter = 1.0
+fog_light_energy = 0.26
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6i3y"]
 bg_color = Color(0.828566, 0.595706, 0.566381, 1)
@@ -227,10 +226,10 @@ autostart = true
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -172.0
-offset_top = 20.0
-offset_right = 172.0
-offset_bottom = 47.0
+offset_left = -216.0
+offset_top = 14.0
+offset_right = 216.0
+offset_bottom = 53.0
 grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_c6i3y")
 theme_override_styles/fill = SubResource("StyleBoxFlat_c2ibq")
@@ -245,10 +244,10 @@ main = NodePath("../..")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -172.0
-offset_top = 20.0
-offset_right = 172.0
-offset_bottom = 47.0
+offset_left = -217.0
+offset_top = 14.0
+offset_right = 217.0
+offset_bottom = 53.0
 grow_horizontal = 2
 text = "Colony nutrients"
 horizontal_alignment = 1
@@ -298,6 +297,8 @@ bug_scene = ExtResource("2_h2yge")
 spawn_points = [NodePath("SpawnPoint1"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5")]
 
 [node name="SpawnTimer" type="Timer" parent="BugManager"]
+wait_time = 10.0
+autostart = true
 
 [node name="SpawnPoint1" type="Node3D" parent="BugManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.956, 1, 135.718)
@@ -424,7 +425,7 @@ offset_left = 30.0
 offset_top = 31.0
 offset_right = 170.0
 offset_bottom = 61.0
-text = "heath"
+text = "health"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -506,7 +507,7 @@ offset_top = 30.0
 offset_right = -30.0
 offset_bottom = 60.0
 grow_horizontal = 0
-text = "heath"
+text = "health"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -3459,6 +3460,7 @@ shape = SubResource("ConcavePolygonShape3D_kjvhd")
 
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]
+[connection signal="timeout" from="BugManager/SpawnTimer" to="BugManager" method="_on_spawn_timer_timeout"]
 
 [editable path="environment/redwoods/redwood"]
 [editable path="environment/redwoods/redwood5"]

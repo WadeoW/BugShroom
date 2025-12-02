@@ -1,12 +1,12 @@
 extends Node3D
 
 @export var bug_scene: PackedScene          # The bug scene to spawn (e.g. ant.tscn)
-@export var max_bugs: int = 15               # Maximum number of bugs active at once
+@export var max_bugs: int = 20               # Maximum number of bugs active at once
 @export var spawn_points: Array[Node3D] = []  # List of spawn point nodes
 
 var active_bugs: Array = []
 
-@onready var current_bugs = get_children()
+@onready var current_bugs = get_tree().get_nodes_in_group("bug")
 
 
 #spawn area variables
@@ -22,20 +22,26 @@ func _ready() -> void:
 	if bug_scene == null:
 		print("dead bug scene not set")
 	spawn_timer.start()
+	print(current_bugs.size(), current_bugs)
+	SignalBus.bug_died.connect(Callable(self, "_on_bug_died"))
+
 
 func _on_bug_died():
 	if current_bugs.size() > 0:
-		current_bugs.erase(bug_scene)
+		current_bugs.remove_at(0)
+		print("diva down")
+		#print("current bug count: ", current_bugs.size())
 	else:
 		print("no more bugs!")
 
 func _on_spawn_timer_timeout() -> void:
 	if current_bugs.size() < max_bugs:
+		#print("trying to spawn bug")
 		spawn_bug()
-	
 	
 func spawn_bug():
 	if bug_scene == null:
+		print("bug scene null")
 		return
 		
 	var bug_instance = bug_scene.instantiate()
@@ -47,3 +53,4 @@ func spawn_bug():
 	
 	add_child(bug_instance)
 	current_bugs.append(bug_instance)
+	#print("ant spawned at: ", bug_instance.position, " current bug total is: ", current_bugs.size())

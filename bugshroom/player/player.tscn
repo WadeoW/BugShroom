@@ -1,9 +1,9 @@
 [gd_scene load_steps=21 format=4 uid="uid://bivqmpnyrqg2u"]
 
 [ext_resource type="Script" uid="uid://bwy3vmah16igp" path="res://player/player.gd" id="1_4flbx"]
-[ext_resource type="AnimationLibrary" uid="uid://bcdslk2bcmp04" path="res://player/Mushroomdude_Idle_v2.fbx" id="2_qjkh3"]
+[ext_resource type="AnimationLibrary" uid="uid://bcdslk2bcmp04" path="res://player/animations/Mushroomdude_Idle_v2.fbx" id="2_qjkh3"]
 [ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_rkbax"]
-[ext_resource type="AnimationLibrary" uid="uid://dktwwac5krlof" path="res://player/mushroomdude_allanimations2.glb" id="3_yw30f"]
+[ext_resource type="AnimationLibrary" uid="uid://dktwwac5krlof" path="res://player/animations/mushroomdude_allanimations2.glb" id="3_yw30f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0l28a"]
 resource_name = "Material.006"
@@ -1154,6 +1154,7 @@ height = 2.1316
 radius = 0.07
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rgyib"]
+size = Vector3(1.75, 1.5, 1.8)
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 9
@@ -1397,7 +1398,7 @@ fov = 85.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06981, 0)
 shape = SubResource("BoxShape3D_rgyib")
 target_position = Vector3(0, 0, -1)
-collision_mask = 6
+collision_mask = 14
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.8
