@@ -7,7 +7,6 @@ extends Node3D
 @onready var nutrient_drain_timer: Timer = $NutrientDrainTimer
 @onready var nutrient_gain_timer: Timer = $NutrientGainTimer
 
-
 @export var colony_nutrient_bar = ProgressBar
 @export var current_colony_nutrients: int = 1000
 @export var max_colony_nutrients: int = 1000

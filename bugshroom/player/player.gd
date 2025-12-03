@@ -36,18 +36,18 @@ var can_attack: bool = true
 @onready var attack_hit_box: ShapeCast3D = $AttackHitBox
 
 
-#ability variables
+#ability and class variables
 var ability_active = false
 @onready var ability_type = load("res://entities/abilities/SporeRingAbility.tscn")
 var mushroom_type = PlayerData.MushroomType.Amanita
+@export var char_model: PackedScene
 
 #Root Down Mechanic
 var is_rooted = false
 @export var root_stamina_regen = 15.0 #stamina regained per second while rooted
 
 
-
-@onready var animation_player: AnimationPlayer = $PlayerModel/AnimationPlayer
+@onready var animation_player: AnimationPlayer = $Amanita/AnimationPlayer
 @onready var camera_mount = $CameraMount
 @onready var camera_yaw = $CameraMount/CameraYaw
 @onready var camera_pitch = $CameraMount/CameraYaw/CameraPitch
@@ -56,7 +56,7 @@ var is_rooted = false
 var last_direction = Vector3.FORWARD
 @export var rotation_speed = 3
 
-var current_animation 
+var current_animation: String = ""
 
 func _ready() -> void:
 	animation_player.play("uncrouch")
@@ -150,7 +150,7 @@ func _physics_process(delta):
 			current_stamina += root_stamina_regen * delta
 		stamina_bar.update()
 	
-	$PlayerModel.rotation.y = lerp_angle($PlayerModel.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
+	$Amanita.rotation.y = lerp_angle($Amanita.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
 
 	move_and_slide()
 
