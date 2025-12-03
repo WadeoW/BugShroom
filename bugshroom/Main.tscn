@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=43 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="PackedScene" uid="uid://bivqmpnyrqg2u" path="res://player/player.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
@@ -10,6 +10,8 @@
 [ext_resource type="Material" uid="uid://b3rnns3b04fv" path="res://assets/environment/ground/ground.tres" id="4_c2ibq"]
 [ext_resource type="Script" uid="uid://duk35nosf216h" path="res://player/stamina_bar.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://dnyuja84wopu2" path="res://entities/beetle/beetle.tscn" id="7_devvj"]
+[ext_resource type="PackedScene" uid="uid://bcq14wm4r72vb" path="res://entities/aphid/aphid.tscn" id="8_3b0ty"]
 [ext_resource type="PackedScene" uid="uid://bwv1obth85s1a" path="res://tasks/dead_bug_task_spawner.tscn" id="10_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://8gxwurqg07or" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
 [ext_resource type="PackedScene" uid="uid://ddxy8prak70er" path="res://assets/environment/tree/redwood.tscn" id="13_j4qnp"]
@@ -295,27 +297,30 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.806
 use_collision = true
 size = Vector3(1.59748, 5.07758, 1)
 
-[node name="BugManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_points")]
+[node name="AntManager" type="Node3D" parent="."]
 script = ExtResource("3_r0du0")
 bug_scene = ExtResource("2_h2yge")
-spawn_points = [NodePath("SpawnPoint1"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5")]
 
-[node name="SpawnTimer" type="Timer" parent="BugManager"]
+[node name="SpawnTimer" type="Timer" parent="AntManager"]
+autostart = true
 
-[node name="SpawnPoint1" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.956, 1, 135.718)
+[node name="BeetleManager" type="Node3D" parent="."]
+script = ExtResource("3_r0du0")
+bug_scene = ExtResource("7_devvj")
+max_bugs = 3
 
-[node name="SpawnPoint2" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.937, 1, -68.536)
+[node name="SpawnTimer1" type="Timer" parent="BeetleManager"]
+wait_time = 4.0
+autostart = true
 
-[node name="SpawnPoint3" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.912, 1, -250.145)
+[node name="AphidManager" type="Node3D" parent="."]
+script = ExtResource("3_r0du0")
+bug_scene = ExtResource("8_3b0ty")
+max_bugs = 10
 
-[node name="SpawnPoint4" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288.937, 1, 0)
-
-[node name="SpawnPoint5" type="Node3D" parent="BugManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.61, 1, 122.368)
+[node name="SpawnTimer2" type="Timer" parent="AphidManager"]
+wait_time = 2.0
+autostart = true
 
 [node name="Ant" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7138, 1.5, -70.3092)
@@ -3420,6 +3425,9 @@ shape = SubResource("ConcavePolygonShape3D_kjvhd")
 
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]
+[connection signal="timeout" from="AntManager/SpawnTimer" to="AntManager" method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="BeetleManager/SpawnTimer1" to="BeetleManager" method="_on_spawn_timer_1_timeout"]
+[connection signal="timeout" from="AphidManager/SpawnTimer2" to="AphidManager" method="_on_spawn_timer_2_timeout"]
 
 [editable path="DeadBugTaskSpawner/dead_bug_task"]
 [editable path="DeadBugTaskSpawner/dead_bug_task/Bettle"]

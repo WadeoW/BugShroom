@@ -1,49 +1,54 @@
 extends Node3D
 
-@export var bug_scene: PackedScene          # The bug scene to spawn (e.g. ant.tscn)
-@export var max_bugs: int = 15               # Maximum number of bugs active at once
-@export var spawn_points: Array[Node3D] = []  # List of spawn point nodes
+@export var bug_scene: PackedScene              # Which bug scene this manager spawns (ant.tscn, beetle.tscn, aphid.tscn)
+@export var max_bugs: int = 15                  # Max bugs THIS manager can have at once
 
-var active_bugs: Array = []
+# Global random spawn area (XZ plane)
+@export var spawn_area_min_x: float = -350.0
+@export var spawn_area_max_x: float = 350.0
+@export var spawn_area_min_z: float = -350.0
+@export var spawn_area_max_z: float = 350.0
 
-@onready var current_bugs = get_children()
-
-
-#spawn area variables
-var spawn_area_min_x = -350
-var spawn_area_max_x = 350
-var spawn_area_min_z = -350
-var spawn_area_max_z = 350
+# Tracks ONLY the bugs this manager has spawned
+var active_bugs: Array[Node3D] = []
 
 @onready var spawn_timer: Timer = $SpawnTimer
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if bug_scene == null:
-		print("dead bug scene not set")
+		push_warning("BugManager: bug_scene is not set!")
+	
+	randomize()
 	spawn_timer.start()
 
-func _on_bug_died():
-	if current_bugs.size() > 0:
-		current_bugs.erase(bug_scene)
-	else:
-		print("no more bugs!")
 
 func _on_spawn_timer_timeout() -> void:
-	if current_bugs.size() < max_bugs:
+	# Only spawn if we're under the cap
+	if active_bugs.size() < max_bugs:
 		spawn_bug()
-	
-	
-func spawn_bug():
+
+
+func spawn_bug() -> void:
 	if bug_scene == null:
 		return
-		
-	var bug_instance = bug_scene.instantiate()
 	
+	var bug_instance: Node3D = bug_scene.instantiate()
+
+	# Random position in the area
 	var random_x = randf_range(spawn_area_min_x, spawn_area_max_x)
 	var random_z = randf_range(spawn_area_min_z, spawn_area_max_z)
-	
-	bug_instance.position = Vector3(random_x, 1.0, random_z)
-	
+	bug_instance.global_position = Vector3(random_x, 1.0, random_z)
+
 	add_child(bug_instance)
-	current_bugs.append(bug_instance)
+	active_bugs.append(bug_instance)
+
+	# When this bug leaves the tree (die/queue_free), remove it from our list
+	bug_instance.connect(
+		"tree_exited",
+		Callable(self, "_on_bug_exited").bind(bug_instance)
+	)
+
+
+func _on_bug_exited(bug: Node3D) -> void:
+	if bug in active_bugs:
+		active_bugs.erase(bug)

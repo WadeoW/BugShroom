@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ch7xin28vsi4e"
 path.s3tc="res://.godot/imported/grass_bugshroom_AFTERpush_grass1_mat_BaseColor.png-c2b2eec80870dfee862cb48210b2c630.s3tc.ctex"
+path.etc2="res://.godot/imported/grass_bugshroom_AFTERpush_grass1_mat_BaseColor.png-c2b2eec80870dfee862cb48210b2c630.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/environment/grass/grass_textures/grass_bugshroom_AFTERpush_grass1_mat_BaseColor.png"
-dest_files=["res://.godot/imported/grass_bugshroom_AFTERpush_grass1_mat_BaseColor.png-c2b2eec80870dfee862cb48210b2c630.s3tc.ctex"]
+dest_files=["res://.godot/imported/grass_bugshroom_AFTERpush_grass1_mat_BaseColor.png-c2b2eec80870dfee862cb48210b2c630.s3tc.ctex", "res://.godot/imported/grass_bugshroom_AFTERpush_grass1_mat_BaseColor.png-c2b2eec80870dfee862cb48210b2c630.etc2.ctex"]
 
 [params]
 
