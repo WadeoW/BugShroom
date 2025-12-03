@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://pch2acw61msy"
-path="res://.godot/imported/MUSHROOMDUDE_BROWNVERSION.glb-03fd131a8e18b2eec94a48c6534b74dc.scn"
+uid="uid://bef2bbnk4mto1"
+path="res://.godot/imported/aphid.glb-709a092f06e285017f718800b76c63bc.scn"
 
 [deps]
 
-source_file="res://player/MUSHROOMDUDE_BROWNVERSION.glb"
-dest_files=["res://.godot/imported/MUSHROOMDUDE_BROWNVERSION.glb-03fd131a8e18b2eec94a48c6534b74dc.scn"]
+source_file="res://entities/Aphid/aphid.glb"
+dest_files=["res://.godot/imported/aphid.glb-709a092f06e285017f718800b76c63bc.scn"]
 
 [params]
 
@@ -33,14 +33,9 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
-"materials": {
-"Material": {
-"use_external/enabled": true,
-"use_external/path": "res://player/brown mushroom/Material.tres"
-},
-"Material.006": {
-"use_external/enabled": true,
-"use_external/path": "res://player/brown mushroom/Material.006.tres"
+"nodes": {
+"PATH:Long legs": {
+"import/skip_import": true
 }
 }
 }

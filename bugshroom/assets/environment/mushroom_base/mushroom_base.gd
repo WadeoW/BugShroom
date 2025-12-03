@@ -8,11 +8,6 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player") and body not in overlapping_bodies:
 		overlapping_bodies.append(body)
@@ -27,3 +22,12 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 	if overlapping_bodies == []:
 		player_in_base = false
 	print("body exited: ", body.name)
+
+#heal player when in base
+func _on_heal_timer_timeout() -> void:
+	if player_in_base and overlapping_bodies:
+		for player in overlapping_bodies:
+			if player.current_health < player.max_health:
+				player.current_health += 10
+				player.health_bar.update()
+				print("healing")

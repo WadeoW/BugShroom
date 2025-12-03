@@ -1,15 +1,15 @@
 [remap]
 
-importer="animation_library"
+importer="scene"
 importer_version=1
-type="AnimationLibrary"
-uid="uid://dii6jm5nghrn6"
-path="res://.godot/imported/Mushroomdude_idle.glb-1f754b462ea277d50e2d2c46fafa9bfa.res"
+type="PackedScene"
+uid="uid://cg2nuddne72u5"
+path="res://.godot/imported/PuffShroom_rigged.fbx-9b4a8e82f3122124a49168403afba66f.scn"
 
 [deps]
 
-source_file="res://player/Mushroomdude_idle.glb"
-dest_files=["res://.godot/imported/Mushroomdude_idle.glb-1f754b462ea277d50e2d2c46fafa9bfa.res"]
+source_file="res://player/Puffshroom/PuffShroom_rigged.fbx"
+dest_files=["res://.godot/imported/PuffShroom_rigged.fbx-9b4a8e82f3122124a49168403afba66f.scn"]
 
 [params]
 
@@ -28,10 +28,11 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-gltf/naming_version=1
-gltf/embedded_image_handling=1
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1

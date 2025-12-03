@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dhyxdwf8plr5y"
-path="res://.godot/imported/Mushroomdude_walkanimation_v2.glb-6b4f00c70b55dad42e23ba33daf55f22.scn"
+uid="uid://dfy1yydlu5gjl"
+path="res://.godot/imported/MUSHROOMDUDE_INK_VERSION.fbx-e12fc72bd75dc899cf783f630c6b5c74.scn"
 
 [deps]
 
-source_file="res://player/Mushroomdude_walkanimation_v2.glb"
-dest_files=["res://.godot/imported/Mushroomdude_walkanimation_v2.glb-6b4f00c70b55dad42e23ba33daf55f22.scn"]
+source_file="res://player/Inkcap/MUSHROOMDUDE_INK_VERSION.fbx"
+dest_files=["res://.godot/imported/MUSHROOMDUDE_INK_VERSION.fbx-e12fc72bd75dc899cf783f630c6b5c74.scn"]
 
 [params]
 
@@ -28,10 +28,11 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-gltf/naming_version=1
-gltf/embedded_image_handling=1
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1

@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://tixg2qqxyugj"]
+
+[ext_resource type="Script" uid="uid://csjf53airaumv" path="res://entities/abilities/spore_cloud.gd" id="1_ty4se"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ty4se"]
+radius = 5.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8y0x8"]
+emission_shape = 2
+emission_sphere_radius = 5.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78552"]
+albedo_color = Color(1, 1, 0.0352941, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_yo3da"]
+material = SubResource("StandardMaterial3D_78552")
+radius = 0.05
+height = 0.1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_riu6u"]
+emission_shape = 1
+emission_sphere_radius = 5.0
+gravity = Vector3(0, -0.01, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_la2mg"]
+albedo_color = Color(1, 1, 0.0352941, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_3fdpd"]
+material = SubResource("StandardMaterial3D_la2mg")
+radius = 0.05
+height = 0.1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jykvw"]
+transparency = 1
+albedo_color = Color(0, 0.435294, 0, 0.568627)
+
+[sub_resource type="TorusMesh" id="TorusMesh_1h3aq"]
+material = SubResource("StandardMaterial3D_jykvw")
+inner_radius = 4.9
+outer_radius = 5.0
+
+[node name="SporeCloudAbility" type="Area3D" groups=["player"]]
+collision_layer = 5
+script = ExtResource("1_ty4se")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ty4se")
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="DamageTickTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 550
+lifetime = 7.0
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_8y0x8")
+draw_pass_1 = SubResource("SphereMesh_yo3da")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+amount = 300
+lifetime = 7.0
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_riu6u")
+draw_pass_1 = SubResource("SphereMesh_3fdpd")
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
+visible = false
+strength = -0.1
+radius = 4.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000602961, 0)
+mesh = SubResource("TorusMesh_1h3aq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]
+[connection signal="timeout" from="DamageTickTimer" to="." method="_on_damage_tick_timer_timeout"]

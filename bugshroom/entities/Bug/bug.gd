@@ -9,9 +9,10 @@ const MAX_BUGS: int = 15
 @export var speed: float = 5.0
 @export var health: float = 50.0
 @export var damage: float = 20.0
-@export var detection_range: float = 25.0
-@export var despawn_timer: float = 2.0
-@export var attack_range: float = 2.0
+@export var bug_nutrient_value: float = 50
+@export var detection_range: float = 40.0
+@export var despawn_timer: float = 1.0
+@export var attack_range: float = 2.3
 @export var attack_cooldown: float = 1
 @export var aggressive: bool = true
 var can_attack: bool = true
@@ -27,6 +28,7 @@ var random := RandomNumberGenerator.new()
 var target: Node3D = null
 var is_dead: bool = false
 var is_chasing: bool = false
+var is_trapped: bool = false
 
 #-----------------------------------
 # Setup
@@ -39,6 +41,7 @@ func _ready():
 	bug_count += 1
 	#find closest player
 	target = _get_closest_player()
+	
 
 func _physics_process(delta):
 	# Gravity
@@ -94,8 +97,9 @@ func _chase_player():
 	var direction = (target.global_position - global_position).normalized()
 	direction.y = 0
 	look_at(target.global_position, Vector3.UP)
-	velocity.x = direction.x * speed
-	velocity.z = direction.z * speed
+	if not is_trapped:
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 
 func _idle_behavior(delta):
 	wander_timer -= delta
@@ -103,8 +107,9 @@ func _idle_behavior(delta):
 		var angle = random.randf() * TAU
 		wander_direction = Vector3(cos(angle), 0, sin(angle)).normalized()
 		wander_timer = wander_interval
-	velocity.x = wander_direction.x * wander_speed
-	velocity.z = wander_direction.z * wander_speed
+	if not is_trapped:
+		velocity.x = wander_direction.x * wander_speed
+		velocity.z = wander_direction.z * wander_speed
 
 func _try_attack():
 	if not target or not can_attack:
@@ -112,7 +117,7 @@ func _try_attack():
 	var distance = global_position.distance_to(target.global_position)
 	if distance <= attack_range:
 		can_attack = false
-		if target.has_method("take_damage"):
+		if target.has_method("take_damage") and !target.is_dead:
 			target.take_damage(damage)
 			print("Bug attacked player for ", damage, " damage!")
 			await get_tree().create_timer(attack_cooldown).timeout
@@ -126,7 +131,7 @@ func take_damage(amount: float):
 	if is_dead:
 		return
 	health -= amount
-	print(name, "took", amount, "damage! Health:", health)
+	print(name, " took ", amount, " damage! Health: ", health)
 	if health <= 0:
 		die()
 
@@ -136,5 +141,7 @@ func die():
 	is_dead = true
 	velocity = Vector3.ZERO
 	bug_count -= 1
+	SignalBus.emit_signal("bug_died")
+	#Main.current_colony_nutrients += bug_nutrient_value
 	await get_tree().create_timer(despawn_timer).timeout
 	queue_free()

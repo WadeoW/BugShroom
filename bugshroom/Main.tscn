@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://ba406h63j4154" path="res://assets/environment/rock/big_rock.tscn" id="17_5tuhn"]
 [ext_resource type="Material" uid="uid://c8ct5wrjs116m" path="res://assets/environment/log/log_textures/log_texture.tres" id="17_sc1dx"]
 [ext_resource type="PackedScene" uid="uid://cj7pwf21i24i8" path="res://assets/environment/rock/rock_type_2.tscn" id="18_kjvhd"]
+[ext_resource type="AudioStream" uid="uid://ik5107csyasx" path="res://assets/Sound/mushroom_whimsy (2).mp3" id="20_2gh4u"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vvyt"]
 panorama = ExtResource("1_20pc6")
@@ -34,8 +35,7 @@ background_color = Color(0.627258, 0.868996, 1, 1)
 sky = SubResource("Sky_c6i3y")
 ambient_light_source = 3
 fog_light_color = Color(0.556907, 0.63771, 0.707714, 1)
-fog_light_energy = 0.5
-fog_sun_scatter = 1.0
+fog_light_energy = 0.26
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6i3y"]
 bg_color = Color(0.828566, 0.595706, 0.566381, 1)
@@ -57,9 +57,6 @@ bg_color = Color(0.73, 0.73, 0, 0.686275)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
 bg_color = Color(0.9, 0.66, 0, 1)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_fpfj3"]
-viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0l325"]
 resource_name = "grass1_mat"
@@ -232,10 +229,10 @@ autostart = true
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -172.0
-offset_top = 20.0
-offset_right = 172.0
-offset_bottom = 47.0
+offset_left = -276.0
+offset_top = 14.0
+offset_right = 274.0
+offset_bottom = 94.0
 grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_c6i3y")
 theme_override_styles/fill = SubResource("StyleBoxFlat_c2ibq")
@@ -250,11 +247,12 @@ main = NodePath("../..")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -172.0
-offset_top = 20.0
-offset_right = 172.0
-offset_bottom = 47.0
+offset_left = -276.0
+offset_top = 14.0
+offset_right = 274.0
+offset_bottom = 94.0
 grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 35
 text = "Colony nutrients"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -322,8 +320,53 @@ max_bugs = 10
 wait_time = 2.0
 autostart = true
 
-[node name="Ant" parent="." instance=ExtResource("2_h2yge")]
+[node name="Ant" parent="BugManager" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7138, 1.5, -70.3092)
+collision_mask = 3
+
+[node name="Ant2" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.538, 1.5, -119.723)
+collision_mask = 3
+
+[node name="Ant3" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.789, 1.5, 56.7289)
+collision_mask = 3
+
+[node name="Ant4" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2402, 1.5, 144.011)
+collision_mask = 3
+
+[node name="Ant5" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148.476, 1.5, 98.4198)
+collision_mask = 3
+
+[node name="Ant6" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -173.084, 1.5, -116.62)
+collision_mask = 3
+
+[node name="Ant7" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192.337, 1.5, 2.69215)
+collision_mask = 3
+
+[node name="Ant8" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.869, 1.5, -111.449)
+collision_mask = 3
+
+[node name="Ant9" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.919, 1.5, 178.519)
+collision_mask = 3
+
+[node name="Ant10" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.2055, 1.49999, 260.244)
+collision_mask = 3
+
+[node name="Ant11" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -222.726, 1.49999, 5.36348)
+collision_mask = 3
+
+[node name="Ant12" parent="BugManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.6164, 1.49999, -289.786)
+collision_mask = 3
 
 [node name="GridContainer" type="GridContainer" parent="."]
 anchors_preset = 15
@@ -357,6 +400,7 @@ offset_left = 30.0
 offset_top = 30.0
 offset_right = 170.0
 offset_bottom = 60.0
+scale = Vector2(1.325, 1.325)
 theme_override_styles/background = SubResource("StyleBoxFlat_1bvp3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lquwl")
 value = 100.0
@@ -370,12 +414,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -170.0
-offset_top = -70.0
-offset_right = -30.0
-offset_bottom = -40.0
+offset_left = -224.0
+offset_top = -68.0
+offset_right = -84.0
+offset_bottom = -38.0
 grow_horizontal = 0
 grow_vertical = 0
+scale = Vector2(1.325, 1.325)
 theme_override_styles/background = SubResource("StyleBoxFlat_7mycd")
 theme_override_styles/fill = SubResource("StyleBoxFlat_272bh")
 show_percentage = false
@@ -384,10 +429,11 @@ player = NodePath("../../Player")
 
 [node name="HealthText" type="RichTextLabel" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer"]
 offset_left = 30.0
-offset_top = 31.0
+offset_top = 30.0
 offset_right = 170.0
-offset_bottom = 61.0
-text = "heath"
+offset_bottom = 60.0
+scale = Vector2(1.325, 1.325)
+text = "health"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -397,12 +443,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -170.0
-offset_top = -70.0
-offset_right = -30.0
-offset_bottom = -40.0
+offset_left = -224.0
+offset_top = -68.0
+offset_right = -84.0
+offset_bottom = -38.0
 grow_horizontal = 0
 grow_vertical = 0
+scale = Vector2(1.325, 1.325)
 text = "Stamina"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -430,11 +477,12 @@ stamina_bar = NodePath("../CanvasLayer/StaminaBar2")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -170.0
+offset_left = -224.0
 offset_top = 30.0
-offset_right = -30.0
+offset_right = -84.0
 offset_bottom = 60.0
 grow_horizontal = 0
+scale = Vector2(1.325, 1.325)
 theme_override_styles/background = SubResource("StyleBoxFlat_1bvp3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lquwl")
 value = 100.0
@@ -448,28 +496,30 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -170.0
-offset_top = -70.0
-offset_right = -30.0
-offset_bottom = -40.0
+offset_left = -224.0
+offset_top = -68.0
+offset_right = -84.0
+offset_bottom = -38.0
 grow_horizontal = 0
 grow_vertical = 0
+scale = Vector2(1.325, 1.325)
 theme_override_styles/background = SubResource("StyleBoxFlat_7mycd")
 theme_override_styles/fill = SubResource("StyleBoxFlat_272bh")
 show_percentage = false
 script = ExtResource("5_lquwl")
-player = NodePath("../../../../SubViewportContainer/SubViewport/Player")
+player = NodePath("../../Player2")
 
 [node name="HealthText2" type="RichTextLabel" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -170.0
+offset_left = -224.0
 offset_top = 30.0
-offset_right = -30.0
+offset_right = -84.0
 offset_bottom = 60.0
 grow_horizontal = 0
-text = "heath"
+scale = Vector2(1.325, 1.325)
+text = "health"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -479,23 +529,18 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -170.0
-offset_top = -70.0
-offset_right = -30.0
-offset_bottom = -40.0
+offset_left = -224.0
+offset_top = -68.0
+offset_right = -84.0
+offset_bottom = -38.0
 grow_horizontal = 0
 grow_vertical = 0
+scale = Vector2(1.325, 1.325)
 text = "Stamina"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DeadBugTaskSpawner" parent="." instance=ExtResource("10_c2ibq")]
-
-[node name="dead_bug_task" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.816, 2.37677, -161.419)
-
-[node name="Sprite3D" parent="DeadBugTaskSpawner/dead_bug_task" index="6"]
-texture = SubResource("ViewportTexture_fpfj3")
 
 [node name="dead_bug_task6" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.0627, 2.37678, -18.4488)
@@ -511,6 +556,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 170.797, 2.37678, -40.997)
 
 [node name="dead_bug_task2" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190.492, 2.37678, -92.2028)
+
+[node name="dead_bug_task7" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.2591, 2.37678, -144.54)
 
 [node name="MushroomBase" parent="." instance=ExtResource("12_c6i3y")]
 
@@ -3322,7 +3370,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -303.492, 0.627404, -141.946)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -145.848, 0.627389, -352.02)
 
 [node name="Rock_type_2" parent="environment/rocks" instance=ExtResource("18_kjvhd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8656, 0.934938, 4.86061)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1099, 0.934938, 9.96147)
 
 [node name="Rock_type_17" parent="environment/rocks" instance=ExtResource("18_kjvhd")]
 transform = Transform3D(0.262307, -0.964984, 0, 0.964984, 0.262307, 0, 0, 0, 1, -228.849, 0.934938, -236.807)
@@ -3423,14 +3471,16 @@ surface_material_override/0 = ExtResource("17_sc1dx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="environment/log/log_bugshroom_v03/Cylinder/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_kjvhd")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_2gh4u")
+autoplay = true
+
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]
 [connection signal="timeout" from="AntManager/SpawnTimer" to="AntManager" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="BeetleManager/SpawnTimer1" to="BeetleManager" method="_on_spawn_timer_1_timeout"]
 [connection signal="timeout" from="AphidManager/SpawnTimer2" to="AphidManager" method="_on_spawn_timer_2_timeout"]
 
-[editable path="DeadBugTaskSpawner/dead_bug_task"]
-[editable path="DeadBugTaskSpawner/dead_bug_task/Bettle"]
 [editable path="environment/redwoods/redwood"]
 [editable path="environment/redwoods/redwood5"]
 [editable path="environment/redwoods/redwood2"]

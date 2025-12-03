@@ -37,7 +37,7 @@ viewport_path = NodePath("SubViewport")
 height = 1.69922
 radius = 5.23779
 
-[node name="dead_bug_task" type="StaticBody3D" node_paths=PackedStringArray("nutrient_bar")]
+[node name="dead_bug_task" type="StaticBody3D" node_paths=PackedStringArray("nutrient_bar") groups=["dead_bug_task"]]
 script = ExtResource("1_d74cn")
 nutrient_bar = NodePath("SubViewport/NutrientBar3D")
 

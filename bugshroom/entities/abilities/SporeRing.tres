@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cpxpguwt0btmw"]
+
+[ext_resource type="PackedScene" uid="uid://dnn5p52tfmf1d" path="res://entities/abilities/SporeRingAbility.tscn" id="1_me6og"]
+
+[sub_resource type="GDScript" id="GDScript_nluo3"]
+script/source = "extends Resource
+
+enum AbilType {
+	SporeRing,
+	GoopPuddle,
+	SporeCloud
+}
+
+@export var AbilityType = AbilType.SporeRing
+@export var Scene: PackedScene
+"
+
+[resource]
+script = SubResource("GDScript_nluo3")
+AbilityType = 0
+Scene = ExtResource("1_me6og")
