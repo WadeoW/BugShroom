@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=4 uid="uid://dl2tthivh6a3e"]
+[gd_scene load_steps=9 format=4 uid="uid://dl2tthivh6a3e"]
+
+[ext_resource type="Script" uid="uid://chivoxalb5yd" path="res://player/Puffshroom/puffball.gd" id="1_0vhsy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxwlq"]
 resource_name = "Body.001"
@@ -205,7 +207,8 @@ _data = {
 &"roll": SubResource("Animation_p2hqu")
 }
 
-[node name="puff_roll" type="Node3D"]
+[node name="Puffball" type="Node3D"]
+script = ExtResource("1_0vhsy")
 
 [node name="Armature" type="Node3D" parent="."]
 
