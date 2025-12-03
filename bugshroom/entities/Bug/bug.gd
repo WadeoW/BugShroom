@@ -27,6 +27,7 @@ var random := RandomNumberGenerator.new()
 var target: Node3D = null
 var is_dead: bool = false
 var is_chasing: bool = false
+var is_trapped: bool = false
 
 #-----------------------------------
 # Setup
@@ -92,8 +93,9 @@ func _chase_player():
 	var direction = (target.global_position - global_position).normalized()
 	direction.y = 0
 	look_at(target.global_position, Vector3.UP)
-	velocity.x = direction.x * speed
-	velocity.z = direction.z * speed
+	if not is_trapped:
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 
 func _idle_behavior(delta):
 	wander_timer -= delta
@@ -101,8 +103,9 @@ func _idle_behavior(delta):
 		var angle = random.randf() * TAU
 		wander_direction = Vector3(cos(angle), 0, sin(angle)).normalized()
 		wander_timer = wander_interval
-	velocity.x = wander_direction.x * wander_speed
-	velocity.z = wander_direction.z * wander_speed
+	if not is_trapped:
+		velocity.x = wander_direction.x * wander_speed
+		velocity.z = wander_direction.z * wander_speed
 
 func _try_attack():
 	if not target or not can_attack:

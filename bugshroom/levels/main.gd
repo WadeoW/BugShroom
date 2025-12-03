@@ -22,7 +22,7 @@ func _ready() -> void:
 	SignalBus.game_over.connect(Callable(self, "_on_game_over"))
 	SignalBus.player_died.connect(Callable(self, "_on_player_death"))
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	#allows you to hit the escape key to get mouse cursor back
 	if Input.is_action_just_pressed("escape"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

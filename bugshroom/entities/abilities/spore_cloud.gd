@@ -1,10 +1,10 @@
 extends Area3D
-class_name AbilityBase
+
 
 #@export var AbilType: Resource
-@export var abilDamage: int = 25
+@export var abilDamage: int = 5
 @export var abilRadius: int = 3
-@export var despawnTime: int = 5
+@export var despawnTime: int = 7
 
 
 @onready var lifetime: Timer = $Lifetime
@@ -34,7 +34,6 @@ func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("bug"):
 		bodies_in_area.append(body)
 		print(bodies_in_area)
-		
 
 
 func _on_body_exited(body: Node3D) -> void:

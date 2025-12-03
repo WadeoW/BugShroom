@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwi5kj1jesmn4"]
+[gd_scene load_steps=5 format=3 uid="uid://bwi5kj1jesmn4"]
 
 [ext_resource type="Script" uid="uid://d22w8ev48bl8x" path="res://levels/tutorial/tutorial.gd" id="1_f3ams"]
+[ext_resource type="PackedScene" uid="uid://dbowfwd7ix33p" path="res://assets/Cursor/cursor.tscn" id="2_ypsce"]
+[ext_resource type="Texture2D" uid="uid://btd2v25in45dy" path="res://assets/Cursor/Cursor icons-red and white.png" id="3_0jtug"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cui05"]
+size = Vector2(157, 56)
 
 [node name="tutorial" type="Control"]
 layout_mode = 3
@@ -20,6 +25,12 @@ offset_bottom = 87.0
 action_mode = 0
 text = "back
 "
+
+[node name="Area2D" type="Area2D" parent="BackButton" groups=["button"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackButton/Area2D"]
+position = Vector2(78.5, 28)
+shape = SubResource("RectangleShape2D_cui05")
 
 [node name="description" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -77,9 +88,12 @@ text = "Welcome to Bugshroom!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="cursor" type="Sprite2D" parent="."]
-position = Vector2(506.25, 356.687)
-rotation = -0.453786
-scale = Vector2(0.23494, 0.18884)
+[node name="Cursor" parent="." instance=ExtResource("2_ypsce")]
+position = Vector2(469, 268)
+
+[node name="Cursor2" parent="." instance=ExtResource("2_ypsce")]
+position = Vector2(465, 342)
+cursor_id = 2
+texture = ExtResource("3_0jtug")
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

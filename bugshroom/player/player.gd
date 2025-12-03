@@ -9,7 +9,7 @@ const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 6
 const SENSITIVITY = 0.005
 var gravity = 9.8
-@export var player_id = 1
+@export var player_id: int = 1
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
 
@@ -39,6 +39,7 @@ var can_attack: bool = true
 #ability variables
 var ability_active = false
 @onready var ability_type = load("res://entities/abilities/SporeRingAbility.tscn")
+var mushroom_type = PlayerData.MushroomType.Amanita
 
 #Root Down Mechanic
 var is_rooted = false
@@ -60,6 +61,25 @@ var current_animation
 func _ready() -> void:
 	animation_player.play("uncrouch")
 	var current_animation = animation_player.current_animation
+	
+	#class selection and ability loading
+	if player_id == 1:
+		mushroom_type = PlayerData.p1_mushroom_type
+	#debug
+		print("p1 mushroom type :", mushroom_type)
+	elif player_id == 2:
+		mushroom_type = PlayerData.p2_mushroom_type
+		print("player 2 mushroom type:", PlayerData.p2_mushroom_type)
+	
+	if mushroom_type == 0:
+		ability_type = load("res://entities/abilities/SporeRingAbility.tscn")
+		print("ability type is spore ring")
+	elif mushroom_type == 1:
+		ability_type = load("res://entities/abilities/goop_ability.tscn")
+	elif mushroom_type == PlayerData.MushroomType.Puffball:
+		ability_type = load("res://entities/abilities/SporeCloud.tscn")
+		print("ability type is spore cloud")
+
 	
 	
 func _unhandled_input(event):
@@ -111,7 +131,7 @@ func _physics_process(delta):
 	if not is_rooted and animation_player.current_animation != "uncrouch" and animation_player.current_animation != "jump" and !is_dead:
 		if direction:
 			last_direction = direction
-			if animation_player.current_animation != "walkanimation" and animation_player.current_animation != "mushroomdude_allanimations2/attack": 
+			if animation_player.current_animation != "walkanimation" and animation_player.current_animation != "mushroomdude_allanimations2/attack" and animation_player.current_animation != "headshakeanimation/headshake": 
 				animation_player.play("walkanimation")
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
@@ -171,6 +191,7 @@ func attack():
 
 	
 func cast_ability(ability_type):
+	animation_player.play("headshakeanimation/headshake")
 	ability_active = true
 	var spawn = ability_type.instantiate()
 	add_sibling(spawn)

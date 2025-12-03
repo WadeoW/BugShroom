@@ -22,8 +22,10 @@ func _ready() -> void:
 	if bug_scene == null:
 		print("dead bug scene not set")
 	spawn_timer.start()
-	print(current_bugs.size(), current_bugs)
 	SignalBus.bug_died.connect(Callable(self, "_on_bug_died"))
+#debug
+	#print(current_bugs.size(), current_bugs)
+
 
 
 func _on_bug_died():

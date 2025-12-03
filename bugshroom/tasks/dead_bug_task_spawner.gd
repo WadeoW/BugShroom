@@ -18,8 +18,9 @@ func _ready() -> void:
 	if dead_bug_scene == null:
 		print("dead bug scene not set")
 	spawn_timer.start()
-	print(current_dead_bugs)
-	print("current dead bug size: ", current_dead_bugs.size())
+#debug
+	#print(current_dead_bugs)
+	#print("current dead bug size: ", current_dead_bugs.size())
 	
 	SignalBus.dead_bug_task_finished.connect(Callable(self, "_on_dead_bug_task_finished"))
 
@@ -62,4 +63,5 @@ func spawn_dead_bug_task():
 	
 	add_child(dead_bug_instance)
 	current_dead_bugs.append(dead_bug_instance)
-	print("spawned a new bug task. currently there are: ", current_dead_bugs.size())
+#debug
+	#print("spawned a new bug task. currently there are: ", current_dead_bugs.size())

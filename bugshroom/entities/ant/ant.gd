@@ -1,9 +1,11 @@
 extends BugBase
 
 @export var ant_speed: float = 5.0
-@export var ant_health: float = 50.0
+@export var ant_health: float = 100.0
 @export var ant_damage: float = 10.0
 @export var ant_nutrient_value: float = 50
+
+@onready var animation_player: AnimationPlayer = $ant/AnimationPlayer
 
 
 func _ready():
@@ -15,3 +17,4 @@ func _ready():
 
 	# Call parent _ready() so BugBase setup runs (like target assignment and bug_count)
 	super._ready()
+	animation_player.play("walk")
