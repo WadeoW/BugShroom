@@ -37,7 +37,7 @@ rings = 4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jykvw"]
 transparency = 1
-albedo_color = Color(0, 0.435294, 0, 0.568627)
+albedo_color = Color(0.490196, 0.435294, 0, 0.568627)
 
 [sub_resource type="TorusMesh" id="TorusMesh_1h3aq"]
 material = SubResource("StandardMaterial3D_jykvw")
@@ -49,6 +49,7 @@ collision_layer = 5
 script = ExtResource("1_ty4se")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391104, 0)
 shape = SubResource("SphereShape3D_ty4se")
 
 [node name="Lifetime" type="Timer" parent="."]
@@ -61,6 +62,7 @@ wait_time = 0.5
 autostart = true
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391104, 0)
 amount = 550
 lifetime = 7.0
 explosiveness = 0.9
@@ -68,6 +70,7 @@ process_material = SubResource("ParticleProcessMaterial_8y0x8")
 draw_pass_1 = SubResource("SphereMesh_yo3da")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391104, 0)
 amount = 300
 lifetime = 7.0
 explosiveness = 0.9
@@ -75,12 +78,13 @@ process_material = SubResource("ParticleProcessMaterial_riu6u")
 draw_pass_1 = SubResource("SphereMesh_3fdpd")
 
 [node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391104, 0)
 visible = false
 strength = -0.1
 radius = 4.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000602961, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391707, 0)
 mesh = SubResource("TorusMesh_1h3aq")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

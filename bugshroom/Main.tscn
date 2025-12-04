@@ -362,6 +362,12 @@ spawn_timer = NodePath("SpawnTimer1")
 wait_time = 4.0
 autostart = true
 
+[node name="Beetle" parent="BeetleManager" instance=ExtResource("7_devvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 118.688, 0.279741, 112.598)
+
+[node name="Beetle2" parent="BeetleManager" instance=ExtResource("7_devvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -253.061, 0.279741, -211.105)
+
 [node name="AphidManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_timer")]
 script = ExtResource("3_r0du0")
 bug_scene = ExtResource("8_3b0ty")
@@ -373,7 +379,13 @@ wait_time = 2.0
 autostart = true
 
 [node name="Aphid" parent="AphidManager" instance=ExtResource("8_3b0ty")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49133, 0, 13.7795)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2039, 0.677962, -13.2031)
+
+[node name="Aphid2" parent="AphidManager" instance=ExtResource("8_3b0ty")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.465, 0.677962, 56.6175)
+
+[node name="Aphid3" parent="AphidManager" instance=ExtResource("8_3b0ty")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91.2123, 0.677958, 5.00853)
 
 [node name="GridContainer" type="GridContainer" parent="."]
 anchors_preset = 15
@@ -3485,7 +3497,7 @@ autoplay = true
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]
 [connection signal="timeout" from="AntManager/SpawnTimer" to="AntManager" method="_on_spawn_timer_timeout"]
-[connection signal="timeout" from="BeetleManager/SpawnTimer1" to="BeetleManager" method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="BeetleManager/SpawnTimer1" to="BeetleManager" method="_on_spawn_timer_1_timeout"]
 [connection signal="timeout" from="AphidManager/SpawnTimer2" to="AphidManager" method="_on_spawn_timer_2_timeout"]
 
 [editable path="environment/redwoods/redwood"]

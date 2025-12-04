@@ -1,9 +1,10 @@
 extends BugBase
 
 @export var ant_speed: float = 5.0
-@export var ant_health: float = 50.0
+@export var ant_health: float = 100.0
 @export var ant_damage: float = 10.0
 @export var ally_alert_radius: float = 10.0
+@onready var animation_player: AnimationPlayer = $ant/AnimationPlayer
 
 var has_alerted_allies: bool = false
 
@@ -15,6 +16,7 @@ func _ready():
 	add_to_group("ants")
 	add_to_group("bug")
 	super._ready()
+	animation_player.play("walk")
 
 func _idle_behavior(delta):
 	has_alerted_allies = false

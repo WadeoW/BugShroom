@@ -3,7 +3,7 @@ class_name BugBase
 
 # Bug counter to limit total bugs in scene
 static var bug_count: int = 0
-const MAX_BUGS: int = 15
+#var MAX_BUGS: int = 15
 
 # Stats
 @export var speed: float = 5.0
@@ -35,10 +35,10 @@ var is_trapped: bool = false
 #-----------------------------------
 func _ready():
 	# Limit bug count
-	if bug_count >= MAX_BUGS:
-		queue_free()
-		return
-	bug_count += 1
+	#if bug_count >= MAX_BUGS:
+		#queue_free()
+		#return
+	#bug_count += 1
 
 	target = _get_closest_player()
 

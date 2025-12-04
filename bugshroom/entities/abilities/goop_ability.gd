@@ -4,7 +4,7 @@ extends Area3D
 #@export var AbilType: Resource
 @export var abilDamage: int = 10
 @export var abilRadius: int = 3
-@export var despawnTime: int = 6
+@export var despawnTime: int = 7
 
 
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
@@ -24,6 +24,7 @@ func _ready() -> void:
 	position = player.position
 	print(position)
 	print(player.position)
+	lifetime.wait_time = despawnTime
 
 
 func _on_lifetime_timeout() -> void:
@@ -35,14 +36,14 @@ func _on_lifetime_timeout() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("bug"):
 		bodies_in_area.append(body)
-		body.speed -= 4
+		body.speed -= 3
 		print(bodies_in_area)
 		
 
 
 func _on_body_exited(body: Node3D) -> void:
 	if body in bodies_in_area:
-		body.speed += 4
+		body.speed += 3
 		bodies_in_area.erase(body)
 		print(bodies_in_area)
 

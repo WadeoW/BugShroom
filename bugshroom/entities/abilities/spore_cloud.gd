@@ -4,7 +4,7 @@ extends Area3D
 #@export var AbilType: Resource
 @export var abilDamage: int = 5
 @export var abilRadius: int = 3
-@export var despawnTime: int = 7
+@export var despawnTime: int = 5
 
 
 @onready var lifetime: Timer = $Lifetime
@@ -22,7 +22,7 @@ func _ready() -> void:
 	position = player.position
 	print(position)
 	print(player.position)
-
+	lifetime.wait_time = despawnTime
 
 func _on_lifetime_timeout() -> void:
 	player.ability_active = false

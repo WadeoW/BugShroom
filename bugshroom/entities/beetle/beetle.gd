@@ -1,18 +1,23 @@
 extends BugBase
 
-@export var beetle_speed: float = 2.0
+@export var beetle_speed: float = 4.0
 @export var beetle_health: float = 300.0
 @export var beetle_damage: float = 40.0
-@export var knockback_force: float = 12.0
+@export var knockback_force: float = 40.0
+@export var beetle_attack_range: float = 6
+@onready var animation_player: AnimationPlayer = $beetle_walkanimation/AnimationPlayer
+
 
 func _ready() -> void:
 	speed = beetle_speed
 	health = beetle_health
 	damage = beetle_damage
+	attack_range = beetle_attack_range
 	aggressive = true
 	add_to_group("beetles")
 	add_to_group("bug")
 	super._ready()
+	animation_player.play("beetle_walkanimation")
 
 func _try_attack() -> void:
 	if not target or not can_attack:

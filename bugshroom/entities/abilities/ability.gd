@@ -3,8 +3,8 @@ class_name AbilityBase
 
 #@export var AbilType: Resource
 @export var abilDamage: int = 25
-@export var abilRadius: int = 3
-@export var despawnTime: int = 5
+@export var abilRadius: int = 8
+@export var despawnTime: int = 6
 
 
 @onready var lifetime: Timer = $Lifetime
@@ -22,7 +22,7 @@ func _ready() -> void:
 	position = player.position
 	print(position)
 	print(player.position)
-
+	collision_shape_3d.shape.radius = abilRadius
 
 func _on_lifetime_timeout() -> void:
 	player.ability_active = false

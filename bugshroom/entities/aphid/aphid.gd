@@ -1,8 +1,11 @@
 extends BugBase
 
 @export var aphid_speed: float = 3.0
-@export var aphid_health: float = 10.0
+@export var aphid_health: float = 25.0
 @export var bounce_force: float = 14.0
+
+@onready var animation_player: AnimationPlayer = $aphid/AnimationPlayer
+
 
 func _ready() -> void:
 	speed = aphid_speed
@@ -10,7 +13,7 @@ func _ready() -> void:
 	damage = 0.0          # can’t hurt the player
 	aggressive = false    # IMPORTANT: no chasing
 	add_to_group("aphids")
-
+	animation_player.play("Armature|ArmatureAction")
 	super._ready()
 
 func _idle_behavior(delta: float) -> void:

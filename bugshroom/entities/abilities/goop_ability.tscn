@@ -32,7 +32,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 mesh = SubResource("CylinderMesh_n4hdr")
 
 [node name="Lifetime" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 7.0
 autostart = true
 
 [node name="DamageTickTimer" type="Timer" parent="."]
