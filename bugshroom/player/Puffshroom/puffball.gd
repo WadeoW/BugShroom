@@ -1,1 +1,1 @@
-extends Player
+extends CharacterBody3D

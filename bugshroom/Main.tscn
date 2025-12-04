@@ -298,6 +298,7 @@ size = Vector3(1.59748, 5.07758, 1)
 [node name="AntManager" type="Node3D" parent="."]
 script = ExtResource("3_r0du0")
 bug_scene = ExtResource("2_h2yge")
+max_bugs = 20
 
 [node name="SpawnTimer" type="Timer" parent="AntManager"]
 autostart = true
@@ -314,57 +315,57 @@ autostart = true
 [node name="AphidManager" type="Node3D" parent="."]
 script = ExtResource("3_r0du0")
 bug_scene = ExtResource("8_3b0ty")
-max_bugs = 10
+max_bugs = 30
 
 [node name="SpawnTimer2" type="Timer" parent="AphidManager"]
 wait_time = 2.0
 autostart = true
 
-[node name="Ant" parent="BugManager" instance=ExtResource("2_h2yge")]
+[node name="BugManager#Ant" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7138, 1.5, -70.3092)
 collision_mask = 3
 
-[node name="Ant2" parent="BugManager" instance=ExtResource("2_h2yge")]
+[node name="BugManager#Ant2" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.538, 1.5, -119.723)
 collision_mask = 3
 
-[node name="Ant3" parent="BugManager" instance=ExtResource("2_h2yge")]
+[node name="BugManager#Ant3" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.789, 1.5, 56.7289)
 collision_mask = 3
 
-[node name="Ant4" parent="BugManager" instance=ExtResource("2_h2yge")]
+[node name="BugManager#Ant4" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2402, 1.5, 144.011)
 collision_mask = 3
 
-[node name="Ant5" parent="BugManager" instance=ExtResource("2_h2yge")]
+[node name="BugManager#Ant5" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148.476, 1.5, 98.4198)
 collision_mask = 3
 
-[node name="Ant6" parent="BugManager" instance=ExtResource("2_h2yge")]
+[node name="BugManager#Ant6" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -173.084, 1.5, -116.62)
 collision_mask = 3
 
-[node name="Ant7" parent="BugManager" instance=ExtResource("2_h2yge")]
+[node name="BugManager#Ant7" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192.337, 1.5, 2.69215)
 collision_mask = 3
 
-[node name="Ant8" parent="BugManager" instance=ExtResource("2_h2yge")]
+[node name="BugManager#Ant8" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.869, 1.5, -111.449)
 collision_mask = 3
 
-[node name="Ant9" parent="BugManager" instance=ExtResource("2_h2yge")]
+[node name="BugManager#Ant9" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.919, 1.5, 178.519)
 collision_mask = 3
 
-[node name="Ant10" parent="BugManager" instance=ExtResource("2_h2yge")]
+[node name="BugManager#Ant10" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.2055, 1.49999, 260.244)
 collision_mask = 3
 
-[node name="Ant11" parent="BugManager" instance=ExtResource("2_h2yge")]
+[node name="BugManager#Ant11" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -222.726, 1.49999, 5.36348)
 collision_mask = 3
 
-[node name="Ant12" parent="BugManager" instance=ExtResource("2_h2yge")]
+[node name="BugManager#Ant12" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.6164, 1.49999, -289.786)
 collision_mask = 3
 

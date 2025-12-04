@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bivqmpnyrqg2u"]
+[gd_scene load_steps=9 format=3 uid="uid://bivqmpnyrqg2u"]
 
 [ext_resource type="Script" uid="uid://bwy3vmah16igp" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_rkbax"]
 [ext_resource type="PackedScene" uid="uid://b3e4in6lyy241" path="res://player/amanita/Amanita.tscn" id="3_g1dw6"]
 [ext_resource type="PackedScene" uid="uid://cami24vw2i0cr" path="res://player/amanita/inkmushroom.tscn" id="4_yw30f"]
-[ext_resource type="PackedScene" uid="uid://dl2tthivh6a3e" path="res://player/Puffshroom/puffball.tscn" id="5_qjkh3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 radius = 0.594269
@@ -65,11 +64,9 @@ transform = Transform3D(0.201, 0, 0, 0, 0.201, 0, 0, 0, 0.201, 0, 0, 0)
 transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, 0, 0)
 visible = false
 
-[node name="puffball" parent="." instance=ExtResource("5_qjkh3")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-visible = false
-
 [node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Amanita")
 tree_root = SubResource("AnimationNodeBlendTree_qjkh3")
+anim_player = NodePath("../Amanita/AnimationPlayer")
 
 [editable path="Amanita"]

@@ -26,6 +26,9 @@ player=""
 bug="group for all bugs"
 dead_bug_task=""
 button=""
+ants=""
+aphids=""
+beetles=""
 
 [input]
 
@@ -186,6 +189,11 @@ click_1={
 click_2={
 "deadzone": 0.2,
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":1,"button_index":0,"pressure":0.0,"pressed":true,"script":null)
+]
+}
+click={
+"deadzone": 0.2,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
 

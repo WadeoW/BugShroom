@@ -19,7 +19,7 @@ func _ready() -> void:
 		push_warning("BugManager: bug_scene is not set!")
 	
 	randomize()
-	spawn_timer.start()
+	#spawn_timer.start()
 	SignalBus.bug_died.connect(Callable(self, "_on_bug_died"))
 #debug
 	#print(current_bugs.size(), current_bugs)
@@ -31,21 +31,18 @@ func _on_spawn_timer_timeout() -> void:
 	# Only spawn if we're under the cap
 	if active_bugs.size() < max_bugs:
 		spawn_bug()
+		#print("trying to spawn bug")
 
 
-func spawn_bug() -> void:
+
 func _on_bug_died():
-	if current_bugs.size() > 0:
-		current_bugs.remove_at(0)
+	if active_bugs.size() > 0:
+		active_bugs.remove_at(0)
 		print("diva down")
 		#print("current bug count: ", current_bugs.size())
 	else:
 		print("no more bugs!")
 
-func _on_spawn_timer_timeout() -> void:
-	if current_bugs.size() < max_bugs:
-		#print("trying to spawn bug")
-		spawn_bug()
 	
 func spawn_bug():
 	if bug_scene == null:

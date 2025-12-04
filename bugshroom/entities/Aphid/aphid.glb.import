@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bef2bbnk4mto1"
-path="res://.godot/imported/aphid.glb-709a092f06e285017f718800b76c63bc.scn"
+uid="uid://dvu3ypujw82o5"
+path="res://.godot/imported/aphid.glb-32d66294cc917602e69ce5351fca7f97.scn"
 
 [deps]
 
-source_file="res://entities/Aphid/aphid.glb"
-dest_files=["res://.godot/imported/aphid.glb-709a092f06e285017f718800b76c63bc.scn"]
+source_file="res://entities/aphid/aphid.glb"
+dest_files=["res://.godot/imported/aphid.glb-32d66294cc917602e69ce5351fca7f97.scn"]
 
 [params]
 

@@ -3,7 +3,7 @@ extends BugBase
 @export var ant_speed: float = 5.0
 @export var ant_health: float = 100.0
 @export var ant_damage: float = 10.0
-@export var ally_alert_radius: float = 10.0
+@export var ally_alert_radius: float = 40.0
 
 var has_alerted_allies: bool = false
 
