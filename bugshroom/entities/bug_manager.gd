@@ -10,9 +10,10 @@ extends Node3D
 @export var spawn_area_max_z: float = 350.0
 
 # Tracks ONLY the bugs this manager has spawned
-var active_bugs: Array[Node3D] = []
+var active_bugs: Array = []
 
-@onready var spawn_timer: Timer = $SpawnTimer
+@export var spawn_timer: Timer 
+var bug_type = ""
 
 func _ready() -> void:
 	if bug_scene == null:
@@ -21,17 +22,32 @@ func _ready() -> void:
 	randomize()
 	#spawn_timer.start()
 	SignalBus.bug_died.connect(Callable(self, "_on_bug_died"))
+	
+	if bug_scene == load("res://entities/beetle/beetle.tscn"):
+		active_bugs = get_tree().get_nodes_in_group("beetles")
+		bug_type = "beetles"
+	if bug_scene == load("res://entities/aphid/aphid.tscn"):
+		active_bugs = get_tree().get_nodes_in_group("aphids")
+		bug_type = "aphids"
+	if bug_scene == load("res://entities/ant/ant.tscn"):
+		active_bugs = get_tree().get_nodes_in_group("ants")
+		bug_type = "ants"
+	print(active_bugs)
 #debug
 	#print(current_bugs.size(), current_bugs)
 
 
+func get_random_pos():
+	var random_x = randf_range(spawn_area_min_x, spawn_area_max_x)
+	var random_z = randf_range(spawn_area_min_z, spawn_area_max_z)
+	return Vector3(random_x, 1, random_z)
 
 
 func _on_spawn_timer_timeout() -> void:
 	# Only spawn if we're under the cap
 	if active_bugs.size() < max_bugs:
 		spawn_bug()
-		#print("trying to spawn bug")
+		print("trying to spawn bug")
 
 
 
@@ -49,23 +65,28 @@ func spawn_bug():
 		print("bug scene null")
 		return
 	
-	var bug_instance: Node3D = bug_scene.instantiate()
+	var bug_instance = bug_scene.instantiate()
 
-	# Random position in the area
-	var random_x = randf_range(spawn_area_min_x, spawn_area_max_x)
-	var random_z = randf_range(spawn_area_min_z, spawn_area_max_z)
-	bug_instance.global_position = Vector3(random_x, 1.0, random_z)
+	bug_instance.position = Vector3(get_random_pos())
 
 	add_child(bug_instance)
 	active_bugs.append(bug_instance)
-
-	# When this bug leaves the tree (die/queue_free), remove it from our list
-	bug_instance.connect(
-		"tree_exited",
-		Callable(self, "_on_bug_exited").bind(bug_instance)
-	)
+	print("bug spawned, current bugs = ", active_bugs.size())
 
 
-func _on_bug_exited(bug: Node3D) -> void:
-	if bug in active_bugs:
-		active_bugs.erase(bug)
+	## When this bug leaves the tree (die/queue_free), remove it from our list
+	#bug_instance.connect(
+		#"tree_exited",
+		#Callable(self, "_on_bug_exited").bind(bug_instance)
+	#)
+#
+#
+#func _on_bug_exited(bug: Node3D) -> void:
+	#if bug in active_bugs:
+		#active_bugs.erase(bug)
+		#print(bug, " exited")
+		#print(active_bugs)
+
+
+func _on_spawn_timer_2_timeout() -> void:
+	pass # Replace with function body.

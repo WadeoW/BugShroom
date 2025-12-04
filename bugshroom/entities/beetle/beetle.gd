@@ -1,6 +1,6 @@
 extends BugBase
 @export var beetle_speed: float = 2.0
-@export var beetle_health: float = 80.0
+@export var beetle_health: float = 300.0
 @export var beetle_damage: float = 40.0
 @export var knockback_force: float = 12.0
 

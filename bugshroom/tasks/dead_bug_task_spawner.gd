@@ -49,16 +49,15 @@ func _on_spawn_timer_timeout() -> void:
 		spawn_dead_bug_task()
 	
 	
-	
 func spawn_dead_bug_task():
 	if dead_bug_scene == null:
+		print("dead_bug_scene is null")
 		return
 		
 	var dead_bug_instance = dead_bug_scene.instantiate()
 	dead_bug_instance.position = Vector3(get_random_pos())
 	
-	#if check_valid_spawn_point(dead_bug_scene) == false:
-		#get_random_pos()
+	#if check_valid_spawn_point(dead_bug_instance) == false:
 		#dead_bug_instance.position = Vector3(get_random_pos())
 	
 	add_child(dead_bug_instance)

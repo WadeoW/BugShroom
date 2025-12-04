@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://duk35nosf216h" path="res://player/stamina_bar.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dnyuja84wopu2" path="res://entities/beetle/beetle.tscn" id="7_devvj"]
-[ext_resource type="PackedScene" uid="uid://bcq14wm4r72vb" path="res://entities/aphid/aphid.tscn" id="8_3b0ty"]
+[ext_resource type="PackedScene" uid="uid://rtaecmo4qdss" path="res://entities/aphid/aphid.tscn" id="8_3b0ty"]
 [ext_resource type="PackedScene" uid="uid://bwv1obth85s1a" path="res://tasks/dead_bug_task_spawner.tscn" id="10_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://8gxwurqg07or" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
 [ext_resource type="PackedScene" uid="uid://ddxy8prak70er" path="res://assets/environment/tree/redwood.tscn" id="13_j4qnp"]
@@ -295,79 +295,85 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.806
 use_collision = true
 size = Vector3(1.59748, 5.07758, 1)
 
-[node name="AntManager" type="Node3D" parent="."]
+[node name="AntManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_timer")]
 script = ExtResource("3_r0du0")
 bug_scene = ExtResource("2_h2yge")
 max_bugs = 20
+spawn_timer = NodePath("SpawnTimer")
 
 [node name="SpawnTimer" type="Timer" parent="AntManager"]
 autostart = true
 
-[node name="BeetleManager" type="Node3D" parent="."]
+[node name="BugManager#Ant" parent="AntManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7138, 1.5, -70.3092)
+collision_mask = 3
+
+[node name="BugManager#Ant2" parent="AntManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.538, 1.5, -119.723)
+collision_mask = 3
+
+[node name="BugManager#Ant3" parent="AntManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.789, 1.5, 56.7289)
+collision_mask = 3
+
+[node name="BugManager#Ant4" parent="AntManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2402, 1.5, 144.011)
+collision_mask = 3
+
+[node name="BugManager#Ant5" parent="AntManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148.476, 1.5, 98.4198)
+collision_mask = 3
+
+[node name="BugManager#Ant6" parent="AntManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -173.084, 1.5, -116.62)
+collision_mask = 3
+
+[node name="BugManager#Ant7" parent="AntManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192.337, 1.5, 2.69215)
+collision_mask = 3
+
+[node name="BugManager#Ant8" parent="AntManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.869, 1.5, -111.449)
+collision_mask = 3
+
+[node name="BugManager#Ant9" parent="AntManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.919, 1.5, 178.519)
+collision_mask = 3
+
+[node name="BugManager#Ant10" parent="AntManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.2055, 1.49999, 260.244)
+collision_mask = 3
+
+[node name="BugManager#Ant11" parent="AntManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -222.726, 1.49999, 5.36348)
+collision_mask = 3
+
+[node name="BugManager#Ant12" parent="AntManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.6164, 1.49999, -289.786)
+collision_mask = 3
+
+[node name="BeetleManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_timer")]
 script = ExtResource("3_r0du0")
 bug_scene = ExtResource("7_devvj")
 max_bugs = 3
+spawn_timer = NodePath("SpawnTimer1")
 
 [node name="SpawnTimer1" type="Timer" parent="BeetleManager"]
 wait_time = 4.0
 autostart = true
 
-[node name="AphidManager" type="Node3D" parent="."]
+[node name="AphidManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_timer")]
 script = ExtResource("3_r0du0")
 bug_scene = ExtResource("8_3b0ty")
 max_bugs = 30
+spawn_timer = NodePath("SpawnTimer2")
 
 [node name="SpawnTimer2" type="Timer" parent="AphidManager"]
 wait_time = 2.0
 autostart = true
 
-[node name="BugManager#Ant" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7138, 1.5, -70.3092)
-collision_mask = 3
-
-[node name="BugManager#Ant2" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.538, 1.5, -119.723)
-collision_mask = 3
-
-[node name="BugManager#Ant3" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.789, 1.5, 56.7289)
-collision_mask = 3
-
-[node name="BugManager#Ant4" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2402, 1.5, 144.011)
-collision_mask = 3
-
-[node name="BugManager#Ant5" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148.476, 1.5, 98.4198)
-collision_mask = 3
-
-[node name="BugManager#Ant6" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -173.084, 1.5, -116.62)
-collision_mask = 3
-
-[node name="BugManager#Ant7" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192.337, 1.5, 2.69215)
-collision_mask = 3
-
-[node name="BugManager#Ant8" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.869, 1.5, -111.449)
-collision_mask = 3
-
-[node name="BugManager#Ant9" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.919, 1.5, 178.519)
-collision_mask = 3
-
-[node name="BugManager#Ant10" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.2055, 1.49999, 260.244)
-collision_mask = 3
-
-[node name="BugManager#Ant11" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -222.726, 1.49999, 5.36348)
-collision_mask = 3
-
-[node name="BugManager#Ant12" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.6164, 1.49999, -289.786)
-collision_mask = 3
+[node name="Aphid" parent="AphidManager" instance=ExtResource("8_3b0ty")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49133, 0, 13.7795)
 
 [node name="GridContainer" type="GridContainer" parent="."]
 anchors_preset = 15
@@ -3479,7 +3485,7 @@ autoplay = true
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]
 [connection signal="timeout" from="AntManager/SpawnTimer" to="AntManager" method="_on_spawn_timer_timeout"]
-[connection signal="timeout" from="BeetleManager/SpawnTimer1" to="BeetleManager" method="_on_spawn_timer_1_timeout"]
+[connection signal="timeout" from="BeetleManager/SpawnTimer1" to="BeetleManager" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="AphidManager/SpawnTimer2" to="AphidManager" method="_on_spawn_timer_2_timeout"]
 
 [editable path="environment/redwoods/redwood"]

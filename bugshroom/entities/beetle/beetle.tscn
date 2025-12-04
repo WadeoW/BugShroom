@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dnyuja84wopu2"]
 
-[ext_resource type="Script" path="res://entities/beetle/beetle.gd" id="1_83cmc"]
+[ext_resource type="Script" uid="uid://bi5kql0tljcml" path="res://entities/beetle/beetle.gd" id="1_83cmc"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_83cmc"]
 
@@ -12,7 +12,7 @@ collision_mask = 3
 script = ExtResource("1_83cmc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 1, 0)
 mesh = SubResource("BoxMesh_83cmc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
