@@ -74,7 +74,6 @@ func _ready() -> void:
 	if mushroom_type == 0:
 		ability_type = load("res://entities/abilities/SporeRingAbility.tscn")
 		print("ability type is spore ring")
-		char_model = load("res://player/amanita/Amanita.tscn")
 	elif mushroom_type == 1:
 		ability_type = load("res://entities/abilities/goop_ability.tscn")
 	elif mushroom_type == PlayerData.MushroomType.Puffball:
