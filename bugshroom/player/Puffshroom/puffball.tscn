@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://dl2tthivh6a3e"]
+[gd_scene load_steps=19 format=4 uid="uid://dl2tthivh6a3e"]
 
 [ext_resource type="Script" uid="uid://chivoxalb5yd" path="res://player/Puffshroom/puffball.gd" id="1_0vhsy"]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0vhsy"]
-points = PackedVector3Array(1.75489, 5.61266, 7.73127, -1.75246, 5.32175, -7.76359, -1.69574, 8.1668, -7.51313, 9.41714, 3.84347, -1.93704, -6.67572, 0.39051, 1.57074, -2.90173, 12.2882, 1.57041, 6.37172, 11.1181, -1.32705, -9.07557, 7.3652, 0.413411, 4.93062, -0.186224, -1.32893, -6.63503, 1.57893, -4.78379, 6.35209, 1.86329, 5.02651, 6.03803, 9.64403, 4.43004, -3.75207, 7.92471, 6.7596, 5.50957, 2.71611, -5.96915, -5.18586, 1.29673, 5.30338, -5.4539, 10.4992, -4.47504, 4.5921, 10.496, -5.04638, -8.43999, 3.28516, -3.95369, -8.78239, 3.26914, 2.46254, 2.57849, 11.0645, 4.70305, 1.44685, 12.5698, -1.61761, -1.74218, -0.480462, 1.85995, -2.88462, 0.425045, -4.49638, 9.04752, 6.48688, 1.57802, -5.75385, 10.2209, 4.14522, 4.64872, 7.64695, -6.56135, 3.74897, 1.00389, 5.30839, 8.43606, 7.35678, -3.07869, -7.52302, 9.95609, -1.90402, 8.7641, 1.81416, -0.46212, -2.02958, 3.58531, 7.37003, -6.38237, 5.61645, 5.63167)
+[ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_4tcne"]
+[ext_resource type="Script" uid="uid://brrncwvvflgvk" path="res://player/health_bar.gd" id="3_xhpx3"]
+[ext_resource type="Script" uid="uid://duk35nosf216h" path="res://player/stamina_bar.gd" id="4_7wi73"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxwlq"]
 resource_name = "Body.001"
@@ -210,13 +210,34 @@ _data = {
 &"roll": SubResource("Animation_p2hqu")
 }
 
-[node name="Puffball" type="CharacterBody3D"]
-script = ExtResource("1_0vhsy")
+[sub_resource type="SphereShape3D" id="SphereShape3D_kfrr7"]
+radius = 0.07
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_0vhsy")
+[sub_resource type="BoxShape3D" id="BoxShape3D_xhpx3"]
+size = Vector3(1.75, 1.5, 1.8)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4tcne"]
+points = PackedVector3Array(1.75489, 5.61266, 7.73127, -1.75246, 5.32175, -7.76359, -1.69574, 8.1668, -7.51313, 9.41714, 3.84347, -1.93704, -6.67572, 0.39051, 1.57074, -2.90173, 12.2882, 1.57041, 6.37172, 11.1181, -1.32705, -9.07557, 7.3652, 0.413411, 4.93062, -0.186224, -1.32893, -6.63503, 1.57893, -4.78379, 6.35209, 1.86329, 5.02651, 6.03803, 9.64403, 4.43004, -3.75207, 7.92471, 6.7596, 5.50957, 2.71611, -5.96915, -5.18586, 1.29673, 5.30338, -5.4539, 10.4992, -4.47504, 4.5921, 10.496, -5.04638, -8.43999, 3.28516, -3.95369, -8.78239, 3.26914, 2.46254, 2.57849, 11.0645, 4.70305, 1.44685, 12.5698, -1.61761, -1.74218, -0.480462, 1.85995, -2.88462, 0.425045, -4.49638, 9.04752, 6.48688, 1.57802, -5.75385, 10.2209, 4.14522, 4.64872, 7.64695, -6.56135, 3.74897, 1.00389, 5.30839, 8.43606, 7.35678, -3.07869, -7.52302, 9.95609, -1.90402, 8.7641, 1.81416, -0.46212, -2.02958, 3.58531, 7.37003, -6.38237, 5.61645, 5.63167)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_invgw"]
+bg_color = Color(0.808137, 3.27289e-06, 7.70092e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lchnv"]
+bg_color = Color(0.197707, 0.719829, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p64ml"]
+bg_color = Color(0.73, 0.73, 0, 0.686275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knpp7"]
+bg_color = Color(0.9, 0.66, 0, 1)
+
+[node name="Puffball" type="CharacterBody3D" node_paths=PackedStringArray("health_bar", "stamina_bar") groups=["player"]]
+script = ExtResource("1_0vhsy")
+health_bar = NodePath("CanvasLayer/HealthBar")
+stamina_bar = NodePath("CanvasLayer/StaminaBar")
 
 [node name="CharacterModel" type="Node3D" parent="."]
+transform = Transform3D(0.085, 0, 0, 0, 0.085, 0, 0, 0, 0.085, 0, 0, 0)
 
 [node name="Armature" type="Node3D" parent="CharacterModel"]
 
@@ -226,7 +247,7 @@ bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87464, 0)
 bones/0/enabled = true
 bones/0/position = Vector3(0, 4.87464, 0)
-bones/0/rotation = Quaternion(0, 0, 0, 1)
+bones/0/rotation = Quaternion(8.14603e-08, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Bone.001"
 bones/1/parent = 0
@@ -239,35 +260,35 @@ bones/2/name = "Bone.002"
 bones/2/parent = 0
 bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.81843, 0)
 bones/2/enabled = true
-bones/2/position = Vector3(0, 4.81843, 0)
+bones/2/position = Vector3(0, 4.81843, 5.68434e-14)
 bones/2/rotation = Quaternion(0, 0, 0, 1)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Bone.003"
 bones/3/parent = 0
 bones/3/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886282, 5.56579)
 bones/3/enabled = true
-bones/3/position = Vector3(0, 0.886282, 5.56579)
+bones/3/position = Vector3(0, 0.886281, 5.56579)
 bones/3/rotation = Quaternion(0, 0, 0, 1)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Bone.004"
 bones/4/parent = 0
 bones/4/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.58597, 0)
 bones/4/enabled = true
-bones/4/position = Vector3(0, -4.58597, 0)
+bones/4/position = Vector3(0, -4.58597, 2.4869e-14)
 bones/4/rotation = Quaternion(0, 0, 0, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Bone.005"
 bones/5/parent = 0
 bones/5/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.46743, 1.29674e-13, 0)
 bones/5/enabled = true
-bones/5/position = Vector3(-7.46743, 1.29674e-13, 0)
+bones/5/position = Vector3(-7.46743, 0, 0)
 bones/5/rotation = Quaternion(0, 0, 0, 1)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Bone.006"
 bones/6/parent = 0
 bones/6/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.48242, 1.29674e-13, 0)
 bones/6/enabled = true
-bones/6/position = Vector3(7.48242, 1.29674e-13, 0)
+bones/6/position = Vector3(7.48243, 0, 0)
 bones/6/rotation = Quaternion(0, 0, 0, 1)
 bones/6/scale = Vector3(1, 1, 1)
 
@@ -282,3 +303,96 @@ blend_shapes/Derp = 0.0
 libraries = {
 &"": SubResource("AnimationLibrary_s3v6g")
 }
+
+[node name="CameraMount" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00626266, 1.78082, -0.00825548)
+script = ExtResource("2_4tcne")
+
+[node name="CameraYaw" type="Node3D" parent="CameraMount"]
+
+[node name="CameraPitch" type="Node3D" parent="CameraMount/CameraYaw"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraMount/CameraYaw/CameraPitch"]
+shape = SubResource("SphereShape3D_kfrr7")
+spring_length = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraMount/CameraYaw/CameraPitch/SpringArm3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58884, 0.645015, 2.71468)
+fov = 85.0
+
+[node name="AttackHitBox" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.06349, 0)
+shape = SubResource("BoxShape3D_xhpx3")
+target_position = Vector3(0, 0, -1)
+collision_mask = 14
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.085, 0, 0, 0, 0.085, 0, 0, 0, 0.085, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_4tcne")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 170.0
+offset_bottom = 60.0
+scale = Vector2(1.325, 1.325)
+theme_override_styles/background = SubResource("StyleBoxFlat_invgw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lchnv")
+value = 100.0
+show_percentage = false
+script = ExtResource("3_xhpx3")
+player = NodePath("../..")
+
+[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_top = -68.0
+offset_right = -84.0
+offset_bottom = -38.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.325, 1.325)
+theme_override_styles/background = SubResource("StyleBoxFlat_p64ml")
+theme_override_styles/fill = SubResource("StyleBoxFlat_knpp7")
+show_percentage = false
+script = ExtResource("4_7wi73")
+player = NodePath("../..")
+
+[node name="HealthText" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 170.0
+offset_bottom = 60.0
+scale = Vector2(1.325, 1.325)
+text = "health"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaminaText" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_top = -68.0
+offset_right = -84.0
+offset_bottom = -38.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.325, 1.325)
+text = "Stamina"
+horizontal_alignment = 1
+vertical_alignment = 1

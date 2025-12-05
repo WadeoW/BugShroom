@@ -141,46 +141,55 @@ shape = SubResource("RectangleShape2D_qh1a7")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Player1ClassSelect" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
 offset_left = 131.0
-offset_top = 269.0
+offset_top = -55.0
 offset_right = 272.0
-offset_bottom = 338.0
+offset_bottom = 14.0
 theme_override_font_sizes/font_size = 20
 text = "Player 1 Class:
 Amanita"
 
 [node name="Player2ClassSelect" type="Label" parent="CanvasLayer"]
-offset_left = 847.0
-offset_top = 269.0
-offset_right = 988.0
-offset_bottom = 338.0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -302.0
+offset_top = -63.0
+offset_right = -164.0
+offset_bottom = 14.0
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_font_sizes/font_size = 20
 text = "Player 2 Class:
 Puffball"
 
-[node name="StartButton" type="Button" parent="."]
+[node name="StartButton" type="Button" parent="CanvasLayer"]
 z_index = 2
 y_sort_enabled = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 225.0
-offset_top = 180.0
-offset_right = 424.0
-offset_bottom = 264.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -351.0
+offset_top = -144.0
+offset_right = -152.0
+offset_bottom = -60.0
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_font_sizes/font_size = 27
 text = "Start
 "
 
-[node name="Area2D" type="Area2D" parent="StartButton" groups=["button"]]
+[node name="Area2D" type="Area2D" parent="CanvasLayer/StartButton" groups=["button"]]
 position = Vector2(36, 9)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StartButton/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/StartButton/Area2D"]
 position = Vector2(63, 33)
 shape = SubResource("RectangleShape2D_3k6t4")
 
@@ -188,4 +197,4 @@ shape = SubResource("RectangleShape2D_3k6t4")
 [connection signal="pressed" from="CanvasLayer2/Puffball" to="." method="_on_puffball_pressed"]
 [connection signal="pressed" from="CanvasLayer2/Inkcap" to="." method="_on_inkcap_pressed"]
 [connection signal="pressed" from="CanvasLayer2/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/StartButton" to="." method="_on_start_button_pressed"]

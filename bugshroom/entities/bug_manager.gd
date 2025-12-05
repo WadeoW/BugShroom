@@ -32,20 +32,15 @@ func _ready() -> void:
 	if bug_scene == load("res://entities/ant/ant.tscn"):
 		active_bugs = get_tree().get_nodes_in_group("ants")
 		bug_type = "ants"
-	print(active_bugs)
-	print(bug_type)
 #debug
 	#print(current_bugs.size(), current_bugs)
-
+	#print(active_bugs)
+	#print(bug_type)
 
 func get_random_pos():
 	var random_x = randf_range(spawn_area_min_x, spawn_area_max_x)
 	var random_z = randf_range(spawn_area_min_z, spawn_area_max_z)
 	return Vector3(random_x, 2, random_z)
-
-
-
-
 
 
 func _on_bug_died():
