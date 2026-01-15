@@ -193,7 +193,7 @@ func cast_ability(ability_type):
 	#animation_player.play("headshakeanimation/headshake")
 	ability_active = true
 	var spawn = ability_type.instantiate()
-	add_sibling(spawn)
+	add_child(spawn)
 	print("ability has been cast")
 	
 	

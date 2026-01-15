@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bivqmpnyrqg2u"]
+[gd_scene load_steps=7 format=3 uid="uid://bivqmpnyrqg2u"]
 
 [ext_resource type="Script" uid="uid://bwy3vmah16igp" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_rkbax"]
-[ext_resource type="PackedScene" uid="uid://b3e4in6lyy241" path="res://player/amanita/Amanita.tscn" id="3_g1dw6"]
 [ext_resource type="PackedScene" uid="uid://cami24vw2i0cr" path="res://player/Inkcap/inkmushroom.tscn" id="4_yw30f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
@@ -14,9 +13,6 @@ radius = 0.07
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rgyib"]
 size = Vector3(1.75, 1.5, 1.8)
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qjkh3"]
-nodes/output/position = Vector2(540, 220)
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 9
@@ -58,15 +54,5 @@ collision_mask = 14
 wait_time = 0.8
 one_shot = true
 
-[node name="Amanita" parent="." instance=ExtResource("3_g1dw6")]
-
 [node name="inkmushroom" parent="." instance=ExtResource("4_yw30f")]
-transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, 0, 0)
-visible = false
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../Amanita")
-tree_root = SubResource("AnimationNodeBlendTree_qjkh3")
-anim_player = NodePath("../Amanita/AnimationPlayer")
-
-[editable path="Amanita"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)

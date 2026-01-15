@@ -141,7 +141,7 @@ shape = SubResource("RectangleShape2D_qh1a7")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Player1ClassSelect" type="Label" parent="CanvasLayer"]
-anchors_preset = -1
+anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 131.0

@@ -1,21 +1,19 @@
-[gd_scene load_steps=44 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=38 format=4 uid="uid://ch8yce5nnahu3"]
 
-[ext_resource type="PackedScene" uid="uid://bivqmpnyrqg2u" path="res://player/player.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="Texture2D" uid="uid://c471r6e2fi8ws" path="res://assets/environment/rock/rock textures/ground_v01_gorund_mat_BaseColor.png" id="1_20pc6"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://bxwpkxvlm8a0x" path="res://levels/colony_nutrient_bar.gd" id="3_c6i3y"]
 [ext_resource type="Script" uid="uid://b2362xpns3grh" path="res://entities/bug_manager.gd" id="3_r0du0"]
-[ext_resource type="Script" uid="uid://brrncwvvflgvk" path="res://player/health_bar.gd" id="4_1bvp3"]
 [ext_resource type="Material" uid="uid://b3rnns3b04fv" path="res://assets/environment/ground/ground.tres" id="4_c2ibq"]
-[ext_resource type="Script" uid="uid://duk35nosf216h" path="res://player/stamina_bar.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dnyuja84wopu2" path="res://entities/beetle/beetle.tscn" id="7_devvj"]
 [ext_resource type="PackedScene" uid="uid://rtaecmo4qdss" path="res://entities/aphid/aphid.tscn" id="8_3b0ty"]
-[ext_resource type="PackedScene" uid="uid://dl2tthivh6a3e" path="res://player/Puffshroom/puffball.tscn" id="9_bg4s2"]
+[ext_resource type="Script" uid="uid://bp75styrftfwv" path="res://player_1_spawner.gd" id="9_hhcpw"]
 [ext_resource type="PackedScene" uid="uid://bwv1obth85s1a" path="res://tasks/dead_bug_task_spawner.tscn" id="10_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://8gxwurqg07or" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
 [ext_resource type="PackedScene" uid="uid://ddxy8prak70er" path="res://assets/environment/tree/redwood.tscn" id="13_j4qnp"]
+[ext_resource type="Script" uid="uid://j0ano1abul83" path="res://player_2_spawner.gd" id="13_mxvw5"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://beh73njk1ypty" path="res://assets/environment/log/log_bugshroom_v01.fbx" id="15_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://drjomi27mdxip" path="res://assets/environment/rock/rock_1.tscn" id="16_sc1dx"]
@@ -46,18 +44,6 @@ bg_color = Color(0.827451, 0.054902, 0.121569, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fpfj3"]
 albedo_color = Color(0.287756, 0.433515, 0.273107, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
-bg_color = Color(0.808137, 3.27289e-06, 7.70092e-07, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
-bg_color = Color(0.197707, 0.719829, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mycd"]
-bg_color = Color(0.73, 0.73, 0, 0.686275)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
-bg_color = Color(0.9, 0.66, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0l325"]
 resource_name = "grass1_mat"
@@ -206,10 +192,8 @@ shadow_mesh = SubResource("ArrayMesh_ppyv2")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kjvhd"]
 data = PackedVector3Array(-0.2013, -0.0418, -0.0711, -0.2013, -0.0724, -0.0405, -0.2013, -0.0866, -0.0487, -0.2013, -0.1, 0.0013, -0.2013, -0.0866, -0.0487, -0.2013, -0.0724, -0.0405, -0.2013, -0.0724, -0.0405, -0.2013, -0.0836, 0.0013, -0.2013, -0.1, 0.0013, -0.2013, -0.0866, -0.0487, -0.2013, -0.05, -0.0853, -0.2013, -0.0418, -0.0711, -0.2013, -0.0418, -0.0711, -0.2013, -0.05, -0.0853, -0.2013, 0, -0.0987, -0.2013, 0, -0.0987, -0.2013, 0, -0.0823, -0.2013, -0.0418, -0.0711, -0.2013, -0.0724, 0.0431, -0.2013, -0.0866, 0.0513, -0.2013, -0.1, 0.0013, -0.2013, -0.1, 0.0013, -0.2013, -0.0836, 0.0013, -0.2013, -0.0724, 0.0431, -0.2013, -0.0418, 0.0737, -0.2013, -0.05, 0.0879, -0.2013, -0.0866, 0.0513, -0.2013, -0.0866, 0.0513, -0.2013, -0.0724, 0.0431, -0.2013, -0.0418, 0.0737, -0.2013, -0.0418, 0.0737, -0.2013, 0, 0.0849, -0.2013, 0, 0.1013, -0.2013, 0, 0.1013, -0.2013, -0.05, 0.0879, -0.2013, -0.0418, 0.0737, -0.2013, 0.0418, 0.0737, -0.2013, 0.05, 0.0879, -0.2013, 0, 0.1013, -0.2013, 0, 0.1013, -0.2013, 0, 0.0849, -0.2013, 0.0418, 0.0737, -0.2013, 0.0866, 0.0513, -0.2013, 0.05, 0.0879, -0.2013, 0.0418, 0.0737, -0.2013, 0.0418, 0.0737, -0.2013, 0.0724, 0.0431, -0.2013, 0.0866, 0.0513, -0.2013, 0.0418, -0.0711, -0.2013, 0.05, -0.0853, -0.2013, 0.0866, -0.0487, -0.2013, 0.0866, -0.0487, -0.2013, 0.0724, -0.0405, -0.2013, 0.0418, -0.0711, -0.2013, 0.0724, -0.0405, -0.2013, 0.0866, -0.0487, -0.2013, 0.1, 0.0013, -0.2013, 0.1, 0.0013, -0.2013, 0.0836, 0.0013, -0.2013, 0.0724, -0.0405, -0.2013, 0.0418, -0.0711, -0.2013, 0, -0.0823, -0.2013, 0, -0.0987, -0.2013, 0, -0.0987, -0.2013, 0.05, -0.0853, -0.2013, 0.0418, -0.0711, 0.2013, -0.0724, 0.0431, 0.2013, -0.0866, 0.0513, 0.2013, -0.05, 0.0879, 0.2013, -0.05, 0.0879, 0.2013, -0.0418, 0.0737, 0.2013, -0.0724, 0.0431, -0.2013, 0.0724, 0.0431, -0.2013, 0.0836, 0.0013, -0.2013, 0.1, 0.0013, -0.2013, 0.1, 0.0013, -0.2013, 0.0866, 0.0513, -0.2013, 0.0724, 0.0431, -0.1909, 0.0418, 0.0737, -0.2013, 0.0418, 0.0737, -0.2013, 0, 0.0849, -0.2013, 0, 0.0849, -0.1909, 0, 0.0849, -0.1909, 0.0418, 0.0737, -0.1909, 0, 0.0013, -0.1909, 0.0724, -0.0405, -0.1909, 0.0836, 0.0013, -0.1909, 0.0418, -0.0711, -0.1909, 0.0724, -0.0405, -0.1909, 0, 0.0013, -0.1909, 0, 0.0013, -0.1909, 0.0836, 0.0013, -0.1909, 0.0724, 0.0431, -0.1909, 0, 0.0013, -0.1909, 0, -0.0823, -0.1909, 0.0418, -0.0711, -0.1909, 0.0724, 0.0431, -0.1909, 0.0418, 0.0737, -0.1909, 0, 0.0013, -0.1909, 0, 0.0849, -0.1909, 0, 0.0013, -0.1909, 0.0418, 0.0737, -0.1909, 0, -0.0823, -0.1909, 0, 0.0013, -0.1909, -0.0418, -0.0711, -0.1909, -0.0418, -0.0711, -0.1909, 0, 0.0013, -0.1909, -0.0724, -0.0405, -0.1909, -0.0836, 0.0013, -0.1909, -0.0724, -0.0405, -0.1909, 0, 0.0013, -0.1909, 0, 0.0013, -0.1909, -0.0724, 0.0431, -0.1909, -0.0836, 0.0013, -0.1909, -0.0724, 0.0431, -0.1909, 0, 0.0013, -0.1909, -0.0418, 0.0737, -0.1909, 0.0724, -0.0405, -0.2013, 0.0724, -0.0405, -0.2013, 0.0836, 0.0013, -0.2013, 0.0836, 0.0013, -0.1909, 0.0836, 0.0013, -0.1909, 0.0724, -0.0405, -0.1909, 0.0836, 0.0013, -0.2013, 0.0836, 0.0013, -0.2013, 0.0724, 0.0431, -0.2013, 0.0724, 0.0431, -0.1909, 0.0724, 0.0431, -0.1909, 0.0836, 0.0013, -0.1909, 0, -0.0823, -0.2013, 0, -0.0823, -0.2013, 0.0418, -0.0711, -0.2013, 0.0418, -0.0711, -0.1909, 0.0418, -0.0711, -0.1909, 0, -0.0823, -0.1909, -0.0724, -0.0405, -0.2013, -0.0724, -0.0405, -0.2013, -0.0418, -0.0711, -0.2013, -0.0418, -0.0711, -0.1909, -0.0418, -0.0711, -0.1909, -0.0724, -0.0405, -0.1909, -0.0724, 0.0431, -0.2013, -0.0724, 0.0431, -0.2013, -0.0836, 0.0013, -0.2013, -0.0836, 0.0013, -0.1909, -0.0836, 0.0013, -0.1909, -0.0724, 0.0431, -0.1909, 0.0418, -0.0711, -0.2013, 0.0418, -0.0711, -0.2013, 0.0724, -0.0405, -0.2013, 0.0724, -0.0405, -0.1909, 0.0724, -0.0405, -0.1909, 0.0418, -0.0711, -0.1909, 0, 0.0849, -0.2013, 0, 0.0849, -0.2013, -0.0418, 0.0737, -0.2013, -0.0418, 0.0737, -0.1909, -0.0418, 0.0737, -0.1909, 0, 0.0849, -0.1909, -0.0418, -0.0711, -0.2013, -0.0418, -0.0711, -0.2013, 0, -0.0823, -0.2013, 0, -0.0823, -0.1909, 0, -0.0823, -0.1909, -0.0418, -0.0711, -0.1909, 0.0724, 0.0431, -0.2013, 0.0724, 0.0431, -0.2013, 0.0418, 0.0737, -0.2013, 0.0418, 0.0737, -0.1909, 0.0418, 0.0737, -0.1909, 0.0724, 0.0431, -0.1909, -0.0836, 0.0013, -0.2013, -0.0836, 0.0013, -0.2013, -0.0724, -0.0405, -0.2013, -0.0724, -0.0405, -0.1909, -0.0724, -0.0405, -0.1909, -0.0836, 0.0013, -0.1909, -0.0418, 0.0737, -0.2013, -0.0418, 0.0737, -0.2013, -0.0724, 0.0431, -0.2013, -0.0724, 0.0431, -0.1909, -0.0724, 0.0431, -0.1909, -0.0418, 0.0737, -0.1909, 0, 0.0849, -0.1909, -0.0418, 0.0737, -0.1909, 0, 0.0013, 0.2013, -0.0724, 0.0431, 0.2013, -0.0836, 0.0013, 0.2013, -0.1, 0.0013, 0.2013, -0.1, 0.0013, 0.2013, -0.0866, 0.0513, 0.2013, -0.0724, 0.0431, 0.2013, -0.0836, 0.0013, 0.2013, -0.0724, -0.0405, 0.2013, -0.0866, -0.0487, 0.2013, -0.0866, -0.0487, 0.2013, -0.1, 0.0013, 0.2013, -0.0836, 0.0013, 0.2013, -0.0418, -0.0711, 0.2013, -0.05, -0.0853, 0.2013, -0.0866, -0.0487, 0.2013, -0.0866, -0.0487, 0.2013, -0.0724, -0.0405, 0.2013, -0.0418, -0.0711, 0.2013, 0, -0.0823, 0.2013, 0, -0.0987, 0.2013, -0.05, -0.0853, 0.2013, -0.05, -0.0853, 0.2013, -0.0418, -0.0711, 0.2013, 0, -0.0823, 0.2013, 0, -0.0823, 0.2013, 0.0418, -0.0711, 0.2013, 0.05, -0.0853, 0.2013, 0.05, -0.0853, 0.2013, 0, -0.0987, 0.2013, 0, -0.0823, 0.2013, 0.0866, -0.0487, 0.2013, 0.05, -0.0853, 0.2013, 0.0418, -0.0711, 0.2013, 0.0418, -0.0711, 0.2013, 0.0724, -0.0405, 0.2013, 0.0866, -0.0487, 0.2013, 0.0724, 0.0431, 0.2013, 0.0418, 0.0737, 0.2013, 0.05, 0.0879, 0.2013, 0.05, 0.0879, 0.2013, 0.0866, 0.0513, 0.2013, 0.0724, 0.0431, 0.2013, 0, 0.0849, 0.2013, 0, 0.1013, 0.2013, 0.05, 0.0879, 0.2013, 0.05, 0.0879, 0.2013, 0.0418, 0.0737, 0.2013, 0, 0.0849, 0.2013, 0.0724, 0.0431, 0.2013, 0.0866, 0.0513, 0.2013, 0.1, 0.0013, 0.2013, 0.1, 0.0013, 0.2013, 0.0836, 0.0013, 0.2013, 0.0724, 0.0431, 0.2013, 0.0836, 0.0013, 0.2013, 0.1, 0.0013, 0.2013, 0.0866, -0.0487, 0.2013, 0.0866, -0.0487, 0.2013, 0.0724, -0.0405, 0.2013, 0.0836, 0.0013, 0.1909, 0.0418, -0.0711, 0.2013, 0.0418, -0.0711, 0.2013, 0, -0.0823, 0.2013, 0, -0.0823, 0.1909, 0, -0.0823, 0.1909, 0.0418, -0.0711, 0.2013, 0, 0.0849, 0.2013, -0.0418, 0.0737, 0.2013, -0.05, 0.0879, 0.2013, -0.05, 0.0879, 0.2013, 0, 0.1013, 0.2013, 0, 0.0849, 0.1909, 0, 0.0013, 0.1909, 0.0724, 0.0431, 0.1909, 0.0836, 0.0013, 0.1909, 0, 0.0013, 0.1909, 0.0836, 0.0013, 0.1909, 0.0724, -0.0405, 0.1909, 0.0724, -0.0405, 0.1909, 0.0418, -0.0711, 0.1909, 0, 0.0013, 0.1909, 0, -0.0823, 0.1909, 0, 0.0013, 0.1909, 0.0418, -0.0711, 0.1909, -0.0836, 0.0013, 0.1909, -0.0724, 0.0431, 0.1909, 0, 0.0013, 0.1909, 0, 0.0013, 0.1909, -0.0724, -0.0405, 0.1909, -0.0836, 0.0013, 0.1909, -0.0724, -0.0405, 0.1909, 0, 0.0013, 0.1909, -0.0418, -0.0711, 0.1909, 0.0836, 0.0013, 0.1909, 0.0724, 0.0431, 0.2013, 0.0724, 0.0431, 0.2013, 0.0724, 0.0431, 0.2013, 0.0836, 0.0013, 0.1909, 0.0836, 0.0013, 0.1909, 0.0724, -0.0405, 0.1909, 0.0836, 0.0013, 0.2013, 0.0836, 0.0013, 0.2013, 0.0836, 0.0013, 0.2013, 0.0724, -0.0405, 0.1909, 0.0724, -0.0405, 0.1909, 0, 0.0849, 0.2013, 0, 0.0849, 0.2013, 0.0418, 0.0737, 0.2013, 0.0418, 0.0737, 0.1909, 0.0418, 0.0737, 0.1909, 0, 0.0849, 0.1909, -0.0724, 0.0431, 0.2013, -0.0724, 0.0431, 0.2013, -0.0418, 0.0737, 0.2013, -0.0418, 0.0737, 0.1909, -0.0418, 0.0737, 0.1909, -0.0724, 0.0431, 0.1909, -0.0724, -0.0405, 0.2013, -0.0724, -0.0405, 0.2013, -0.0836, 0.0013, 0.2013, -0.0836, 0.0013, 0.1909, -0.0836, 0.0013, 0.1909, -0.0724, -0.0405, 0.1909, 0.0418, 0.0737, 0.2013, 0.0418, 0.0737, 0.2013, 0.0724, 0.0431, 0.2013, 0.0724, 0.0431, 0.1909, 0.0724, 0.0431, 0.1909, 0.0418, 0.0737, 0.1909, 0, -0.0823, 0.2013, 0, -0.0823, 0.2013, -0.0418, -0.0711, 0.2013, -0.0418, -0.0711, 0.1909, -0.0418, -0.0711, 0.1909, 0, -0.0823, 0.1909, -0.0418, 0.0737, 0.2013, -0.0418, 0.0737, 0.2013, 0, 0.0849, 0.2013, 0, 0.0849, 0.1909, 0, 0.0849, 0.1909, -0.0418, 0.0737, 0.1909, 0.0724, -0.0405, 0.2013, 0.0724, -0.0405, 0.2013, 0.0418, -0.0711, 0.2013, 0.0418, -0.0711, 0.1909, 0.0418, -0.0711, 0.1909, 0.0724, -0.0405, 0.1909, -0.0836, 0.0013, 0.2013, -0.0836, 0.0013, 0.2013, -0.0724, 0.0431, 0.2013, -0.0724, 0.0431, 0.1909, -0.0724, 0.0431, 0.1909, -0.0836, 0.0013, 0.1909, -0.0418, -0.0711, 0.2013, -0.0418, -0.0711, 0.2013, -0.0724, -0.0405, 0.2013, -0.0724, -0.0405, 0.1909, -0.0724, -0.0405, 0.1909, -0.0418, -0.0711, 0.1909, 0, -0.0823, 0.1909, -0.0418, -0.0711, 0.1909, 0, 0.0013, 0.1909, 0.0418, 0.0737, 0.1909, 0.0724, 0.0431, 0.1909, 0, 0.0013, 0.1909, -0.0418, 0.0737, 0.1909, 0, 0.0013, 0.1909, -0.0724, 0.0431, 0.1909, 0, 0.0013, 0.1909, 0, 0.0849, 0.1909, 0.0418, 0.0737, 0.1909, 0, 0.0849, 0.1909, 0, 0.0013, 0.1909, -0.0418, 0.0737, -0.2013, 0.05, -0.0853, 0.2013, 0.05, -0.0853, 0.2013, 0.0866, -0.0487, 0.2013, 0.0866, -0.0487, -0.2013, 0.0866, -0.0487, -0.2013, 0.05, -0.0853, -0.2013, 0, -0.0987, 0.2013, 0, -0.0987, 0.2013, 0.05, -0.0853, 0.2013, 0.05, -0.0853, -0.2013, 0.05, -0.0853, -0.2013, 0, -0.0987, -0.2013, 0, -0.0987, -0.2013, -0.05, -0.0853, 0.2013, -0.05, -0.0853, 0.2013, -0.05, -0.0853, 0.2013, 0, -0.0987, -0.2013, 0, -0.0987, -0.2013, -0.0866, -0.0487, 0.2013, -0.0866, -0.0487, 0.2013, -0.05, -0.0853, 0.2013, -0.05, -0.0853, -0.2013, -0.05, -0.0853, -0.2013, -0.0866, -0.0487, -0.2013, -0.0866, -0.0487, -0.2013, -0.1, 0.0013, 0.2013, -0.1, 0.0013, 0.2013, -0.1, 0.0013, 0.2013, -0.0866, -0.0487, -0.2013, -0.0866, -0.0487, -0.2013, -0.1, 0.0013, -0.2013, -0.0866, 0.0513, 0.2013, -0.0866, 0.0513, 0.2013, -0.0866, 0.0513, 0.2013, -0.1, 0.0013, -0.2013, -0.1, 0.0013, -0.2013, -0.0866, 0.0513, -0.2013, -0.05, 0.0879, 0.2013, -0.05, 0.0879, 0.2013, -0.05, 0.0879, 0.2013, -0.0866, 0.0513, -0.2013, -0.0866, 0.0513, -0.2013, -0.05, 0.0879, -0.2013, 0, 0.1013, 0.2013, 0, 0.1013, 0.2013, 0, 0.1013, 0.2013, -0.05, 0.0879, -0.2013, -0.05, 0.0879, -0.2013, 0.05, 0.0879, 0.2013, 0.05, 0.0879, 0.2013, 0, 0.1013, 0.2013, 0, 0.1013, -0.2013, 0, 0.1013, -0.2013, 0.05, 0.0879, -0.2013, 0.0866, 0.0513, 0.2013, 0.0866, 0.0513, 0.2013, 0.05, 0.0879, 0.2013, 0.05, 0.0879, -0.2013, 0.05, 0.0879, -0.2013, 0.0866, 0.0513, -0.2013, 0.1, 0.0013, 0.2013, 0.1, 0.0013, 0.2013, 0.0866, 0.0513, 0.2013, 0.0866, 0.0513, -0.2013, 0.0866, 0.0513, -0.2013, 0.1, 0.0013, -0.2013, 0.0866, -0.0487, 0.2013, 0.0866, -0.0487, 0.2013, 0.1, 0.0013, 0.2013, 0.1, 0.0013, -0.2013, 0.1, 0.0013, -0.2013, 0.0866, -0.0487)
 
-[node name="World" type="Node3D" node_paths=PackedStringArray("player1", "player2", "colony_nutrient_bar")]
+[node name="World" type="Node3D" node_paths=PackedStringArray("colony_nutrient_bar")]
 script = ExtResource("1_5vvyt")
-player1 = NodePath("GridContainer/SubViewportContainer/SubViewport/Player3")
-player2 = NodePath("GridContainer/SubViewportContainer2/SubViewport/Player2")
 colony_nutrient_bar = NodePath("CanvasLayer/ColonyNutrientBar")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -293,6 +277,40 @@ size = Vector3(1, 2.47058, 1)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="boxes"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.80614, 3.03879, 4.79441)
+use_collision = true
+size = Vector3(1.59748, 5.07758, 1)
+
+[node name="boxes" type="CSGCombiner3D" parent="boxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -371.075, 0, 149.381)
+material_override = SubResource("StandardMaterial3D_fpfj3")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="boxes/boxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.821472, 3.76141, 4.46677)
+use_collision = true
+size = Vector3(1, 6.52283, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="boxes/boxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.93163, 1, 10.7467)
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="boxes/boxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38486, 1.539, 11.1329)
+use_collision = true
+size = Vector3(1, 2.078, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="boxes/boxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33382, 1.98193, 11.0987)
+use_collision = true
+size = Vector3(1, 2.96387, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="boxes/boxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04349, 4.25034, 6.50043)
+use_collision = true
+size = Vector3(1, 7.81623, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="boxes/boxes"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.68045, 3.03879, 7.71994)
 use_collision = true
 size = Vector3(1.59748, 5.07758, 1)
 
@@ -408,76 +426,8 @@ handle_input_locally = false
 size = Vector2i(574, 648)
 render_target_update_mode = 4
 
-[node name="Player" parent="GridContainer/SubViewportContainer/SubViewport" instance=ExtResource("9_bg4s2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.90335, 1.38519, 22.337)
-
-[node name="Player3" parent="GridContainer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("health_bar", "stamina_bar") instance=ExtResource("1_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13452, 1.5, 19.8727)
-visible = false
-health_bar = NodePath("../CanvasLayer/HealthBar")
-stamina_bar = NodePath("../CanvasLayer/StaminaBar")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="GridContainer/SubViewportContainer/SubViewport"]
-visible = false
-
-[node name="HealthBar" type="ProgressBar" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer" node_paths=PackedStringArray("player")]
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 170.0
-offset_bottom = 60.0
-scale = Vector2(1.325, 1.325)
-theme_override_styles/background = SubResource("StyleBoxFlat_1bvp3")
-theme_override_styles/fill = SubResource("StyleBoxFlat_lquwl")
-value = 100.0
-show_percentage = false
-script = ExtResource("4_1bvp3")
-player = NodePath("../../Player3")
-
-[node name="StaminaBar" type="ProgressBar" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer" node_paths=PackedStringArray("player")]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -224.0
-offset_top = -68.0
-offset_right = -84.0
-offset_bottom = -38.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(1.325, 1.325)
-theme_override_styles/background = SubResource("StyleBoxFlat_7mycd")
-theme_override_styles/fill = SubResource("StyleBoxFlat_272bh")
-show_percentage = false
-script = ExtResource("5_lquwl")
-player = NodePath("../../Player3")
-
-[node name="HealthText" type="RichTextLabel" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer"]
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 170.0
-offset_bottom = 60.0
-scale = Vector2(1.325, 1.325)
-text = "health"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StaminaText" type="RichTextLabel" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -224.0
-offset_top = -68.0
-offset_right = -84.0
-offset_bottom = -38.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(1.325, 1.325)
-text = "Stamina"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Player1Spawner" type="Node3D" parent="GridContainer/SubViewportContainer/SubViewport"]
+script = ExtResource("9_hhcpw")
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="GridContainer"]
 layout_mode = 2
@@ -490,80 +440,8 @@ handle_input_locally = false
 size = Vector2i(574, 648)
 render_target_update_mode = 4
 
-[node name="Player2" parent="GridContainer/SubViewportContainer2/SubViewport" node_paths=PackedStringArray("health_bar", "stamina_bar") instance=ExtResource("1_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.42046, 1.5, 20.1738)
-player_id = 2
-health_bar = NodePath("../CanvasLayer/HealthBar2")
-stamina_bar = NodePath("../CanvasLayer/StaminaBar2")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="GridContainer/SubViewportContainer2/SubViewport"]
-
-[node name="HealthBar2" type="ProgressBar" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer" node_paths=PackedStringArray("player")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -224.0
-offset_top = 30.0
-offset_right = -84.0
-offset_bottom = 60.0
-grow_horizontal = 0
-scale = Vector2(1.325, 1.325)
-theme_override_styles/background = SubResource("StyleBoxFlat_1bvp3")
-theme_override_styles/fill = SubResource("StyleBoxFlat_lquwl")
-value = 100.0
-show_percentage = false
-script = ExtResource("4_1bvp3")
-player = NodePath("../../Player2")
-
-[node name="StaminaBar2" type="ProgressBar" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer" node_paths=PackedStringArray("player")]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -224.0
-offset_top = -68.0
-offset_right = -84.0
-offset_bottom = -38.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(1.325, 1.325)
-theme_override_styles/background = SubResource("StyleBoxFlat_7mycd")
-theme_override_styles/fill = SubResource("StyleBoxFlat_272bh")
-show_percentage = false
-script = ExtResource("5_lquwl")
-player = NodePath("../../Player2")
-
-[node name="HealthText2" type="RichTextLabel" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -224.0
-offset_top = 30.0
-offset_right = -84.0
-offset_bottom = 60.0
-grow_horizontal = 0
-scale = Vector2(1.325, 1.325)
-text = "health"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StaminaText2" type="RichTextLabel" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -224.0
-offset_top = -68.0
-offset_right = -84.0
-offset_bottom = -38.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(1.325, 1.325)
-text = "Stamina"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Player2Spawner" type="Node3D" parent="GridContainer/SubViewportContainer2/SubViewport"]
+script = ExtResource("13_mxvw5")
 
 [node name="DeadBugTaskSpawner" parent="." instance=ExtResource("10_c2ibq")]
 
@@ -3499,6 +3377,7 @@ shape = SubResource("ConcavePolygonShape3D_kjvhd")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_2gh4u")
 autoplay = true
+parameters/looping = true
 
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]

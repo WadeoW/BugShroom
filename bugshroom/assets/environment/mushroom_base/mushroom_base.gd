@@ -29,5 +29,5 @@ func _on_heal_timer_timeout() -> void:
 		for player in overlapping_bodies:
 			if player.current_health < player.max_health:
 				player.current_health += 10
-				player.health_bar.update()
+				player.update()
 				print("healing")

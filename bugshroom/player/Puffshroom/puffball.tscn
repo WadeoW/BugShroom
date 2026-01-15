@@ -143,6 +143,79 @@ tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = PackedFloat32Array(0, 1, 7.48242, 1.29674e-13, 0)
 
+[sub_resource type="Animation" id="Animation_invgw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/Body:surface_material_override/0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CollisionShape3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_p64ml"]
+resource_name = "ability_use"
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.008333, 1, 0.1, 0.1, 0.1, 0.266667, 1, 0.14, 0.14, 0.14, 0.441666, 1, 0.1, 0.1, 0.1)
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CollisionShape3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.1, 0.1, 0.1, 0.241667, 1, 0.14, 0.14, 0.14, 0.433333, 1, 0.1, 0.1, 0.1)
+
+[sub_resource type="Animation" id="Animation_xhpx3"]
+resource_name = "crouch"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.3, 1, 0, -0.5, 0)
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.1, 0.1, 0.1)
+tracks/2/type = "scale_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CollisionShape3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.1, 0.1, 0.1)
+
+[sub_resource type="Animation" id="Animation_knpp7"]
+resource_name = "die"
+
 [sub_resource type="Animation" id="Animation_p2hqu"]
 resource_name = "roll"
 length = 1.04167
@@ -208,6 +281,7 @@ albedo_color = Color(1, 0.407246, 0.338652, 1)
 
 [sub_resource type="Animation" id="Animation_7wi73"]
 resource_name = "take_damage"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -221,66 +295,6 @@ tracks/0/keys = {
 "values": [null, SubResource("StandardMaterial3D_xhpx3"), null]
 }
 
-[sub_resource type="Animation" id="Animation_invgw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Armature/Skeleton3D/Body:surface_material_override/0")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [null]
-}
-tracks/1/type = "position_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0)
-tracks/2/type = "position_3d"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../CollisionShape3D")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0)
-
-[sub_resource type="Animation" id="Animation_xhpx3"]
-resource_name = "crouch"
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.3, 1, 0, -0.3, 0)
-tracks/1/type = "position_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../CollisionShape3D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.3, 1, 0, -0.3, 0)
-tracks/2/type = "scale_3d"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.125, 0.125, 0.125)
-tracks/3/type = "scale_3d"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../CollisionShape3D")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0.125, 0.125, 0.125)
-
 [sub_resource type="Animation" id="Animation_lchnv"]
 resource_name = "uncrouch"
 tracks/0/type = "position_3d"
@@ -289,48 +303,21 @@ tracks/0/enabled = true
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.3, 0, 0.3, 1, 0, 0, 0)
-tracks/1/type = "position_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../CollisionShape3D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, -0.3, 0, 0.3, 1, 0, 0, 0)
-tracks/2/type = "scale_3d"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../CollisionShape3D")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.125, 0.125, 0.125)
-tracks/3/type = "scale_3d"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0.125, 0.125, 0.125)
-
-[sub_resource type="Animation" id="Animation_p64ml"]
-resource_name = "ability_use"
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.125, 0.125, 0.125, 0.241667, 1, 0.18, 0.18, 0.18, 0.433333, 1, 0.125, 0.125, 0.125)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.5, 0, 0.3, 1, 0, 0, 0)
 tracks/1/type = "scale_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("../CollisionShape3D")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.125, 0.125, 0.125, 0.241667, 1, 0.18, 0.18, 0.18, 0.433333, 1, 0.125, 0.125, 0.125)
-
-[sub_resource type="Animation" id="Animation_knpp7"]
-resource_name = "die"
+tracks/1/keys = PackedFloat32Array(0, 1, 0.1, 0.1, 0.1)
+tracks/2/type = "scale_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.1, 0.1, 0.1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s3v6g"]
 _data = {
@@ -365,13 +352,13 @@ bg_color = Color(0.73, 0.73, 0, 0.686275)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knpp7"]
 bg_color = Color(0.9, 0.66, 0, 1)
 
-[node name="Puffball" type="CharacterBody3D" node_paths=PackedStringArray("health_bar", "stamina_bar") groups=["player"]]
+[node name="Puffball" type="CharacterBody3D" node_paths=PackedStringArray("health_bar", "stamina_bar") groups=["Puffball", "player"]]
 script = ExtResource("1_0vhsy")
 health_bar = NodePath("CanvasLayer/HealthBar")
 stamina_bar = NodePath("CanvasLayer/StaminaBar")
 
 [node name="CharacterModel" type="Node3D" parent="."]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="Armature" type="Node3D" parent="CharacterModel"]
 
@@ -457,7 +444,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58884, 0.645015, 2.71468)
 fov = 85.0
 
 [node name="AttackHitBox" type="ShapeCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.06349, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74, 0)
 shape = SubResource("BoxShape3D_xhpx3")
 target_position = Vector3(0, 0, -1)
 collision_mask = 14
@@ -467,49 +454,55 @@ wait_time = 0.8
 one_shot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_4tcne")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 30.0
-offset_top = 30.0
+offset_top = -96.0
 offset_right = 170.0
-offset_bottom = 60.0
-scale = Vector2(1.325, 1.325)
+offset_bottom = -66.0
+grow_vertical = 0
+scale = Vector2(1.76, 1.76)
 theme_override_styles/background = SubResource("StyleBoxFlat_invgw")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lchnv")
 value = 100.0
 show_percentage = false
 script = ExtResource("3_xhpx3")
-player = NodePath("../..")
 
-[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -224.0
-offset_top = -68.0
-offset_right = -84.0
-offset_bottom = -38.0
+offset_left = -293.0
+offset_top = -96.0
+offset_right = -153.0
+offset_bottom = -66.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(1.325, 1.325)
+scale = Vector2(1.76, 1.76)
 theme_override_styles/background = SubResource("StyleBoxFlat_p64ml")
 theme_override_styles/fill = SubResource("StyleBoxFlat_knpp7")
 show_percentage = false
 script = ExtResource("4_7wi73")
-player = NodePath("../..")
 
 [node name="HealthText" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 30.0
-offset_top = 30.0
+offset_top = -96.0
 offset_right = 170.0
-offset_bottom = 60.0
-scale = Vector2(1.325, 1.325)
+offset_bottom = -66.0
+grow_vertical = 0
+scale = Vector2(1.76, 1.76)
 text = "health"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -520,13 +513,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -224.0
-offset_top = -68.0
-offset_right = -84.0
-offset_bottom = -38.0
+offset_left = -293.0
+offset_top = -96.0
+offset_right = -153.0
+offset_bottom = -66.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(1.325, 1.325)
+scale = Vector2(1.76, 1.76)
 text = "Stamina"
 horizontal_alignment = 1
 vertical_alignment = 1

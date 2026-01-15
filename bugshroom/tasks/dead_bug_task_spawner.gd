@@ -63,4 +63,4 @@ func spawn_dead_bug_task():
 	add_child(dead_bug_instance)
 	current_dead_bugs.append(dead_bug_instance)
 #debug
-	#print("spawned a new bug task. currently there are: ", current_dead_bugs.size())
+	print("spawned a new bug task. currently there are: ", current_dead_bugs.size())

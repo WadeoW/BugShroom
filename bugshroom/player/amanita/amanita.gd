@@ -19,14 +19,15 @@ var gravity = 9.8
 #health variables
 @export var current_health = 100
 @export var max_health = 100
-@export var health_bar = ProgressBar
+@onready var health_bar: ProgressBar = $CanvasLayer/HealthBar
 var is_dead = false
 
 #stamina variables
 @export var max_stamina = 100.0
 @export var current_stamina = 100.0
 var stamina_drain_rate = 5.0 #stamina drained per second during action
-@export var stamina_bar = ProgressBar
+@onready var stamina_bar: ProgressBar = $CanvasLayer/StaminaBar
+
 
 #attack variables
 @export var attack_range: float = 3.0
@@ -46,8 +47,7 @@ var mushroom_type = PlayerData.MushroomType.Amanita
 var is_rooted = false
 @export var root_stamina_regen = 15.0 #stamina regained per second while rooted
 
-
-@onready var animation_player: AnimationPlayer = $Amanita/AnimationPlayer
+@onready var animation_player: AnimationPlayer = $PlayerModel/AnimationPlayer
 @onready var camera_mount = $CameraMount
 @onready var camera_yaw = $CameraMount/CameraYaw
 @onready var camera_pitch = $CameraMount/CameraYaw/CameraPitch
@@ -59,8 +59,8 @@ var last_direction = Vector3.FORWARD
 var current_animation: String = ""
 
 func _ready() -> void:
-	#animation_player.play("uncrouch")
-	#var current_animation = animation_player.current_animation
+	animation_player.play("uncrouch")
+	var current_animation = animation_player.current_animation
 	
 	#class selection and ability loading
 	if player_id == 1:
@@ -79,8 +79,16 @@ func _ready() -> void:
 	elif mushroom_type == PlayerData.MushroomType.Puffball:
 		ability_type = load("res://entities/abilities/SporeCloud.tscn")
 		print("ability type is spore cloud")
-
+	#set up health and stamina bars
+	health_bar.max_value = max_health
+	stamina_bar.max_value = max_stamina
+	health_bar.value = health_bar.max_value
+	stamina_bar.value = stamina_bar.max_value
 	
+
+func update()-> void:
+	stamina_bar.value = current_stamina
+	health_bar.value = current_health
 	
 func _unhandled_input(event):
 	#root down input
@@ -95,8 +103,8 @@ func _unhandled_input(event):
 			print("ability active = false")
 
 func _physics_process(delta):
-	#if animation_player.animation_changed:
-		#current_animation = animation_player.current_animation
+	if animation_player.animation_changed:
+		current_animation = animation_player.current_animation
 	
 	# add the gravity
 	if not is_on_floor():
@@ -115,12 +123,12 @@ func _physics_process(delta):
 	# handle sprint
 	if Input.is_action_pressed("sprint_%s" % [player_id]) and current_stamina > 0:
 		current_stamina -= stamina_drain_rate * delta
-		stamina_bar.update()
+		update()
 		speed = SPRINT_SPEED
-		#if animation_player.current_animation == "walkanimation":
-			#animation_player.speed_scale = 2
+		if animation_player.current_animation == "walkanimation":
+			animation_player.speed_scale = 2
 	else:
-		#animation_player.speed_scale = 1
+		animation_player.speed_scale = 1
 		speed = WALK_SPEED
 	
 	# Get the input direction and handle the movement/deceleration.
@@ -131,15 +139,15 @@ func _physics_process(delta):
 	if not is_rooted  and !is_dead:
 		if direction:
 			last_direction = direction
-			#if animation_player.current_animation != "walkanimation" and animation_player.current_animation != "mushroomdude_allanimations2/attack" and animation_player.current_animation != "headshakeanimation/headshake": 
-				#animation_player.play("walkanimation")
+			if animation_player.current_animation != "walkanimation" and animation_player.current_animation != "mushroomdude_allanimations2/attack" and animation_player.current_animation != "headshakeanimation/headshake" and animation_player.current_animation != "take_damage": 
+				animation_player.play("walkanimation")
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 		else:
 			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
-			#if !animation_player.is_playing():
-				#animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
+			if !animation_player.is_playing():
+				animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	else:
 		velocity.x = 0
 		velocity.z = 0 
@@ -147,9 +155,9 @@ func _physics_process(delta):
 	if is_rooted:
 		if current_stamina <= max_stamina:
 			current_stamina += root_stamina_regen * delta
-		stamina_bar.update()
+		update()
 	
-	#$Amanita.rotation.y = lerp_angle($Amanita.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
+	$PlayerModel.rotation.y = lerp_angle($PlayerModel.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
 
 	move_and_slide()
 
@@ -157,7 +165,7 @@ func _physics_process(delta):
 func take_damage(amount):
 	#animation_player.play("take_damage")
 	current_health -= amount
-	health_bar.update()
+	update()
 	if current_health <= 0 and !is_dead:
 		die()
 
@@ -166,13 +174,13 @@ func toggle_root():
 	is_rooted = !is_rooted
 	if is_rooted:
 		print("Rooting Down")
-		#animation_player.play("crouch")
+		animation_player.play("crouch")
 	else:
-		#animation_player.play("uncrouch")
+		animation_player.play("uncrouch")
 		print("Uprooted")
 
 func attack():
-	#animation_player.play("mushroomdude_allanimations2/attack")
+	animation_player.play("mushroomdude_allanimations2/attack")
 	can_attack = false
 	attack_cooldown.start()
 	if attack_hit_box.is_colliding():
@@ -190,7 +198,7 @@ func attack():
 
 	
 func cast_ability(ability_type):
-	#animation_player.play("headshakeanimation/headshake")
+	animation_player.play("headshakeanimation/headshake")
 	ability_active = true
 	var spawn = ability_type.instantiate()
 	add_sibling(spawn)
@@ -203,7 +211,7 @@ func apply_knockback(direction: Vector3, force: float):
 func die():
 	is_dead = true
 	print("Player", player_id, "has died!")
-	#animation_player.play("die")
+	animation_player.play("die")
 	set_physics_process(false)
 	SignalBus.player_died.emit()
 	
@@ -212,13 +220,13 @@ func die():
 	
 func respawn():
 	is_dead = false
-	#animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
+	animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	global_position = Vector3(5, 1, 5)
 	print("player", player_id, "respawned!")
 	current_health = max_health
-	health_bar.update()
+	update()
 	current_stamina = max_stamina
-	stamina_bar.update()
+	update()
 	set_physics_process(true)
 	
 	

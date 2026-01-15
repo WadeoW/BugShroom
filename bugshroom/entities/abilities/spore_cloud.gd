@@ -11,17 +11,27 @@ extends Area3D
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var player: CharacterBody3D
 
+@onready var children = get_parent().get_children()
+
+
 var bodies_in_area = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if get_parent().get_node("Player"):
-		player = get_parent().get_node("Player")
-	elif get_parent().get_node("Player2"):
-		player = get_parent().get_node("Player2")
+	#player = get_tree().get_first_node_in_group("Puffball")
+	#if get_parent().get_node("Player"):
+		#player = get_parent().get_node("Player")
+	#elif get_parent().get_node("Player2"):
+		#player = get_parent().get_node("Player2")
+	for child in children:
+		print(child)
+		if child is CharacterBody3D:
+			player = child
+			print(player)
+			
 	position = player.position
-	print(position)
-	print(player.position)
+	#print(position)
+	#print(player.position)
 	lifetime.wait_time = despawnTime
 
 func _on_lifetime_timeout() -> void:

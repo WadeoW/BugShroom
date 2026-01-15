@@ -1171,10 +1171,8 @@ bg_color = Color(0.73, 0.73, 0, 0.686275)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wm4qq"]
 bg_color = Color(0.9, 0.66, 0, 1)
 
-[node name="Amanita" type="CharacterBody3D" node_paths=PackedStringArray("health_bar", "stamina_bar")]
+[node name="Amanita" type="CharacterBody3D" groups=["Amanita", "player"]]
 script = ExtResource("1_8qbgb")
-health_bar = NodePath("CanvasLayer/HealthBar")
-stamina_bar = NodePath("CanvasLayer/StaminaBar")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07088, 0)
@@ -1419,44 +1417,50 @@ one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 30.0
-offset_top = 30.0
+offset_top = -96.0
 offset_right = 170.0
-offset_bottom = 60.0
-scale = Vector2(1.325, 1.325)
+offset_bottom = -66.0
+grow_vertical = 0
+scale = Vector2(1.76, 1.76)
 theme_override_styles/background = SubResource("StyleBoxFlat_pjvni")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dnjrn")
 value = 100.0
 show_percentage = false
 script = ExtResource("6_aoyqs")
-player = NodePath("../..")
 
-[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -224.0
-offset_top = -68.0
-offset_right = -84.0
-offset_bottom = -38.0
+offset_left = -293.0
+offset_top = -96.0
+offset_right = -153.0
+offset_bottom = -66.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(1.325, 1.325)
+scale = Vector2(1.76, 1.76)
 theme_override_styles/background = SubResource("StyleBoxFlat_tfmg4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_wm4qq")
 show_percentage = false
 script = ExtResource("7_wqatt")
-player = NodePath("../..")
 
 [node name="HealthText" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 30.0
-offset_top = 30.0
+offset_top = -96.0
 offset_right = 170.0
-offset_bottom = 60.0
-scale = Vector2(1.325, 1.325)
+offset_bottom = -66.0
+grow_vertical = 0
+scale = Vector2(1.76, 1.76)
 text = "health"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1467,13 +1471,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -224.0
-offset_top = -68.0
-offset_right = -84.0
-offset_bottom = -38.0
+offset_left = -293.0
+offset_top = -96.0
+offset_right = -153.0
+offset_bottom = -66.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(1.325, 1.325)
+scale = Vector2(1.76, 1.76)
 text = "Stamina"
 horizontal_alignment = 1
 vertical_alignment = 1

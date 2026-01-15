@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var cursor_id: int
-var cursor_speed = 500
+var cursor_speed = 750
 var overlapping_buttons = []
 var is_overlapping = false
 @export var texture = Texture2D

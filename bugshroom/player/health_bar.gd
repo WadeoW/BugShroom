@@ -1,10 +1,11 @@
 extends ProgressBar
 
-@export var player: CharacterBody3D
+@onready var puffball = get_tree().get_first_node_in_group("player")
+
 
 func _ready() -> void:
-	max_value = player.max_health
+	max_value = puffball.max_health
 	update()
 
 func update():
-	value = player.current_health 
+	value = puffball.current_health 

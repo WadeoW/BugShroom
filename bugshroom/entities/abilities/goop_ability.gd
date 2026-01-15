@@ -12,19 +12,36 @@ extends Area3D
 @onready var lifetime: Timer = $Lifetime
 @onready var damage_tick_timer: Timer = $DamageTickTimer
 
+@onready var children = get_parent().get_children()
+
 
 var bodies_in_area = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if get_parent().get_node("Player"):
-		player = get_parent().get_node("Player")
-	elif get_parent().get_node("Player2"):
-		player = get_parent().get_node("Player2")
+	#player = get_tree().get_first_node_in_group("Inkcap")
+	#get_parent().get_children()
+	
+	for child in children:
+		print(child)
+		if child is CharacterBody3D:
+			player = child
+			print(player)
+			
+	#if get_parent().get_node("Player"):
+		#player = get_parent().get_node("Player")
+	#elif get_parent().get_node("Player2"):
+		#player = get_parent().get_node("Player2")
 	position = player.position
 	print(position)
 	print(player.position)
 	lifetime.wait_time = despawnTime
+	
+	for child in children:
+		print(child)
+		if child is CharacterBody3D:
+			player = child
+			print(player)
 
 
 func _on_lifetime_timeout() -> void:

@@ -38,8 +38,8 @@ var can_attack: bool = true
 
 #ability and class variables
 var ability_active = false
-@onready var ability_type = load("res://entities/abilities/SporeRingAbility.tscn")
-var mushroom_type = PlayerData.MushroomType.Amanita
+@onready var ability_type = load("res://entities/abilities/SporeCloud.tscn")
+var mushroom_type = PlayerData.MushroomType.Puffball
 @export var char_model: PackedScene
 
 #Root Down Mechanic
@@ -79,8 +79,18 @@ func _ready() -> void:
 	elif mushroom_type == PlayerData.MushroomType.Puffball:
 		ability_type = load("res://entities/abilities/SporeCloud.tscn")
 		print("ability type is spore cloud")
-
 	
+	#set up health and stamina bars
+	health_bar.max_value = max_health
+	stamina_bar.max_value = max_stamina
+	health_bar.value = health_bar.max_value
+	stamina_bar.value = stamina_bar.max_value
+	
+
+
+func update() -> void:
+	health_bar.value = current_health
+	stamina_bar.value = current_stamina 
 	
 func _unhandled_input(event):
 	#root down input
@@ -115,7 +125,7 @@ func _physics_process(delta):
 	# handle sprint
 	if Input.is_action_pressed("sprint_%s" % [player_id]) and current_stamina > 0:
 		current_stamina -= stamina_drain_rate * delta
-		stamina_bar.update()
+		update()
 		speed = SPRINT_SPEED
 		if animation_player.current_animation == "roll":
 			animation_player.speed_scale = 2
@@ -147,7 +157,7 @@ func _physics_process(delta):
 	if is_rooted:
 		if current_stamina <= max_stamina:
 			current_stamina += root_stamina_regen * delta
-		stamina_bar.update()
+		update()
 	
 	$CharacterModel.rotation.y = lerp_angle($CharacterModel.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
 
@@ -157,7 +167,7 @@ func _physics_process(delta):
 func take_damage(amount):
 	animation_player.play("take_damage")
 	current_health -= amount
-	health_bar.update()
+	update()
 	if current_health <= 0 and !is_dead:
 		die()
 
@@ -216,9 +226,9 @@ func respawn():
 	global_position = Vector3(5, 1, 5)
 	print("player", player_id, "respawned!")
 	current_health = max_health
-	health_bar.update()
+	update()
 	current_stamina = max_stamina
-	stamina_bar.update()
+	update()
 	set_physics_process(true)
 	
 	
