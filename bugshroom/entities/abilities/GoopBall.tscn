@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn6ahrgb4amju"]
+
+[ext_resource type="Script" uid="uid://csd0u7aewt8ef" path="res://entities/abilities/goop_ball.gd" id="1_w42yo"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_llpyh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w42yo"]
+cull_mode = 2
+albedo_color = Color(0.431373, 0.329412, 0.882353, 1)
+metallic = 1.0
+roughness = 0.29
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v7ean"]
+
+[node name="Goop Ball" type="RigidBody3D"]
+collision_layer = 128
+collision_mask = 128
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_w42yo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+mesh = SubResource("SphereMesh_llpyh")
+surface_material_override/0 = SubResource("StandardMaterial3D_w42yo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+shape = SubResource("SphereShape3D_v7ean")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, -10, 0)
+collision_mask = 128
+collide_with_areas = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

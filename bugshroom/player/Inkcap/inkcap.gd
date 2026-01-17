@@ -41,7 +41,8 @@ var can_attack: bool = true
 
 #ability and class variables
 var ability_active = false
-@onready var ability_type = load("res://entities/abilities/SporeRingAbility.tscn")
+var goop_ball_launch_speed: float = 10
+@onready var ability_type = null
 var mushroom_type = PlayerData.MushroomType.Inkcap
 @export var char_model: PackedScene
 
@@ -83,7 +84,7 @@ func _ready() -> void:
 		ability_type = load("res://entities/abilities/SporeRingAbility.tscn")
 		print("ability type is spore ring")
 	elif mushroom_type == 1:
-		ability_type = load("res://entities/abilities/goop_ability.tscn")
+		ability_type = load("res://entities/abilities/GoopBall.tscn")
 	elif mushroom_type == PlayerData.MushroomType.Puffball:
 		ability_type = load("res://entities/abilities/SporeCloud.tscn")
 		print("ability type is spore cloud")
@@ -97,7 +98,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("root_%s" % [player_id]):
 		toggle_root()
 		
-	if event.is_action_pressed("interact_%s" % [player_id]) and ability_active == false and is_on_floor():
+	if event.is_action_pressed("interact_%s" % [player_id]) and ability_active == false:
 		cast_ability(ability_type)	
 		if ability_active:
 			print("abilty active = true")
@@ -202,8 +203,11 @@ func attack():
 func cast_ability(ability_type):
 	#animation_player.play("headshakeanimation/headshake")
 	ability_active = true
-	var spawn = ability_type.instantiate()
+	var spawn := load("res://entities/abilities/GoopBall.tscn").instantiate() as RigidBody3D
 	add_sibling(spawn)
+	spawn.position = position + Vector3.UP * 2
+	var launchDirection = -camera_pitch.global_transform.basis.z
+	spawn.linear_velocity = launchDirection.normalized() * goop_ball_launch_speed + Vector3.UP * 5
 	print("ability has been cast")
 	
 	
