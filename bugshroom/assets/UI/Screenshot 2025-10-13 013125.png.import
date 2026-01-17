@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byapxk4kif54o"
-path="res://.godot/imported/Poisonous Ring of Spores.png-07c5a747457bc024a3e6314f49b33f52.ctex"
+uid="uid://csj2wtjaplkk0"
+path="res://.godot/imported/Screenshot 2025-10-13 013125.png-e23ae3733e13e806cd64171bdc8b8c78.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Poisonous Ring of Spores.png"
-dest_files=["res://.godot/imported/Poisonous Ring of Spores.png-07c5a747457bc024a3e6314f49b33f52.ctex"]
+source_file="res://assets/UI/Screenshot 2025-10-13 013125.png"
+dest_files=["res://.godot/imported/Screenshot 2025-10-13 013125.png-e23ae3733e13e806cd64171bdc8b8c78.ctex"]
 
 [params]
 

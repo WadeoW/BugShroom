@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2i1cmajwechh"
-path="res://.godot/imported/bugshroom_title_screen.png-670bdedf0d3e61c5b836839f14ad98c1.ctex"
+uid="uid://6nuewhwwdyg8"
+path="res://.godot/imported/Confusing Spore Cloud (1).png-e8228aad1c0a22f0df4d222c5799968e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bugshroom_title_screen.png"
-dest_files=["res://.godot/imported/bugshroom_title_screen.png-670bdedf0d3e61c5b836839f14ad98c1.ctex"]
+source_file="res://assets/UI/Confusing Spore Cloud (1).png"
+dest_files=["res://.godot/imported/Confusing Spore Cloud (1).png-e8228aad1c0a22f0df4d222c5799968e.ctex"]
 
 [params]
 

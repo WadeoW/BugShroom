@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csj2wtjaplkk0"
-path="res://.godot/imported/Screenshot 2025-10-13 013125.png-f87569644aea16f2c0401895948f3381.ctex"
+uid="uid://c2i1cmajwechh"
+path="res://.godot/imported/bugshroom_title_screen.png-61bed67731498beb843ed40140398846.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Screenshot 2025-10-13 013125.png"
-dest_files=["res://.godot/imported/Screenshot 2025-10-13 013125.png-f87569644aea16f2c0401895948f3381.ctex"]
+source_file="res://assets/UI/bugshroom_title_screen.png"
+dest_files=["res://.godot/imported/bugshroom_title_screen.png-61bed67731498beb843ed40140398846.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://166u6lrocxlm"
-path="res://.godot/imported/Ink icon.png-9c5b776bb13a44294fe33cf4575b52f4.ctex"
+path="res://.godot/imported/Ink icon.png-c87ff5dace8b0e1d64a673664f4086a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Ink icon.png"
-dest_files=["res://.godot/imported/Ink icon.png-9c5b776bb13a44294fe33cf4575b52f4.ctex"]
+source_file="res://assets/UI/Ink icon.png"
+dest_files=["res://.godot/imported/Ink icon.png-c87ff5dace8b0e1d64a673664f4086a3.ctex"]
 
 [params]
 
