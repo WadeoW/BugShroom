@@ -39,7 +39,7 @@ func _ready():
 		#queue_free()
 		#return
 	#bug_count += 1
-
+	
 	target = _get_closest_player()
 
 #-----------------------------------
@@ -106,9 +106,13 @@ func _chase_player() -> void:
 	var direction := (target.global_position - global_position).normalized()
 	direction.y = 0
 	look_at(target.global_position, Vector3.UP)
-	if not is_trapped:
+	rotation.x = 0
+	rotation.z = 0
+	if not is_trapped and (position - target.position).length() > 0.1:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
+	else:
+		velocity = Vector3.ZERO
 
 func _idle_behavior(delta: float) -> void:
 	wander_timer -= delta

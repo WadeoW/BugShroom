@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dhyn6yp161kp5"
-path="res://.godot/imported/aphid.fbx-f6f5f3da1779c14963ad08098eb20287.scn"
+path="res://.godot/imported/aphid.fbx-fc542b279a289ae090f92415c8822f5d.scn"
 
 [deps]
 
-source_file="res://entities/aphid/aphid.fbx"
-dest_files=["res://.godot/imported/aphid.fbx-f6f5f3da1779c14963ad08098eb20287.scn"]
+source_file="res://entities/Aphid/aphid.fbx"
+dest_files=["res://.godot/imported/aphid.fbx-fc542b279a289ae090f92415c8822f5d.scn"]
 
 [params]
 

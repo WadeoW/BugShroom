@@ -9,6 +9,10 @@ radius = 5.0
 emission_shape = 2
 emission_sphere_radius = 5.0
 gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+tangential_accel_min = -0.100002
+tangential_accel_max = 0.0999978
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78552"]
 albedo_color = Color(1, 1, 0.0352941, 1)
@@ -24,6 +28,8 @@ rings = 4
 emission_shape = 1
 emission_sphere_radius = 5.0
 gravity = Vector3(0, -0.01, 0)
+tangential_accel_min = -0.100002
+tangential_accel_max = 0.0999978
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_la2mg"]
 albedo_color = Color(1, 1, 0.0352941, 1)
