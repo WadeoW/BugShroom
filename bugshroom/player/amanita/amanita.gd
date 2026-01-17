@@ -61,7 +61,6 @@ var current_animation: String = ""
 func _ready() -> void:
 	animation_player.play("uncrouch")
 	var current_animation = animation_player.current_animation
-	
 	#class selection and ability loading
 	if player_id == 1:
 		mushroom_type = PlayerData.p1_mushroom_type

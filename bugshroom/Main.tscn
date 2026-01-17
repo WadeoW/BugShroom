@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=38 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="Texture2D" uid="uid://c471r6e2fi8ws" path="res://assets/environment/rock/rock textures/ground_v01_gorund_mat_BaseColor.png" id="1_20pc6"]
@@ -13,11 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://bwv1obth85s1a" path="res://tasks/dead_bug_task_spawner.tscn" id="10_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://8gxwurqg07or" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
 [ext_resource type="PackedScene" uid="uid://ddxy8prak70er" path="res://assets/environment/tree/redwood.tscn" id="13_j4qnp"]
-[ext_resource type="Script" path="res://player_2_spawner.gd" id="13_mxvw5"]
+[ext_resource type="Script" uid="uid://j0ano1abul83" path="res://player_2_spawner.gd" id="13_mxvw5"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://beh73njk1ypty" path="res://assets/environment/log/log_bugshroom_v01.fbx" id="15_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://drjomi27mdxip" path="res://assets/environment/rock/rock_1.tscn" id="16_sc1dx"]
 [ext_resource type="PackedScene" uid="uid://ba406h63j4154" path="res://assets/environment/rock/big_rock.tscn" id="17_5tuhn"]
+[ext_resource type="Material" uid="uid://c8ct5wrjs116m" path="res://assets/environment/log/log_textures/log_texture.tres" id="17_sc1dx"]
 [ext_resource type="PackedScene" uid="uid://cj7pwf21i24i8" path="res://assets/environment/rock/rock_type_2.tscn" id="18_kjvhd"]
 [ext_resource type="AudioStream" uid="uid://ik5107csyasx" path="res://assets/Sound/mushroom_whimsy (2).mp3" id="20_2gh4u"]
 
@@ -3169,6 +3170,9 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 368.368, 1.5457, -369.001)
 [node name="redwood6" parent="environment/redwoods" instance=ExtResource("13_j4qnp")]
 transform = Transform3D(5.01329, 0, -8.65256, 0, 10, 0, 8.65256, 0, 5.01329, 116.833, 1.5457, 296.444)
 
+[node name="Plane_013" parent="environment/redwoods/redwood6" index="0"]
+material_override = ExtResource("17_sc1dx")
+
 [node name="redwood7" parent="environment/redwoods" instance=ExtResource("13_j4qnp")]
 transform = Transform3D(8.60822, 0, -5.08906, 0, 10, 0, 5.08906, 0, 8.60822, -275.564, 2.56874, 58.8954)
 
@@ -3342,6 +3346,7 @@ transform = Transform3D(0.230627, 0, -2.99112, 0, 3, 0, 2.99112, 0, 0.230627, -3
 
 [node name="Cylinder" parent="environment/log/log_bugshroom_v01" index="0"]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, -10.0065, 0)
+material_override = ExtResource("17_sc1dx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="environment/log/log_bugshroom_v01/Cylinder" index="0"]
 
@@ -3353,6 +3358,7 @@ transform = Transform3D(2.31704, 0, 1.90561, 0, 3, 0, -1.90561, 0, 2.31704, 316.
 
 [node name="Cylinder" parent="environment/log/log_bugshroom_v02" index="0"]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, -10.0065, 0)
+material_override = ExtResource("17_sc1dx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="environment/log/log_bugshroom_v02/Cylinder" index="0"]
 
@@ -3364,6 +3370,7 @@ transform = Transform3D(2.31704, 0, 1.90561, 0, 3, 0, -1.90561, 0, 2.31704, 316.
 
 [node name="Cylinder" parent="environment/log/log_bugshroom_v03" index="0"]
 transform = Transform3D(41.0067, 91.2056, 1.08726e-05, 0, -1.19209e-05, 100, 91.2056, -41.0067, -4.88837e-06, -55.9006, -10.0065, -72.607)
+material_override = ExtResource("17_sc1dx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="environment/log/log_bugshroom_v03/Cylinder" index="0"]
 

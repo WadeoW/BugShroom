@@ -6,7 +6,7 @@ extends BugBase
 @export var knockback_force: float = 40.0
 @export var beetle_attack_range: float = 6
 @onready var animation_player: AnimationPlayer = $beetle_walkanimation/AnimationPlayer
-
+const hit_delay = 0.4 #change with attack animation speed
 
 func _ready() -> void:
 	speed = beetle_speed
@@ -26,9 +26,11 @@ func _try_attack() -> void:
 	var distance := global_position.distance_to(target.global_position)
 	if distance <= attack_range:
 		can_attack = false
-		
+		animation_player.play("beetle_animations/beetle_attack2")
 		var direction := (target.global_position - global_position).normalized()
 		direction.y = 0
+		
+		await get_tree().create_timer(hit_delay).timeout
 		
 		if target.has_method("take_damage"):
 			target.take_damage(damage)

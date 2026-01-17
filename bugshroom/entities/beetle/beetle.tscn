@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=4 uid="uid://dnyuja84wopu2"]
+[gd_scene load_steps=12 format=4 uid="uid://dnyuja84wopu2"]
 
 [ext_resource type="Script" uid="uid://bi5kql0tljcml" path="res://entities/beetle/beetle.gd" id="1_83cmc"]
+[ext_resource type="AnimationLibrary" uid="uid://1xbackui1r0x" path="res://entities/beetle/beetle_animations.glb" id="2_t1852"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_83cmc"]
 
@@ -298,7 +299,7 @@ bones/6/parent = 5
 bones/6/rest = Transform3D(0.578782, -0.639436, -0.506096, 0.738167, 0.67457, -0.00811402, 0.346585, -0.368887, 0.862439, 1.19209e-07, 2.28604, -8.9407e-08)
 bones/6/enabled = true
 bones/6/position = Vector3(1.19209e-07, 2.28604, -8.9407e-08)
-bones/6/rotation = Quaternion(0.109222, 0.0224329, 0.420683, 0.90033)
+bones/6/rotation = Quaternion(0.109222, 0.0224328, 0.420683, 0.90033)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "Bone.006"
 bones/7/parent = 0
@@ -377,7 +378,8 @@ skin = SubResource("Skin_ex1rq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="beetle_walkanimation"]
 libraries = {
-&"": SubResource("AnimationLibrary_1nn7m")
+&"": SubResource("AnimationLibrary_1nn7m"),
+&"beetle_animations": ExtResource("2_t1852")
 }
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
