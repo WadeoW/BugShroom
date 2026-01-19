@@ -441,6 +441,7 @@ spring_length = 3.0
 [node name="Camera3D" type="Camera3D" parent="CameraMount/CameraYaw/CameraPitch/SpringArm3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58884, 0.645015, 2.71468)
+keep_aspect = 0
 fov = 85.0
 
 [node name="AttackHitBox" type="ShapeCast3D" parent="."]

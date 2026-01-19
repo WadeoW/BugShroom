@@ -708,7 +708,7 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xpsje"]
 radius = 0.367777
-height = 1.60459
+height = 1.9557
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xtfrk"]
 radius = 0.07
@@ -1088,7 +1088,7 @@ libraries = {
 speed_scale = 1.2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82548, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.985491, 0)
 shape = SubResource("CapsuleShape3D_xpsje")
 
 [node name="CameraMount" type="Node3D" parent="."]
@@ -1103,10 +1103,12 @@ script = ExtResource("2_cuniq")
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraMount/CameraYaw/CameraPitch"]
 shape = SubResource("SphereShape3D_xtfrk")
 spring_length = 3.0
+margin = 0.2
 
 [node name="Camera3D" type="Camera3D" parent="CameraMount/CameraYaw/CameraPitch/SpringArm3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58884, 0.645015, 2.71468)
+keep_aspect = 0
 fov = 85.0
 
 [node name="AttackHitBox" type="ShapeCast3D" parent="."]
