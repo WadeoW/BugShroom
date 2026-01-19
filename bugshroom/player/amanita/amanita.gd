@@ -54,7 +54,7 @@ var is_rooted = false
 
 #used for making smooth player turning
 var last_direction = Vector3.FORWARD
-@export var rotation_speed = 3
+@export var rotation_speed = 5
 
 var current_animation: String = ""
 
@@ -78,6 +78,7 @@ func _ready() -> void:
 	elif mushroom_type == PlayerData.MushroomType.Puffball:
 		ability_type = load("res://entities/abilities/SporeCloud.tscn")
 		print("ability type is spore cloud")
+	
 	#set up health and stamina bars
 	health_bar.max_value = max_health
 	stamina_bar.max_value = max_stamina

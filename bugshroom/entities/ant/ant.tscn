@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=4 uid="uid://c3xd2dwnrje22"]
+[gd_scene load_steps=17 format=4 uid="uid://c3xd2dwnrje22"]
 
 [ext_resource type="Script" uid="uid://cf8ryq2ykfj4y" path="res://entities/ant/ant.gd" id="1_oav7h"]
+[ext_resource type="AnimationLibrary" uid="uid://dapalebxirms0" path="res://entities/ant/ant_animations.glb" id="2_0fa7d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tqyqo"]
 resource_name = "ant mat"
@@ -540,24 +541,33 @@ height = 3.2108
 [sub_resource type="BoxShape3D" id="BoxShape3D_0fa7d"]
 size = Vector3(2.47374, 0.0512695, 2.09338)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f17ns"]
-animation = &"memewalk"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0fa7d"]
 animation = &"walk"
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_7i056"]
+
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ubgiu"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l0lss"]
+animation = &"ant_animations/beetle_attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v63gx"]
+animation = &"ant_animations/ant_death"
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7i056"]
-graph_offset = Vector2(-447.736, -33.6096)
+graph_offset = Vector2(-724.928, -93.6752)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_0fa7d")
-nodes/Animation/position = Vector2(-400, 40)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_f17ns")
-"nodes/Animation 2/position" = Vector2(-340, 240)
-nodes/OneShot/node = SubResource("AnimationNodeOneShot_ubgiu")
-nodes/OneShot/position = Vector2(0, 40)
-nodes/output/position = Vector2(340, 80)
-node_connections = [&"OneShot", 0, &"Animation", &"OneShot", 1, &"Animation 2", &"output", 0, &"OneShot"]
+nodes/Animation/position = Vector2(-260, -40)
+nodes/AttackOneShot/node = SubResource("AnimationNodeOneShot_7i056")
+nodes/AttackOneShot/position = Vector2(500, 40)
+nodes/DeathOneShot/node = SubResource("AnimationNodeOneShot_ubgiu")
+nodes/DeathOneShot/position = Vector2(80, 0)
+nodes/attack/node = SubResource("AnimationNodeAnimation_l0lss")
+nodes/attack/position = Vector2(80, 320)
+nodes/death/node = SubResource("AnimationNodeAnimation_v63gx")
+nodes/death/position = Vector2(-320, 180)
+nodes/output/position = Vector2(800, 80)
+node_connections = [&"AttackOneShot", 0, &"DeathOneShot", &"AttackOneShot", 1, &"attack", &"DeathOneShot", 0, &"Animation", &"DeathOneShot", 1, &"death", &"output", 0, &"AttackOneShot"]
 
 [node name="CharacterBody3D" type="CharacterBody3D" groups=["ants", "bug"]]
 collision_layer = 135
@@ -596,7 +606,7 @@ bones/3/parent = 2
 bones/3/rest = Transform3D(0.280791, -0.959769, 5.5403e-08, 0.959769, 0.280791, 5.54306e-08, -6.87572e-08, 3.76096e-08, 1, -1.78814e-07, 1.33755, -3.19744e-14)
 bones/3/enabled = true
 bones/3/position = Vector3(-1.78814e-07, 1.33755, -3.19744e-14)
-bones/3/rotation = Quaternion(-5.56733e-09, 3.87881e-08, 0.59967, 0.800247)
+bones/3/rotation = Quaternion(-5.56734e-09, 3.87881e-08, 0.59967, 0.800247)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Bone.019"
 bones/4/parent = 3
@@ -794,7 +804,8 @@ skin = SubResource("Skin_n6mvp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ant"]
 libraries = {
-&"": SubResource("AnimationLibrary_rwsh7")
+&"": SubResource("AnimationLibrary_rwsh7"),
+&"ant_animations": ExtResource("2_0fa7d")
 }
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
@@ -809,6 +820,9 @@ shape = SubResource("BoxShape3D_0fa7d")
 root_node = NodePath("../ant")
 tree_root = SubResource("AnimationNodeBlendTree_7i056")
 anim_player = NodePath("../ant/AnimationPlayer")
-parameters/OneShot/active = false
-parameters/OneShot/internal_active = false
-parameters/OneShot/request = 0
+parameters/AttackOneShot/active = false
+parameters/AttackOneShot/internal_active = false
+parameters/AttackOneShot/request = 0
+parameters/DeathOneShot/active = false
+parameters/DeathOneShot/internal_active = false
+parameters/DeathOneShot/request = 0

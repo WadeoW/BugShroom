@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://dgrab4gkul063"]
+[gd_scene load_steps=42 format=4 uid="uid://cupeg06yv12wq"]
 
 [ext_resource type="AnimationLibrary" uid="uid://ctume7g8rovgp" path="res://player/Inkcap/INK-Shroom_Run_Jump_Idel.glb" id="1_wutlb"]
 [ext_resource type="Script" uid="uid://bk1tom2vm8q45" path="res://player/Inkcap/inkcap.gd" id="1_xtfrk"]

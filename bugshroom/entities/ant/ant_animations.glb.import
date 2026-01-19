@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
-uid="uid://cg2nuddne72u5"
-path="res://.godot/imported/PuffShroom_rigged.fbx-9b4a8e82f3122124a49168403afba66f.scn"
+type="AnimationLibrary"
+uid="uid://dapalebxirms0"
+path="res://.godot/imported/ant_animations.glb-18796a004bcbb9b94c02e9622e894168.res"
 
 [deps]
 
-source_file="res://player/Puffshroom/PuffShroom_rigged.fbx"
-dest_files=["res://.godot/imported/PuffShroom_rigged.fbx-9b4a8e82f3122124a49168403afba66f.scn"]
+source_file="res://entities/ant/ant_animations.glb"
+dest_files=["res://.godot/imported/ant_animations.glb-18796a004bcbb9b94c02e9622e894168.res"]
 
 [params]
 
@@ -28,11 +28,10 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
+gltf/naming_version=1
+gltf/embedded_image_handling=1

@@ -34,12 +34,6 @@ var is_trapped: bool = false
 # Setup
 #-----------------------------------
 func _ready():
-	# Limit bug count
-	#if bug_count >= MAX_BUGS:
-		#queue_free()
-		#return
-	#bug_count += 1
-	
 	target = _get_closest_player()
 
 #-----------------------------------

@@ -57,7 +57,7 @@ var is_rooted = false
 
 #used for making smooth player turning
 var last_direction = Vector3.FORWARD
-@export var rotation_speed = 3
+@export var rotation_speed = 5
 
 var current_animation: String = ""
 
