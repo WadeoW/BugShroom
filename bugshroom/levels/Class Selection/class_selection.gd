@@ -7,6 +7,7 @@ var cursor_speed = 500
 @onready var amanita: Button = $CanvasLayer2/Amanita
 @onready var puffball: Button = $CanvasLayer2/Puffball
 @onready var inkcap: Button = $CanvasLayer2/Inkcap
+
 @onready var player_1_class_select: Label = $CanvasLayer/Player1ClassSelect
 @onready var player_2_class_select: Label = $CanvasLayer/Player2ClassSelect
 
@@ -17,7 +18,8 @@ var cursor_speed = 500
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
-	
+	cursor.global_position = Vector2(100, 100)
+	cursor_2.global_position = Vector2(200, 100)
 	
 
 func _process(delta: float) -> void:
@@ -59,7 +61,7 @@ func _on_inkcap_pressed() -> void:
 	print("inkcap button being pressed")
 	if cursor.overlaps_area($CanvasLayer2/Inkcap/Area2D):
 		PlayerData.p1_mushroom_type = PlayerData.MushroomType.Inkcap
-		player_1_class_select.text = "Player 1 Class: \n Inkcap"
+		player_1_class_select.text = "Player 1 Class: \nInkcap"
 		#print("player 1 selected inkcap")
 		#print(PlayerData.p1_mushroom_type)
 		

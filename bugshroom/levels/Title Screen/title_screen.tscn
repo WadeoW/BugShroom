@@ -25,8 +25,6 @@ script = ExtResource("1_xrj4a")
 layer = 2
 
 [node name="StartButton" type="Button" parent="CanvasLayer2"]
-z_index = 2
-y_sort_enabled = true
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -38,6 +36,8 @@ offset_right = 101.0
 offset_bottom = 248.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 27
 text = "Start
 "
@@ -49,9 +49,7 @@ position = Vector2(36, 9)
 position = Vector2(63, 33)
 shape = SubResource("RectangleShape2D_ksdvi")
 
-[node name="TutorialButton" type="Button" parent="CanvasLayer2"]
-z_index = 2
-y_sort_enabled = true
+[node name="TutorialButton" type="Button" parent="CanvasLayer2" groups=["button"]]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -71,24 +69,7 @@ text = "controls"
 position = Vector2(101, 26)
 shape = SubResource("RectangleShape2D_4lyju")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2"]
-visible = false
-y_sort_enabled = true
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -337.0
-offset_top = 47.0
-offset_right = 337.0
-offset_bottom = 187.0
-grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 80
-text = "BugShroom"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Cursor" parent="CanvasLayer2" instance=ExtResource("2_ksdvi")]
-z_index = 6
 position = Vector2(428, 295)
 
 [node name="Cursor2" parent="CanvasLayer2" instance=ExtResource("2_ksdvi")]
@@ -100,13 +81,11 @@ texture = ExtResource("3_4lyju")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="BackgroundImage" type="TextureRect" parent="CanvasLayer"]
-y_sort_enabled = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 texture = ExtResource("2_aklpn")
 expand_mode = 1
 

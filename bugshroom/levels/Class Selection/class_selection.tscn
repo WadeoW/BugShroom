@@ -28,7 +28,7 @@ script = ExtResource("1_g06vg")
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="Amanita" type="Button" parent="CanvasLayer2"]
+[node name="Amanita" type="Button" parent="CanvasLayer2" groups=["button"]]
 z_index = 2
 y_sort_enabled = true
 anchors_preset = 8
@@ -52,7 +52,7 @@ text = "Amanita
 position = Vector2(58, 32)
 shape = SubResource("RectangleShape2D_gypj8")
 
-[node name="Puffball" type="Button" parent="CanvasLayer2"]
+[node name="Puffball" type="Button" parent="CanvasLayer2" groups=["button"]]
 z_index = 2
 y_sort_enabled = true
 anchors_preset = 8
@@ -76,7 +76,7 @@ text = "Puffball
 position = Vector2(58, 32)
 shape = SubResource("RectangleShape2D_gypj8")
 
-[node name="Inkcap" type="Button" parent="CanvasLayer2"]
+[node name="Inkcap" type="Button" parent="CanvasLayer2" groups=["button"]]
 z_index = 2
 y_sort_enabled = true
 anchors_preset = 8
@@ -117,15 +117,13 @@ vertical_alignment = 1
 
 [node name="Cursor" parent="CanvasLayer2" instance=ExtResource("2_gypj8")]
 z_index = 2
-position = Vector2(391, 239)
 
 [node name="Cursor2" parent="CanvasLayer2" instance=ExtResource("2_gypj8")]
 z_index = 2
-position = Vector2(784, 255)
 cursor_id = 2
 texture = ExtResource("3_qh1a7")
 
-[node name="BackButton" type="Button" parent="CanvasLayer2"]
+[node name="BackButton" type="Button" parent="CanvasLayer2" groups=["button"]]
 offset_left = 33.0
 offset_top = 30.0
 offset_right = 189.0
@@ -170,9 +168,8 @@ theme_override_font_sizes/font_size = 20
 text = "Player 2 Class:
 Puffball"
 
-[node name="StartButton" type="Button" parent="CanvasLayer"]
-z_index = 2
-y_sort_enabled = true
+[node name="StartButton" type="Button" parent="CanvasLayer" groups=["button"]]
+z_index = 4
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
