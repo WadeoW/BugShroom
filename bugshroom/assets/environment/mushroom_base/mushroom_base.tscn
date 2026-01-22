@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://8gxwurqg07or"]
+[gd_scene load_steps=8 format=3 uid="uid://8gxwurqg07or"]
 
 [ext_resource type="PackedScene" uid="uid://bu311vsdevd1u" path="res://assets/environment/mother/mother.tscn" id="1_3kbck"]
 [ext_resource type="Script" uid="uid://dgjrp3rpuqtp" path="res://assets/environment/mushroom_base/mushroom_base.gd" id="1_bq6hn"]
@@ -7,6 +7,16 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c6i3y"]
 radius = 39.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bq6hn"]
+transparency = 1
+cull_mode = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_i3ik1"]
+material = SubResource("StandardMaterial3D_bq6hn")
+radius = 39.0
+height = 78.0
 
 [node name="MushroomBase" type="Node3D"]
 script = ExtResource("1_bq6hn")
@@ -98,11 +108,22 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35, 0,
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35, 0, -6)
 
 [node name="Area3D" type="Area3D" parent="." groups=["player"]]
-collision_layer = 4
+collision_layer = 8
 collision_mask = 12
 
-[node name="AntiBugZone" type="CollisionShape3D" parent="Area3D"]
+[node name="PlayerDetectionZone" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_c6i3y")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="AntiBugZone" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("SphereShape3D_c6i3y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+layers = 4
+mesh = SubResource("SphereMesh_i3ik1")
 
 [node name="HealTimer" type="Timer" parent="."]
 autostart = true

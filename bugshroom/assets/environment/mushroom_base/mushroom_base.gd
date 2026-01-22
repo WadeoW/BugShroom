@@ -2,6 +2,7 @@ extends Node3D
 
 var player_in_base = true
 var overlapping_bodies = []
+@export var healing_amount:float = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,9 +26,7 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 #heal player when in base
 func _on_heal_timer_timeout() -> void:
-	if player_in_base and overlapping_bodies:
+	if player_in_base:
 		for player in overlapping_bodies:
-			if player.current_health < player.max_health:
-				player.current_health += 10
-				player.update()
-				print("healing")
+			if player.has_method("heal"):
+				player.heal(healing_amount)

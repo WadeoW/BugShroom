@@ -904,7 +904,7 @@ mesh = SubResource("ArrayMesh_duln8")
 skeleton = NodePath("")
 
 [node name="grass_89" type="MeshInstance3D" parent="environment/grass_bugshroom"]
-transform = Transform3D(63.6078, -77.1625, -3.37288e-06, 0, -4.37114e-06, 100, -77.1625, -63.6078, -2.78039e-06, 282.728, -0.526835, -142.759)
+transform = Transform3D(63.6078, -77.1625, -3.37288e-06, 0, -4.37114e-06, 100, -77.1625, -63.6078, -2.78039e-06, 231.027, -0.526839, -135.794)
 mesh = SubResource("ArrayMesh_duln8")
 skeleton = NodePath("")
 
@@ -3185,6 +3185,9 @@ transform = Transform3D(7.87301, 0, 6.16569, 0, 10, 0, -6.16569, 0, 7.87301, -20
 
 [node name="redwood9" parent="environment/redwoods" instance=ExtResource("13_j4qnp")]
 transform = Transform3D(6.83771, 0, -7.29697, 0, 10, 0, 7.29697, 0, 6.83771, 255.75, 2.56874, -43.941)
+
+[node name="Plane_013" parent="environment/redwoods/redwood9" index="0"]
+transform = Transform3D(-731.059, 300.805, 202.333, 468.128, -1.09573e-05, 461.66, 496.396, 443.007, -137.386, 6.10509, 30.2097, -14.0214)
 
 [node name="walls" type="Node" parent="environment"]
 

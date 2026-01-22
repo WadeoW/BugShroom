@@ -170,7 +170,12 @@ func take_damage(amount):
 	update()
 	if current_health <= 0 and !is_dead:
 		die()
-
+		
+func heal(amount):
+	if current_health < max_health:
+		current_health += amount
+	update()
+	
 #Root down toggle function
 func toggle_root():
 	is_rooted = !is_rooted

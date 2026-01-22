@@ -40,11 +40,13 @@ var can_attack: bool = true
 
 
 #ability and class variables
+var can_cast_abil = true
 var ability_active = false
 var goop_ball_launch_speed: float = 10
 @onready var ability_type = null
 var mushroom_type = PlayerData.MushroomType.Inkcap
 @export var char_model: PackedScene
+@onready var ability_cooldown: Timer = $AbilityCooldown
 
 #Root Down Mechanic
 var is_rooted = false
@@ -98,8 +100,10 @@ func _unhandled_input(event):
 	if event.is_action_pressed("root_%s" % [player_id]):
 		toggle_root()
 		
-	if event.is_action_pressed("interact_%s" % [player_id]) and ability_active == false:
+#ability casting
+	if event.is_action_pressed("interact_%s" % [player_id]) and can_cast_abil == true:
 		cast_ability(ability_type)	
+		#debug
 		if ability_active:
 			print("abilty active = true")
 		else:
@@ -108,7 +112,7 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	if animation_player.animation_changed:
 		current_animation = animation_player.current_animation
-	
+
 	# add the gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -119,6 +123,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 		animation_player.play("INK-Shroom_Run_Jump_Idel/Jump")
 
+#handle attack
 	if Input.is_action_just_pressed("attack_%s" % [player_id]) and attack_cooldown.is_stopped():
 		attack()
 		
@@ -172,6 +177,11 @@ func take_damage(amount):
 	if current_health <= 0 and !is_dead:
 		die()
 
+func heal(amount):
+	if current_health < max_health:
+		current_health += amount
+	update()
+	
 #Root down toggle function
 func toggle_root():
 	is_rooted = !is_rooted
@@ -203,6 +213,7 @@ func attack():
 func cast_ability(ability_type):
 	#animation_player.play("headshakeanimation/headshake")
 	ability_active = true
+	can_cast_abil = false
 	var spawn := load("res://entities/abilities/GoopBall.tscn").instantiate() as RigidBody3D
 	add_sibling(spawn)
 	spawn.position = position + Vector3.UP * 2
@@ -230,9 +241,12 @@ func respawn():
 	global_position = Vector3(5, 1, 5)
 	print("player", player_id, "respawned!")
 	current_health = max_health
-	update()
 	current_stamina = max_stamina
 	update()
 	set_physics_process(true)
 	
 	
+
+
+func _on_ability_cooldown_timeout() -> void:
+	can_cast_abil = true

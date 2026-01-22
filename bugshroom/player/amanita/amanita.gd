@@ -12,7 +12,7 @@ var gravity = 9.8
 @export var player_id: int = 1
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
-
+var is_jumping = false
 #respawn
 @export var respawn_delay: float = 5.0
 
@@ -109,12 +109,13 @@ func _physics_process(delta):
 	# add the gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
+	else:
+		is_jumping = false
 
 # handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
 		velocity.y = JUMP_VELOCITY
-
+		is_jumping = true
 
 	if Input.is_action_just_pressed("attack_%s" % [player_id]) and attack_cooldown.is_stopped():
 		attack()
@@ -139,15 +140,15 @@ func _physics_process(delta):
 	if not is_rooted  and !is_dead:
 		if direction:
 			last_direction = direction
-			if animation_player.current_animation != "walkanimation" and animation_player.current_animation != "mushroomdude_allanimations2/attack" and animation_player.current_animation != "headshakeanimation/headshake" and animation_player.current_animation != "take_damage": 
-				animation_player.play("walkanimation")
+			#if animation_player.current_animation != "walkanimation" and animation_player.current_animation != "mushroomdude_allanimations2/attack" and animation_player.current_animation != "headshakeanimation/headshake" and animation_player.current_animation != "take_damage": 
+				#animation_player.play("walkanimation")
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 		else:
 			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
-			if !animation_player.is_playing():
-				animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
+			#if !animation_player.is_playing():
+				#animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	else:
 		velocity.x = 0
 		velocity.z = 0 
@@ -168,7 +169,12 @@ func take_damage(amount):
 	update()
 	if current_health <= 0 and !is_dead:
 		die()
-
+		
+func heal(amount):
+	if current_health < max_health:
+		current_health += amount
+	update()
+	
 #Root down toggle function
 func toggle_root():
 	is_rooted = !is_rooted

@@ -5,6 +5,7 @@ extends BugBase
 @export var beetle_damage: float = 40.0
 @export var knockback_force: float = 40.0
 @export var beetle_attack_range: float = 6
+@export var beetle_nutrient_value: float = 100
 @onready var animation_player: AnimationPlayer = $beetle_walkanimation/AnimationPlayer
 const hit_delay = 0.4 #change with attack animation speed
 

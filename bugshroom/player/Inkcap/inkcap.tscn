@@ -729,6 +729,8 @@ bg_color = Color(0.73, 0.73, 0, 0.686275)
 bg_color = Color(0.9, 0.66, 0, 1)
 
 [node name="Inkcap" type="CharacterBody3D" groups=["Inkcap", "player"]]
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("1_xtfrk")
 
 [node name="inkmushroom" type="Node3D" parent="."]
@@ -1121,6 +1123,10 @@ collision_mask = 14
 wait_time = 0.8
 one_shot = true
 
+[node name="AbilityCooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
@@ -1185,3 +1191,5 @@ scale = Vector2(1.76, 1.76)
 text = "Stamina"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="timeout" from="AbilityCooldown" to="." method="_on_ability_cooldown_timeout"]

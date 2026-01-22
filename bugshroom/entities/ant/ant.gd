@@ -9,6 +9,7 @@ extends BugBase
 @onready var anim_state = animation_tree.get("parameters/playback")
 var has_alerted_allies: bool = false
 
+
 func _ready():
 	speed = ant_speed
 	health = ant_health

@@ -13,6 +13,7 @@ var gravity = 9.8
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
 
+
 #respawn
 @export var respawn_delay: float = 5.0
 
