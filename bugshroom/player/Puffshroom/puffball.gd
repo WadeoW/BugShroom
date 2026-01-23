@@ -6,6 +6,8 @@ signal player_death
 var speed
 var WALK_SPEED = 6.0
 var SPRINT_SPEED = 10.0
+const ACCELERATION = 7
+const MAX_SPEED = 12.0
 const JUMP_VELOCITY = 6
 const SENSITIVITY = 0.005
 var gravity = 9.8
@@ -31,6 +33,8 @@ var stamina_drain_rate = 5.0 #stamina drained per second during action
 #attack variables
 @export var attack_range: float = 3.0
 @export var attack_damage: float = 20.0
+const ROLLING_ATTACK_DAMAGE: float = 5.0 # this is multiplied by speed in xz plane
+const MIN_ROLLING_SPEED_FOR_ATTACK: float = 5.0
 var can_attack: bool = true
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var attack_hit_box: ShapeCast3D = $AttackHitBox
@@ -71,22 +75,12 @@ func _ready() -> void:
 		mushroom_type = PlayerData.p2_mushroom_type
 		print("player 2 mushroom type:", PlayerData.p2_mushroom_type)
 	
-	if mushroom_type == 0:
-		ability_type = load("res://entities/abilities/SporeRingAbility.tscn")
-		print("ability type is spore ring")
-	elif mushroom_type == 1:
-		ability_type = load("res://entities/abilities/goop_ability.tscn")
-	elif mushroom_type == PlayerData.MushroomType.Puffball:
-		ability_type = load("res://entities/abilities/SporeCloud.tscn")
-		print("ability type is spore cloud")
-	
 	#set up health and stamina bars
 	health_bar.max_value = max_health
 	stamina_bar.max_value = max_stamina
 	health_bar.value = health_bar.max_value
 	stamina_bar.value = stamina_bar.max_value
 	
-
 
 func update() -> void:
 	health_bar.value = current_health
@@ -98,7 +92,7 @@ func _unhandled_input(event):
 		toggle_root()
 		
 	if event.is_action_pressed("interact_%s" % [player_id]) and ability_active == false and is_on_floor():
-		cast_ability(ability_type)	
+		cast_ability()	
 		if ability_active:
 			print("abilty active = true")
 		else:
@@ -143,16 +137,25 @@ func _physics_process(delta):
 			last_direction = direction
 			if animation_player.current_animation != "roll" and animation_player.current_animation != "ability_use" and animation_player.current_animation != "take_damage": 
 				animation_player.play("roll")
-			velocity.x = direction.x * speed
-			velocity.z = direction.z * speed
+
+			# play rolling animation based on speed, at max speed the animation is played at 4x speed
+			animation_player.speed_scale = Vector2(velocity.x, velocity.z).length() / (MAX_SPEED * 0.25)
+
+			velocity.x += direction.x * ACCELERATION * delta
+			velocity.z += direction.z * ACCELERATION * delta
 		else:
 			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 			#if !animation_player.is_playing():
 				#animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	else:
+		animation_player.speed_scale = 1
 		velocity.x = 0
 		velocity.z = 0 
+	
+	# clamping the x and z speed so the horizontal velocity doesnt exceed MAX_SPEED
+	var clampedVelocity = Vector2(velocity.x, velocity.z).limit_length(MAX_SPEED)
+	velocity = Vector3(clampedVelocity.x, velocity.y, clampedVelocity.y)
 	
 	if is_rooted:
 		if current_stamina <= max_stamina:
@@ -160,7 +163,7 @@ func _physics_process(delta):
 		update()
 	
 	$CharacterModel.rotation.y = lerp_angle($CharacterModel.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
-
+	
 	move_and_slide()
 
 	
@@ -203,11 +206,17 @@ func attack():
 				print("player was attacked")
 			i += 1
 
-	
-func cast_ability(ability_type):
+# area contact with enemies for speed based damage and knockback
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("bug") and Vector2(velocity.x, velocity.z).length() > MIN_ROLLING_SPEED_FOR_ATTACK:
+		var rollDamage = clampf(Vector2(velocity.x, velocity.z).length() * ROLLING_ATTACK_DAMAGE, 10, 50)
+		body.take_damage(rollDamage)
+		print(body.name, " took ", rollDamage, " rolling damage")
+
+func cast_ability():
 	animation_player.play("ability_use")
 	ability_active = true
-	var spawn = ability_type.instantiate()
+	var spawn = load("res://entities/abilities/SporeCloud.tscn").instantiate()
 	add_sibling(spawn)
 	print("ability has been cast")
 	

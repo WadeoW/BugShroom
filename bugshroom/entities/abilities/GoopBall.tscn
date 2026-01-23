@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dfe4mxsr5rr3b"]
 
-[ext_resource type="Script" path="res://entities/abilities/goop_ball.gd" id="1_w42yo"]
+[ext_resource type="Script" uid="uid://csd0u7aewt8ef" path="res://entities/abilities/goop_ball.gd" id="1_w42yo"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_llpyh"]
 

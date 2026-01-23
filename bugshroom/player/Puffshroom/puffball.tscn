@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://dl2tthivh6a3e"]
+[gd_scene load_steps=27 format=4 uid="uid://dl2tthivh6a3e"]
 
 [ext_resource type="Script" uid="uid://chivoxalb5yd" path="res://player/Puffshroom/puffball.gd" id="1_0vhsy"]
 [ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_4tcne"]
@@ -352,6 +352,10 @@ bg_color = Color(0.73, 0.73, 0, 0.686275)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knpp7"]
 bg_color = Color(0.9, 0.66, 0, 1)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xhpx3"]
+radius = 0.559217
+height = 1.50688
+
 [node name="Puffball" type="CharacterBody3D" node_paths=PackedStringArray("health_bar", "stamina_bar") groups=["Puffball", "player"]]
 collision_layer = 9
 collision_mask = 9
@@ -526,3 +530,12 @@ scale = Vector2(1.76, 1.76)
 text = "Stamina"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-6.55671e-08, 1.5, 0, -1.5, -6.55671e-08, 0, 0, 0, 1.5, 0, 0.6, 0)
+shape = SubResource("CapsuleShape3D_xhpx3")
+debug_color = Color(0.999465, 0, 0.112206, 0.42)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
