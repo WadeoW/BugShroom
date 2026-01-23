@@ -31,7 +31,6 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
-	
 	#cursor 1
 	if cursor_id == 1:
 		var C1_direction = Vector2.ZERO

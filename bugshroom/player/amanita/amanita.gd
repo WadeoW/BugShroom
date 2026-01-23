@@ -12,7 +12,12 @@ var gravity = 9.8
 @export var player_id: int = 1
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
+
+#animation control variables
 var is_jumping = false
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var animation_state_playback = animation_tree.get("parameters/playback")
+
 #respawn
 @export var respawn_delay: float = 5.0
 
@@ -59,7 +64,7 @@ var last_direction = Vector3.FORWARD
 var current_animation: String = ""
 
 func _ready() -> void:
-	animation_player.play("uncrouch")
+	#animation_player.play("uncrouch")
 	var current_animation = animation_player.current_animation
 	#class selection and ability loading
 	if player_id == 1:
@@ -180,13 +185,16 @@ func toggle_root():
 	is_rooted = !is_rooted
 	if is_rooted:
 		print("Rooting Down")
-		animation_player.play("crouch")
+		animation_state_playback.travel("crouch")
+		#animation_player.play("crouch")
 	else:
-		animation_player.play("uncrouch")
+		animation_state_playback.travel("uncrouch")
+		#animation_player.play("uncrouch")
 		print("Uprooted")
 
 func attack():
-	animation_player.play("mushroomdude_allanimations2/attack")
+	#animation_player.play("mushroomdude_allanimations2/attack")
+	animation_state_playback.travel("attack")
 	can_attack = false
 	attack_cooldown.start()
 	if attack_hit_box.is_colliding():
@@ -217,7 +225,7 @@ func apply_knockback(direction: Vector3, force: float):
 func die():
 	is_dead = true
 	print("Player", player_id, "has died!")
-	animation_player.play("die")
+	animation_state_playback.travel("die")
 	set_physics_process(false)
 	SignalBus.player_died.emit()
 	
@@ -226,13 +234,12 @@ func die():
 	
 func respawn():
 	is_dead = false
-	animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	global_position = Vector3(5, 1, 5)
+	animation_state_playback.travel("run")
 	print("player", player_id, "respawned!")
 	current_health = max_health
-	update()
 	current_stamina = max_stamina
 	update()
 	set_physics_process(true)
-	
+
 	

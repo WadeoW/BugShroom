@@ -1,17 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://pcb71pjtatty"]
+[gd_scene load_steps=10 format=3 uid="uid://pcb71pjtatty"]
 
 [ext_resource type="Script" uid="uid://dmvlfcyq4l7g1" path="res://levels/Class Selection/class_selection.gd" id="1_g06vg"]
 [ext_resource type="PackedScene" uid="uid://dbowfwd7ix33p" path="res://assets/Cursor/cursor.tscn" id="2_gypj8"]
 [ext_resource type="Texture2D" uid="uid://btd2v25in45dy" path="res://assets/Cursor/Cursor icons-red and white.png" id="3_qh1a7"]
+[ext_resource type="Texture2D" uid="uid://bilkd4t3kxnvq" path="res://assets/UI/Selectyourclass3mushroom5.png" id="4_e2ti8"]
+[ext_resource type="Texture2D" uid="uid://dkqw1isth1pcb" path="res://assets/UI/Amanita Brown Cap Character Select.png" id="5_srpr0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gypj8"]
-size = Vector2(122, 68)
+size = Vector2(330, 79.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qh1a7"]
 size = Vector2(157, 56)
 
+[sub_resource type="ImageTexture" id="ImageTexture_a3h8t"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3k6t4"]
-size = Vector2(198, 84)
+size = Vector2(315, 138)
 
 [node name="ClassSelection" type="Control"]
 y_sort_enabled = true
@@ -36,20 +40,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -58.5
-offset_top = -124.0
-offset_right = 59.5
-offset_bottom = -58.0
+offset_left = -125.0
+offset_top = -56.0
+offset_right = 203.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 27
-text = "Amanita
-"
 
 [node name="Area2D" type="Area2D" parent="CanvasLayer2/Amanita" groups=["button"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/Amanita/Area2D"]
-position = Vector2(58, 32)
+position = Vector2(164, 39.875)
 shape = SubResource("RectangleShape2D_gypj8")
 
 [node name="Puffball" type="Button" parent="CanvasLayer2" groups=["button"]]
@@ -60,20 +62,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -58.0
-offset_top = -11.0
-offset_right = 59.0
-offset_bottom = 55.0
+offset_left = -125.0
+offset_top = 49.0
+offset_right = 203.0
+offset_bottom = 130.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 27
-text = "Puffball
-"
 
 [node name="Area2D" type="Area2D" parent="CanvasLayer2/Puffball" groups=["button"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/Puffball/Area2D"]
-position = Vector2(58, 32)
+position = Vector2(163, 40.5625)
 shape = SubResource("RectangleShape2D_gypj8")
 
 [node name="Inkcap" type="Button" parent="CanvasLayer2" groups=["button"]]
@@ -84,36 +84,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -58.0
-offset_top = 104.0
-offset_right = 59.0
-offset_bottom = 170.0
+offset_left = -127.0
+offset_top = 155.0
+offset_right = 204.0
+offset_bottom = 234.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 27
-text = "Inkcap
+text = "
 "
 
 [node name="Area2D" type="Area2D" parent="CanvasLayer2/Inkcap" groups=["button"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/Inkcap/Area2D"]
-position = Vector2(58, 32)
+position = Vector2(165, 40)
 shape = SubResource("RectangleShape2D_gypj8")
-
-[node name="ClassSelection" type="RichTextLabel" parent="CanvasLayer2"]
-y_sort_enabled = true
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -337.0
-offset_top = 47.0
-offset_right = 337.0
-offset_bottom = 187.0
-grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 80
-text = "Class Selection"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Cursor" parent="CanvasLayer2" instance=ExtResource("2_gypj8")]
 z_index = 2
@@ -124,10 +109,10 @@ cursor_id = 2
 texture = ExtResource("3_qh1a7")
 
 [node name="BackButton" type="Button" parent="CanvasLayer2" groups=["button"]]
-offset_left = 33.0
-offset_top = 30.0
-offset_right = 189.0
-offset_bottom = 87.0
+offset_left = 10.0
+offset_top = 14.0
+offset_right = 166.0
+offset_bottom = 71.0
 action_mode = 0
 text = "back
 "
@@ -138,62 +123,72 @@ text = "back
 position = Vector2(78.5, 28)
 shape = SubResource("RectangleShape2D_qh1a7")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Player1ClassSelect" type="Label" parent="CanvasLayer"]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 131.0
-offset_top = -55.0
-offset_right = 272.0
-offset_bottom = 14.0
-theme_override_font_sizes/font_size = 20
-text = "Player 1 Class:
-Amanita"
-
-[node name="Player2ClassSelect" type="Label" parent="CanvasLayer"]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -302.0
-offset_top = -63.0
-offset_right = -164.0
-offset_bottom = 14.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "Player 2 Class:
-Puffball"
-
-[node name="StartButton" type="Button" parent="CanvasLayer" groups=["button"]]
+[node name="StartButton" type="Button" parent="CanvasLayer2" groups=["button"]]
 z_index = 4
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -351.0
-offset_top = -144.0
-offset_right = -152.0
-offset_bottom = -60.0
-grow_horizontal = 0
+offset_left = -123.0
+offset_top = -188.0
+offset_right = 193.0
+offset_bottom = -50.0
+grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 27
-text = "Start
-"
+icon = SubResource("ImageTexture_a3h8t")
 
-[node name="Area2D" type="Area2D" parent="CanvasLayer/StartButton" groups=["button"]]
-position = Vector2(36, 9)
+[node name="Area2D" type="Area2D" parent="CanvasLayer2/StartButton" groups=["button"]]
+position = Vector2(38, 9)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/StartButton/Area2D"]
-position = Vector2(63, 33)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/StartButton/Area2D"]
+position = Vector2(122.5, 61)
 shape = SubResource("RectangleShape2D_3k6t4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_e2ti8")
+expand_mode = 1
+stretch_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="player1Icon" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.199
+anchor_top = 0.652
+anchor_right = 0.199
+anchor_bottom = 0.652
+offset_left = -161.08
+offset_top = -172.16
+offset_right = 150.92
+offset_bottom = 138.84
+texture = ExtResource("5_srpr0")
+expand_mode = 1
+
+[node name="player2Icon" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.794
+anchor_top = 0.633
+anchor_right = 0.794
+anchor_bottom = 0.633
+offset_left = -155.48
+offset_top = -155.64
+offset_right = 156.52
+offset_bottom = 155.36
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_srpr0")
+expand_mode = 1
 
 [connection signal="pressed" from="CanvasLayer2/Amanita" to="." method="_on_amanita_pressed"]
 [connection signal="pressed" from="CanvasLayer2/Puffball" to="." method="_on_puffball_pressed"]
 [connection signal="pressed" from="CanvasLayer2/Inkcap" to="." method="_on_inkcap_pressed"]
 [connection signal="pressed" from="CanvasLayer2/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer2/StartButton" to="." method="_on_start_button_pressed"]

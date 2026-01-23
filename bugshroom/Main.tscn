@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=39 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
@@ -20,6 +20,7 @@
 [ext_resource type="Material" uid="uid://c8ct5wrjs116m" path="res://assets/environment/log/log_textures/log_texture.tres" id="17_sc1dx"]
 [ext_resource type="PackedScene" uid="uid://cj7pwf21i24i8" path="res://assets/environment/rock/rock_type_2.tscn" id="18_kjvhd"]
 [ext_resource type="AudioStream" uid="uid://ik5107csyasx" path="res://assets/Sound/mushroom_whimsy (2).mp3" id="20_2gh4u"]
+[ext_resource type="PackedScene" uid="uid://tks3mby8em48" path="res://assets/environment/moss/moss_bed.tscn" id="21_devvj"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gh4u"]
 load_path = "res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-c7c740f4ba395b910b721a3d2075f764.s3tc.ctex"
@@ -402,7 +403,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="Aphid" parent="AphidManager" instance=ExtResource("8_3b0ty")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2039, 0.677962, -13.2031)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9816, 1.54746, -7.73276)
 
 [node name="Aphid2" parent="AphidManager" instance=ExtResource("8_3b0ty")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.465, 0.677962, 56.6175)
@@ -3388,6 +3389,15 @@ shape = SubResource("ConcavePolygonShape3D_kjvhd")
 stream = ExtResource("20_2gh4u")
 autoplay = true
 parameters/looping = true
+
+[node name="MossBed" parent="." instance=ExtResource("21_devvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7231, 0.514559, 6.46861)
+
+[node name="MossBed2" parent="." instance=ExtResource("21_devvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 174.554, 0.463755, 93.6566)
+
+[node name="MossBed3" parent="." instance=ExtResource("21_devvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182.945, 0.514561, -184.545)
 
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]
