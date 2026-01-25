@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=42 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bwv1obth85s1a" path="res://tasks/dead_bug_task_spawner.tscn" id="10_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://8gxwurqg07or" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
 [ext_resource type="PackedScene" uid="uid://ddxy8prak70er" path="res://assets/environment/tree/redwood.tscn" id="13_j4qnp"]
-[ext_resource type="Script" path="res://player_2_spawner.gd" id="13_mxvw5"]
+[ext_resource type="Script" uid="uid://j0ano1abul83" path="res://player_2_spawner.gd" id="13_mxvw5"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://beh73njk1ypty" path="res://assets/environment/log/log_bugshroom_v01.fbx" id="15_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://drjomi27mdxip" path="res://assets/environment/rock/rock_1.tscn" id="16_sc1dx"]
@@ -21,6 +21,9 @@
 [ext_resource type="PackedScene" uid="uid://cj7pwf21i24i8" path="res://assets/environment/rock/rock_type_2.tscn" id="18_kjvhd"]
 [ext_resource type="AudioStream" uid="uid://ik5107csyasx" path="res://assets/Sound/mushroom_whimsy (2).mp3" id="20_2gh4u"]
 [ext_resource type="PackedScene" uid="uid://tks3mby8em48" path="res://assets/environment/moss/moss_bed.tscn" id="21_devvj"]
+[ext_resource type="PackedScene" uid="uid://bv51mew2febqv" path="res://assets/environment/shelf_fungus/ChickenOfTheWoods.tscn" id="22_3b0ty"]
+[ext_resource type="PackedScene" uid="uid://dnddru36dgt1c" path="res://assets/environment/log/trunk.tscn" id="23_bg4s2"]
+[ext_resource type="PackedScene" uid="uid://bqyg7gpaalqpp" path="res://assets/environment/stick/stick.tscn" id="24_hhcpw"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gh4u"]
 load_path = "res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-c7c740f4ba395b910b721a3d2075f764.s3tc.ctex"
@@ -428,7 +431,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(574, 648)
+size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
 [node name="Player1Spawner" type="Node3D" parent="GridContainer/SubViewportContainer/SubViewport"]
@@ -442,7 +445,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer2"]
 handle_input_locally = false
-size = Vector2i(574, 648)
+size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
 [node name="Player2Spawner" type="Node3D" parent="GridContainer/SubViewportContainer2/SubViewport"]
@@ -3333,7 +3336,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.8428, 0.934931, 324.517)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.2667, 1.1959, 48.6854)
 
 [node name="Big_rock" parent="environment/rocks" instance=ExtResource("17_5tuhn")]
-transform = Transform3D(1, 0, 0, 0, 0.305197, 0.952289, 0, -0.952289, 0.305197, -44.4897, 9.60298, 192.224)
+transform = Transform3D(1, 0, 0, 0, 0.305197, 0.952289, 0, -0.952289, 0.305197, -38.1693, 9.60298, 192.813)
 
 [node name="Big_rock5" parent="environment/rocks" instance=ExtResource("17_5tuhn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -177.137, 9.603, 151.278)
@@ -3398,6 +3401,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 174.554, 0.463755, 93.6566)
 
 [node name="MossBed3" parent="." instance=ExtResource("21_devvj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182.945, 0.514561, -184.545)
+
+[node name="MossBed4" parent="." instance=ExtResource("21_devvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.0232, 0.514557, 33.7229)
+
+[node name="ChickenOfTheWoods" parent="." instance=ExtResource("22_3b0ty")]
+transform = Transform3D(-0.00577701, 0, -0.999983, 0, 1, 0, 0.999983, 0, -0.00577701, -59.1873, 4.00661, -145.322)
+
+[node name="ChickenOfTheWoods4" parent="." instance=ExtResource("22_3b0ty")]
+transform = Transform3D(-0.00577701, 0, -0.999983, 0, 1, 0, 0.999983, 0, -0.00577701, 0.642036, 2.23665, -6.74687)
+
+[node name="ChickenOfTheWoods2" parent="." instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.134401, 0, 0.990927, 0, 1, 0, -0.990927, 0, 0.134401, -41.9765, 8.55647, -151.383)
+
+[node name="ChickenOfTheWoods3" parent="." instance=ExtResource("22_3b0ty")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7803, 13.5304, -162.801)
+
+[node name="FallenLog" parent="." instance=ExtResource("23_bg4s2")]
+transform = Transform3D(2.31332, 0, 1.23002, 0, 2.62, 0, -1.23002, 0, 2.31332, -80.2951, 1.31432, 55.16)
+
+[node name="stick" parent="." instance=ExtResource("24_hhcpw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.694, 0.764812, 2.17053)
 
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]

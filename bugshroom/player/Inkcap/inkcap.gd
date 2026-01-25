@@ -52,7 +52,7 @@ var mushroom_type = PlayerData.MushroomType.Inkcap
 var is_rooted = false
 @export var root_stamina_regen = 15.0 #stamina regained per second while rooted
 
-@onready var animation_player: AnimationPlayer = $inkmushroom/AnimationPlayer
+@onready var animation_player: AnimationPlayer = $Inkshroom/AnimationPlayer
 @onready var camera_mount = $CameraMount
 @onready var camera_yaw = $CameraMount/CameraYaw
 @onready var camera_pitch = $CameraMount/CameraYaw/CameraPitch
@@ -64,7 +64,7 @@ var last_direction = Vector3.FORWARD
 var current_animation: String = ""
 
 func _ready() -> void:
-	animation_player.play("INK-Shroom_Run_Jump_Idel/Idel")
+	animation_player.play("unsit")
 	var current_animation = animation_player.current_animation
 	#set up health and stamina bars
 	health_bar.max_value = max_health
@@ -121,7 +121,7 @@ func _physics_process(delta):
 # handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
 		velocity.y = JUMP_VELOCITY
-		animation_player.play("INK-Shroom_Run_Jump_Idel/Jump")
+		animation_player.play("ink_jump_attack_death/ink_jump")
 
 #handle attack
 	if Input.is_action_just_pressed("attack_%s" % [player_id]) and attack_cooldown.is_stopped():
@@ -133,7 +133,7 @@ func _physics_process(delta):
 		current_stamina -= stamina_drain_rate * delta
 		update()
 		speed = SPRINT_SPEED
-		if animation_player.current_animation == "INK-Shroom_Run_Jump_Idel/Running":
+		if animation_player.current_animation == "ink_walkcycle":
 			animation_player.speed_scale = 2
 	else:
 		animation_player.speed_scale = 1
@@ -147,15 +147,15 @@ func _physics_process(delta):
 	if not is_rooted  and !is_dead:
 		if direction:
 			last_direction = direction
-			if animation_player.current_animation != "INK-Shroom_Run_Jump_Idel/Running" and animation_player.current_animation != "take_damage" and animation_player.current_animation != "INK-Shroom_Run_Jump_Idel/Jump": 
-				animation_player.play("INK-Shroom_Run_Jump_Idel/Running")
+			if animation_player.current_animation != "ink_walkcycle" and animation_player.current_animation != "ink_jump_attack_death/ink_attack" and animation_player.current_animation != "take_damage" and animation_player.current_animation != "ink_jump_attack_death/ink_jump": 
+				animation_player.play("ink_walkcycle")
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 		else:
 			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 			if !animation_player.is_playing():
-				animation_player.play("INK-Shroom_Run_Jump_Idel/Idel")
+				animation_player.play("ink_idle")
 	else:
 		velocity.x = 0
 		velocity.z = 0 
@@ -165,7 +165,7 @@ func _physics_process(delta):
 			current_stamina += root_stamina_regen * delta
 		update()
 	
-	$inkmushroom.rotation.y = lerp_angle($inkmushroom.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
+	$Inkshroom.rotation.y = lerp_angle($Inkshroom.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
 
 	move_and_slide()
 
@@ -187,13 +187,13 @@ func toggle_root():
 	is_rooted = !is_rooted
 	if is_rooted:
 		print("Rooting Down")
-		animation_player.play("crouch")
+		animation_player.play("sit")
 	else:
-		animation_player.play("uncrouch")
+		animation_player.play("unsit")
 		print("Uprooted")
 
 func attack():
-	#animation_player.play("mushroomdude_allanimations2/attack")
+	animation_player.play("ink_jump_attack_death/ink_attack")
 	can_attack = false
 	attack_cooldown.start()
 	if attack_hit_box.is_colliding():
@@ -206,6 +206,10 @@ func attack():
 				attack_hit_box.get_collider(i).take_damage(attack_damage)
 			elif attack_hit_box.get_collider(i).is_in_group("player"):
 				attack_hit_box.get_collider(i).take_damage(0)
+				var kb_direction: Vector3 
+				kb_direction.x = attack_hit_box.get_collider(i).position.x - position.x
+				kb_direction.z = attack_hit_box.get_collider(i).position.z - position.z
+				attack_hit_box.get_collider(i).apply_knockback(kb_direction, 900) 
 				print("player was attacked")
 			i += 1
 
@@ -228,7 +232,7 @@ func apply_knockback(direction: Vector3, force: float):
 func die():
 	is_dead = true
 	print("Player", player_id, "has died!")
-	#animation_player.play("die")
+	animation_player.play("ink_jump_attack_death/ink_death")
 	set_physics_process(false)
 	SignalBus.player_died.emit()
 	
@@ -237,7 +241,7 @@ func die():
 	
 func respawn():
 	is_dead = false
-	animation_player.play("INK-Shroom_Run_Jump_Idel/Idel")
+	animation_player.play("ink_idle")
 	global_position = Vector3(5, 1, 5)
 	print("player", player_id, "respawned!")
 	current_health = max_health

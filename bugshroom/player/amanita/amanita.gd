@@ -18,6 +18,10 @@ var is_jumping = false
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_state_playback = animation_tree.get("parameters/playback")
 
+#sound variables
+@onready var walksound: AudioStreamPlayer3D = $walksound
+
+
 #respawn
 @export var respawn_delay: float = 5.0
 
@@ -133,6 +137,7 @@ func _physics_process(delta):
 		speed = SPRINT_SPEED
 		if animation_player.current_animation == "walkanimation":
 			animation_player.speed_scale = 2
+
 	else:
 		animation_player.speed_scale = 1
 		speed = WALK_SPEED
@@ -147,6 +152,7 @@ func _physics_process(delta):
 			last_direction = direction
 			#if animation_player.current_animation != "walkanimation" and animation_player.current_animation != "mushroomdude_allanimations2/attack" and animation_player.current_animation != "headshakeanimation/headshake" and animation_player.current_animation != "take_damage": 
 				#animation_player.play("walkanimation")
+			walksound.play()
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 		else:
@@ -197,16 +203,25 @@ func attack():
 	animation_state_playback.travel("attack")
 	can_attack = false
 	attack_cooldown.start()
+	var kb_direction: Vector3 
 	if attack_hit_box.is_colliding():
 		var total_collisions = attack_hit_box.get_collision_count()
 		print(total_collisions)
 		var i = 0
 		for collision in total_collisions:
 			if attack_hit_box.get_collider(i).is_in_group("bug"):
-				print(i, "has taken damage")
 				attack_hit_box.get_collider(i).take_damage(attack_damage)
+				kb_direction.x = attack_hit_box.get_collider(i).position.x - position.x
+				kb_direction.z = attack_hit_box.get_collider(i).position.z - position.z
+				kb_direction.y = 0.001
+				attack_hit_box.get_collider(i).apply_knockback(kb_direction, 900)
 			elif attack_hit_box.get_collider(i).is_in_group("player"):
 				attack_hit_box.get_collider(i).take_damage(0)
+
+				kb_direction.x = attack_hit_box.get_collider(i).position.x - position.x
+				kb_direction.z = attack_hit_box.get_collider(i).position.z - position.z
+				
+				attack_hit_box.get_collider(i).apply_knockback(kb_direction, 900) 
 				print("player was attacked")
 			i += 1
 

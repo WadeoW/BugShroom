@@ -43,8 +43,6 @@ func _physics_process(delta: float) -> void:
 	# Gravity
 	if not is_on_floor():
 		velocity.y -= 9.8 * delta
-	else:
-		velocity.y = 0
 
 	if is_dead:
 		return
@@ -144,6 +142,9 @@ func take_damage(amount: float) -> void:
 	print(name, " took ", amount, " damage! Health: ", health)
 	if health <= 0:
 		die()
+
+func apply_knockback(direction: Vector3, force: float):
+	velocity += direction.normalized() * force
 
 func die() -> void:
 	if is_dead:

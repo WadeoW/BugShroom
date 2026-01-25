@@ -63,7 +63,7 @@ var last_direction = Vector3.FORWARD
 var current_animation: String = ""
 
 func _ready() -> void:
-	animation_player.play("roll")
+	animation_player.play("puffmushroom_animations/roll")
 	var current_animation = animation_player.current_animation
 	
 	#class selection and ability loading
@@ -121,7 +121,7 @@ func _physics_process(delta):
 		current_stamina -= stamina_drain_rate * delta
 		update()
 		speed = SPRINT_SPEED
-		if animation_player.current_animation == "roll":
+		if animation_player.current_animation == "puffmushroom_animations/roll":
 			animation_player.speed_scale = 2
 	else:
 		animation_player.speed_scale = 1
@@ -135,8 +135,8 @@ func _physics_process(delta):
 	if not is_rooted  and !is_dead:
 		if direction:
 			last_direction = direction
-			if animation_player.current_animation != "roll" and animation_player.current_animation != "ability_use" and animation_player.current_animation != "take_damage": 
-				animation_player.play("roll")
+			if animation_player.current_animation != "puffmushroom_animations/roll" and animation_player.current_animation != "ability_use" and animation_player.current_animation != "take_damage": 
+				animation_player.play("puffmushroom_animations/roll")
 
 			# play rolling animation based on speed, at max speed the animation is played at 4x speed
 			animation_player.speed_scale = Vector2(velocity.x, velocity.z).length() / (MAX_SPEED * 0.25)
@@ -184,9 +184,9 @@ func toggle_root():
 	is_rooted = !is_rooted
 	if is_rooted:
 		print("Rooting Down")
-		animation_player.play("crouch")
+		animation_player.play("puffmushroom_animations/squash")
 	else:
-		animation_player.play("uncrouch")
+		animation_player.play("puffmushroom_animations/unsquash")
 		print("Uprooted")
 
 func attack():
@@ -204,13 +204,20 @@ func attack():
 			elif attack_hit_box.get_collider(i).is_in_group("player"):
 				attack_hit_box.get_collider(i).take_damage(0)
 				print("player was attacked")
+				var kb_direction = attack_hit_box.get_collider(i).position - position
+				apply_knockback(kb_direction, 30) 
 			i += 1
 
 # area contact with enemies for speed based damage and knockback
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("bug") and Vector2(velocity.x, velocity.z).length() > MIN_ROLLING_SPEED_FOR_ATTACK:
-		var rollDamage = clampf(Vector2(velocity.x, velocity.z).length() * ROLLING_ATTACK_DAMAGE, 10, 50)
+		var rollDamage = clampf(Vector2(velocity.x, velocity.z).length() * ROLLING_ATTACK_DAMAGE, 10, 100)
 		body.take_damage(rollDamage)
+		var kb_direction: Vector3
+		kb_direction.x = body.position.x - position.x
+		kb_direction.z = body.position.z - position.z
+		kb_direction.y = 0.5
+		body.apply_knockback(kb_direction, 80)
 		print(body.name, " took ", rollDamage, " rolling damage")
 
 func cast_ability():

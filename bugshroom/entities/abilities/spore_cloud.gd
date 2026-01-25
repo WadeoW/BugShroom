@@ -2,7 +2,7 @@ extends Area3D
 
 
 #@export var AbilType: Resource
-@export var abilDamage: int = 5
+@export var abilDamage: int = 0
 @export var abilRadius: int = 3
 @export var despawnTime: int = 5
 
@@ -18,11 +18,6 @@ var bodies_in_area = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#player = get_tree().get_first_node_in_group("Puffball")
-	#if get_parent().get_node("Player"):
-		#player = get_parent().get_node("Player")
-	#elif get_parent().get_node("Player2"):
-		#player = get_parent().get_node("Player2")
 	for child in children:
 		print(child)
 		if child is CharacterBody3D:
