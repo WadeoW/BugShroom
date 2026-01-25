@@ -30,6 +30,9 @@ var is_dead: bool = false
 var is_chasing: bool = false
 var is_trapped: bool = false
 
+# Knockback
+var knockback: Vector2 = Vector2.ZERO
+
 #-----------------------------------
 # Setup
 #-----------------------------------
@@ -43,6 +46,8 @@ func _physics_process(delta: float) -> void:
 	# Gravity
 	if not is_on_floor():
 		velocity.y -= 9.8 * delta
+	# Manually get rid of knockback over time
+	knockback = knockback.move_toward(Vector2.ZERO, 20 * delta)
 
 	if is_dead:
 		return
@@ -68,7 +73,6 @@ func _physics_process(delta: float) -> void:
 		# Passive bugs or no target: just wander
 		is_chasing = false
 		_idle_behavior(delta)
-
 	move_and_slide()
 
 func _get_closest_player() -> Node3D:
@@ -101,8 +105,8 @@ func _chase_player() -> void:
 	rotation.x = 0
 	rotation.z = 0
 	if not is_trapped and (position - target.position).length() > 0.1:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+		velocity.x = direction.x * speed + knockback.x
+		velocity.z = direction.z * speed + knockback.y
 	else:
 		velocity = Vector3.ZERO
 
@@ -144,7 +148,8 @@ func take_damage(amount: float) -> void:
 		die()
 
 func apply_knockback(direction: Vector3, force: float):
-	velocity += direction.normalized() * force
+	knockback += Vector2(direction.x, direction.z) * force
+	velocity.y += direction.y * force
 
 func die() -> void:
 	if is_dead:

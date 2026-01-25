@@ -37,10 +37,6 @@ func _try_attack() -> void:
 			await get_tree().create_timer(attack_cooldown).timeout
 		can_attack = true
 
-
-func apply_knockback(direction: Vector3, force: float):
-	velocity += direction.normalized() * force
-
 func _idle_behavior(delta):
 	has_alerted_allies = false
 	var forward = -transform.basis.z

@@ -11,6 +11,7 @@ const MAX_SPEED = 12.0
 const JUMP_VELOCITY = 6
 const SENSITIVITY = 0.005
 var gravity = 9.8
+var knockback: Vector2 = Vector2.ZERO
 @export var player_id: int = 1
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
@@ -81,6 +82,7 @@ func _ready() -> void:
 	health_bar.value = health_bar.max_value
 	stamina_bar.value = stamina_bar.max_value
 	
+	
 
 func update() -> void:
 	health_bar.value = current_health
@@ -106,12 +108,14 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
+	# knockback decay
+	knockback = knockback.move_toward(Vector2.ZERO, 20 * delta)
 
-# handle jump
+	# handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
 		velocity.y = JUMP_VELOCITY
 
-#handle attack
+	#handle attack
 	if Input.is_action_just_pressed("attack_%s" % [player_id]) and attack_cooldown.is_stopped():
 		attack()
 		
@@ -144,8 +148,8 @@ func _physics_process(delta):
 			velocity.x += direction.x * ACCELERATION * delta
 			velocity.z += direction.z * ACCELERATION * delta
 		else:
-			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * 4.0)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * 4.0)
 			#if !animation_player.is_playing():
 				#animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	else:
@@ -155,7 +159,7 @@ func _physics_process(delta):
 	
 	# clamping the x and z speed so the horizontal velocity doesnt exceed MAX_SPEED
 	var clampedVelocity = Vector2(velocity.x, velocity.z).limit_length(MAX_SPEED)
-	velocity = Vector3(clampedVelocity.x, velocity.y, clampedVelocity.y)
+	velocity = Vector3(clampedVelocity.x, velocity.y, clampedVelocity.y) + Vector3(knockback.x, 0, knockback.y)
 	
 	if is_rooted:
 		if current_stamina <= max_stamina:
@@ -211,13 +215,17 @@ func attack():
 # area contact with enemies for speed based damage and knockback
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("bug") and Vector2(velocity.x, velocity.z).length() > MIN_ROLLING_SPEED_FOR_ATTACK:
+		var kb_direction: Vector2
+		kb_direction.x = body.position.x - position.x
+		kb_direction.y = body.position.z - position.z
+		kb_direction = kb_direction.normalized()
+		if body.is_in_group("ants"):
+			add_collision_exception_with(body)
+			body.apply_knockback(Vector3(kb_direction.x, 5, kb_direction.y), 20)
+		if body.is_in_group("beetles"):
+			apply_knockback(Vector3(kb_direction.x, 5, kb_direction.y), -20)
 		var rollDamage = clampf(Vector2(velocity.x, velocity.z).length() * ROLLING_ATTACK_DAMAGE, 10, 100)
 		body.take_damage(rollDamage)
-		var kb_direction: Vector3
-		kb_direction.x = body.position.x - position.x
-		kb_direction.z = body.position.z - position.z
-		kb_direction.y = 0.5
-		body.apply_knockback(kb_direction, 80)
 		print(body.name, " took ", rollDamage, " rolling damage")
 
 func cast_ability():
@@ -229,8 +237,9 @@ func cast_ability():
 	
 	
 func apply_knockback(direction: Vector3, force: float):
-	velocity += direction.normalized() * force
-
+	knockback += Vector2(direction.x, direction.z).normalized() * force
+	velocity.y += direction.y * force
+	
 func die():
 	is_dead = true
 	print("Player", player_id, "has died!")
