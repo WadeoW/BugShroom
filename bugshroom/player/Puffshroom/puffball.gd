@@ -3,18 +3,17 @@ class_name Puffball
 
 signal player_death
 
-var speed
-var WALK_SPEED = 6.0
-var SPRINT_SPEED = 10.0
 const ACCELERATION = 7
 const MAX_SPEED = 12.0
 const JUMP_VELOCITY = 6
 const SENSITIVITY = 0.005
 var gravity = 9.8
 var knockback: Vector2 = Vector2.ZERO
+const MAX_KNOCKBACK_SPEED = 20
 @export var player_id: int = 1
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
+var direction
 
 #respawn
 @export var respawn_delay: float = 5.0
@@ -36,10 +35,18 @@ var stamina_drain_rate = 5.0 #stamina drained per second during action
 @export var attack_damage: float = 20.0
 const ROLLING_ATTACK_DAMAGE: float = 5.0 # this is multiplied by speed in xz plane
 const MIN_ROLLING_SPEED_FOR_ATTACK: float = 5.0
+const MIN_ROLLING_SPEED_FOR_TERRAIN_BOUNCE: float = 8.0
+const TERRAIN_BOUNCE_BACK: float = 0.5 # multiplied by incoming speed and sends you in opposite direction from what you hit
+const BUG_KB = 10
+const SELF_KB_ON_BEETLE = 10
 var can_attack: bool = true
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var attack_hit_box: ShapeCast3D = $AttackHitBox
-
+#sprint charge variables
+var chargeVector: Vector2 = Vector2.ZERO
+const CHARGE_SPEED = 15
+@onready var charge_duration: Timer = $ChargeDuration
+@onready var charge_cooldown: Timer = $ChargeCooldown
 
 #ability and class variables
 var ability_active = false
@@ -108,9 +115,13 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# knockback decay
+	# knockback and charging speed decay
 	knockback = knockback.move_toward(Vector2.ZERO, 20 * delta)
-
+	chargeVector = chargeVector.move_toward(Vector2.ZERO, 20 * delta)
+	if is_dead:
+		knockback = Vector2.ZERO
+		chargeVector = Vector2.ZERO
+	
 	# handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
 		velocity.y = JUMP_VELOCITY
@@ -119,23 +130,17 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("attack_%s" % [player_id]) and attack_cooldown.is_stopped():
 		attack()
 		
-
-	# handle sprint
-	if Input.is_action_pressed("sprint_%s" % [player_id]) and current_stamina > 0:
-		current_stamina -= stamina_drain_rate * delta
-		update()
-		speed = SPRINT_SPEED
-		if animation_player.current_animation == "puffmushroom_animations/roll":
-			animation_player.speed_scale = 2
-	else:
-		animation_player.speed_scale = 1
-		speed = WALK_SPEED
+	# handle sprint/charge attack
+	if Input.is_action_just_pressed("sprint_%s" % [player_id]) and charge_cooldown.is_stopped():
+		charge_attack()
+	if charge_duration.time_left > 0:
+		velocity = Vector3(0, velocity.y, 0)
 	
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left_%s" % [player_id], "move_right_%s" % [player_id], "move_up_%s" % [player_id], "move_down_%s" % [player_id])
 	
 	#new vector3 direction taking into account movement inputs and camera rotation
-	var direction = (camera_yaw.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	direction = (camera_yaw.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if not is_rooted  and !is_dead:
 		if direction:
 			last_direction = direction
@@ -148,8 +153,8 @@ func _physics_process(delta):
 			velocity.x += direction.x * ACCELERATION * delta
 			velocity.z += direction.z * ACCELERATION * delta
 		else:
-			velocity.x = lerp(velocity.x, direction.x * speed, delta * 4.0)
-			velocity.z = lerp(velocity.z, direction.z * speed, delta * 4.0)
+			velocity.x = lerp(velocity.x, direction.x, delta * 4.0)
+			velocity.z = lerp(velocity.z, direction.z, delta * 4.0)
 			#if !animation_player.is_playing():
 				#animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	else:
@@ -159,8 +164,10 @@ func _physics_process(delta):
 	
 	# clamping the x and z speed so the horizontal velocity doesnt exceed MAX_SPEED
 	var clampedVelocity = Vector2(velocity.x, velocity.z).limit_length(MAX_SPEED)
-	velocity = Vector3(clampedVelocity.x, velocity.y, clampedVelocity.y) + Vector3(knockback.x, 0, knockback.y)
-	
+	var clampedKnockback = knockback.limit_length(MAX_KNOCKBACK_SPEED)
+	if charge_duration.time_left == 0:
+		velocity = Vector3(clampedVelocity.x, velocity.y, clampedVelocity.y) + Vector3(clampedKnockback.x, 0, clampedKnockback.y) + Vector3(chargeVector.x, 0, chargeVector.y)
+
 	if is_rooted:
 		if current_stamina <= max_stamina:
 			current_stamina += root_stamina_regen * delta
@@ -214,19 +221,24 @@ func attack():
 
 # area contact with enemies for speed based damage and knockback
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body.is_in_group("bug") and Vector2(velocity.x, velocity.z).length() > MIN_ROLLING_SPEED_FOR_ATTACK:
-		var kb_direction: Vector2
-		kb_direction.x = body.position.x - position.x
-		kb_direction.y = body.position.z - position.z
-		kb_direction = kb_direction.normalized()
-		if body.is_in_group("ants"):
+	var kb_direction: Vector2
+	kb_direction.x = body.position.x - position.x
+	kb_direction.y = body.position.z - position.z
+	kb_direction = kb_direction.normalized()
+	var speed = Vector2(velocity.x, velocity.z).length()
+	if body.is_in_group("bug") and speed > MIN_ROLLING_SPEED_FOR_ATTACK:
+		if body.is_in_group("ants") or body.is_in_group("aphids"):
 			add_collision_exception_with(body)
-			body.apply_knockback(Vector3(kb_direction.x, 5, kb_direction.y), 20)
+			body.apply_knockback(Vector3(kb_direction.x, 1, kb_direction.y), BUG_KB)
 		if body.is_in_group("beetles"):
-			apply_knockback(Vector3(kb_direction.x, 5, kb_direction.y), -20)
+			apply_knockback(Vector3(-kb_direction.x, 2, -kb_direction.y), SELF_KB_ON_BEETLE)
 		var rollDamage = clampf(Vector2(velocity.x, velocity.z).length() * ROLLING_ATTACK_DAMAGE, 10, 100)
 		body.take_damage(rollDamage)
 		print(body.name, " took ", rollDamage, " rolling damage")
+		return
+	# terrain collision, not working with logs
+	if body.name != "floor" and speed > MIN_ROLLING_SPEED_FOR_TERRAIN_BOUNCE:
+		apply_knockback(Vector3(-kb_direction.x, 2, -kb_direction.y), Vector2(velocity.x, velocity.z).length() * TERRAIN_BOUNCE_BACK)
 
 func cast_ability():
 	animation_player.play("ability_use")
@@ -234,11 +246,18 @@ func cast_ability():
 	var spawn = load("res://entities/abilities/SporeCloud.tscn").instantiate()
 	add_sibling(spawn)
 	print("ability has been cast")
-	
-	
+
+func charge_attack():
+	print("charge attack")
+	charge_cooldown.start()
+	charge_duration.start()
+
+func _on_charge_duration_timeout() -> void:
+	chargeVector = Vector2(direction.x, direction.z) * CHARGE_SPEED
+
 func apply_knockback(direction: Vector3, force: float):
 	knockback += Vector2(direction.x, direction.z).normalized() * force
-	velocity.y += direction.y * force
+	velocity.y += direction.normalized().y * force
 	
 func die():
 	is_dead = true
@@ -260,5 +279,3 @@ func respawn():
 	current_stamina = max_stamina
 	update()
 	set_physics_process(true)
-	
-	

@@ -3384,6 +3384,7 @@ transform = Transform3D(41.0067, 91.2056, 1.08726e-05, 0, -1.19209e-05, 100, 91.
 material_override = ExtResource("17_sc1dx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="environment/log/log_bugshroom_v03/Cylinder" index="0"]
+disable_mode = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="environment/log/log_bugshroom_v03/Cylinder/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_kjvhd")

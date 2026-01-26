@@ -87,7 +87,7 @@ func _on_spawn_timer_timeout() -> void:
 	#if bug_type == "ant":
 		# Only spawn if we're under the cap
 		if active_bugs.size() < max_bugs:
-			print("trying to spawn bug")
+			#print("trying to spawn bug")
 			spawn_bug()
 
 

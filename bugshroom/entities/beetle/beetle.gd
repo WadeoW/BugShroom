@@ -3,7 +3,7 @@ extends BugBase
 @export var beetle_speed: float = 4.0
 @export var beetle_health: float = 300.0
 @export var beetle_damage: float = 40.0
-@export var knockback_force: float = 40.0
+@export var knockback_force: float = 10.0
 @export var beetle_attack_range: float = 6
 @export var beetle_nutrient_value: float = 100
 @onready var animation_player: AnimationPlayer = $beetle_walkanimation/AnimationPlayer
@@ -37,7 +37,7 @@ func _try_attack() -> void:
 			target.take_damage(damage)
 			
 		if target.has_method("apply_knockback"):
-			target.apply_knockback(direction, knockback_force)
+			target.apply_knockback(Vector3(direction.x, 0.5, direction.z), knockback_force)
 
 		print("Beetle smashed player for ", damage, " damage!")
 		

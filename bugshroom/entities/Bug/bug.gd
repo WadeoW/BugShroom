@@ -149,7 +149,7 @@ func take_damage(amount: float) -> void:
 
 func apply_knockback(direction: Vector3, force: float):
 	knockback += Vector2(direction.x, direction.z) * force
-	velocity.y += direction.y * force
+	velocity.y += direction.normalized().y * force
 
 func die() -> void:
 	if is_dead:
