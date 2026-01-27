@@ -103,7 +103,7 @@ func _unhandled_input(event):
 		toggle_root()
 		
 	if event.is_action_pressed("interact_%s" % [player_id]) and ability_active == false and is_on_floor():
-		cast_ability(ability_type)	
+		cast_ability(ability_type)
 		if ability_active:
 			print("abilty active = true")
 		else:
@@ -130,7 +130,10 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("attack_%s" % [player_id]) and attack_cooldown.is_stopped():
 		attack()
-		
+	
+	if Input.is_action_just_pressed("grab_%s" % [player_id]):
+		grab()
+	
 	# handle sprint
 	if Input.is_action_just_pressed("sprint_%s" % [player_id]) and current_stamina > 0:
 		isSprinting = !isSprinting
@@ -216,7 +219,7 @@ func attack():
 		var total_collisions = attack_hit_box.get_collision_count()
 		print(total_collisions)
 		var i = 0
-		for collision in total_collisions:
+		for collision in range(total_collisions):
 			if attack_hit_box.get_collider(i).is_in_group("bug"):
 				attack_hit_box.get_collider(i).take_damage(attack_damage)
 				kb_direction.x = attack_hit_box.get_collider(i).position.x - position.x
@@ -240,7 +243,44 @@ func cast_ability(ability_type):
 	var spawn = ability_type.instantiate()
 	add_sibling(spawn)
 	print("ability has been cast")
-	
+
+var isGrabbingItem: bool = false
+@onready var grab_joint: Generic6DOFJoint3D = $"Grab Joint"
+var grabbedItem
+@onready var grab_hit_box: ShapeCast3D = $GrabHitBox
+func grab():
+	if not isGrabbingItem:
+		if not grab_hit_box.is_colliding():
+			print("nothing to grab")
+			return
+		var total_collisions = grab_hit_box.get_collision_count()
+		var distanceToThing: float = 10000
+		var closestRigidBody: RigidBody3D
+		var i = 0
+		for collision in range(total_collisions):
+			var thing = grab_hit_box.get_collider(i)
+			var body := thing as Node
+			while body and not (body is PhysicsBody3D):
+				body = body.get_parent()
+			if not body.is_in_group("bug") and body is RigidBody3D:
+				if (thing.global_position - global_position).length() < distanceToThing:
+					distanceToThing = (thing.global_position - global_position).length()
+					closestRigidBody = body
+			i += 1
+		if closestRigidBody != null:
+			grabbedItem = closestRigidBody
+			grab_joint.node_b = closestRigidBody.get_path()
+			add_collision_exception_with(closestRigidBody)
+			print("grabbed ", grab_joint.node_b)
+			isGrabbingItem = true
+		else:
+			print("no rigid bodies to grab")
+	else:
+		print("released ", grab_joint.node_b)
+		remove_collision_exception_with(grabbedItem)
+		grab_joint.node_b = NodePath()
+		isGrabbingItem = false
+
 func apply_knockback(direction: Vector3, force: float):
 	knockback += Vector2(direction.x, direction.z).normalized() * force
 	velocity.y += direction.normalized().y * force
