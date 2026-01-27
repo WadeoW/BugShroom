@@ -3,12 +3,17 @@ class_name Amanita
 
 signal player_death
 
+# Movement variables
 var speed
 var WALK_SPEED = 4.0
 var SPRINT_SPEED = 8.0
+var inputVelocity: Vector2
+var isSprinting: bool = false
 const JUMP_VELOCITY = 6
 const SENSITIVITY = 0.005
 var gravity = 9.8
+var knockback: Vector2
+const MAX_KNOCKBACK_SPEED = 20
 @export var player_id: int = 1
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
@@ -20,7 +25,6 @@ var is_jumping = false
 
 #sound variables
 @onready var walksound: AudioStreamPlayer3D = $walksound
-
 
 #respawn
 @export var respawn_delay: float = 5.0
@@ -79,14 +83,8 @@ func _ready() -> void:
 		mushroom_type = PlayerData.p2_mushroom_type
 		print("player 2 mushroom type:", PlayerData.p2_mushroom_type)
 	
-	if mushroom_type == 0:
-		ability_type = load("res://entities/abilities/SporeRingAbility.tscn")
-		print("ability type is spore ring")
-	elif mushroom_type == 1:
-		ability_type = load("res://entities/abilities/goop_ability.tscn")
-	elif mushroom_type == PlayerData.MushroomType.Puffball:
-		ability_type = load("res://entities/abilities/SporeCloud.tscn")
-		print("ability type is spore cloud")
+	ability_type = load("res://entities/abilities/SporeRingAbility.tscn")
+	print("ability type is spore ring")
 	
 	#set up health and stamina bars
 	health_bar.max_value = max_health
@@ -120,6 +118,10 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	else:
 		is_jumping = false
+	# knockback decay
+	knockback = knockback.move_toward(Vector2.ZERO, 20 * delta)
+	if is_dead:
+		knockback = Vector2.ZERO
 
 # handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
@@ -129,22 +131,19 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("attack_%s" % [player_id]) and attack_cooldown.is_stopped():
 		attack()
 		
-
 	# handle sprint
-	if Input.is_action_pressed("sprint_%s" % [player_id]) and current_stamina > 0:
-		current_stamina -= stamina_drain_rate * delta
-		update()
+	if Input.is_action_just_pressed("sprint_%s" % [player_id]) and current_stamina > 0:
+		isSprinting = !isSprinting
+	if isSprinting and current_stamina > 0:
 		speed = SPRINT_SPEED
 		if animation_player.current_animation == "walkanimation":
 			animation_player.speed_scale = 2
-
 	else:
 		animation_player.speed_scale = 1
 		speed = WALK_SPEED
 	
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left_%s" % [player_id], "move_right_%s" % [player_id], "move_up_%s" % [player_id], "move_down_%s" % [player_id])
-	
 	#new vector3 direction taking into account movement inputs and camera rotation
 	var direction = (camera_yaw.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if not is_rooted  and !is_dead:
@@ -153,17 +152,25 @@ func _physics_process(delta):
 			#if animation_player.current_animation != "walkanimation" and animation_player.current_animation != "mushroomdude_allanimations2/attack" and animation_player.current_animation != "headshakeanimation/headshake" and animation_player.current_animation != "take_damage": 
 				#animation_player.play("walkanimation")
 			walksound.play()
-			velocity.x = direction.x * speed
-			velocity.z = direction.z * speed
+			inputVelocity.x = direction.x * speed
+			inputVelocity.y = direction.z * speed
+			# sprinting
+			if isSprinting and current_stamina > 0:
+				current_stamina -= stamina_drain_rate * delta
+				update()
+				if current_stamina <= 0:
+					isSprinting = false
 		else:
-			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+			inputVelocity.x = lerp(inputVelocity.x, direction.x * speed, delta * 7.0)
+			inputVelocity.y = lerp(inputVelocity.y, direction.z * speed, delta * 7.0)
 			#if !animation_player.is_playing():
 				#animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
+		knockback = knockback.limit_length(MAX_KNOCKBACK_SPEED)
+		velocity = Vector3(inputVelocity.x, velocity.y, inputVelocity.y) + Vector3(knockback.x, 0, knockback.y)
 	else:
 		velocity.x = 0
-		velocity.z = 0 
-	
+		velocity.z = 0
+
 	if is_rooted:
 		if current_stamina <= max_stamina:
 			current_stamina += root_stamina_regen * delta
@@ -190,6 +197,7 @@ func heal(amount):
 func toggle_root():
 	is_rooted = !is_rooted
 	if is_rooted:
+		isSprinting = false
 		print("Rooting Down")
 		animation_state_playback.travel("crouch")
 		#animation_player.play("crouch")
@@ -203,7 +211,7 @@ func attack():
 	animation_state_playback.travel("attack")
 	can_attack = false
 	attack_cooldown.start()
-	var kb_direction: Vector3 
+	var kb_direction: Vector3
 	if attack_hit_box.is_colliding():
 		var total_collisions = attack_hit_box.get_collision_count()
 		print(total_collisions)
@@ -233,10 +241,10 @@ func cast_ability(ability_type):
 	add_sibling(spawn)
 	print("ability has been cast")
 	
-	
 func apply_knockback(direction: Vector3, force: float):
-	velocity += direction.normalized() * force
-
+	knockback += Vector2(direction.x, direction.z).normalized() * force
+	velocity.y += direction.normalized().y * force
+	
 func die():
 	is_dead = true
 	print("Player", player_id, "has died!")
@@ -249,6 +257,7 @@ func die():
 	
 func respawn():
 	is_dead = false
+	knockback = Vector2.ZERO; velocity = Vector3.ZERO; inputVelocity = Vector2.ZERO
 	global_position = Vector3(5, 1, 5)
 	animation_state_playback.travel("run")
 	print("player", player_id, "respawned!")

@@ -3,7 +3,10 @@ class_name Puffball
 
 signal player_death
 
+# Movement variables
+var inputVelocity: Vector2 = Vector2.ZERO
 const ACCELERATION = 7
+const DIRECTIONAL_ACCELERATION: float = 2.0
 const MAX_SPEED = 12.0
 const JUMP_VELOCITY = 6
 const SENSITIVITY = 0.005
@@ -39,6 +42,7 @@ const MIN_ROLLING_SPEED_FOR_TERRAIN_BOUNCE: float = 8.0
 const TERRAIN_BOUNCE_BACK: float = 0.5 # multiplied by incoming speed and sends you in opposite direction from what you hit
 const BUG_KB = 10
 const SELF_KB_ON_BEETLE = 10
+const OTHER_PLAYER_KB = 7
 var can_attack: bool = true
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var attack_hit_box: ShapeCast3D = $AttackHitBox
@@ -133,6 +137,7 @@ func _physics_process(delta):
 	# handle sprint/charge attack
 	if Input.is_action_just_pressed("sprint_%s" % [player_id]) and charge_cooldown.is_stopped():
 		charge_attack()
+		inputVelocity = Vector2.ZERO
 	if charge_duration.time_left > 0:
 		velocity = Vector3(0, velocity.y, 0)
 	
@@ -149,19 +154,21 @@ func _physics_process(delta):
 
 			# play rolling animation based on speed, at max speed the animation is played at 4x speed
 			animation_player.speed_scale = Vector2(velocity.x, velocity.z).length() / (MAX_SPEED * 0.25)
-
-			velocity.x += direction.x * ACCELERATION * delta
-			velocity.z += direction.z * ACCELERATION * delta
+	# directionalAcceleration gets the dot product of the input direction and current velocity direction. 
+	# It will increases as you face further away from the current direction you are going which makes changing direction faster
+	# You accelerate DIRECTIONAL_ACCELERATION times faster when you are accelerating the opposite direction you are going
+			var directionalAcceleration = 1 - clampf(Vector2(direction.x, direction.z).normalized().dot(Vector2(velocity.x, velocity.z).normalized()), -1, 0) * (DIRECTIONAL_ACCELERATION - 1)
+			velocity.x += direction.x * ACCELERATION * directionalAcceleration * delta
+			velocity.z += direction.z * ACCELERATION * directionalAcceleration * delta
 		else:
-			velocity.x = lerp(velocity.x, direction.x, delta * 4.0)
-			velocity.z = lerp(velocity.z, direction.z, delta * 4.0)
+			velocity.x = lerp(velocity.x, direction.x, delta * 3.0)
+			velocity.z = lerp(velocity.z, direction.z, delta * 3.0)
 			#if !animation_player.is_playing():
 				#animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	else:
 		animation_player.speed_scale = 1
 		velocity.x = 0
 		velocity.z = 0 
-	
 	# clamping the x and z speed so the horizontal velocity doesnt exceed MAX_SPEED
 	var clampedVelocity = Vector2(velocity.x, velocity.z).limit_length(MAX_SPEED)
 	var clampedKnockback = knockback.limit_length(MAX_KNOCKBACK_SPEED)
@@ -236,6 +243,13 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		body.take_damage(rollDamage)
 		print(body.name, " took ", rollDamage, " rolling damage")
 		return
+	if body.is_in_group("player"):
+		# only make the slower one take knockback
+		var otherPlayerSpeed = Vector2(body.velocity.x, body.velocity.z).length()
+		var thisPlayerSpeed = Vector2(velocity.x, velocity.z).length()
+		if otherPlayerSpeed < thisPlayerSpeed:
+			body.apply_knockback(Vector3(kb_direction.x, 1, kb_direction.y), OTHER_PLAYER_KB)
+		return
 	# terrain collision, not working with logs
 	if body.name != "floor" and speed > MIN_ROLLING_SPEED_FOR_TERRAIN_BOUNCE:
 		apply_knockback(Vector3(-kb_direction.x, 2, -kb_direction.y), Vector2(velocity.x, velocity.z).length() * TERRAIN_BOUNCE_BACK)
@@ -260,6 +274,7 @@ func apply_knockback(direction: Vector3, force: float):
 	velocity.y += direction.normalized().y * force
 	
 func die():
+	cast_ability()
 	is_dead = true
 	print("Player", player_id, "has died!")
 	#animation_player.play("die")
@@ -271,6 +286,7 @@ func die():
 	
 func respawn():
 	is_dead = false
+	knockback = Vector2.ZERO; velocity = Vector3.ZERO; chargeVector = Vector2.ZERO
 	#animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	global_position = Vector3(5, 1, 5)
 	print("player", player_id, "respawned!")

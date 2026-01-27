@@ -6,9 +6,13 @@ signal player_death
 var speed
 var WALK_SPEED = 4.0
 var SPRINT_SPEED = 8.0
+var inputVelocity: Vector2
+var isSprinting: bool = false
 const JUMP_VELOCITY = 6
 const SENSITIVITY = 0.005
 var gravity = 9.8
+var knockback: Vector2 = Vector2.ZERO
+const MAX_KNOCKBACK_SPEED = 20
 @export var player_id: int = 1
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
@@ -81,15 +85,8 @@ func _ready() -> void:
 	elif player_id == 2:
 		mushroom_type = PlayerData.p2_mushroom_type
 		print("player 2 mushroom type:", PlayerData.p2_mushroom_type)
-	
-	if mushroom_type == 0:
-		ability_type = load("res://entities/abilities/SporeRingAbility.tscn")
-		print("ability type is spore ring")
-	elif mushroom_type == 1:
-		ability_type = load("res://entities/abilities/GoopBall.tscn")
-	elif mushroom_type == PlayerData.MushroomType.Puffball:
-		ability_type = load("res://entities/abilities/SporeCloud.tscn")
-		print("ability type is spore cloud")
+		
+	ability_type = load("res://entities/abilities/GoopBall.tscn")
 
 func update() -> void:
 	health_bar.value = current_health
@@ -116,7 +113,10 @@ func _physics_process(delta):
 	# add the gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
+	# knockback decay
+	knockback = knockback.move_toward(Vector2.ZERO, 20 * delta)
+	if is_dead:
+		knockback = Vector2.ZERO
 
 # handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
@@ -129,11 +129,11 @@ func _physics_process(delta):
 		
 
 	# handle sprint
-	if Input.is_action_pressed("sprint_%s" % [player_id]) and current_stamina > 0:
-		current_stamina -= stamina_drain_rate * delta
-		update()
+	if Input.is_action_just_pressed("sprint_%s" % [player_id]) and current_stamina > 0:
+		isSprinting = !isSprinting
+	if isSprinting and current_stamina > 0:
 		speed = SPRINT_SPEED
-		if animation_player.current_animation == "ink_walkcycle":
+		if animation_player.current_animation == "walkanimation":
 			animation_player.speed_scale = 2
 	else:
 		animation_player.speed_scale = 1
@@ -149,13 +149,21 @@ func _physics_process(delta):
 			last_direction = direction
 			if animation_player.current_animation != "ink_walkcycle" and animation_player.current_animation != "ink_jump_attack_death/ink_attack" and animation_player.current_animation != "take_damage" and animation_player.current_animation != "ink_jump_attack_death/ink_jump": 
 				animation_player.play("ink_walkcycle")
-			velocity.x = direction.x * speed
-			velocity.z = direction.z * speed
+			inputVelocity.x = direction.x * speed
+			inputVelocity.y = direction.z * speed
+			# sprinting
+			if isSprinting and current_stamina > 0:
+				current_stamina -= stamina_drain_rate * delta
+				update()
+				if current_stamina <= 0:
+					isSprinting = false
 		else:
-			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+			inputVelocity.x = lerp(inputVelocity.x, direction.x * speed, delta * 7.0)
+			inputVelocity.y = lerp(inputVelocity.y, direction.z * speed, delta * 7.0)
 			if !animation_player.is_playing():
 				animation_player.play("ink_idle")
+		knockback = knockback.limit_length(MAX_KNOCKBACK_SPEED)
+		velocity = Vector3(inputVelocity.x, velocity.y, inputVelocity.y) + Vector3(knockback.x, 0, knockback.y)
 	else:
 		velocity.x = 0
 		velocity.z = 0 
@@ -186,6 +194,7 @@ func heal(amount):
 func toggle_root():
 	is_rooted = !is_rooted
 	if is_rooted:
+		isSprinting = false
 		print("Rooting Down")
 		animation_player.play("sit")
 	else:
@@ -227,7 +236,8 @@ func cast_ability(ability_type):
 	
 	
 func apply_knockback(direction: Vector3, force: float):
-	velocity += direction.normalized() * force
+	knockback += Vector2(direction.x, direction.z).normalized() * force
+	velocity.y += direction.normalized().y * force
 
 func die():
 	is_dead = true
@@ -241,6 +251,7 @@ func die():
 	
 func respawn():
 	is_dead = false
+	knockback = Vector2.ZERO; velocity = Vector3.ZERO; inputVelocity = Vector2.ZERO
 	animation_player.play("ink_idle")
 	global_position = Vector3(5, 1, 5)
 	print("player", player_id, "respawned!")
