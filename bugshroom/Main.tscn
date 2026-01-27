@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bwv1obth85s1a" path="res://tasks/dead_bug_task_spawner.tscn" id="10_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://8gxwurqg07or" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
 [ext_resource type="PackedScene" uid="uid://ddxy8prak70er" path="res://assets/environment/tree/redwood.tscn" id="13_j4qnp"]
-[ext_resource type="Script" path="res://player_2_spawner.gd" id="13_mxvw5"]
+[ext_resource type="Script" uid="uid://j0ano1abul83" path="res://player_2_spawner.gd" id="13_mxvw5"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://beh73njk1ypty" path="res://assets/environment/log/log_bugshroom_v01.fbx" id="15_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://drjomi27mdxip" path="res://assets/environment/rock/rock_1.tscn" id="16_sc1dx"]
