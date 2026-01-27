@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://sv3p68isjnny"]
+[gd_scene load_steps=7 format=3 uid="uid://sv3p68isjnny"]
 
 [ext_resource type="Script" uid="uid://gl5pnaiuknn1" path="res://levels/gameover/game_over.gd" id="1_vfsup"]
+[ext_resource type="Texture2D" uid="uid://dt3rkp2orl1h1" path="res://assets/UI/TRYAGAIN.BUGSH.png" id="2_3ccqh"]
+[ext_resource type="PackedScene" uid="uid://dbowfwd7ix33p" path="res://assets/Cursor/cursor.tscn" id="3_a7rtp"]
+[ext_resource type="Texture2D" uid="uid://btd2v25in45dy" path="res://assets/Cursor/Cursor icons-red and white.png" id="4_alkcx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wc024"]
+size = Vector2(411, 84)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8opua"]
+size = Vector2(457, 131)
 
 [node name="game_over" type="Control"]
 layout_mode = 3
@@ -11,40 +20,74 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vfsup")
 
-[node name="TryAgain" type="Button" parent="."]
-layout_mode = 1
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="TryAgainButton" type="Button" parent="CanvasLayer2" groups=["button"]]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -130.0
-offset_top = -34.0
-offset_right = 129.0
-offset_bottom = 34.0
+offset_left = -120.0
+offset_top = 6.0
+offset_right = 291.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Try again"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 27
+text = "
+"
 
-[node name="ReturnToTitle" type="Button" parent="."]
-layout_mode = 1
+[node name="Area2D" type="Area2D" parent="CanvasLayer2/TryAgainButton" groups=["button"]]
+position = Vector2(36, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/TryAgainButton/Area2D"]
+position = Vector2(168.5, 33)
+shape = SubResource("RectangleShape2D_wc024")
+
+[node name="BackToMenuButton" type="Button" parent="CanvasLayer2" groups=["button"]]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -119.0
-offset_top = 52.0
-offset_right = 119.0
-offset_bottom = 122.0
+offset_left = -281.0
+offset_top = 223.0
+offset_right = 180.0
+offset_bottom = 358.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Return to title screen"
 
-[node name="cursor" type="Sprite2D" parent="."]
-position = Vector2(573, 239)
-rotation = -0.453786
-scale = Vector2(0.186747, 0.186747)
+[node name="Area2D" type="Area2D" parent="CanvasLayer2/BackToMenuButton" groups=["button"]]
 
-[connection signal="pressed" from="TryAgain" to="." method="_on_try_again_pressed"]
-[connection signal="pressed" from="ReturnToTitle" to="." method="_on_return_to_title_pressed"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/BackToMenuButton/Area2D"]
+position = Vector2(232.5, 67.5)
+shape = SubResource("RectangleShape2D_8opua")
+
+[node name="Cursor" parent="CanvasLayer2" instance=ExtResource("3_a7rtp")]
+position = Vector2(428, 295)
+
+[node name="Cursor2" parent="CanvasLayer2" instance=ExtResource("3_a7rtp")]
+z_index = 6
+position = Vector2(1528, 278)
+cursor_id = 2
+texture = ExtResource("4_alkcx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BackgroundImage" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3ccqh")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="CanvasLayer2/TryAgainButton" to="." method="_on_try_again_button_pressed"]
+[connection signal="pressed" from="CanvasLayer2/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]

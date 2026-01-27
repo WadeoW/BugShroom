@@ -24,7 +24,7 @@ var is_jumping = false
 @onready var animation_state_playback = animation_tree.get("parameters/playback")
 
 #sound variables
-@onready var walksound: AudioStreamPlayer3D = $walksound
+
 
 #respawn
 @export var respawn_delay: float = 5.0
@@ -154,7 +154,6 @@ func _physics_process(delta):
 			last_direction = direction
 			#if animation_player.current_animation != "walkanimation" and animation_player.current_animation != "mushroomdude_allanimations2/attack" and animation_player.current_animation != "headshakeanimation/headshake" and animation_player.current_animation != "take_damage": 
 				#animation_player.play("walkanimation")
-			walksound.play()
 			inputVelocity.x = direction.x * speed
 			inputVelocity.y = direction.z * speed
 			# sprinting
