@@ -54,9 +54,11 @@ var can_attack: bool = true
 
 #ability and class variables
 var ability_active = false
+var can_cast_abil = true
 @onready var ability_type = load("res://entities/abilities/SporeRingAbility.tscn")
 var mushroom_type = PlayerData.MushroomType.Amanita
 @export var char_model: PackedScene
+@onready var ability_cooldown: Timer = $AbilityCooldown
 
 #Root Down Mechanic
 var is_rooted = false
@@ -104,7 +106,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("root_%s" % [player_id]):
 		toggle_root()
 		
-	if event.is_action_pressed("interact_%s" % [player_id]) and ability_active == false and is_on_floor():
+	if event.is_action_pressed("interact_%s" % [player_id]) and can_cast_abil == true and is_on_floor():
 		cast_ability(ability_type)
 		if ability_active:
 			print("abilty active = true")
@@ -243,6 +245,7 @@ func attack():
 func cast_ability(ability_type):
 	animation_player.play("headshakeanimation/headshake")
 	ability_active = true
+	can_cast_abil = false
 	var spawn = ability_type.instantiate()
 	add_sibling(spawn)
 	print("ability has been cast")
@@ -311,3 +314,7 @@ func respawn():
 	set_physics_process(true)
 
 	
+
+
+func _on_ability_cooldown_timeout() -> void:
+	can_cast_abil = true

@@ -17,7 +17,6 @@ var bodies_in_area = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#player = get_tree().get_first_node_in_group("Amanita")
 	
 	for child in children:
 		print(child)
@@ -25,10 +24,7 @@ func _ready() -> void:
 			player = child
 			print(player)
 		
-	#if get_parent().get_node("Player"):
-		#player = get_parent().get_node("Player")
-	#elif get_parent().get_node("Player2"):
-		#player = get_parent().get_node("Player2")
+
 	position = player.position
 	print(position)
 	print(player.position)
@@ -37,6 +33,7 @@ func _ready() -> void:
 func _on_lifetime_timeout() -> void:
 	player.ability_active = false
 	print("ability despawned")
+	player.ability_cooldown.start()
 	queue_free()
 
 

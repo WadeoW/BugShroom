@@ -4818,6 +4818,7 @@ transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -106.935, 35.0726
 transform = Transform3D(0.0133856, 0.917187, 0.398233, -0.996399, 0.0455813, -0.0714884, -0.0837202, -0.395842, 0.914494, -306.215, 4.47355, 80.0995)
 
 [node name="Node3D" type="CSGCombiner3D" parent="environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222122, 0, 0.0406113)
 layers = 129
 material_override = ExtResource("4_c2ibq")
 use_collision = true

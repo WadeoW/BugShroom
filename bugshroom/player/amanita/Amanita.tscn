@@ -1460,6 +1460,10 @@ angular_limit_x/enabled = false
 angular_limit_y/enabled = false
 angular_limit_z/enabled = false
 
+[node name="AbilityCooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.8
 one_shot = true
@@ -1547,3 +1551,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 2, 1)
 stream = ExtResource("11_tfmg4")
 unit_size = 15.0
 max_db = 6.0
+
+[connection signal="timeout" from="AbilityCooldown" to="." method="_on_ability_cooldown_timeout"]

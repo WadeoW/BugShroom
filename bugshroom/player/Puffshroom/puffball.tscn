@@ -361,6 +361,8 @@ height = 1.50688
 collision_layer = 9
 collision_mask = 9
 script = ExtResource("1_0vhsy")
+current_health = 150
+max_health = 150
 health_bar = NodePath("CanvasLayer/HealthBar")
 stamina_bar = NodePath("CanvasLayer/StaminaBar")
 
