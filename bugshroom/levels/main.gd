@@ -10,7 +10,7 @@ extends Node3D
 @export var colony_nutrient_bar = ProgressBar
 @export var current_colony_nutrients: int = 1000
 @export var max_colony_nutrients: int = 1000
-@export var colony_nutrient_drain_rate = 5
+@export var colony_nutrient_drain_rate = 0
 var colony_nutrient_gain_rate = 25
 
 @onready var players = {"player_1": player1, "player_2": player2}

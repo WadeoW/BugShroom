@@ -13,7 +13,12 @@ config_version=5
 config/name="BugShroom"
 run/main_scene="uid://btwanigppk4jf"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+run/max_fps=165
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://4mtckakhq4qg"
 
 [autoload]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=45 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
@@ -11,9 +11,9 @@
 [ext_resource type="Script" uid="uid://bp75styrftfwv" path="res://player_1_spawner.gd" id="9_hhcpw"]
 [ext_resource type="PackedScene" uid="uid://bwv1obth85s1a" path="res://tasks/dead_bug_task_spawner.tscn" id="10_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://8gxwurqg07or" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
-[ext_resource type="PackedScene" uid="uid://ddxy8prak70er" path="res://assets/environment/tree/redwood.tscn" id="13_j4qnp"]
 [ext_resource type="Script" uid="uid://j0ano1abul83" path="res://player_2_spawner.gd" id="13_mxvw5"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
+[ext_resource type="PackedScene" uid="uid://dt1373tohhcxl" path="res://assets/environment/tree/new_redwood.tscn" id="14_mxvw5"]
 [ext_resource type="PackedScene" uid="uid://beh73njk1ypty" path="res://assets/environment/log/log_bugshroom_v01.fbx" id="15_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://drjomi27mdxip" path="res://assets/environment/rock/rock_1.tscn" id="16_sc1dx"]
 [ext_resource type="PackedScene" uid="uid://ba406h63j4154" path="res://assets/environment/rock/big_rock.tscn" id="17_5tuhn"]
@@ -198,6 +198,27 @@ shadow_mesh = SubResource("ArrayMesh_ppyv2")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kjvhd"]
 data = PackedVector3Array(-0.2013, -0.0418, -0.0711, -0.2013, -0.0724, -0.0405, -0.2013, -0.0866, -0.0487, -0.2013, -0.1, 0.0013, -0.2013, -0.0866, -0.0487, -0.2013, -0.0724, -0.0405, -0.2013, -0.0724, -0.0405, -0.2013, -0.0836, 0.0013, -0.2013, -0.1, 0.0013, -0.2013, -0.0866, -0.0487, -0.2013, -0.05, -0.0853, -0.2013, -0.0418, -0.0711, -0.2013, -0.0418, -0.0711, -0.2013, -0.05, -0.0853, -0.2013, 0, -0.0987, -0.2013, 0, -0.0987, -0.2013, 0, -0.0823, -0.2013, -0.0418, -0.0711, -0.2013, -0.0724, 0.0431, -0.2013, -0.0866, 0.0513, -0.2013, -0.1, 0.0013, -0.2013, -0.1, 0.0013, -0.2013, -0.0836, 0.0013, -0.2013, -0.0724, 0.0431, -0.2013, -0.0418, 0.0737, -0.2013, -0.05, 0.0879, -0.2013, -0.0866, 0.0513, -0.2013, -0.0866, 0.0513, -0.2013, -0.0724, 0.0431, -0.2013, -0.0418, 0.0737, -0.2013, -0.0418, 0.0737, -0.2013, 0, 0.0849, -0.2013, 0, 0.1013, -0.2013, 0, 0.1013, -0.2013, -0.05, 0.0879, -0.2013, -0.0418, 0.0737, -0.2013, 0.0418, 0.0737, -0.2013, 0.05, 0.0879, -0.2013, 0, 0.1013, -0.2013, 0, 0.1013, -0.2013, 0, 0.0849, -0.2013, 0.0418, 0.0737, -0.2013, 0.0866, 0.0513, -0.2013, 0.05, 0.0879, -0.2013, 0.0418, 0.0737, -0.2013, 0.0418, 0.0737, -0.2013, 0.0724, 0.0431, -0.2013, 0.0866, 0.0513, -0.2013, 0.0418, -0.0711, -0.2013, 0.05, -0.0853, -0.2013, 0.0866, -0.0487, -0.2013, 0.0866, -0.0487, -0.2013, 0.0724, -0.0405, -0.2013, 0.0418, -0.0711, -0.2013, 0.0724, -0.0405, -0.2013, 0.0866, -0.0487, -0.2013, 0.1, 0.0013, -0.2013, 0.1, 0.0013, -0.2013, 0.0836, 0.0013, -0.2013, 0.0724, -0.0405, -0.2013, 0.0418, -0.0711, -0.2013, 0, -0.0823, -0.2013, 0, -0.0987, -0.2013, 0, -0.0987, -0.2013, 0.05, -0.0853, -0.2013, 0.0418, -0.0711, 0.2013, -0.0724, 0.0431, 0.2013, -0.0866, 0.0513, 0.2013, -0.05, 0.0879, 0.2013, -0.05, 0.0879, 0.2013, -0.0418, 0.0737, 0.2013, -0.0724, 0.0431, -0.2013, 0.0724, 0.0431, -0.2013, 0.0836, 0.0013, -0.2013, 0.1, 0.0013, -0.2013, 0.1, 0.0013, -0.2013, 0.0866, 0.0513, -0.2013, 0.0724, 0.0431, -0.1909, 0.0418, 0.0737, -0.2013, 0.0418, 0.0737, -0.2013, 0, 0.0849, -0.2013, 0, 0.0849, -0.1909, 0, 0.0849, -0.1909, 0.0418, 0.0737, -0.1909, 0, 0.0013, -0.1909, 0.0724, -0.0405, -0.1909, 0.0836, 0.0013, -0.1909, 0.0418, -0.0711, -0.1909, 0.0724, -0.0405, -0.1909, 0, 0.0013, -0.1909, 0, 0.0013, -0.1909, 0.0836, 0.0013, -0.1909, 0.0724, 0.0431, -0.1909, 0, 0.0013, -0.1909, 0, -0.0823, -0.1909, 0.0418, -0.0711, -0.1909, 0.0724, 0.0431, -0.1909, 0.0418, 0.0737, -0.1909, 0, 0.0013, -0.1909, 0, 0.0849, -0.1909, 0, 0.0013, -0.1909, 0.0418, 0.0737, -0.1909, 0, -0.0823, -0.1909, 0, 0.0013, -0.1909, -0.0418, -0.0711, -0.1909, -0.0418, -0.0711, -0.1909, 0, 0.0013, -0.1909, -0.0724, -0.0405, -0.1909, -0.0836, 0.0013, -0.1909, -0.0724, -0.0405, -0.1909, 0, 0.0013, -0.1909, 0, 0.0013, -0.1909, -0.0724, 0.0431, -0.1909, -0.0836, 0.0013, -0.1909, -0.0724, 0.0431, -0.1909, 0, 0.0013, -0.1909, -0.0418, 0.0737, -0.1909, 0.0724, -0.0405, -0.2013, 0.0724, -0.0405, -0.2013, 0.0836, 0.0013, -0.2013, 0.0836, 0.0013, -0.1909, 0.0836, 0.0013, -0.1909, 0.0724, -0.0405, -0.1909, 0.0836, 0.0013, -0.2013, 0.0836, 0.0013, -0.2013, 0.0724, 0.0431, -0.2013, 0.0724, 0.0431, -0.1909, 0.0724, 0.0431, -0.1909, 0.0836, 0.0013, -0.1909, 0, -0.0823, -0.2013, 0, -0.0823, -0.2013, 0.0418, -0.0711, -0.2013, 0.0418, -0.0711, -0.1909, 0.0418, -0.0711, -0.1909, 0, -0.0823, -0.1909, -0.0724, -0.0405, -0.2013, -0.0724, -0.0405, -0.2013, -0.0418, -0.0711, -0.2013, -0.0418, -0.0711, -0.1909, -0.0418, -0.0711, -0.1909, -0.0724, -0.0405, -0.1909, -0.0724, 0.0431, -0.2013, -0.0724, 0.0431, -0.2013, -0.0836, 0.0013, -0.2013, -0.0836, 0.0013, -0.1909, -0.0836, 0.0013, -0.1909, -0.0724, 0.0431, -0.1909, 0.0418, -0.0711, -0.2013, 0.0418, -0.0711, -0.2013, 0.0724, -0.0405, -0.2013, 0.0724, -0.0405, -0.1909, 0.0724, -0.0405, -0.1909, 0.0418, -0.0711, -0.1909, 0, 0.0849, -0.2013, 0, 0.0849, -0.2013, -0.0418, 0.0737, -0.2013, -0.0418, 0.0737, -0.1909, -0.0418, 0.0737, -0.1909, 0, 0.0849, -0.1909, -0.0418, -0.0711, -0.2013, -0.0418, -0.0711, -0.2013, 0, -0.0823, -0.2013, 0, -0.0823, -0.1909, 0, -0.0823, -0.1909, -0.0418, -0.0711, -0.1909, 0.0724, 0.0431, -0.2013, 0.0724, 0.0431, -0.2013, 0.0418, 0.0737, -0.2013, 0.0418, 0.0737, -0.1909, 0.0418, 0.0737, -0.1909, 0.0724, 0.0431, -0.1909, -0.0836, 0.0013, -0.2013, -0.0836, 0.0013, -0.2013, -0.0724, -0.0405, -0.2013, -0.0724, -0.0405, -0.1909, -0.0724, -0.0405, -0.1909, -0.0836, 0.0013, -0.1909, -0.0418, 0.0737, -0.2013, -0.0418, 0.0737, -0.2013, -0.0724, 0.0431, -0.2013, -0.0724, 0.0431, -0.1909, -0.0724, 0.0431, -0.1909, -0.0418, 0.0737, -0.1909, 0, 0.0849, -0.1909, -0.0418, 0.0737, -0.1909, 0, 0.0013, 0.2013, -0.0724, 0.0431, 0.2013, -0.0836, 0.0013, 0.2013, -0.1, 0.0013, 0.2013, -0.1, 0.0013, 0.2013, -0.0866, 0.0513, 0.2013, -0.0724, 0.0431, 0.2013, -0.0836, 0.0013, 0.2013, -0.0724, -0.0405, 0.2013, -0.0866, -0.0487, 0.2013, -0.0866, -0.0487, 0.2013, -0.1, 0.0013, 0.2013, -0.0836, 0.0013, 0.2013, -0.0418, -0.0711, 0.2013, -0.05, -0.0853, 0.2013, -0.0866, -0.0487, 0.2013, -0.0866, -0.0487, 0.2013, -0.0724, -0.0405, 0.2013, -0.0418, -0.0711, 0.2013, 0, -0.0823, 0.2013, 0, -0.0987, 0.2013, -0.05, -0.0853, 0.2013, -0.05, -0.0853, 0.2013, -0.0418, -0.0711, 0.2013, 0, -0.0823, 0.2013, 0, -0.0823, 0.2013, 0.0418, -0.0711, 0.2013, 0.05, -0.0853, 0.2013, 0.05, -0.0853, 0.2013, 0, -0.0987, 0.2013, 0, -0.0823, 0.2013, 0.0866, -0.0487, 0.2013, 0.05, -0.0853, 0.2013, 0.0418, -0.0711, 0.2013, 0.0418, -0.0711, 0.2013, 0.0724, -0.0405, 0.2013, 0.0866, -0.0487, 0.2013, 0.0724, 0.0431, 0.2013, 0.0418, 0.0737, 0.2013, 0.05, 0.0879, 0.2013, 0.05, 0.0879, 0.2013, 0.0866, 0.0513, 0.2013, 0.0724, 0.0431, 0.2013, 0, 0.0849, 0.2013, 0, 0.1013, 0.2013, 0.05, 0.0879, 0.2013, 0.05, 0.0879, 0.2013, 0.0418, 0.0737, 0.2013, 0, 0.0849, 0.2013, 0.0724, 0.0431, 0.2013, 0.0866, 0.0513, 0.2013, 0.1, 0.0013, 0.2013, 0.1, 0.0013, 0.2013, 0.0836, 0.0013, 0.2013, 0.0724, 0.0431, 0.2013, 0.0836, 0.0013, 0.2013, 0.1, 0.0013, 0.2013, 0.0866, -0.0487, 0.2013, 0.0866, -0.0487, 0.2013, 0.0724, -0.0405, 0.2013, 0.0836, 0.0013, 0.1909, 0.0418, -0.0711, 0.2013, 0.0418, -0.0711, 0.2013, 0, -0.0823, 0.2013, 0, -0.0823, 0.1909, 0, -0.0823, 0.1909, 0.0418, -0.0711, 0.2013, 0, 0.0849, 0.2013, -0.0418, 0.0737, 0.2013, -0.05, 0.0879, 0.2013, -0.05, 0.0879, 0.2013, 0, 0.1013, 0.2013, 0, 0.0849, 0.1909, 0, 0.0013, 0.1909, 0.0724, 0.0431, 0.1909, 0.0836, 0.0013, 0.1909, 0, 0.0013, 0.1909, 0.0836, 0.0013, 0.1909, 0.0724, -0.0405, 0.1909, 0.0724, -0.0405, 0.1909, 0.0418, -0.0711, 0.1909, 0, 0.0013, 0.1909, 0, -0.0823, 0.1909, 0, 0.0013, 0.1909, 0.0418, -0.0711, 0.1909, -0.0836, 0.0013, 0.1909, -0.0724, 0.0431, 0.1909, 0, 0.0013, 0.1909, 0, 0.0013, 0.1909, -0.0724, -0.0405, 0.1909, -0.0836, 0.0013, 0.1909, -0.0724, -0.0405, 0.1909, 0, 0.0013, 0.1909, -0.0418, -0.0711, 0.1909, 0.0836, 0.0013, 0.1909, 0.0724, 0.0431, 0.2013, 0.0724, 0.0431, 0.2013, 0.0724, 0.0431, 0.2013, 0.0836, 0.0013, 0.1909, 0.0836, 0.0013, 0.1909, 0.0724, -0.0405, 0.1909, 0.0836, 0.0013, 0.2013, 0.0836, 0.0013, 0.2013, 0.0836, 0.0013, 0.2013, 0.0724, -0.0405, 0.1909, 0.0724, -0.0405, 0.1909, 0, 0.0849, 0.2013, 0, 0.0849, 0.2013, 0.0418, 0.0737, 0.2013, 0.0418, 0.0737, 0.1909, 0.0418, 0.0737, 0.1909, 0, 0.0849, 0.1909, -0.0724, 0.0431, 0.2013, -0.0724, 0.0431, 0.2013, -0.0418, 0.0737, 0.2013, -0.0418, 0.0737, 0.1909, -0.0418, 0.0737, 0.1909, -0.0724, 0.0431, 0.1909, -0.0724, -0.0405, 0.2013, -0.0724, -0.0405, 0.2013, -0.0836, 0.0013, 0.2013, -0.0836, 0.0013, 0.1909, -0.0836, 0.0013, 0.1909, -0.0724, -0.0405, 0.1909, 0.0418, 0.0737, 0.2013, 0.0418, 0.0737, 0.2013, 0.0724, 0.0431, 0.2013, 0.0724, 0.0431, 0.1909, 0.0724, 0.0431, 0.1909, 0.0418, 0.0737, 0.1909, 0, -0.0823, 0.2013, 0, -0.0823, 0.2013, -0.0418, -0.0711, 0.2013, -0.0418, -0.0711, 0.1909, -0.0418, -0.0711, 0.1909, 0, -0.0823, 0.1909, -0.0418, 0.0737, 0.2013, -0.0418, 0.0737, 0.2013, 0, 0.0849, 0.2013, 0, 0.0849, 0.1909, 0, 0.0849, 0.1909, -0.0418, 0.0737, 0.1909, 0.0724, -0.0405, 0.2013, 0.0724, -0.0405, 0.2013, 0.0418, -0.0711, 0.2013, 0.0418, -0.0711, 0.1909, 0.0418, -0.0711, 0.1909, 0.0724, -0.0405, 0.1909, -0.0836, 0.0013, 0.2013, -0.0836, 0.0013, 0.2013, -0.0724, 0.0431, 0.2013, -0.0724, 0.0431, 0.1909, -0.0724, 0.0431, 0.1909, -0.0836, 0.0013, 0.1909, -0.0418, -0.0711, 0.2013, -0.0418, -0.0711, 0.2013, -0.0724, -0.0405, 0.2013, -0.0724, -0.0405, 0.1909, -0.0724, -0.0405, 0.1909, -0.0418, -0.0711, 0.1909, 0, -0.0823, 0.1909, -0.0418, -0.0711, 0.1909, 0, 0.0013, 0.1909, 0.0418, 0.0737, 0.1909, 0.0724, 0.0431, 0.1909, 0, 0.0013, 0.1909, -0.0418, 0.0737, 0.1909, 0, 0.0013, 0.1909, -0.0724, 0.0431, 0.1909, 0, 0.0013, 0.1909, 0, 0.0849, 0.1909, 0.0418, 0.0737, 0.1909, 0, 0.0849, 0.1909, 0, 0.0013, 0.1909, -0.0418, 0.0737, -0.2013, 0.05, -0.0853, 0.2013, 0.05, -0.0853, 0.2013, 0.0866, -0.0487, 0.2013, 0.0866, -0.0487, -0.2013, 0.0866, -0.0487, -0.2013, 0.05, -0.0853, -0.2013, 0, -0.0987, 0.2013, 0, -0.0987, 0.2013, 0.05, -0.0853, 0.2013, 0.05, -0.0853, -0.2013, 0.05, -0.0853, -0.2013, 0, -0.0987, -0.2013, 0, -0.0987, -0.2013, -0.05, -0.0853, 0.2013, -0.05, -0.0853, 0.2013, -0.05, -0.0853, 0.2013, 0, -0.0987, -0.2013, 0, -0.0987, -0.2013, -0.0866, -0.0487, 0.2013, -0.0866, -0.0487, 0.2013, -0.05, -0.0853, 0.2013, -0.05, -0.0853, -0.2013, -0.05, -0.0853, -0.2013, -0.0866, -0.0487, -0.2013, -0.0866, -0.0487, -0.2013, -0.1, 0.0013, 0.2013, -0.1, 0.0013, 0.2013, -0.1, 0.0013, 0.2013, -0.0866, -0.0487, -0.2013, -0.0866, -0.0487, -0.2013, -0.1, 0.0013, -0.2013, -0.0866, 0.0513, 0.2013, -0.0866, 0.0513, 0.2013, -0.0866, 0.0513, 0.2013, -0.1, 0.0013, -0.2013, -0.1, 0.0013, -0.2013, -0.0866, 0.0513, -0.2013, -0.05, 0.0879, 0.2013, -0.05, 0.0879, 0.2013, -0.05, 0.0879, 0.2013, -0.0866, 0.0513, -0.2013, -0.0866, 0.0513, -0.2013, -0.05, 0.0879, -0.2013, 0, 0.1013, 0.2013, 0, 0.1013, 0.2013, 0, 0.1013, 0.2013, -0.05, 0.0879, -0.2013, -0.05, 0.0879, -0.2013, 0.05, 0.0879, 0.2013, 0.05, 0.0879, 0.2013, 0, 0.1013, 0.2013, 0, 0.1013, -0.2013, 0, 0.1013, -0.2013, 0.05, 0.0879, -0.2013, 0.0866, 0.0513, 0.2013, 0.0866, 0.0513, 0.2013, 0.05, 0.0879, 0.2013, 0.05, 0.0879, -0.2013, 0.05, 0.0879, -0.2013, 0.0866, 0.0513, -0.2013, 0.1, 0.0013, 0.2013, 0.1, 0.0013, 0.2013, 0.0866, 0.0513, 0.2013, 0.0866, 0.0513, -0.2013, 0.0866, 0.0513, -0.2013, 0.1, 0.0013, -0.2013, 0.0866, -0.0487, 0.2013, 0.0866, -0.0487, 0.2013, 0.1, 0.0013, 0.2013, 0.1, 0.0013, -0.2013, 0.1, 0.0013, -0.2013, 0.0866, -0.0487)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hhcpw"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 15.0
+emission_ring_radius = 35.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 32.73
+gravity = Vector3(0, -0.2, 0)
+turbulence_enabled = true
+turbulence_noise_strength = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxvw5"]
+albedo_color = Color(1, 0.58, 0.58, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_xrxkg"]
+material = SubResource("StandardMaterial3D_mxvw5")
+radius = 0.125
+height = 0.25
+radial_segments = 8
+rings = 4
+
 [node name="World" type="Node3D" node_paths=PackedStringArray("colony_nutrient_bar")]
 script = ExtResource("1_5vvyt")
 colony_nutrient_bar = NodePath("CanvasLayer/ColonyNutrientBar")
@@ -217,6 +238,7 @@ autostart = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColonyNutrientBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("main")]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -235,6 +257,7 @@ script = ExtResource("3_c6i3y")
 main = NodePath("../..")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -254,6 +277,7 @@ collision_layer = 129
 collision_mask = 129
 size = Vector3(800, 1, 800)
 material = ExtResource("4_c2ibq")
+metadata/_edit_lock_ = true
 
 [node name="boxes" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.1401, 0, 113.883)
@@ -3152,46 +3176,1300 @@ transform = Transform3D(11.3203, -99.3572, -4.34304e-06, 0, -4.37114e-06, 100, -
 mesh = SubResource("ArrayMesh_ftecj")
 skeleton = NodePath("")
 
+[node name="grass_536" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -187.435, -0.52685, 63.5609)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_537" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -176.27, -0.52685, 63.0749)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_538" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -173.437, -0.532346, 69.2628)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_539" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -178.27, -0.529336, 67.2831)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_540" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -187.435, -0.52685, 49.7566)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_541" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -176.27, -0.52685, 49.2706)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_542" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -173.437, -0.532346, 55.4585)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_543" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -178.27, -0.529336, 53.4789)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_544" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -180.78, -0.52685, 59.4756)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_545" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -170.465, -0.52685, 63.776)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_546" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -170.528, -0.532346, 70.5811)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_547" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -174.063, -0.529336, 66.7367)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_548" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -174.919, -0.52685, 46.9774)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_549" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -164.604, -0.52685, 51.2779)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_550" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -164.667, -0.532346, 58.0829)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_551" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -168.202, -0.529336, 54.2386)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_552" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -187.435, -0.52685, 37.9641)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_553" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -176.27, -0.52685, 37.4781)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_554" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -173.437, -0.532346, 43.666)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_555" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -178.27, -0.529336, 41.6864)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_556" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -187.435, -0.52685, 24.1599)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_557" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -176.27, -0.52685, 23.6739)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_558" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -173.437, -0.532346, 29.8617)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_559" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -178.27, -0.529336, 27.8821)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_560" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -180.78, -0.52685, 33.8788)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_561" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -170.465, -0.52685, 38.1793)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_562" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -170.528, -0.532346, 44.9844)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_563" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -174.063, -0.529336, 41.14)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_564" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -174.919, -0.52685, 21.3807)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_565" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -164.604, -0.52685, 25.6811)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_566" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -164.667, -0.532346, 32.4862)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_567" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -168.202, -0.529336, 28.6418)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_568" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8416, 5.62572, 6.70637e-07, 0, -1.19209e-05, 100, 5.62572, 99.8416, 1.1902e-05, -139.267, -0.52685, 27.9537)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_569" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8416, 5.62572, 6.70637e-07, 0, -1.19209e-05, 100, 5.62572, 99.8416, 1.1902e-05, -150.387, -0.52685, 29.067)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_570" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8416, 5.62572, 6.70637e-07, 0, -1.19209e-05, 100, 5.62572, 99.8416, 1.1902e-05, -153.563, -0.532346, 23.0483)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_571" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8416, 5.62572, 6.70637e-07, 0, -1.19209e-05, 100, 5.62572, 99.8416, 1.1902e-05, -148.626, -0.529336, 24.7529)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_572" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8416, 5.62572, 6.70637e-07, 0, -1.19209e-05, 100, 5.62572, 99.8416, 1.1902e-05, -145.624, -0.52685, 41.7361)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_573" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8394, 5.66467, 0.0479479, 0.046813, -0.0213808, 100, 5.66468, 99.8394, 0.0186974, -149.61, -0.52685, 42.8494)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_574" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8416, 5.62572, 6.70637e-07, 0, -1.19209e-05, 100, 5.62572, 99.8416, 1.1902e-05, -152.787, -0.532346, 36.8307)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_575" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8416, 5.62572, 6.70637e-07, 0, -1.19209e-05, 100, 5.62572, 99.8416, 1.1902e-05, -147.85, -0.529336, 38.5353)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_576" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -145.682, -0.52685, 32.4069)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_577" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -156.222, -0.52685, 28.6936)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_578" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -156.542, -0.532346, 21.8957)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_579" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -152.796, -0.529336, 25.5351)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_580" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -150.831, -0.52685, 45.215)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_581" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -161.371, -0.52685, 41.5017)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_582" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -161.691, -0.532346, 34.7038)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_583" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -157.945, -0.529336, 38.3432)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_584" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8416, 5.62572, 6.70637e-07, 0, -1.19209e-05, 100, 5.62572, 99.8416, 1.1902e-05, -144.442, -0.52685, 53.5099)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_585" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8416, 5.62572, 6.70637e-07, 0, -1.19209e-05, 100, 5.62572, 99.8416, 1.1902e-05, -148.947, -0.52685, 54.6232)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_586" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8416, 5.62572, 6.70637e-07, 0, -1.19209e-05, 100, 5.62572, 99.8416, 1.1902e-05, -152.123, -0.532346, 48.6045)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_587" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8416, 5.62572, 6.70637e-07, 0, -1.19209e-05, 100, 5.62572, 99.8416, 1.1902e-05, -147.186, -0.529336, 50.3091)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_588" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8416, 5.62572, 6.70637e-07, 0, -1.19209e-05, 100, 5.62572, 99.8416, 1.1902e-05, -137.051, -0.52685, 67.2923)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_589" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8416, 5.62572, 6.70637e-07, 0, -1.19209e-05, 100, 5.62572, 99.8416, 1.1902e-05, -148.17, -0.52685, 68.4057)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_590" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8416, 5.62572, 6.70637e-07, 0, -1.19209e-05, 100, 5.62572, 99.8416, 1.1902e-05, -151.347, -0.532346, 62.3869)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_591" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-99.8416, 5.62572, 6.70637e-07, 0, -1.19209e-05, 100, 5.62572, 99.8416, 1.1902e-05, -146.41, -0.529336, 64.0916)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_592" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -144.242, -0.52685, 57.9631)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_593" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -154.782, -0.52685, 54.2498)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_594" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -155.102, -0.532346, 47.4519)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_595" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -136.651, -0.529336, 51.0914)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_596" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -149.391, -0.52685, 70.7712)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_597" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -159.931, -0.52685, 67.0579)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_598" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -160.251, -0.532346, 60.2601)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_599" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-92.7836, -37.2988, -4.44635e-06, 6.23349e-13, -1.19209e-05, 100, -37.2988, 92.7836, 1.10606e-05, -156.505, -0.529336, 63.8995)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_600" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(99.6764, 0, 0, 0, -1.18823e-05, 99.6764, 0, -99.6764, -1.18823e-05, -142.866, -0.526854, 119.461)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_601" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(99.6764, 0, 0, 0, -1.18823e-05, 99.6764, 0, -99.6764, -1.18823e-05, -131.737, -0.526854, 118.977)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_602" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(99.6764, 0, 0, 0, -1.18823e-05, 99.6764, 0, -99.6764, -1.18823e-05, -128.914, -0.532333, 125.145)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_603" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(99.6764, 0, 0, 0, -1.18823e-05, 99.6764, 0, -99.6764, -1.18823e-05, -133.731, -0.529332, 123.172)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_604" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(99.6764, 0, 0, 0, -1.18823e-05, 99.6764, 0, -99.6764, -1.18823e-05, -142.866, -0.526854, 105.702)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_605" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(99.6764, 0, 0, 0, -1.18823e-05, 99.6764, 0, -99.6764, -1.18823e-05, -131.737, -0.526854, 105.217)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_606" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -128.893, -0.532346, 111.369)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_607" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -133.726, -0.529336, 109.39)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_608" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -136.235, -0.52685, 115.386)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_609" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -125.921, -0.52685, 119.687)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_610" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -125.983, -0.532346, 126.492)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_611" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -129.519, -0.529336, 122.648)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_612" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -130.374, -0.52685, 102.888)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_613" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -120.059, -0.52685, 107.189)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_614" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(90.5384, 42.4594, 5.06155e-06, 0, -1.19209e-05, 100, 42.4594, -90.5384, -1.0793e-05, -120.122, -0.532346, 113.994)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_615" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -153.521, -0.526846, 121.253)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_616" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -154.874, -0.526846, 110.16)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_617" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -148.925, -0.532342, 106.855)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_618" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -150.523, -0.529332, 111.827)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_619" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -167.284, -0.526846, 122.326)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_620" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -168.636, -0.526846, 111.233)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_621" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -162.687, -0.532342, 107.928)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_622" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -164.285, -0.529332, 112.901)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_623" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -158.112, -0.526846, 114.936)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_624" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -154.626, -0.526846, 104.318)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_625" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -147.837, -0.532342, 103.852)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_626" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -151.395, -0.529332, 107.675)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_627" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -171.028, -0.526846, 110.064)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_628" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -167.542, -0.526846, 99.4466)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_629" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -160.753, -0.532342, 98.9801)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_630" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -164.311, -0.529332, 102.804)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_631" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -179.041, -0.526846, 123.243)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_632" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -180.393, -0.526846, 112.15)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_633" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -174.444, -0.532342, 108.845)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_634" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -176.042, -0.529332, 113.817)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_635" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -192.803, -0.526846, 124.316)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_636" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -194.155, -0.526846, 113.223)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_637" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -188.207, -0.532342, 109.918)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_638" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -189.804, -0.529332, 114.891)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_639" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -183.631, -0.526846, 116.926)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_640" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -180.145, -0.526846, 106.308)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_641" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -173.356, -0.532342, 105.842)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_642" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -176.914, -0.529332, 109.665)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_643" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -196.547, -0.526846, 112.054)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_644" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -193.061, -0.526846, 101.437)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_645" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -186.272, -0.532342, 100.97)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_646" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -189.83, -0.529332, 104.794)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_647" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -192.765, -0.526846, 75.9999)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_648" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -190.791, -0.526846, 86.9997)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_649" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -196.545, -0.532342, 90.634)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_650" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -195.229, -0.529332, 85.5795)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_651" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -178.531, -0.526846, 81.2662)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_652" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.4096, 99.0968, 0.0149131, 0.046813, -0.0213808, 100, 99.0968, -13.4096, -0.0492564, -177.111, -0.526846, 85.1536)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_653" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -182.864, -0.532342, 88.7889)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_654" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -181.549, -0.529332, 83.7343)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_655" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -187.827, -0.526846, 82.0493)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_656" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -190.71, -0.526846, 92.8461)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_657" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -197.462, -0.532342, 93.6936)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_658" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -194.125, -0.529332, 89.676)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_659" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -174.657, -0.526846, 86.1869)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_660" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -177.54, -0.526846, 96.9836)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_661" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -184.292, -0.532342, 97.8314)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_662" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -180.955, -0.529332, 93.8137)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_663" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -166.884, -0.526846, 79.1724)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_664" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -165.424, -0.526846, 83.5772)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_665" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -171.178, -0.532342, 87.2115)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_666" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -169.862, -0.529332, 82.1569)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_667" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -153.718, -0.526846, 70.7322)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_668" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -151.744, -0.526846, 81.731)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_669" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -157.497, -0.532342, 85.3663)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_670" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -156.182, -0.529332, 80.3118)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_671" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -162.46, -0.526846, 78.6268)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_672" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -165.343, -0.526846, 89.4236)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_673" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -172.095, -0.532342, 90.2711)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_674" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -169.901, -0.529332, 71.593)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_675" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -149.29, -0.526846, 82.7644)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_676" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -152.173, -0.526846, 93.5611)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_677" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -158.925, -0.532342, 94.4087)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_678" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -155.588, -0.529332, 90.3911)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_679" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -101.255, -0.52685, 72.4737)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_680" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -102.603, -0.52685, 61.4161)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_681" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -96.6734, -0.532329, 58.1221)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_682" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -98.2661, -0.529328, 63.0779)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_683" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -114.973, -0.52685, 73.5435)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_684" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -116.321, -0.52685, 62.4858)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_685" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -110.409, -0.532342, 59.1721)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_686" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -112.007, -0.529332, 64.1444)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_687" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -105.833, -0.526846, 66.1796)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_688" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -102.348, -0.526846, 55.5625)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_689" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -95.5583, -0.532342, 55.0952)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_690" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -99.1161, -0.529332, 58.9194)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_691" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -118.749, -0.526846, 61.308)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_692" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -115.264, -0.526846, 50.6899)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_693" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -108.474, -0.532342, 50.2237)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_694" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -258.401, -0.526846, -62.6649)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_695" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -259.754, -0.526846, -73.7579)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_696" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -253.805, -0.532342, -77.063)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_697" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -255.403, -0.529332, -72.0907)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_698" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -272.164, -0.526846, -61.5916)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_699" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -273.516, -0.526846, -72.6847)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_700" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -267.567, -0.532342, -75.9898)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_701" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -269.165, -0.529332, -71.0175)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_702" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -262.991, -0.526846, -68.9819)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_703" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -259.506, -0.526846, -79.5996)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_704" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -252.717, -0.532342, -80.0662)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_705" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -256.274, -0.529332, -76.2428)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_706" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -275.907, -0.526846, -73.8537)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_707" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -272.422, -0.526846, -84.4715)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_708" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -265.633, -0.532342, -84.938)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_709" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -269.19, -0.529332, -81.1146)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_710" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -283.92, -0.526846, -60.6748)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_711" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -285.273, -0.526846, -71.7678)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_712" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -279.324, -0.532342, -75.073)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_713" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -280.922, -0.529332, -70.1007)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_714" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -297.683, -0.526846, -59.6016)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_715" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -299.035, -0.526846, -70.6946)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_716" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -293.086, -0.532342, -73.9997)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_717" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -294.684, -0.529332, -69.0275)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_718" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -288.511, -0.526846, -66.9919)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_719" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -285.025, -0.526846, -77.6096)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_720" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -278.236, -0.532342, -78.0761)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_721" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -281.794, -0.529332, -74.2528)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_722" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -301.427, -0.526846, -71.8637)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_723" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -297.941, -0.526846, -82.4815)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_724" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -291.152, -0.532342, -82.9479)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_725" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -294.71, -0.529332, -79.1245)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_726" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -297.645, -0.526846, -107.918)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_727" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -295.671, -0.526846, -96.9184)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_728" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -301.424, -0.532342, -93.2841)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_729" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -300.109, -0.529332, -98.3386)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_730" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -283.41, -0.526846, -102.652)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_731" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.4096, 99.0968, 0.0149131, 0.046813, -0.0213808, 100, 99.0968, -13.4096, -0.0492564, -281.991, -0.526846, -98.7645)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_732" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -287.744, -0.532342, -95.1292)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_733" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -286.428, -0.529332, -100.184)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_734" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -292.707, -0.526846, -101.869)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_735" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -295.589, -0.526846, -91.072)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_736" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -302.342, -0.532342, -90.2245)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_737" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -299.005, -0.529332, -94.2421)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_738" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -279.537, -0.526846, -97.7312)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_739" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -282.42, -0.526846, -86.9345)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_740" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -289.172, -0.532342, -86.0867)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_741" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -285.835, -0.529332, -90.1044)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_742" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -271.764, -0.526846, -104.746)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_743" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -270.304, -0.526846, -100.341)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_744" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -276.058, -0.532342, -96.7066)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_745" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -274.742, -0.529332, -101.761)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_746" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -258.598, -0.526846, -113.186)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_747" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -256.624, -0.526846, -102.187)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_748" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -262.377, -0.532342, -98.5517)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_749" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(13.3709, 99.102, 1.18138e-05, 4.36543e-15, -1.19209e-05, 100, 99.102, -13.3709, -1.59394e-06, -261.062, -0.529332, -103.606)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_750" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -267.34, -0.526846, -105.291)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_751" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -270.223, -0.526846, -94.4945)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_752" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -276.975, -0.532342, -93.647)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_753" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -274.781, -0.529332, -112.325)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_754" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -254.17, -0.526846, -101.154)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_755" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -257.053, -0.526846, -90.357)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_756" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -263.805, -0.532342, -89.5094)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_757" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-29.9724, 95.4026, 1.13728e-05, 1.21801e-12, -1.19209e-05, 100, 95.4026, 29.9724, 3.57298e-06, -260.468, -0.529332, -93.527)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_758" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -268.184, -0.52685, -129.711)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_759" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -269.533, -0.52685, -140.768)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_760" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -263.603, -0.532329, -144.062)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_761" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -265.196, -0.529328, -139.107)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_762" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -281.902, -0.52685, -128.641)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_763" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -283.251, -0.52685, -139.699)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_764" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -277.338, -0.532342, -143.012)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_765" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -278.936, -0.529332, -138.04)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_766" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -272.763, -0.526846, -136.005)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_767" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -269.277, -0.526846, -146.622)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_768" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -262.488, -0.532342, -147.089)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_769" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -266.046, -0.529332, -143.265)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_770" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -285.679, -0.526846, -140.876)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_771" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -282.193, -0.526846, -151.495)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_772" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -275.404, -0.532342, -151.961)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_773" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -270.595, -0.52685, -39.8317)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_774" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -271.943, -0.52685, -50.8893)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_775" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -266.014, -0.532329, -54.1833)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_776" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -267.606, -0.529328, -49.2275)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_777" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -284.313, -0.52685, -38.7619)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_778" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.7494, -99.3747, -1.18463e-05, -3.73968e-14, -1.18823e-05, 99.6764, -99.3747, 7.7494, 9.23795e-07, -285.661, -0.52685, -49.8196)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_779" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -279.749, -0.532342, -53.1333)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_780" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(-7.77456, -99.6973, -1.18848e-05, 3.09906e-13, -1.19209e-05, 100, -99.6973, 7.77456, 9.26797e-07, -281.347, -0.529332, -48.161)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_781" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -275.173, -0.526846, -46.1258)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_782" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -271.688, -0.526846, -56.7429)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_783" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -264.898, -0.532342, -57.2102)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
+[node name="grass_784" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -268.456, -0.529332, -53.386)
+mesh = SubResource("ArrayMesh_ftecj")
+skeleton = NodePath("")
+
+[node name="grass_785" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -288.089, -0.526846, -50.9974)
+mesh = SubResource("ArrayMesh_duln8")
+skeleton = NodePath("")
+
+[node name="grass_786" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -284.604, -0.526846, -61.6155)
+mesh = SubResource("ArrayMesh_1ra2o")
+skeleton = NodePath("")
+
+[node name="grass_787" type="MeshInstance3D" parent="environment/grass_bugshroom"]
+transform = Transform3D(35.2919, -93.5654, -1.11538e-05, 6.23349e-13, -1.19209e-05, 100, -93.5654, -35.2919, -4.20712e-06, -277.814, -0.532342, -62.0817)
+mesh = SubResource("ArrayMesh_0mg7w")
+skeleton = NodePath("")
+
 [node name="redwoods" type="Node" parent="environment"]
 
-[node name="redwood" parent="environment/redwoods" instance=ExtResource("13_j4qnp")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -364.281, 1.5457, -368.747)
+[node name="Redwood3" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
+transform = Transform3D(4.3, 0, 0, 0, 4.3, 0, 0, 0, 4.3, 289.63, 4.1954, -118.881)
 
-[node name="CollisionShape3D" parent="environment/redwoods/redwood/RigidBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262695, 16.6549, 0.2603)
+[node name="Redwood4" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
+transform = Transform3D(8.555, 0, 0, 0, 8.555, 0, 0, 0, 8.555, 373.682, 4.1954, -373.414)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="environment/redwoods/redwood/RigidBody3D/CollisionShape3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.262695, -16.6549, -0.2603)
+[node name="Redwood7" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
+transform = Transform3D(8.555, 0, 0, 0, 8.555, 0, 0, 0, 8.555, -367.126, 4.1954, -372.303)
 
-[node name="redwood5" parent="environment/redwoods" instance=ExtResource("13_j4qnp")]
-transform = Transform3D(8.95751, 0, 4.44557, 0, 10, 0, -4.44557, 0, 8.95751, -62.5468, 1.5457, -183.127)
+[node name="Redwood5" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
+transform = Transform3D(8.555, 0, 0, 0, 8.555, 0, 0, 0, 8.555, 373.957, 4.19539, 370.871)
 
-[node name="redwood2" parent="environment/redwoods" instance=ExtResource("13_j4qnp")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -364.281, 1.5457, 362.793)
+[node name="Redwood6" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
+transform = Transform3D(8.555, 0, 0, 0, 8.555, 0, 0, 0, 8.555, -362.331, 4.19542, 362.905)
 
-[node name="redwood3" parent="environment/redwoods" instance=ExtResource("13_j4qnp")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 368.368, 1.5457, 362.793)
+[node name="Redwood8" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
+transform = Transform3D(6.64905, 0, 5.38314, 0, 8.555, 0, -5.38314, 0, 6.64905, -94.3533, 4.19545, 341.745)
 
-[node name="redwood4" parent="environment/redwoods" instance=ExtResource("13_j4qnp")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 368.368, 1.5457, -369.001)
+[node name="Redwood9" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
+transform = Transform3D(2.82128, 0, 2.28414, 0, 3.63, 0, -2.28414, 0, 2.82128, 350.298, 4.19545, 147.067)
 
-[node name="redwood6" parent="environment/redwoods" instance=ExtResource("13_j4qnp")]
-transform = Transform3D(5.01329, 0, -8.65256, 0, 10, 0, 8.65256, 0, 5.01329, 116.833, 1.5457, 296.444)
+[node name="Redwood10" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
+transform = Transform3D(2.82128, 0, 2.28414, 0, 3.63, 0, -2.28414, 0, 2.82128, 331.076, 4.19545, 31.6468)
 
-[node name="Plane_013" parent="environment/redwoods/redwood6" index="0"]
-material_override = ExtResource("17_sc1dx")
+[node name="Redwood" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
+transform = Transform3D(8.95712, 0, 4.44635, 0, 10, 0, -4.44635, 0, 8.95712, -62.547, 1.546, -183.127)
 
-[node name="redwood7" parent="environment/redwoods" instance=ExtResource("13_j4qnp")]
-transform = Transform3D(8.60822, 0, -5.08906, 0, 10, 0, 5.08906, 0, 8.60822, -275.564, 2.56874, 58.8954)
+[node name="Redwood11" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
+transform = Transform3D(8.95712, 0, 4.44635, 0, 10, 0, -4.44635, 0, 8.95712, -339.892, 1.546, 81.4545)
 
-[node name="redwood8" parent="environment/redwoods" instance=ExtResource("13_j4qnp")]
-transform = Transform3D(7.87301, 0, 6.16569, 0, 10, 0, -6.16569, 0, 7.87301, -200.788, 2.56874, 286.19)
-
-[node name="redwood9" parent="environment/redwoods" instance=ExtResource("13_j4qnp")]
-transform = Transform3D(6.83771, 0, -7.29697, 0, 10, 0, 7.29697, 0, 6.83771, 255.75, 2.56874, -43.941)
-
-[node name="Plane_013" parent="environment/redwoods/redwood9" index="0"]
-transform = Transform3D(-731.059, 300.805, 202.333, 468.128, -1.09573e-05, 461.66, 496.396, 443.007, -137.386, 6.10509, 30.2097, -14.0214)
+[node name="Redwood2" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
+transform = Transform3D(3.84864, 0, 4.57041, 0, 5.975, 0, -4.57041, 0, 3.84864, -138.143, 1.546, -219.53)
 
 [node name="walls" type="Node" parent="environment"]
 
@@ -3199,21 +4477,25 @@ transform = Transform3D(-731.059, 300.805, 202.333, 468.128, -1.09573e-05, 461.6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 11.6, 0)
 material_override = ExtResource("14_fpfj3")
 size = Vector3(2, 23.9198, 800)
+metadata/_edit_lock_ = true
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="environment/walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 11.6, 0)
 material_override = ExtResource("14_fpfj3")
 size = Vector3(2, 23.9198, 800)
+metadata/_edit_lock_ = true
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="environment/walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 11.6, 400)
 material_override = ExtResource("14_fpfj3")
 size = Vector3(2, 23.9198, 800)
+metadata/_edit_lock_ = true
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="environment/walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 11.6, -400)
 material_override = ExtResource("14_fpfj3")
 size = Vector3(2, 23.9198, 800)
+metadata/_edit_lock_ = true
 
 [node name="rocks" type="Node" parent="environment"]
 
@@ -3256,7 +4538,7 @@ transform = Transform3D(-0.136338, 0, -0.990662, 0, 1, 0, 0.990662, 0, -0.136338
 transform = Transform3D(0.843148, 0, -0.537682, 0, 1, 0, 0.537682, 0, 0.843148, -228.865, 0.627385, -249.269)
 
 [node name="Rock1" parent="environment/rocks" instance=ExtResource("16_sc1dx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.3373, 0.6274, 102.376)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.8026, 0.6274, 98.1259)
 
 [node name="Rock2" parent="environment/rocks" instance=ExtResource("16_sc1dx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 154.017, 0.627404, -124.48)
@@ -3309,7 +4591,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114.726, 0.934938, -232.344)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 214.356, 0.934938, 66.1912)
 
 [node name="Rock_type_9" parent="environment/rocks" instance=ExtResource("18_kjvhd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -340.943, 0.934938, 104.893)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -318.392, 0.934938, 163.823)
 
 [node name="Rock_type_10" parent="environment/rocks" instance=ExtResource("18_kjvhd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.0523, 0.934938, 190.957)
@@ -3334,6 +4616,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.8428, 0.934931, 324.517)
 
 [node name="Rock_type_3" parent="environment/rocks" instance=ExtResource("18_kjvhd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.2667, 1.1959, 48.6854)
+
+[node name="Rock_type_18" parent="environment/rocks" instance=ExtResource("18_kjvhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.997, 3.21939, 65.5639)
 
 [node name="Big_rock" parent="environment/rocks" instance=ExtResource("17_5tuhn")]
 transform = Transform3D(1, 0, 0, 0, 0.305197, 0.952289, 0, -0.952289, 0.305197, -38.1693, 9.60298, 192.813)
@@ -3364,8 +4649,20 @@ material_override = ExtResource("17_sc1dx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="environment/log/log_bugshroom_v01/Cylinder/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_kjvhd")
 
+[node name="log_bugshroom_v05" parent="environment/log" instance=ExtResource("15_fpfj3")]
+transform = Transform3D(-2.88216, 0, -0.832547, 0, 3, 0, 0.832547, 0, -2.88216, 44.7369, 52.2762, -341.81)
+
+[node name="Cylinder" parent="environment/log/log_bugshroom_v05" index="0"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, -10.0065, 0)
+material_override = ExtResource("17_sc1dx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="environment/log/log_bugshroom_v05/Cylinder" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/log/log_bugshroom_v05/Cylinder/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_kjvhd")
+
 [node name="log_bugshroom_v02" parent="environment/log" instance=ExtResource("15_fpfj3")]
-transform = Transform3D(2.31704, 0, 1.90561, 0, 3, 0, -1.90561, 0, 2.31704, 316.211, 56.6554, 302.552)
+transform = Transform3D(1.18941, 0, 0.978212, 0, 1.54, 0, -0.978212, 0, 1.18941, 316.211, 27.2454, 302.552)
 
 [node name="Cylinder" parent="environment/log/log_bugshroom_v02" index="0"]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, -10.0065, 0)
@@ -3376,11 +4673,23 @@ material_override = ExtResource("17_sc1dx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="environment/log/log_bugshroom_v02/Cylinder/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_kjvhd")
 
+[node name="log_bugshroom_v04" parent="environment/log" instance=ExtResource("15_fpfj3")]
+transform = Transform3D(-1.33303, 0, 0.771117, 0, 1.54, 0, -0.771117, 0, -1.33303, 113.173, 27.2454, 358.177)
+
+[node name="Cylinder" parent="environment/log/log_bugshroom_v04" index="0"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, -10.0065, 0)
+material_override = ExtResource("17_sc1dx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="environment/log/log_bugshroom_v04/Cylinder" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/log/log_bugshroom_v04/Cylinder/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_kjvhd")
+
 [node name="log_bugshroom_v03" parent="environment/log" instance=ExtResource("15_fpfj3")]
-transform = Transform3D(2.31704, 0, 1.90561, 0, 3, 0, -1.90561, 0, 2.31704, 316.211, 56.6554, -281.366)
+transform = Transform3D(0.772346, 0, 0.635203, 0, 1, 0, -0.635203, 0, 0.772346, 316.211, 56.6554, -281.366)
 
 [node name="Cylinder" parent="environment/log/log_bugshroom_v03" index="0"]
-transform = Transform3D(41.0067, 91.2056, 1.08726e-05, 0, -1.19209e-05, 100, 91.2056, -41.0067, -4.88837e-06, -55.9006, -10.0065, -72.607)
+transform = Transform3D(41.0067, 91.2056, 1.08726e-05, 0, -1.19209e-05, 100, 91.2056, -41.0067, -4.88837e-06, -55.9007, -47.7433, -72.607)
 material_override = ExtResource("17_sc1dx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="environment/log/log_bugshroom_v03/Cylinder" index="0"]
@@ -3389,41 +4698,170 @@ disable_mode = 1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="environment/log/log_bugshroom_v03/Cylinder/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_kjvhd")
 
+[node name="MossBed" parent="environment" instance=ExtResource("21_devvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7231, 0.514559, 6.46861)
+
+[node name="MossBed5" parent="environment" instance=ExtResource("21_devvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 199.317, 0.514559, -285.652)
+
+[node name="MossBed2" parent="environment" instance=ExtResource("21_devvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 174.554, 0.463755, 93.6566)
+
+[node name="MossBed3" parent="environment" instance=ExtResource("21_devvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182.945, 0.514561, -184.545)
+
+[node name="MossBed4" parent="environment" instance=ExtResource("21_devvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.0232, 0.514557, 33.7229)
+
+[node name="FallenLog" parent="environment" instance=ExtResource("23_bg4s2")]
+transform = Transform3D(2.31332, 0, 1.23002, 0, 2.62, 0, -1.23002, 0, 2.31332, -80.2951, 1.31432, 55.16)
+
+[node name="FallenLog2" parent="environment" instance=ExtResource("23_bg4s2")]
+transform = Transform3D(-2.25763, 0, -1.32948, 0, 2.62, 0, 1.32948, 0, -2.25763, 228.884, 7.48127, -20.4158)
+
+[node name="stick" parent="environment" instance=ExtResource("24_hhcpw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.694, 0.764812, 2.17053)
+
+[node name="stick2" parent="environment" instance=ExtResource("24_hhcpw")]
+transform = Transform3D(-0.342594, -0.939484, 0, 0.939484, -0.342594, 0, 0, 0, 1, -37.466, 2.06947, 100.208)
+
+[node name="stick3" parent="environment" instance=ExtResource("24_hhcpw")]
+transform = Transform3D(0.000556008, 0.133293, -0.991077, 0.999991, -0.00417128, 0, -0.00413406, -0.991068, -0.133294, -38.1989, 1.22759, 101.725)
+
+[node name="stick4" parent="environment" instance=ExtResource("24_hhcpw")]
+transform = Transform3D(0.302953, 0.877399, -0.372008, 0.953004, -0.279584, 0.116687, -0.0016263, -0.389876, -0.920866, -38.5794, 2.4955, 99.521)
+
+[node name="stick5" parent="environment" instance=ExtResource("24_hhcpw")]
+transform = Transform3D(-0.00198505, -0.475881, -0.879507, 0.999991, -0.00417128, 0, -0.00366868, -0.8795, 0.475885, -36.2877, 1.56184, 100.456)
+
+[node name="parkour section 1" type="Node3D" parent="environment"]
+
+[node name="ChickenOfTheWoods" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(-0.00323513, 0, -0.559991, 0, 0.56, 0, 0.559991, 0, -0.00323513, -59.1873, 4.00661, -145.322)
+
+[node name="ChickenOfTheWoods4" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(-0.00210861, 0, -0.364994, 0, 0.365, 0, 0.364994, 0, -0.00210861, 1.81069, 2.23665, -4.03405)
+
+[node name="ChickenOfTheWoods2" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.0611525, 0, 0.450872, 0, 0.455, 0, -0.450872, 0, 0.0611525, -48.6228, 7.11967, -147.843)
+
+[node name="ChickenOfTheWoods3" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.47, 0, 0, 0, 0.47, 0, 0, 0, 0.47, -40.3898, 9.85721, -152.235)
+
+[node name="ChickenOfTheWoods5" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.47, 0, 0, 0, 0.47, 0, 0, 0, 0.47, -33.897, 11.6887, -155.802)
+
+[node name="ChickenOfTheWoods6" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.495797, 0, -0.942555, 0, 1.065, 0, 0.942555, 0, 0.495797, -53.8554, 24.1612, -147.116)
+
+[node name="ChickenOfTheWoods7" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -66.7858, 27.1658, -140.649)
+
+[node name="ChickenOfTheWoods8" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -74.3466, 28.3226, -136.248)
+
+[node name="ChickenOfTheWoods9" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -82.3711, 30.4042, -139.701)
+
+[node name="ChickenOfTheWoods10" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.165266, 0, -0.314185, 0, 0.355, 0, 0.314185, 0, 0.165266, -86.8406, 31.8252, -147.685)
+
+[node name="ChickenOfTheWoods11" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -90.8514, 31.8252, -158.055)
+
+[node name="ChickenOfTheWoods12" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -94.3627, 41.468, -166.89)
+
+[node name="ChickenOfTheWoods14" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -102.254, 41.468, -181.782)
+
+[node name="ChickenOfTheWoods15" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -98.5565, 40.4083, -173.745)
+
+[node name="ChickenOfTheWoods16" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -106.18, 35.1527, -191.309)
+
+[node name="ChickenOfTheWoods17" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -122.95, 38.4672, -203.093)
+
+[node name="ChickenOfTheWoods22" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -129.165, 39.5932, -196.436)
+
+[node name="ChickenOfTheWoods18" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.260701, 0, -0.495616, 0, 0.56, 0, 0.495616, 0, 0.260701, -135.267, 42.1527, -190.737)
+
+[node name="ChickenOfTheWoods19" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.0977628, 0, -0.185856, 0, 0.21, 0, 0.185856, 0, 0.0977628, -143.264, 42.1527, -194.865)
+
+[node name="ChickenOfTheWoods20" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.111729, 0, -0.212407, 0, 0.24, 0, 0.212407, 0, 0.111729, -148.598, 42.7089, -198.567)
+
+[node name="ChickenOfTheWoods21" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.111729, 0, -0.212407, 0, 0.24, 0, 0.212407, 0, 0.111729, -155.831, 43.4718, -206.349)
+
+[node name="MossBed5" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
+transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, -32.5672, 11.8213, -154.978)
+
+[node name="MossBed6" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -91.3505, 31.8037, -157.469)
+
+[node name="ChickenOfTheWoods13" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -95.4122, 19.0497, -164.642)
+
+[node name="MossBed7" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -95.9112, 19.0281, -164.056)
+
+[node name="MossBed8" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -106.935, 35.0726, -192.135)
+
+[node name="MossBed6" parent="environment" instance=ExtResource("21_devvj")]
+transform = Transform3D(0.0133856, 0.917187, 0.398233, -0.996399, 0.0455813, -0.0714884, -0.0837202, -0.395842, 0.914494, -306.215, 4.47355, 80.0995)
+
+[node name="Node3D" type="CSGCombiner3D" parent="environment"]
+layers = 129
+material_override = ExtResource("4_c2ibq")
+use_collision = true
+collision_layer = 129
+
+[node name="CSGBox3D" type="CSGBox3D" parent="environment/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.658, 1, 192.781)
+material_override = ExtResource("4_c2ibq")
+size = Vector3(25, 2, 25)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="environment/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.658, 3, 192.781)
+material_override = ExtResource("4_c2ibq")
+size = Vector3(20, 2, 20)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="environment/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.658, 5, 192.781)
+material_override = ExtResource("4_c2ibq")
+size = Vector3(15, 2, 15)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="environment/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.658, 7, 192.781)
+material_override = ExtResource("4_c2ibq")
+size = Vector3(10, 2, 10)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="environment/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.658, 9, 192.781)
+material_override = ExtResource("4_c2ibq")
+size = Vector3(5, 2, 5)
+
+[node name="mushroom base particles" type="GPUParticles3D" parent="environment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.92497, 0)
+amount = 200
+lifetime = 5.0
+explosiveness = 0.68
+randomness = 0.36
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+process_material = SubResource("ParticleProcessMaterial_hhcpw")
+draw_pass_1 = SubResource("SphereMesh_xrxkg")
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_2gh4u")
 autoplay = true
-playback_type = 1
 parameters/looping = true
-
-[node name="MossBed" parent="." instance=ExtResource("21_devvj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7231, 0.514559, 6.46861)
-
-[node name="MossBed2" parent="." instance=ExtResource("21_devvj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 174.554, 0.463755, 93.6566)
-
-[node name="MossBed3" parent="." instance=ExtResource("21_devvj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182.945, 0.514561, -184.545)
-
-[node name="MossBed4" parent="." instance=ExtResource("21_devvj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.0232, 0.514557, 33.7229)
-
-[node name="ChickenOfTheWoods" parent="." instance=ExtResource("22_3b0ty")]
-transform = Transform3D(-0.00577701, 0, -0.999983, 0, 1, 0, 0.999983, 0, -0.00577701, -59.1873, 4.00661, -145.322)
-
-[node name="ChickenOfTheWoods4" parent="." instance=ExtResource("22_3b0ty")]
-transform = Transform3D(-0.00577701, 0, -0.999983, 0, 1, 0, 0.999983, 0, -0.00577701, 0.642036, 2.23665, -6.74687)
-
-[node name="ChickenOfTheWoods2" parent="." instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.134401, 0, 0.990927, 0, 1, 0, -0.990927, 0, 0.134401, -41.9765, 8.55647, -151.383)
-
-[node name="ChickenOfTheWoods3" parent="." instance=ExtResource("22_3b0ty")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7803, 13.5304, -162.801)
-
-[node name="FallenLog" parent="." instance=ExtResource("23_bg4s2")]
-transform = Transform3D(2.31332, 0, 1.23002, 0, 2.62, 0, -1.23002, 0, 2.31332, -80.2951, 1.31432, 55.16)
-
-[node name="stick" parent="." instance=ExtResource("24_hhcpw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.694, 0.764812, 2.17053)
 
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]
@@ -3431,15 +4869,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.694, 0.764812, 2.17053)
 [connection signal="timeout" from="BeetleManager/SpawnTimer1" to="BeetleManager" method="_on_spawn_timer_1_timeout"]
 [connection signal="timeout" from="AphidManager/SpawnTimer2" to="AphidManager" method="_on_spawn_timer_2_timeout"]
 
-[editable path="environment/redwoods/redwood"]
-[editable path="environment/redwoods/redwood5"]
-[editable path="environment/redwoods/redwood2"]
-[editable path="environment/redwoods/redwood3"]
-[editable path="environment/redwoods/redwood4"]
-[editable path="environment/redwoods/redwood6"]
-[editable path="environment/redwoods/redwood7"]
-[editable path="environment/redwoods/redwood8"]
-[editable path="environment/redwoods/redwood9"]
 [editable path="environment/log/log_bugshroom_v01"]
+[editable path="environment/log/log_bugshroom_v05"]
 [editable path="environment/log/log_bugshroom_v02"]
+[editable path="environment/log/log_bugshroom_v04"]
 [editable path="environment/log/log_bugshroom_v03"]

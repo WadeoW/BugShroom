@@ -1,0 +1,96 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=22 format=3 uid="uid://lusomwf5fkro"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dnjrn"]
+animation = &"headshakeanimation/attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tfmg4"]
+animation = &"crouch"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wm4qq"]
+animation = &"die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wqatt"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pjvni"]
+animation = &"Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_04y3n"]
+animation = &"walkanimation"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_tfmg4"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_pjvni")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_04y3n")
+blend_point_1/pos = 1.0
+max_space = 5.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_synvk"]
+animation = &"take_damage"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rkh04"]
+animation = &"uncrouch"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wm4qq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_04y3n"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"is_jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rkh04"]
+xfade_time = 0.11
+advance_mode = 2
+advance_condition = &"is_on_ground"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_synvk"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xwsy4"]
+xfade_time = 0.45
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_28tdr"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kshua"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o4ktu"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b5qup"]
+xfade_time = 0.25
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wqatt"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nvdys"]
+reset = false
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nbul8"]
+reset = false
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/End/position = Vector2(1014, 102)
+states/Start/position = Vector2(136, 134)
+states/attack/node = SubResource("AnimationNodeAnimation_dnjrn")
+states/attack/position = Vector2(287, 267)
+states/crouch/node = SubResource("AnimationNodeAnimation_tfmg4")
+states/crouch/position = Vector2(364, 45)
+states/die/node = SubResource("AnimationNodeAnimation_wm4qq")
+states/die/position = Vector2(784, 171)
+states/jump/node = SubResource("AnimationNodeAnimation_wqatt")
+states/jump/position = Vector2(447, 313)
+states/run/node = SubResource("AnimationNodeBlendSpace1D_tfmg4")
+states/run/position = Vector2(426, 165)
+states/take_damage/node = SubResource("AnimationNodeAnimation_synvk")
+states/take_damage/position = Vector2(674, 306)
+states/uncrouch/node = SubResource("AnimationNodeAnimation_rkh04")
+states/uncrouch/position = Vector2(564, 45)
+transitions = ["Start", "run", SubResource("AnimationNodeStateMachineTransition_wm4qq"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_04y3n"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_rkh04"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_synvk"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_xwsy4"), "run", "die", SubResource("AnimationNodeStateMachineTransition_28tdr"), "run", "crouch", SubResource("AnimationNodeStateMachineTransition_kshua"), "crouch", "uncrouch", SubResource("AnimationNodeStateMachineTransition_o4ktu"), "uncrouch", "run", SubResource("AnimationNodeStateMachineTransition_b5qup"), "die", "run", SubResource("AnimationNodeStateMachineTransition_wqatt"), "run", "take_damage", SubResource("AnimationNodeStateMachineTransition_nvdys"), "take_damage", "run", SubResource("AnimationNodeStateMachineTransition_nbul8")]
+graph_offset = Vector2(-264, 6)

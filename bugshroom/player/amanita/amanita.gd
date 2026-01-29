@@ -9,7 +9,7 @@ var WALK_SPEED = 4.0
 var SPRINT_SPEED = 8.0
 var inputVelocity: Vector2
 var isSprinting: bool = false
-const JUMP_VELOCITY = 6
+const JUMP_VELOCITY = 8
 const SENSITIVITY = 0.005
 var gravity = 9.8
 var knockback: Vector2
@@ -21,10 +21,12 @@ const MAX_KNOCKBACK_SPEED = 20
 #animation control variables
 var is_jumping = false
 @onready var animation_tree: AnimationTree = $AnimationTree
-@onready var animation_state_playback = animation_tree.get("parameters/playback")
+@onready var animation_state_playback = animation_tree.get("parameters/AnimationNodeStateMachine/playback")
 
 #sound variables
-
+@onready var walk_sound: AudioStreamPlayer3D = $WalkSound
+@onready var jump_sound: AudioStreamPlayer3D = $JumpSound
+@onready var death_sound: AudioStreamPlayer3D = $DeathSound
 
 #respawn
 @export var respawn_delay: float = 5.0
@@ -125,6 +127,7 @@ func _physics_process(delta):
 
 # handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
+		jump_sound.play()
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
 
@@ -154,6 +157,7 @@ func _physics_process(delta):
 			last_direction = direction
 			#if animation_player.current_animation != "walkanimation" and animation_player.current_animation != "mushroomdude_allanimations2/attack" and animation_player.current_animation != "headshakeanimation/headshake" and animation_player.current_animation != "take_damage": 
 				#animation_player.play("walkanimation")
+			walk_sound.play()
 			inputVelocity.x = direction.x * speed
 			inputVelocity.y = direction.z * speed
 			# sprinting
@@ -224,14 +228,14 @@ func attack():
 				kb_direction.x = attack_hit_box.get_collider(i).position.x - position.x
 				kb_direction.z = attack_hit_box.get_collider(i).position.z - position.z
 				kb_direction.y = 0.001
-				attack_hit_box.get_collider(i).apply_knockback(kb_direction, 900)
+				attack_hit_box.get_collider(i).apply_knockback(kb_direction, 10)
 			elif attack_hit_box.get_collider(i).is_in_group("player"):
 				attack_hit_box.get_collider(i).take_damage(0)
 
 				kb_direction.x = attack_hit_box.get_collider(i).position.x - position.x
 				kb_direction.z = attack_hit_box.get_collider(i).position.z - position.z
 				
-				attack_hit_box.get_collider(i).apply_knockback(kb_direction, 900) 
+				attack_hit_box.get_collider(i).apply_knockback(kb_direction, 10) 
 				print("player was attacked")
 			i += 1
 
@@ -285,6 +289,7 @@ func apply_knockback(direction: Vector3, force: float):
 	velocity.y += direction.normalized().y * force
 	
 func die():
+	death_sound.play()
 	is_dead = true
 	print("Player", player_id, "has died!")
 	animation_state_playback.travel("die")

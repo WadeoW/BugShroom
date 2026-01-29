@@ -9,6 +9,10 @@ extends BugBase
 @onready var anim_state = animation_tree.get("parameters/playback")
 var has_alerted_allies: bool = false
 
+#sound variables
+@onready var attack_sound: AudioStreamPlayer3D = $AttackSound
+@onready var death_sound: AudioStreamPlayer3D = $DeathSound
+
 
 func _ready():
 	speed = ant_speed
@@ -30,6 +34,7 @@ func _try_attack() -> void:
 	var distance := global_position.distance_to(target.global_position)
 	if distance <= attack_range:
 		anim_state.travel("ant_animations_attack")
+		attack_sound.play()
 		can_attack = false
 		if target.has_method("take_damage") and not target.is_dead:
 			target.take_damage(damage)
@@ -68,5 +73,6 @@ func _alert_ants_nearby():
 
 func die() -> void:
 	animation_tree.set("parameters/conditions/is_dead", true)
+	death_sound.play()
 	super.die()
 	

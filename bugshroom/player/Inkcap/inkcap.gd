@@ -8,7 +8,7 @@ var WALK_SPEED = 4.0
 var SPRINT_SPEED = 8.0
 var inputVelocity: Vector2
 var isSprinting: bool = false
-const JUMP_VELOCITY = 6
+const JUMP_VELOCITY = 8
 const SENSITIVITY = 0.005
 var gravity = 9.8
 var knockback: Vector2 = Vector2.ZERO
@@ -20,7 +20,10 @@ const MAX_KNOCKBACK_SPEED = 20
 #respawn
 @export var respawn_delay: float = 5.0
 
-
+#sound variables
+@onready var walk_sound: AudioStreamPlayer3D = $WalkSound
+@onready var jump_sound: AudioStreamPlayer3D = $JumpSound
+@onready var death_sound: AudioStreamPlayer3D = $DeathSound
 
 #health variables
 @export var current_health = 100
@@ -56,6 +59,7 @@ var mushroom_type = PlayerData.MushroomType.Inkcap
 var is_rooted = false
 @export var root_stamina_regen = 15.0 #stamina regained per second while rooted
 
+
 @onready var animation_player: AnimationPlayer = $Inkshroom/AnimationPlayer
 @onready var camera_mount = $CameraMount
 @onready var camera_yaw = $CameraMount/CameraYaw
@@ -68,7 +72,7 @@ var last_direction = Vector3.FORWARD
 var current_animation: String = ""
 
 func _ready() -> void:
-	animation_player.play("unsit")
+	animation_player.play(" spawn")
 	var current_animation = animation_player.current_animation
 	#set up health and stamina bars
 	health_bar.max_value = max_health
@@ -121,7 +125,8 @@ func _physics_process(delta):
 # handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
 		velocity.y = JUMP_VELOCITY
-		animation_player.play("ink_jump_attack_death/ink_jump")
+		jump_sound.play()
+		animation_player.play("ink_jump")
 
 #handle attack
 	if Input.is_action_just_pressed("attack_%s" % [player_id]) and attack_cooldown.is_stopped():
@@ -133,7 +138,7 @@ func _physics_process(delta):
 		isSprinting = !isSprinting
 	if isSprinting and current_stamina > 0:
 		speed = SPRINT_SPEED
-		if animation_player.current_animation == "walkanimation":
+		if animation_player.current_animation == "ink_walkcycle":
 			animation_player.speed_scale = 2
 	else:
 		animation_player.speed_scale = 1
@@ -146,8 +151,9 @@ func _physics_process(delta):
 	var direction = (camera_yaw.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if not is_rooted  and !is_dead:
 		if direction:
+			walk_sound.play()
 			last_direction = direction
-			if animation_player.current_animation != "ink_walkcycle" and animation_player.current_animation != "ink_jump_attack_death/ink_attack" and animation_player.current_animation != "take_damage" and animation_player.current_animation != "ink_jump_attack_death/ink_jump": 
+			if animation_player.current_animation != "ink_walkcycle" and animation_player.current_animation != "goop" and animation_player.current_animation != "ink_attack" and animation_player.current_animation != "ink_takedmgwalk" and animation_player.current_animation != "ink_jump": 
 				animation_player.play("ink_walkcycle")
 			inputVelocity.x = direction.x * speed
 			inputVelocity.y = direction.z * speed
@@ -179,7 +185,7 @@ func _physics_process(delta):
 
 	
 func take_damage(amount):
-	animation_player.play("take_damage")
+	animation_player.play("ink_takedmgwalk")
 	current_health -= amount
 	update()
 	if current_health <= 0 and !is_dead:
@@ -202,7 +208,7 @@ func toggle_root():
 		print("Uprooted")
 
 func attack():
-	animation_player.play("ink_jump_attack_death/ink_attack")
+	animation_player.play("ink_attack")
 	can_attack = false
 	attack_cooldown.start()
 	if attack_hit_box.is_colliding():
@@ -218,13 +224,13 @@ func attack():
 				var kb_direction: Vector3 
 				kb_direction.x = attack_hit_box.get_collider(i).position.x - position.x
 				kb_direction.z = attack_hit_box.get_collider(i).position.z - position.z
-				attack_hit_box.get_collider(i).apply_knockback(kb_direction, 900) 
+				attack_hit_box.get_collider(i).apply_knockback(kb_direction, 10) 
 				print("player was attacked")
 			i += 1
 
 	
 func cast_ability(ability_type):
-	#animation_player.play("headshakeanimation/headshake")
+	animation_player.play("goop")
 	ability_active = true
 	can_cast_abil = false
 	var spawn := load("res://entities/abilities/GoopBall.tscn").instantiate() as RigidBody3D
@@ -242,7 +248,8 @@ func apply_knockback(direction: Vector3, force: float):
 func die():
 	is_dead = true
 	print("Player", player_id, "has died!")
-	animation_player.play("ink_jump_attack_death/ink_death")
+	animation_player.play("ink_death")
+	death_sound.play()
 	set_physics_process(false)
 	SignalBus.player_died.emit()
 	
@@ -252,7 +259,7 @@ func die():
 func respawn():
 	is_dead = false
 	knockback = Vector2.ZERO; velocity = Vector3.ZERO; inputVelocity = Vector2.ZERO
-	animation_player.play("ink_idle")
+	animation_player.play(" spawn")
 	global_position = Vector3(5, 1, 5)
 	print("player", player_id, "respawned!")
 	current_health = max_health
