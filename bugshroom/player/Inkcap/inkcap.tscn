@@ -3506,4 +3506,15 @@ stream = ExtResource("4_vniy1")
 [node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_8v3m4")
 
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="WalkSound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("3_xtfrk")
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("4_vniy1")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("5_8v3m4")
+
 [connection signal="timeout" from="AbilityCooldown" to="." method="_on_ability_cooldown_timeout"]

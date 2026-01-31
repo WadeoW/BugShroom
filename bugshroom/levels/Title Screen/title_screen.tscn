@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://btwanigppk4jf"]
 
 [ext_resource type="Script" uid="uid://bjvnturu0wkvw" path="res://levels/Title Screen/title_screen.gd" id="1_xrj4a"]
-[ext_resource type="Texture2D" uid="uid://c2i1cmajwechh" path="res://assets/UI/bugshroom_title_screen.png" id="2_aklpn"]
 [ext_resource type="PackedScene" uid="uid://dbowfwd7ix33p" path="res://assets/Cursor/cursor.tscn" id="2_ksdvi"]
 [ext_resource type="Texture2D" uid="uid://btd2v25in45dy" path="res://assets/Cursor/Cursor icons-red and white.png" id="3_4lyju"]
 [ext_resource type="AudioStream" uid="uid://b8vjc6o0gqfqd" path="res://assets/Sound/title_music_BugS.mp3" id="5_4lyju"]
+[ext_resource type="Texture2D" uid="uid://xpofvdd18ny" path="res://assets/UI/Bugshroomtitle.png" id="5_usom8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksdvi"]
 size = Vector2(198, 84)
@@ -31,10 +31,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -98.0
-offset_top = 164.0
-offset_right = 101.0
-offset_bottom = 248.0
+offset_left = -96.0
+offset_top = 184.0
+offset_right = 103.0
+offset_bottom = 268.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -57,9 +57,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -97.0
-offset_top = 258.0
+offset_top = 280.0
 offset_right = 105.0
-offset_bottom = 311.0
+offset_bottom = 333.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "controls"
@@ -75,7 +75,7 @@ position = Vector2(428, 295)
 
 [node name="Cursor2" parent="CanvasLayer2" instance=ExtResource("2_ksdvi")]
 z_index = 6
-position = Vector2(699, 290)
+position = Vector2(1397, 290)
 cursor_id = 2
 texture = ExtResource("3_4lyju")
 
@@ -92,7 +92,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_aklpn")
+texture = ExtResource("5_usom8")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true

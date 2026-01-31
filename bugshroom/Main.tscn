@@ -216,8 +216,8 @@ albedo_color = Color(1, 0.58, 0.58, 1)
 material = SubResource("StandardMaterial3D_mxvw5")
 radius = 0.125
 height = 0.25
-radial_segments = 8
-rings = 4
+radial_segments = 4
+rings = 2
 
 [node name="World" type="Node3D" node_paths=PackedStringArray("colony_nutrient_bar")]
 script = ExtResource("1_5vvyt")
@@ -4473,29 +4473,29 @@ transform = Transform3D(3.84864, 0, 4.57041, 0, 5.975, 0, -4.57041, 0, 3.84864, 
 
 [node name="walls" type="Node" parent="environment"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="environment/walls"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="environment/walls"]
+material_override = ExtResource("14_fpfj3")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="environment/walls/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 11.6, 0)
 material_override = ExtResource("14_fpfj3")
 size = Vector3(2, 23.9198, 800)
-metadata/_edit_lock_ = true
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="environment/walls"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="environment/walls/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 11.6, 0)
 material_override = ExtResource("14_fpfj3")
 size = Vector3(2, 23.9198, 800)
-metadata/_edit_lock_ = true
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="environment/walls"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="environment/walls/CSGCombiner3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 11.6, 400)
 material_override = ExtResource("14_fpfj3")
 size = Vector3(2, 23.9198, 800)
-metadata/_edit_lock_ = true
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="environment/walls"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="environment/walls/CSGCombiner3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 11.6, -400)
 material_override = ExtResource("14_fpfj3")
 size = Vector3(2, 23.9198, 800)
-metadata/_edit_lock_ = true
 
 [node name="rocks" type="Node" parent="environment"]
 
@@ -4851,7 +4851,7 @@ size = Vector3(5, 2, 5)
 
 [node name="mushroom base particles" type="GPUParticles3D" parent="environment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.92497, 0)
-amount = 200
+amount = 150
 lifetime = 5.0
 explosiveness = 0.68
 randomness = 0.36
@@ -4861,7 +4861,7 @@ draw_pass_1 = SubResource("SphereMesh_xrxkg")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_2gh4u")
-autoplay = true
+volume_db = -15.0
 parameters/looping = true
 
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]

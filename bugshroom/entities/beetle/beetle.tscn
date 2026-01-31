@@ -1,7 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://dnyuja84wopu2"]
+[gd_scene load_steps=14 format=4 uid="uid://dnyuja84wopu2"]
 
 [ext_resource type="Script" uid="uid://bi5kql0tljcml" path="res://entities/beetle/beetle.gd" id="1_83cmc"]
 [ext_resource type="AnimationLibrary" uid="uid://1xbackui1r0x" path="res://entities/beetle/beetle_animations.glb" id="2_t1852"]
+[ext_resource type="PackedScene" uid="uid://b60by76ffrikm" path="res://entities/Bug/bug_health_bar.tscn" id="3_ljpcp"]
+[ext_resource type="AudioStream" uid="uid://bcmpy3u02qyyy" path="res://assets/Sound/death_enemy.mp3" id="4_qlwij"]
+[ext_resource type="AudioStream" uid="uid://pwh8rkl55ebi" path="res://assets/Sound/attack_SFX_Bug.mp3" id="5_s5403"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g0x4m"]
 resource_name = "Material.001"
@@ -227,6 +230,9 @@ height = 8.85552
 [sub_resource type="BoxShape3D" id="BoxShape3D_t1852"]
 size = Vector3(0.0263672, 5.42261, 5.91315)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_ljpcp"]
+viewport_path = NodePath("SubViewport")
+
 [node name="Beetle" type="CharacterBody3D" groups=["beetles", "bug"]]
 collision_layer = 141
 collision_mask = 135
@@ -375,3 +381,24 @@ shape = SubResource("CapsuleShape3D_83cmc")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.184045, 0.0510345, 0.679901)
 shape = SubResource("BoxShape3D_t1852")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="HealthBar3D" parent="SubViewport" instance=ExtResource("3_ljpcp")]
+
+[node name="Sprite3D" type="Sprite3D" parent="SubViewport"]
+transform = Transform3D(1.985, 0, 0, 0, 1.985, 0, 0, 0, 1.985, 0, 6.54725, -2.12919)
+billboard = 1
+texture = SubResource("ViewportTexture_ljpcp")
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("4_qlwij")
+volume_db = 5.0
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("5_s5403")
+volume_db = 8.0

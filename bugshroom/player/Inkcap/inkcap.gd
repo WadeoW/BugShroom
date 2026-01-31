@@ -21,9 +21,10 @@ const MAX_KNOCKBACK_SPEED = 20
 @export var respawn_delay: float = 5.0
 
 #sound variables
-@onready var walk_sound: AudioStreamPlayer3D = $WalkSound
-@onready var jump_sound: AudioStreamPlayer3D = $JumpSound
-@onready var death_sound: AudioStreamPlayer3D = $DeathSound
+@onready var walk_sound: AudioStreamPlayer = $Audio/WalkSound
+@onready var jump_sound: AudioStreamPlayer = $Audio/JumpSound
+@onready var death_sound: AudioStreamPlayer = $Audio/DeathSound
+
 
 #health variables
 @export var current_health = 100
@@ -123,7 +124,7 @@ func _physics_process(delta):
 		knockback = Vector2.ZERO
 
 # handle jump
-	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
+	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted:
 		velocity.y = JUMP_VELOCITY
 		jump_sound.play()
 		animation_player.play("ink_jump")
@@ -248,8 +249,8 @@ func apply_knockback(direction: Vector3, force: float):
 func die():
 	is_dead = true
 	print("Player", player_id, "has died!")
-	animation_player.play("ink_death")
 	death_sound.play()
+	animation_player.play("ink_death")
 	set_physics_process(false)
 	SignalBus.player_died.emit()
 	

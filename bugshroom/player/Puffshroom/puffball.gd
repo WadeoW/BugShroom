@@ -21,6 +21,10 @@ var direction
 #respawn
 @export var respawn_delay: float = 5.0
 
+#sound variables
+@onready var death_sound: AudioStreamPlayer = $Audio/DeathSound
+
+
 #health variables
 @export var current_health = 100
 @export var max_health = 100
@@ -276,6 +280,7 @@ func apply_knockback(direction: Vector3, force: float):
 func die():
 	cast_ability()
 	is_dead = true
+	death_sound.play()
 	print("Player", player_id, "has died!")
 	#animation_player.play("die")
 	set_physics_process(false)
@@ -287,11 +292,10 @@ func die():
 func respawn():
 	is_dead = false
 	knockback = Vector2.ZERO; velocity = Vector3.ZERO; chargeVector = Vector2.ZERO
-	#animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
+	animation_player.play("puffmushroom_animations/unsquash")
 	global_position = Vector3(5, 1, 5)
 	print("player", player_id, "respawned!")
 	current_health = max_health
-	update()
 	current_stamina = max_stamina
 	update()
 	set_physics_process(true)

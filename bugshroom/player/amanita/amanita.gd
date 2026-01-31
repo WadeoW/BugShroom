@@ -24,9 +24,11 @@ var is_jumping = false
 @onready var animation_state_playback = animation_tree.get("parameters/AnimationNodeStateMachine/playback")
 
 #sound variables
-@onready var walk_sound: AudioStreamPlayer3D = $WalkSound
-@onready var jump_sound: AudioStreamPlayer3D = $JumpSound
-@onready var death_sound: AudioStreamPlayer3D = $DeathSound
+@onready var jump_sound: AudioStreamPlayer = $PlayerModel/Audio/JumpSound
+@onready var audio_listener_3d: AudioListener3D = $PlayerModel/Audio/AudioListener3D
+@onready var walk_sound: AudioStreamPlayer = $PlayerModel/Audio/WalkSound
+@onready var death_sound: AudioStreamPlayer = $PlayerModel/Audio/DeathSound
+
 
 #respawn
 @export var respawn_delay: float = 5.0
@@ -128,7 +130,7 @@ func _physics_process(delta):
 		knockback = Vector2.ZERO
 
 # handle jump
-	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
+	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted:
 		jump_sound.play()
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
@@ -159,7 +161,6 @@ func _physics_process(delta):
 			last_direction = direction
 			#if animation_player.current_animation != "walkanimation" and animation_player.current_animation != "mushroomdude_allanimations2/attack" and animation_player.current_animation != "headshakeanimation/headshake" and animation_player.current_animation != "take_damage": 
 				#animation_player.play("walkanimation")
-			walk_sound.play()
 			inputVelocity.x = direction.x * speed
 			inputVelocity.y = direction.z * speed
 			# sprinting
@@ -187,6 +188,12 @@ func _physics_process(delta):
 	$PlayerModel.rotation.y = lerp_angle($PlayerModel.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
 
 	move_and_slide()
+	
+	if velocity and not is_on_floor():
+		if not walk_sound.playing:
+			walk_sound.play()
+		else:
+			walk_sound.stop()
 
 	
 func take_damage(amount):

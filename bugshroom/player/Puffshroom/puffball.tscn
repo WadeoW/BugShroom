@@ -1,10 +1,11 @@
-[gd_scene load_steps=28 format=4 uid="uid://dl2tthivh6a3e"]
+[gd_scene load_steps=29 format=4 uid="uid://dl2tthivh6a3e"]
 
 [ext_resource type="Script" uid="uid://chivoxalb5yd" path="res://player/Puffshroom/puffball.gd" id="1_0vhsy"]
 [ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_4tcne"]
 [ext_resource type="AnimationLibrary" uid="uid://bde73mddq6b8c" path="res://player/Puffshroom/puffmushroom_animations.glb" id="2_7wi73"]
 [ext_resource type="Script" uid="uid://brrncwvvflgvk" path="res://player/health_bar.gd" id="3_xhpx3"]
 [ext_resource type="Script" uid="uid://duk35nosf216h" path="res://player/stamina_bar.gd" id="4_7wi73"]
+[ext_resource type="AudioStream" uid="uid://uirm0y8ru3pm" path="res://assets/Sound/death_player.m.mp3" id="6_invgw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxwlq"]
 resource_name = "Body.001"
@@ -496,6 +497,7 @@ show_percentage = false
 script = ExtResource("3_xhpx3")
 
 [node name="StaminaBar" type="ProgressBar" parent="CanvasLayer"]
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -528,6 +530,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="StaminaText" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -552,6 +555,13 @@ collision_mask = 9
 transform = Transform3D(-8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 0, 0, 2, 0, 0.6, 0)
 shape = SubResource("CapsuleShape3D_xhpx3")
 debug_color = Color(0.999465, 0, 0.112206, 0.42)
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("6_invgw")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Audio"]
 
 [connection signal="timeout" from="ChargeDuration" to="." method="_on_charge_duration_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

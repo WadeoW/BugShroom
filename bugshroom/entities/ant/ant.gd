@@ -9,9 +9,13 @@ extends BugBase
 @onready var anim_state = animation_tree.get("parameters/playback")
 var has_alerted_allies: bool = false
 
+@onready var health_bar: ProgressBar = $SubViewport/HealthBar
+
 #sound variables
 @onready var attack_sound: AudioStreamPlayer3D = $AttackSound
 @onready var death_sound: AudioStreamPlayer3D = $DeathSound
+@onready var attack_sound_2: AudioStreamPlayer = $AttackSound2
+@onready var death_sound_2: AudioStreamPlayer = $DeathSound2
 
 
 func _ready():
@@ -22,7 +26,10 @@ func _ready():
 	add_to_group("ants")
 	add_to_group("bug")
 	super._ready()
-	#animation_player.play("walk")
+	
+	health_bar.max_value = ant_health
+	health_bar.value = health
+
 	animation_tree.active = true
 
 func _try_attack() -> void:
@@ -34,7 +41,7 @@ func _try_attack() -> void:
 	var distance := global_position.distance_to(target.global_position)
 	if distance <= attack_range:
 		anim_state.travel("ant_animations_attack")
-		attack_sound.play()
+		attack_sound_2.play()
 		can_attack = false
 		if target.has_method("take_damage") and not target.is_dead:
 			target.take_damage(damage)
@@ -73,6 +80,15 @@ func _alert_ants_nearby():
 
 func die() -> void:
 	animation_tree.set("parameters/conditions/is_dead", true)
-	death_sound.play()
+	death_sound_2.play()
 	super.die()
 	
+func take_damage(amount: float) -> void:
+	super.take_damage(amount)
+	_update()
+
+func _update() -> void:
+	health_bar.value = health
+
+func _on_attack_sound_finished() -> void:
+	print("attack sound finished")
