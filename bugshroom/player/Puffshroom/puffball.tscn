@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://dl2tthivh6a3e"]
+[gd_scene load_steps=27 format=4 uid="uid://dl2tthivh6a3e"]
 
 [ext_resource type="Script" uid="uid://chivoxalb5yd" path="res://player/Puffshroom/puffball.gd" id="1_0vhsy"]
 [ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_4tcne"]
@@ -335,9 +335,6 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_kfrr7"]
 radius = 0.07
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xhpx3"]
-size = Vector3(1.75, 1.5, 1.8)
-
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4tcne"]
 points = PackedVector3Array(1.75489, 5.61266, 7.73127, -1.75246, 5.32175, -7.76359, -1.69574, 8.1668, -7.51313, 9.41714, 3.84347, -1.93704, -6.67572, 0.39051, 1.57074, -2.90173, 12.2882, 1.57041, 6.37172, 11.1181, -1.32705, -9.07557, 7.3652, 0.413411, 4.93062, -0.186224, -1.32893, -6.63503, 1.57893, -4.78379, 6.35209, 1.86329, 5.02651, 6.03803, 9.64403, 4.43004, -3.75207, 7.92471, 6.7596, 5.50957, 2.71611, -5.96915, -5.18586, 1.29673, 5.30338, -5.4539, 10.4992, -4.47504, 4.5921, 10.496, -5.04638, -8.43999, 3.28516, -3.95369, -8.78239, 3.26914, 2.46254, 2.57849, 11.0645, 4.70305, 1.44685, 12.5698, -1.61761, -1.74218, -0.480462, 1.85995, -2.88462, 0.425045, -4.49638, 9.04752, 6.48688, 1.57802, -5.75385, 10.2209, 4.14522, 4.64872, 7.64695, -6.56135, 3.74897, 1.00389, 5.30839, 8.43606, 7.35678, -3.07869, -7.52302, 9.95609, -1.90402, 8.7641, 1.81416, -0.46212, -2.02958, 3.58531, 7.37003, -6.38237, 5.61645, 5.63167)
 
@@ -451,12 +448,6 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58884, 0.645015, 2.71468)
 keep_aspect = 0
 fov = 85.0
-
-[node name="AttackHitBox" type="ShapeCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74, 0)
-shape = SubResource("BoxShape3D_xhpx3")
-target_position = Vector3(0, 0, -1)
-collision_mask = 14
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.8

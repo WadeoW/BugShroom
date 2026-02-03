@@ -41,13 +41,18 @@ var is_dead = false
 var stamina_drain_rate = 5.0 #stamina drained per second during action
 @onready var stamina_bar: ProgressBar = $CanvasLayer/StaminaBar
 
+# grabbing variables
+var isGrabbingItem: bool = false
+@onready var grab_joint: Generic6DOFJoint3D = $"PlayerModel/Grab Joint"
+@onready var grab_hit_box: ShapeCast3D = $PlayerModel/GrabHitBox
+var grabbedItem
 
 #attack variables
 @export var attack_range: float = 3.0
 @export var attack_damage: float = 20.0
 var can_attack: bool = true
 @onready var attack_cooldown: Timer = $AttackCooldown
-@onready var attack_hit_box: ShapeCast3D = $AttackHitBox
+@onready var attack_hit_box: ShapeCast3D = $PlayerModel/AttackHitBox
 
 
 #ability and class variables
@@ -92,6 +97,9 @@ func _ready() -> void:
 	health_bar.value = health_bar.max_value
 	stamina_bar.value = stamina_bar.max_value
 	
+	# you can't attack or grab yourself
+	attack_hit_box.add_exception($".")
+	grab_hit_box.add_exception($".")
 
 func update()-> void:
 	stamina_bar.value = current_stamina
@@ -217,23 +225,21 @@ func attack():
 	var kb_direction: Vector3
 	if attack_hit_box.is_colliding():
 		var total_collisions = attack_hit_box.get_collision_count()
-		print(total_collisions)
+		print("total melee attack collisions: ", total_collisions)
 		var i = 0
 		for collision in range(total_collisions):
-			if attack_hit_box.get_collider(i).is_in_group("bug"):
-				attack_hit_box.get_collider(i).take_damage(attack_damage)
-				kb_direction.x = attack_hit_box.get_collider(i).position.x - position.x
-				kb_direction.z = attack_hit_box.get_collider(i).position.z - position.z
-				kb_direction.y = 0.001
-				attack_hit_box.get_collider(i).apply_knockback(kb_direction, 900)
-			elif attack_hit_box.get_collider(i).is_in_group("player"):
-				attack_hit_box.get_collider(i).take_damage(0)
-
-				kb_direction.x = attack_hit_box.get_collider(i).position.x - position.x
-				kb_direction.z = attack_hit_box.get_collider(i).position.z - position.z
-				
-				attack_hit_box.get_collider(i).apply_knockback(kb_direction, 900) 
-				print("player was attacked")
+			var collidedObject = attack_hit_box.get_collider(i)
+			print("melee attack hit: ", collidedObject.name)
+			var horizontalKB: Vector2 = Vector2(collidedObject.position.x - position.x, collidedObject.position.z - position.z).normalized()
+			kb_direction.x = horizontalKB.x
+			kb_direction.z = horizontalKB.y
+			kb_direction.y = 0.2
+			if collidedObject.is_in_group("bug") and !collidedObject.is_in_group("beetles"):
+				collidedObject.take_damage(attack_damage)
+				collidedObject.apply_knockback(kb_direction, 20)
+			elif collidedObject.is_in_group("player"):
+				collidedObject.apply_knockback(kb_direction, 3)
+				print("player was attacked by other player")
 			i += 1
 
 	
@@ -244,10 +250,6 @@ func cast_ability(ability_type):
 	add_sibling(spawn)
 	print("ability has been cast")
 
-var isGrabbingItem: bool = false
-@onready var grab_joint: Generic6DOFJoint3D = $"Grab Joint"
-var grabbedItem
-@onready var grab_hit_box: ShapeCast3D = $GrabHitBox
 func grab():
 	if not isGrabbingItem:
 		if not grab_hit_box.is_colliding():
