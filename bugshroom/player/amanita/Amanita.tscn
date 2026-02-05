@@ -1155,6 +1155,12 @@ _data = {
 &"walkanimation": SubResource("Animation_4pas7")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_pjvni"]
+size = Vector3(1.75, 1.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dnjrn"]
+size = Vector3(1.25, 1.25, 1.25)
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dnjrn"]
 animation = &"headshakeanimation/attack"
 
@@ -1252,9 +1258,6 @@ graph_offset = Vector2(-264, 6)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wqatt"]
 radius = 0.07
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_pjvni"]
-size = Vector3(1.75, 1.5, 1.8)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjvni"]
 bg_color = Color(0.808137, 3.27289e-06, 7.70092e-07, 1)
@@ -1486,6 +1489,26 @@ libraries = {
 &"mushroomdude_allanimations2": ExtResource("3_8qbgb")
 }
 
+[node name="AttackHitBox" type="ShapeCast3D" parent="PlayerModel"]
+transform = Transform3D(4.97512, 0, 0, 0, 4.97512, 0, 0, 0, 4.97512, 0, 5.32244, 0)
+shape = SubResource("BoxShape3D_pjvni")
+target_position = Vector3(0, 0, -1.75)
+collision_mask = 14
+debug_shape_custom_color = Color(0.978998, 0, 0.159943, 1)
+
+[node name="GrabHitBox" type="ShapeCast3D" parent="PlayerModel"]
+transform = Transform3D(4.97512, 0, 0, 0, 4.97512, 0, 0, 0, 4.97512, 0, 3.9801, 0)
+shape = SubResource("BoxShape3D_dnjrn")
+target_position = Vector3(0, 0, -1.25)
+debug_shape_custom_color = Color(0.978998, 0, 0.159943, 1)
+
+[node name="Grab Joint" type="Generic6DOFJoint3D" parent="PlayerModel"]
+transform = Transform3D(4.97512, 0, 0, 0, 4.97512, 0, 0, 0, 4.97512, 0, 4.40327, -3.33063)
+node_a = NodePath("../..")
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../PlayerModel")
 tree_root = SubResource("AnimationNodeStateMachine_wqatt")
@@ -1515,26 +1538,6 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58884, 0.645015, 2.71468)
 keep_aspect = 0
 fov = 85.0
-
-[node name="AttackHitBox" type="ShapeCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06981, 0)
-shape = SubResource("BoxShape3D_pjvni")
-target_position = Vector3(0, 0, -1)
-collision_mask = 14
-debug_shape_custom_color = Color(0.978998, 0, 0.159943, 1)
-
-[node name="GrabHitBox" type="ShapeCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-shape = SubResource("BoxShape3D_pjvni")
-target_position = Vector3(0, 0, -1)
-debug_shape_custom_color = Color(0.978998, 0, 0.159943, 1)
-
-[node name="Grab Joint" type="Generic6DOFJoint3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.885058, -0.669456)
-node_a = NodePath("..")
-angular_limit_x/enabled = false
-angular_limit_y/enabled = false
-angular_limit_z/enabled = false
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.8

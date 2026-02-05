@@ -585,8 +585,8 @@ states/ant_animations_walk/position = Vector2(485, 47)
 transitions = ["Start", "ant_animations_walk", SubResource("AnimationNodeStateMachineTransition_l0lss"), "ant_animations_walk", "ant_animations_attack", SubResource("AnimationNodeStateMachineTransition_v63gx"), "ant_animations_walk", "ant_animations_death", SubResource("AnimationNodeStateMachineTransition_rhvf2"), "ant_animations_death", "End", SubResource("AnimationNodeStateMachineTransition_fwyw6"), "ant_animations_attack", "ant_animations_walk", SubResource("AnimationNodeStateMachineTransition_ohcfi")]
 
 [node name="CharacterBody3D" type="CharacterBody3D" groups=["ants", "bug"]]
-collision_layer = 135
-collision_mask = 135
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_oav7h")
 
 [node name="ant" type="Node3D" parent="."]

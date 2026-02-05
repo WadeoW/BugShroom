@@ -22,8 +22,6 @@ func _ready() -> void:
 		if child is CharacterBody3D:
 			player = child
 			print(player)
-
-	position = player.position
 	#debug
 	print(position)
 	print(player.position)
