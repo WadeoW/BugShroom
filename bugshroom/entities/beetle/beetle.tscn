@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bi5kql0tljcml" path="res://entities/beetle/beetle.gd" id="1_83cmc"]
 [ext_resource type="AnimationLibrary" uid="uid://1xbackui1r0x" path="res://entities/beetle/beetle_animations.glb" id="2_t1852"]
-[ext_resource type="PackedScene" uid="uid://b60by76ffrikm" path="res://entities/Bug/bug_health_bar.tscn" id="3_ljpcp"]
+[ext_resource type="PackedScene" uid="uid://mauulcp72or5" path="res://entities/Bug/bug_health_bar.tscn" id="3_ljpcp"]
 [ext_resource type="AudioStream" uid="uid://bcmpy3u02qyyy" path="res://assets/Sound/death_enemy.mp3" id="4_qlwij"]
 [ext_resource type="AudioStream" uid="uid://pwh8rkl55ebi" path="res://assets/Sound/attack_SFX_Bug.mp3" id="5_s5403"]
 

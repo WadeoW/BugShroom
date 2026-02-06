@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=22 format=3 uid="uid://lusomwf5fkro"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=22 format=3 uid="uid://w81b2346vjwx"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dnjrn"]
 animation = &"headshakeanimation/attack"
