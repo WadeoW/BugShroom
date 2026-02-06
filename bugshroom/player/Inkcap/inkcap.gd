@@ -127,7 +127,7 @@ func _physics_process(delta):
 		knockback = Vector2.ZERO
 
 # handle jump
-	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
+	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted:
 		velocity.y = JUMP_VELOCITY
 		animation_player.play("ink_jump_attack_death/ink_jump")
 
