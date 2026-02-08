@@ -233,7 +233,7 @@ collision_mask = 7
 script = ExtResource("1_83cmc")
 
 [node name="beetle_walkanimation" type="Node3D" parent="."]
-transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 0, 0, 0)
+transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 0, 0, 1.17)
 
 [node name="Armature_001" type="Node3D" parent="beetle_walkanimation"]
 
@@ -369,9 +369,9 @@ libraries = {
 }
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -0.300378, 2.62272, 0)
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -0.300378, 2.62272, 1.17)
 shape = SubResource("CapsuleShape3D_83cmc")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.184045, 0.0510345, 0.679901)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.184045, 0.0510345, 1.17)
 shape = SubResource("BoxShape3D_t1852")

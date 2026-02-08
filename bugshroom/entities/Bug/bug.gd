@@ -7,6 +7,7 @@ static var bug_count: int = 0
 
 # Stats
 @export var speed: float = 5.0
+@export var rotationSpeed: float = 2
 @export var health: float = 50.0
 @export var damage: float = 20.0
 @export var bug_nutrient_value: float = 50.0 #how much nutrients the base will gain upon killing bug
@@ -32,6 +33,7 @@ var is_trapped: bool = false
 
 # Knockback
 var knockback: Vector2 = Vector2.ZERO
+
 
 #-----------------------------------
 # Setup
@@ -73,6 +75,14 @@ func _physics_process(delta: float) -> void:
 		# Passive bugs or no target: just wander
 		is_chasing = false
 		_idle_behavior(delta)
+	
+	# always rotate towards the current direction they are moving towards
+	var velocityDirection := velocity.normalized()
+	velocityDirection.y = 0.0
+	if velocityDirection.length() > 0.001:
+		var targetDirection := atan2(velocityDirection.x, velocityDirection.z) + PI
+		rotation.y = lerp_angle(rotation.y, targetDirection, rotationSpeed * delta)
+
 	move_and_slide()
 
 func _get_closest_player() -> Node3D:
@@ -101,9 +111,6 @@ func _chase_player() -> void:
 		return
 	var direction := (target.global_position - global_position).normalized()
 	direction.y = 0
-	look_at(target.global_position, Vector3.UP)
-	rotation.x = 0
-	rotation.z = 0
 	if not is_trapped and (position - target.position).length() > 0.1:
 		velocity.x = direction.x * speed + knockback.x
 		velocity.z = direction.z * speed + knockback.y

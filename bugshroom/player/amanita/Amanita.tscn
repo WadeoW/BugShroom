@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://b3e4in6lyy241"]
+[gd_scene load_steps=52 format=4 uid="uid://b3e4in6lyy241"]
 
 [ext_resource type="Script" uid="uid://dylkqr5ooer0h" path="res://player/amanita/amanita.gd" id="1_8qbgb"]
 [ext_resource type="AnimationLibrary" uid="uid://bcdslk2bcmp04" path="res://player/animations/Mushroomdude_Idle_v2.fbx" id="1_kvqa7"]
