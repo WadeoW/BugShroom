@@ -16,6 +16,7 @@ func _ready() -> void:
 	damage = beetle_damage
 	attack_range = beetle_attack_range
 	aggressive = true
+	territorial = true
 	add_to_group("beetles")
 	add_to_group("bug")
 	super._ready()
@@ -34,37 +35,38 @@ func _try_attack() -> void:
 		return
 	if not target or not can_attack:
 		return
-	var playerInRange := false
+	var enemyInRange := false
 	if attack_hit_box.is_colliding():
 		var total_collisions = attack_hit_box.get_collision_count()
-		print("total beetle attack collisions: ", total_collisions)
 		var i = 0
 		for collision in range(total_collisions):
 			var collidedObject = attack_hit_box.get_collider(i)
-			print(collidedObject.name)
-			if collidedObject != null && collidedObject.is_in_group("player") and not collidedObject.is_dead:
-				playerInRange = true
+			if collidedObject != null and (collidedObject.is_in_group("player") or collidedObject.is_in_group("bug")) and not collidedObject.is_dead:
+				enemyInRange = true
 			i += 1
-		if playerInRange:
+		if enemyInRange:
 			animation_player.play("beetle_animations/beetle_attack2")
 			can_attack = false
 			await get_tree().create_timer(hit_delay).timeout
-			hit_player()
+			hit_enemy()
 
-func hit_player() -> void:
+func hit_enemy() -> void:
 	if attack_hit_box.is_colliding():
 		var total_collisions = attack_hit_box.get_collision_count()
 		var i = 0
 		for collision in range(total_collisions):
 			var collidedObject = attack_hit_box.get_collider(i)
-			if collidedObject.is_in_group("player") and not target.is_dead:
+			if (collidedObject.is_in_group("player") or collidedObject.is_in_group("bug")) and not collidedObject.is_dead:
+				print("beetle hit enemy: ", collidedObject.name)
 				if collidedObject.has_method("take_damage"):
-					collidedObject.take_damage(damage)
-					print("Beetle attacked player for ", damage, " damage!")
+					collidedObject.take_damage(damage / 10)
 				if collidedObject.has_method("apply_knockback"):
-					var direction := (target.global_position - global_position).normalized()
-					direction.y = 0
-					target.apply_knockback(Vector3(direction.x, 0.5, direction.z), knockback_force)
+					var kb_direction = (collidedObject.global_position - global_position).normalized()
+					kb_direction.y = 0.5
+					if collidedObject.is_in_group("bug"):
+						kb_direction.y = 0.2
+					collidedObject.apply_knockback(kb_direction, knockback_force)
+					print("beetle knocking ", collidedObject.name, " back in direction: ", kb_direction)
 			i += 1
 		await get_tree().create_timer(beetle_attack_speed).timeout
 		can_attack = true

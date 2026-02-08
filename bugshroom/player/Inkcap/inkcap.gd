@@ -225,9 +225,10 @@ func attack():
 			kb_direction.x = horizontalKB.x
 			kb_direction.z = horizontalKB.y
 			kb_direction.y = 0.2
-			if collidedObject.is_in_group("bug") and !collidedObject.is_in_group("beetles"):
+			if collidedObject.is_in_group("bug"):
 				collidedObject.take_damage(attack_damage)
-				collidedObject.apply_knockback(kb_direction, 20)
+				if !collidedObject.is_in_group("beetles"):
+					collidedObject.apply_knockback(kb_direction, 20)
 			elif collidedObject.is_in_group("player"):
 				collidedObject.apply_knockback(kb_direction, 3)
 				print("player was attacked by other player")

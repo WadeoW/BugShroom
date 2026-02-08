@@ -16,6 +16,7 @@ static var bug_count: int = 0
 @export var attack_range: float = 2.3
 @export var attack_cooldown: float = 1.0
 @export var aggressive: bool = true   # ← ants / beetles true, aphids false
+@export var territorial: bool = false # beetles, attack other bugs when they are close
 var can_attack: bool = true
 
 # Wandering / idle variables
@@ -29,6 +30,7 @@ var random := RandomNumberGenerator.new()
 var target: Node3D = null
 var is_dead: bool = false
 var is_chasing: bool = false
+var is_chasing_bug: bool = false
 var is_trapped: bool = false
 
 # Other
@@ -40,7 +42,7 @@ var knockback: Vector2 = Vector2.ZERO
 # Setup
 #-----------------------------------
 func _ready():
-	target = _get_closest_player()
+	target = _get_closest_in_group("player")
 
 #-----------------------------------
 # Main loop
@@ -57,7 +59,7 @@ func _physics_process(delta: float) -> void:
 
 	# Only aggressive bugs look for players
 	if aggressive:
-		target = _get_closest_player()
+		target = _get_closest_in_group("player")
 	else:
 		target = null  # passive bugs don't chase at all
 
@@ -67,52 +69,61 @@ func _physics_process(delta: float) -> void:
 		# Chase player if within detection range
 		if distance <= detection_range:
 			is_chasing = true
-			_chase_player()
+			_chase_target(target)
 			_try_attack()
 		else:
 			is_chasing = false
 			_idle_behavior(delta)
 	else:
-		# Passive bugs or no target: just wander
+		# Passive bugs or no close enough target: just wander
 		is_chasing = false
 		_idle_behavior(delta)
+
+	if territorial and !is_chasing:
+		var closest_bug = _get_closest_in_group("bug")
+		var distance := global_position.distance_to(closest_bug.global_position)
+		if distance <= detection_range * 0.5:
+			is_chasing_bug = true
+			_chase_target(closest_bug)
+			_try_attack()
+		else:
+			is_chasing_bug = false
 	
-	# always rotate towards the current direction they are moving towards
-	var velocityDirection := velocity.normalized()
+	# always rotate towards the current direction they are moving towards subtracting knockback
+	var velocityDirection := velocity.normalized() - Vector3(knockback.x, 0, knockback.y)
 	velocityDirection.y = 0.0
 	if velocityDirection.length() > 0.001:
 		var targetDirection := atan2(velocityDirection.x, velocityDirection.z) + PI
 		rotation.y = lerp_angle(rotation.y, targetDirection, rotationSpeed * delta)
-
+	
 	move_and_slide()
 
-func _get_closest_player() -> Node3D:
-	var players := get_tree().get_nodes_in_group("player")
-	if players.is_empty():
+func _get_closest_in_group(group: String ) -> Node3D:
+	var nodes := get_tree().get_nodes_in_group(group)
+	if nodes.is_empty():
 		return null
 
 	var closest: Node3D = null
 	var closest_dist := INF
 
-	for p in players:
-		if p and p.is_inside_tree():
-			var node := p as Node3D
+	for n in nodes:
+		if n and n.is_inside_tree() and self != n:
+			var node := n as Node3D
 			var dist := global_position.distance_to(node.global_position)
 			if dist < closest_dist:
 				closest_dist = dist
 				closest = node
-
 	return closest
 
 #-----------------------------------
 # Behavior
 #-----------------------------------
-func _chase_player() -> void:
-	if not target:
+func _chase_target(node: Node3D) -> void:
+	if not node:
 		return
-	var direction := (target.global_position - global_position).normalized()
+	var direction := (node.global_position - global_position).normalized()
 	direction.y = 0
-	if not is_trapped and (position - target.position).length() > 0.1:
+	if not is_trapped and (position - node.position).length() > 0.1:
 		velocity.x = direction.x * speed + knockback.x
 		velocity.z = direction.z * speed + knockback.y
 	else:
