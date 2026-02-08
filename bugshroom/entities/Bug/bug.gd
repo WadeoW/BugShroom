@@ -7,7 +7,7 @@ static var bug_count: int = 0
 
 # Stats
 @export var speed: float = 5.0
-@export var rotationSpeed: float = 2
+@export var rotationSpeed: float = 1.5
 @export var health: float = 50.0
 @export var damage: float = 20.0
 @export var bug_nutrient_value: float = 50.0 #how much nutrients the base will gain upon killing bug
@@ -31,8 +31,9 @@ var is_dead: bool = false
 var is_chasing: bool = false
 var is_trapped: bool = false
 
-# Knockback
+# Other
 var knockback: Vector2 = Vector2.ZERO
+@onready var attack_hit_box = get_node_or_null("AttackHitBox")
 
 
 #-----------------------------------
@@ -133,14 +134,18 @@ func _try_attack() -> void:
 		return
 	if not target or not can_attack:
 		return
-
-	var distance := global_position.distance_to(target.global_position)
-	if distance <= attack_range:
+	if attack_hit_box.is_colliding():
+		var total_collisions = attack_hit_box.get_collision_count()
+		print("total enemy attack collisions: ", total_collisions)
 		can_attack = false
-		if target.has_method("take_damage") and not target.is_dead:
-			target.take_damage(damage)
-			print("Bug attacked player for ", damage, " damage!")
-			await get_tree().create_timer(attack_cooldown).timeout
+		var i = 0
+		for collision in range(total_collisions):
+			var collidedObject = attack_hit_box.get_collider(i)
+			if collidedObject.is_in_group("player") and target.has_method("take_damage") and not target.is_dead:
+				collidedObject.take_damage(damage)
+				print("Bug attacked player for ", damage, " damage!")
+			i += 1
+		await get_tree().create_timer(attack_cooldown).timeout
 		can_attack = true
 
 #-----------------------------------
@@ -158,6 +163,9 @@ func apply_knockback(direction: Vector3, force: float):
 	knockback += Vector2(direction.x, direction.z).normalized() * force
 	velocity.y += direction.normalized().y * force
 
+func become_dead_bug() -> void:
+	add_to_group("dead_bug")
+
 func die() -> void:
 	if is_dead:
 		return
@@ -166,5 +174,10 @@ func die() -> void:
 	bug_count -= 1
 	SignalBus.emit_signal("bug_died")
 	# Main.current_colony_nutrients += bug_nutrient_value
-	await get_tree().create_timer(despawn_timer).timeout
-	queue_free()
+	if is_in_group("ants") and random.randf() > 0.5:
+		#become_dead_bug()
+		await get_tree().create_timer(despawn_timer).timeout
+		queue_free()
+	else:
+		await get_tree().create_timer(despawn_timer).timeout
+		queue_free()

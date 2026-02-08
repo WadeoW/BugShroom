@@ -26,16 +26,21 @@ func _try_attack() -> void:
 		return
 	if not target or not can_attack:
 		return
-
-	var distance := global_position.distance_to(target.global_position)
-	if distance <= attack_range:
-		anim_state.travel("ant_animations_attack")
+	if attack_hit_box.is_colliding():
+		var total_collisions = attack_hit_box.get_collision_count()
+		print("total enemy attack collisions: ", total_collisions)
 		can_attack = false
-		if target.has_method("take_damage") and not target.is_dead:
-			target.take_damage(damage)
-			print("Bug attacked player for ", damage, " damage!")
-			await get_tree().create_timer(attack_cooldown).timeout
+		var i = 0
+		anim_state.travel("ant_animations_attack")
+		for collision in range(total_collisions):
+			var collidedObject = attack_hit_box.get_collider(i)
+			if collidedObject.is_in_group("player") and target.has_method("take_damage") and not target.is_dead:
+				collidedObject.take_damage(damage)
+				print("Bug attacked player for ", damage, " damage!")
+			i += 1
+		await get_tree().create_timer(attack_cooldown).timeout
 		can_attack = true
+	
 
 func _idle_behavior(delta):
 	has_alerted_allies = false
