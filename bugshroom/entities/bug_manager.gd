@@ -71,18 +71,6 @@ func spawn_bug():
 	#print(active_bugs)
 
 
-	## When this bug leaves the tree (die/queue_free), remove it from our list
-	#bug_instance.connect(
-		#"tree_exited",
-		#Callable(self, "_on_bug_exited").bind(bug_instance)
-	#)
-
-#func _on_bug_exited(bug: Node3D) -> void:
-	#if bug in active_bugs:
-		#active_bugs.erase(bug)
-		#print(bug, " exited")
-		#print(active_bugs)
-		
 func _on_spawn_timer_timeout() -> void:
 	#if bug_type == "ant":
 		# Only spawn if we're under the cap

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=46 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://bv51mew2febqv" path="res://assets/environment/shelf_fungus/ChickenOfTheWoods.tscn" id="22_3b0ty"]
 [ext_resource type="PackedScene" uid="uid://dnddru36dgt1c" path="res://assets/environment/log/trunk.tscn" id="23_bg4s2"]
 [ext_resource type="PackedScene" uid="uid://bqyg7gpaalqpp" path="res://assets/environment/stick/stick.tscn" id="24_hhcpw"]
+[ext_resource type="PackedScene" uid="uid://blyc4qh43bbu0" path="res://entities/beetle/beetle_territory.tscn" id="25_mxvw5"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gh4u"]
 load_path = "res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-c7c740f4ba395b910b721a3d2075f764.s3tc.ctex"
@@ -455,7 +456,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
 [node name="Player1Spawner" type="Node3D" parent="GridContainer/SubViewportContainer/SubViewport"]
@@ -469,7 +470,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer2"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
 [node name="Player2Spawner" type="Node3D" parent="GridContainer/SubViewportContainer2/SubViewport"]
@@ -4717,7 +4718,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.0232, 0.514557, 33.7229)
 transform = Transform3D(2.31332, 0, 1.23002, 0, 2.62, 0, -1.23002, 0, 2.31332, -80.2951, 1.31432, 55.16)
 
 [node name="FallenLog2" parent="environment" instance=ExtResource("23_bg4s2")]
-transform = Transform3D(-2.25763, 0, -1.32948, 0, 2.62, 0, 1.32948, 0, -2.25763, 228.884, 7.48127, -20.4158)
+transform = Transform3D(-2.25763, 0, -1.32948, 0, 2.62, 0, 1.32948, 0, -2.25763, 228.884, 0.618621, -20.4158)
 
 [node name="stick" parent="environment" instance=ExtResource("24_hhcpw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.694, 0.764812, 2.17053)
@@ -4863,6 +4864,9 @@ draw_pass_1 = SubResource("SphereMesh_xrxkg")
 stream = ExtResource("20_2gh4u")
 volume_db = -15.0
 parameters/looping = true
+
+[node name="BeetleTerritory1" parent="." instance=ExtResource("25_mxvw5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188.271, 0.500011, 154.059)
 
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]
