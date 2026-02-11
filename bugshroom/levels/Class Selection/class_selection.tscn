@@ -49,6 +49,7 @@ offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 27
+flat = true
 
 [node name="Area2D" type="Area2D" parent="CanvasLayer2/Amanita" groups=["button"]]
 
@@ -71,6 +72,7 @@ offset_bottom = 130.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 27
+flat = true
 
 [node name="Area2D" type="Area2D" parent="CanvasLayer2/Puffball" groups=["button"]]
 
@@ -95,6 +97,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 27
 text = "
 "
+flat = true
 
 [node name="Area2D" type="Area2D" parent="CanvasLayer2/Inkcap" groups=["button"]]
 
@@ -118,6 +121,7 @@ offset_bottom = 82.0
 action_mode = 0
 text = "back
 "
+flat = true
 
 [node name="Area2D" type="Area2D" parent="CanvasLayer2/BackButton" groups=["button"]]
 
@@ -140,6 +144,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 27
 icon = SubResource("ImageTexture_a3h8t")
+flat = true
 
 [node name="Area2D" type="Area2D" parent="CanvasLayer2/StartButton" groups=["button"]]
 position = Vector2(38, 9)

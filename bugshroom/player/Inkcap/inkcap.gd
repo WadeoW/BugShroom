@@ -47,6 +47,7 @@ var can_attack: bool = true
 @onready var attack_hit_box: ShapeCast3D = $AttackHitBox
 
 
+
 #ability and class variables
 var can_cast_abil = true
 var ability_active = false
@@ -60,8 +61,12 @@ var mushroom_type = PlayerData.MushroomType.Inkcap
 var is_rooted = false
 @export var root_stamina_regen = 15.0 #stamina regained per second while rooted
 
-
+#Animation variables
 @onready var animation_player: AnimationPlayer = $Inkshroom/AnimationPlayer
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var root_state_machine_playback = animation_tree.get("parameters/RootStateMachine/playback")
+
+#camera variables
 @onready var camera_mount = $CameraMount
 @onready var camera_yaw = $CameraMount/CameraYaw
 @onready var camera_pitch = $CameraMount/CameraYaw/CameraPitch
@@ -73,7 +78,8 @@ var last_direction = Vector3.FORWARD
 var current_animation: String = ""
 
 func _ready() -> void:
-	animation_player.play(" spawn")
+	#animation_player.play(" spawn")
+	animation_tree.set("parameters/SpawnOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	var current_animation = animation_player.current_animation
 	#set up health and stamina bars
 	health_bar.max_value = max_health
@@ -127,7 +133,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted:
 		velocity.y = JUMP_VELOCITY
 		jump_sound.play()
-		animation_player.play("ink_jump")
+		#animation_player.play("ink_jump")
+		animation_tree.set("parameters/JumpOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 #handle attack
 	if Input.is_action_just_pressed("attack_%s" % [player_id]) and attack_cooldown.is_stopped():
@@ -139,11 +146,15 @@ func _physics_process(delta):
 		isSprinting = !isSprinting
 	if isSprinting and current_stamina > 0:
 		speed = SPRINT_SPEED
-		if animation_player.current_animation == "ink_walkcycle":
-			animation_player.speed_scale = 2
+		#animation_tree.set("parameters/MovementBlendSpace1D/blend_position", 2)
+		animation_tree.set("parameters/TimeScale/scale", 1.5)
+		#if animation_player.current_animation == "ink_walkcycle":
+			#animation_player.speed_scale = 2
 	else:
-		animation_player.speed_scale = 1
+		#animation_player.speed_scale = 1
+		animation_tree.set("parameters/TimeScale/scale", 1)
 		speed = WALK_SPEED
+		#animation_tree.set("parameters/MovementBlendSpace1D/blend_position", 1)
 	
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left_%s" % [player_id], "move_right_%s" % [player_id], "move_up_%s" % [player_id], "move_down_%s" % [player_id])
@@ -154,8 +165,9 @@ func _physics_process(delta):
 		if direction:
 			walk_sound.play()
 			last_direction = direction
-			if animation_player.current_animation != "ink_walkcycle" and animation_player.current_animation != "goop" and animation_player.current_animation != "ink_attack" and animation_player.current_animation != "ink_takedmgwalk" and animation_player.current_animation != "ink_jump": 
-				animation_player.play("ink_walkcycle")
+			#if animation_player.current_animation != "ink_walkcycle" and animation_player.current_animation != "goop" and animation_player.current_animation != "ink_attack" and animation_player.current_animation != "ink_takedmgwalk" and animation_player.current_animation != "ink_jump": 
+				#animation_player.play("ink_walkcycle")
+			#animation_tree.set("parameters/MovementBlendSpace1D/blend_position", Vector2(velocity.x, velocity.z).length() / (speed * 0.5))
 			inputVelocity.x = direction.x * speed
 			inputVelocity.y = direction.z * speed
 			# sprinting
@@ -167,13 +179,17 @@ func _physics_process(delta):
 		else:
 			inputVelocity.x = lerp(inputVelocity.x, direction.x * speed, delta * 7.0)
 			inputVelocity.y = lerp(inputVelocity.y, direction.z * speed, delta * 7.0)
-			if !animation_player.is_playing():
-				animation_player.play("ink_idle")
+			#if !animation_player.is_playing():
+				#animation_player.play("ink_idle")
+			#animation_tree.set("parameters/MovementBlendSpace1D/blend_position", 0)
+		animation_tree.set("parameters/MovementBlendSpace1D/blend_position", Vector2(velocity.x, velocity.z).length() / (speed * 0.5))
+			
 		knockback = knockback.limit_length(MAX_KNOCKBACK_SPEED)
 		velocity = Vector3(inputVelocity.x, velocity.y, inputVelocity.y) + Vector3(knockback.x, 0, knockback.y)
 	else:
 		velocity.x = 0
 		velocity.z = 0 
+
 	
 	if is_rooted:
 		if current_stamina <= max_stamina:
@@ -181,12 +197,13 @@ func _physics_process(delta):
 		update()
 	
 	$Inkshroom.rotation.y = lerp_angle($Inkshroom.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
-
+	attack_hit_box.rotation.y = lerp_angle(attack_hit_box.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
 	move_and_slide()
 
 	
 func take_damage(amount):
-	animation_player.play("ink_takedmgwalk")
+	#animation_player.play("ink_takedmgwalk")
+	animation_tree.set("parameters/TakeDamageOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	current_health -= amount
 	update()
 	if current_health <= 0 and !is_dead:
@@ -199,17 +216,23 @@ func heal(amount):
 	
 #Root down toggle function
 func toggle_root():
+	animation_tree.set("parameters/MovementRootBlend2/blend_amount", 1)
 	is_rooted = !is_rooted
 	if is_rooted:
 		isSprinting = false
 		print("Rooting Down")
-		animation_player.play("sit")
+		#animation_player.play("sit")
+		root_state_machine_playback.travel("sit")
 	else:
-		animation_player.play("unsit")
+		#animation_player.play("unsit")
+		root_state_machine_playback.travel("unsit")
+		#await get_tree().create_timer(1)
+		#animation_tree.set("parameters/MovementRootBlend2/blend_amount", 0)
 		print("Uprooted")
 
 func attack():
-	animation_player.play("ink_attack")
+	#animation_player.play("ink_attack")
+	animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	can_attack = false
 	attack_cooldown.start()
 	if attack_hit_box.is_colliding():
@@ -231,7 +254,8 @@ func attack():
 
 	
 func cast_ability(ability_type):
-	animation_player.play("goop")
+	#animation_player.play("goop")
+	animation_tree.set("parameters/GoopOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	ability_active = true
 	can_cast_abil = false
 	var spawn := load("res://entities/abilities/GoopBall.tscn").instantiate() as RigidBody3D
@@ -250,7 +274,9 @@ func die():
 	is_dead = true
 	print("Player", player_id, "has died!")
 	death_sound.play()
-	animation_player.play("ink_death")
+	animation_tree.set("parameters/DeathBlend2/blend_amount", 1)
+	#animation_player.play("ink_death")
+	
 	set_physics_process(false)
 	SignalBus.player_died.emit()
 	
@@ -260,7 +286,9 @@ func die():
 func respawn():
 	is_dead = false
 	knockback = Vector2.ZERO; velocity = Vector3.ZERO; inputVelocity = Vector2.ZERO
-	animation_player.play(" spawn")
+	#animation_player.play(" spawn")
+	animation_tree.set("parameters/DeathBlend2/blend_amount", 0)
+	animation_tree.set("parameters/SpawnOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	global_position = Vector3(5, 1, 5)
 	print("player", player_id, "respawned!")
 	current_health = max_health
@@ -273,3 +301,11 @@ func respawn():
 
 func _on_ability_cooldown_timeout() -> void:
 	can_cast_abil = true
+
+
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "unsit":
+		print("animation finished playing: unsit")
+		animation_tree.set("parameters/MovementRootBlend2/blend_amount", 0)
+	else:
+		print("animation finished playing: " + anim_name)

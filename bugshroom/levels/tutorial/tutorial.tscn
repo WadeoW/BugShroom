@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwi5kj1jesmn4"]
+[gd_scene load_steps=6 format=3 uid="uid://bwi5kj1jesmn4"]
 
 [ext_resource type="Script" uid="uid://d22w8ev48bl8x" path="res://levels/tutorial/tutorial.gd" id="1_f3ams"]
+[ext_resource type="Texture2D" uid="uid://vr5f813ehi81" path="res://assets/UI/Controller.png" id="2_0jtug"]
 [ext_resource type="PackedScene" uid="uid://dbowfwd7ix33p" path="res://assets/Cursor/cursor.tscn" id="2_ypsce"]
 [ext_resource type="Texture2D" uid="uid://btd2v25in45dy" path="res://assets/Cursor/Cursor icons-red and white.png" id="3_0jtug"]
 
@@ -16,24 +17,30 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f3ams")
 
-[node name="BackButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 33.0
-offset_top = 30.0
-offset_right = 189.0
-offset_bottom = 87.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_0jtug")
+
+[node name="BackButton" type="Button" parent="CanvasLayer"]
+offset_left = 17.0
+offset_top = 7.0
+offset_right = 173.0
+offset_bottom = 64.0
 action_mode = 0
 text = "back
 "
 
-[node name="Area2D" type="Area2D" parent="BackButton" groups=["button"]]
+[node name="Area2D" type="Area2D" parent="CanvasLayer/BackButton" groups=["button"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BackButton/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/BackButton/Area2D"]
 position = Vector2(78.5, 28)
 shape = SubResource("RectangleShape2D_cui05")
 
-[node name="description" type="RichTextLabel" parent="."]
-layout_mode = 1
+[node name="description" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -48,8 +55,8 @@ To do this, you and your friend must go out into the world and harvest nutrients
 Be careful though, the local wildlife has a taste for fungi"
 horizontal_alignment = 1
 
-[node name="controls" type="RichTextLabel" parent="."]
-layout_mode = 1
+[node name="controls" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -73,8 +80,8 @@ press triangle to toggle your root down ability and regain stamina
 
 press circle to attack"
 
-[node name="title" type="RichTextLabel" parent="."]
-layout_mode = 1
+[node name="title" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -88,12 +95,12 @@ text = "Welcome to Bugshroom!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Cursor" parent="." instance=ExtResource("2_ypsce")]
-position = Vector2(469, 268)
+[node name="Cursor" parent="CanvasLayer" instance=ExtResource("2_ypsce")]
+position = Vector2(509, 337)
 
-[node name="Cursor2" parent="." instance=ExtResource("2_ypsce")]
-position = Vector2(465, 342)
+[node name="Cursor2" parent="CanvasLayer" instance=ExtResource("2_ypsce")]
+position = Vector2(1398, 348)
 cursor_id = 2
 texture = ExtResource("3_0jtug")
 
-[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]

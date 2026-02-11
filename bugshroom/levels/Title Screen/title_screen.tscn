@@ -2,15 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bjvnturu0wkvw" path="res://levels/Title Screen/title_screen.gd" id="1_xrj4a"]
 [ext_resource type="PackedScene" uid="uid://dbowfwd7ix33p" path="res://assets/Cursor/cursor.tscn" id="2_ksdvi"]
+[ext_resource type="Texture2D" uid="uid://c0y1bklfxvwxu" path="res://assets/UI/startbuttonconcept.png" id="2_usom8"]
 [ext_resource type="Texture2D" uid="uid://btd2v25in45dy" path="res://assets/Cursor/Cursor icons-red and white.png" id="3_4lyju"]
+[ext_resource type="Texture2D" uid="uid://c57j5ysnut3lc" path="res://assets/UI/settingsbuttonconcept.png" id="3_qtb2c"]
 [ext_resource type="AudioStream" uid="uid://b8vjc6o0gqfqd" path="res://assets/Sound/title_music_BugS.mp3" id="5_4lyju"]
 [ext_resource type="Texture2D" uid="uid://xpofvdd18ny" path="res://assets/UI/Bugshroomtitle.png" id="5_usom8"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksdvi"]
-size = Vector2(198, 84)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4lyju"]
-size = Vector2(202, 52)
 
 [node name="TitleScreen" type="Control"]
 y_sort_enabled = true
@@ -31,24 +27,26 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -96.0
-offset_top = 184.0
-offset_right = 103.0
-offset_bottom = 268.0
+offset_left = -150.0
+offset_top = 146.0
+offset_right = 588.0
+offset_bottom = 464.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.4, 0.4)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 27
-text = "Start
-"
+icon = ExtResource("2_usom8")
+flat = true
 
 [node name="Area2D" type="Area2D" parent="CanvasLayer2/StartButton" groups=["button"]]
 position = Vector2(36, 9)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/StartButton/Area2D"]
-position = Vector2(63, 33)
-shape = SubResource("RectangleShape2D_ksdvi")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="CanvasLayer2/StartButton/Area2D"]
+position = Vector2(339, 156)
+scale = Vector2(1, 1)
+polygon = PackedVector2Array(322.5, 107.5, 300, -15, 147.5, -107.5, -17.5, -137.5, -217.5, -80, -330, 7.5, -340, 120)
 
 [node name="TutorialButton" type="Button" parent="CanvasLayer2" groups=["button"]]
 anchors_preset = 8
@@ -56,19 +54,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -97.0
-offset_top = 280.0
-offset_right = 105.0
-offset_bottom = 333.0
+offset_left = -150.0
+offset_top = 257.0
+offset_right = 588.0
+offset_bottom = 575.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "controls"
+scale = Vector2(0.4, 0.4)
+icon = ExtResource("3_qtb2c")
+flat = true
 
 [node name="Area2D" type="Area2D" parent="CanvasLayer2/TutorialButton" groups=["button"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/TutorialButton/Area2D"]
-position = Vector2(101, 26)
-shape = SubResource("RectangleShape2D_4lyju")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasLayer2/TutorialButton/Area2D"]
+position = Vector2(0, 2.5)
+polygon = PackedVector2Array(700, 255, 702.5, 170, 642.5, 95, 450, 25, 215, 35, 57.5, 125, 55, 255)
 
 [node name="Cursor" parent="CanvasLayer2" instance=ExtResource("2_ksdvi")]
 position = Vector2(428, 295)

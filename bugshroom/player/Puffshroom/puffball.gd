@@ -49,7 +49,7 @@ const SELF_KB_ON_BEETLE = 10
 const OTHER_PLAYER_KB = 7
 var can_attack: bool = true
 @onready var attack_cooldown: Timer = $AttackCooldown
-@onready var attack_hit_box: ShapeCast3D = $AttackHitBox
+@onready var attack_hit_box: ShapeCast3D = $CharacterModel/AttackHitBox
 #sprint charge variables
 var chargeVector: Vector2 = Vector2.ZERO
 const CHARGE_SPEED = 15
