@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://dl2tthivh6a3e"]
+[gd_scene load_steps=27 format=4 uid="uid://dl2tthivh6a3e"]
 
 [ext_resource type="Script" uid="uid://chivoxalb5yd" path="res://player/Puffshroom/puffball.gd" id="1_0vhsy"]
 [ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_4tcne"]
@@ -332,9 +332,6 @@ _data = {
 &"take_damage": SubResource("Animation_7wi73"),
 &"uncrouch": SubResource("Animation_lchnv")
 }
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xhpx3"]
-size = Vector3(1.75, 1.5, 1.8)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kfrr7"]
 radius = 0.07

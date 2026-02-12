@@ -44,8 +44,13 @@ var stamina_drain_rate = 5.0 #stamina drained per second during action
 @export var attack_damage: float = 20.0
 var can_attack: bool = true
 @onready var attack_cooldown: Timer = $AttackCooldown
-@onready var attack_hit_box: ShapeCast3D = $AttackHitBox
+@onready var attack_hit_box: ShapeCast3D = $Inkshroom/AttackHitBox
 
+# grabbing variables
+var isGrabbingItem: bool = false
+@onready var grab_hit_box: ShapeCast3D = $Inkshroom/GrabHitBox
+@onready var grab_joint: Generic6DOFJoint3D = $"Inkshroom/Grab Joint"
+var grabbedItem
 
 
 #ability and class variables
@@ -87,6 +92,9 @@ func _ready() -> void:
 	health_bar.value = health_bar.max_value
 	stamina_bar.value = stamina_bar.max_value
 	
+	# you can't attack or grab yourself
+	attack_hit_box.add_exception($".")
+	grab_hit_box.add_exception($".")
 	
 	#class selection and ability loading
 	if player_id == 1:
@@ -235,24 +243,27 @@ func attack():
 	animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	can_attack = false
 	attack_cooldown.start()
+	var kb_direction: Vector3
 	if attack_hit_box.is_colliding():
 		var total_collisions = attack_hit_box.get_collision_count()
-		print(total_collisions)
+		print("total melee attack collisions: ", total_collisions)
 		var i = 0
-		for collision in total_collisions:
-			if attack_hit_box.get_collider(i).is_in_group("bug"):
-				print(i, "has taken damage")
-				attack_hit_box.get_collider(i).take_damage(attack_damage)
-			elif attack_hit_box.get_collider(i).is_in_group("player"):
-				attack_hit_box.get_collider(i).take_damage(0)
-				var kb_direction: Vector3 
-				kb_direction.x = attack_hit_box.get_collider(i).position.x - position.x
-				kb_direction.z = attack_hit_box.get_collider(i).position.z - position.z
-				attack_hit_box.get_collider(i).apply_knockback(kb_direction, 10) 
-				print("player was attacked")
+		for collision in range(total_collisions):
+			var collidedObject = attack_hit_box.get_collider(i)
+			print("melee attack hit: ", collidedObject.name)
+			var horizontalKB: Vector2 = Vector2(collidedObject.position.x - position.x, collidedObject.position.z - position.z).normalized()
+			kb_direction.x = horizontalKB.x
+			kb_direction.z = horizontalKB.y
+			kb_direction.y = 0.2
+			if collidedObject.is_in_group("bug") and !collidedObject.is_in_group("beetles"):
+				collidedObject.take_damage(attack_damage)
+				collidedObject.apply_knockback(kb_direction, 20)
+			elif collidedObject.is_in_group("player"):
+				collidedObject.apply_knockback(kb_direction, 3)
+				print("player was attacked by other player")
 			i += 1
 
-	
+
 func cast_ability(ability_type):
 	#animation_player.play("goop")
 	animation_tree.set("parameters/GoopOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -264,8 +275,40 @@ func cast_ability(ability_type):
 	var launchDirection = -camera_pitch.global_transform.basis.z
 	spawn.linear_velocity = launchDirection.normalized() * goop_ball_launch_speed + Vector3.UP * 5
 	print("ability has been cast")
-	
-	
+
+func grab():
+	if not isGrabbingItem:
+		if not grab_hit_box.is_colliding():
+			print("nothing to grab")
+			return
+		var total_collisions = grab_hit_box.get_collision_count()
+		var distanceToThing: float = 10000
+		var closestRigidBody: RigidBody3D
+		var i = 0
+		for collision in range(total_collisions):
+			var thing = grab_hit_box.get_collider(i)
+			var body := thing as Node
+			while body and not (body is PhysicsBody3D):
+				body = body.get_parent()
+			if not body.is_in_group("bug") and body is RigidBody3D:
+				if (thing.global_position - global_position).length() < distanceToThing:
+					distanceToThing = (thing.global_position - global_position).length()
+					closestRigidBody = body
+			i += 1
+		if closestRigidBody != null:
+			grabbedItem = closestRigidBody
+			grab_joint.node_b = closestRigidBody.get_path()
+			add_collision_exception_with(closestRigidBody)
+			print("grabbed ", grab_joint.node_b)
+			isGrabbingItem = true
+		else:
+			print("no rigid bodies to grab")
+	else:
+		print("released ", grab_joint.node_b)
+		remove_collision_exception_with(grabbedItem)
+		grab_joint.node_b = NodePath()
+		isGrabbingItem = false
+
 func apply_knockback(direction: Vector3, force: float):
 	knockback += Vector2(direction.x, direction.z).normalized() * force
 	velocity.y += direction.normalized().y * force

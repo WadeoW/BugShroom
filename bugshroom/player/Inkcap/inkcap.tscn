@@ -3124,6 +3124,12 @@ _data = {
 &"unsit": SubResource("Animation_8rkqx")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xtfrk"]
+size = Vector3(1.75, 1.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6vy48"]
+size = Vector3(1.25, 1.25, 1.25)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xpsje"]
 radius = 0.367777
 height = 1.9557
@@ -3514,6 +3520,26 @@ skin = SubResource("Skin_s82w3")
 libraries = {
 &"": SubResource("AnimationLibrary_pa42c")
 }
+
+[node name="AttackHitBox" type="ShapeCast3D" parent="Inkshroom"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 5.32244, 0)
+shape = SubResource("BoxShape3D_xtfrk")
+target_position = Vector3(0, 0, -1.455)
+collision_mask = 14
+debug_shape_custom_color = Color(0.978998, 0, 0.159943, 1)
+
+[node name="GrabHitBox" type="ShapeCast3D" parent="Inkshroom"]
+transform = Transform3D(4.97512, 0, 0, 0, 4.97512, 0, 0, 0, 4.97512, 0, 3.9801, 0)
+shape = SubResource("BoxShape3D_6vy48")
+target_position = Vector3(0, 0, -0.985)
+debug_shape_custom_color = Color(0.978998, 0, 0.159943, 1)
+
+[node name="Grab Joint" type="Generic6DOFJoint3D" parent="Inkshroom"]
+transform = Transform3D(4.97512, 0, 0, 0, 4.97512, 0, 0, 0, 4.97512, 0, 4.403, -2.701)
+node_a = NodePath("../..")
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.985491, 0)

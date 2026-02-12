@@ -118,8 +118,8 @@ func _idle_behavior(delta: float) -> void:
 		wander_timer = wander_interval
 
 	if not is_trapped:
-		velocity.x = wander_direction.x * wander_speed
-		velocity.z = wander_direction.z * wander_speed
+		velocity.x = wander_direction.x * wander_speed + knockback.x
+		velocity.z = wander_direction.z * wander_speed + knockback.y
 
 func _try_attack() -> void:
 	if not aggressive:
@@ -148,7 +148,7 @@ func take_damage(amount: float) -> void:
 		die()
 
 func apply_knockback(direction: Vector3, force: float):
-	knockback += Vector2(direction.x, direction.z) * force
+	knockback += Vector2(direction.x, direction.z).normalized() * force
 	velocity.y += direction.normalized().y * force
 
 func die() -> void:
