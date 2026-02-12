@@ -274,8 +274,8 @@ vertical_alignment = 1
 
 [node name="Floor" type="CSGBox3D" parent="."]
 use_collision = true
-collision_layer = 129
-collision_mask = 129
+collision_layer = 641
+collision_mask = 641
 size = Vector3(800, 1, 800)
 material = ExtResource("4_c2ibq")
 metadata/_edit_lock_ = true
@@ -402,6 +402,14 @@ collision_mask = 3
 
 [node name="BugManager#Ant12" parent="AntManager" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.6164, 1.49999, -289.786)
+collision_mask = 3
+
+[node name="BugManager#Ant13" parent="AntManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.3333, 3, 49.7152)
+collision_mask = 3
+
+[node name="BugManager#Ant14" parent="AntManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8515, 6, 63.4168)
 collision_mask = 3
 
 [node name="BeetleManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_timer")]

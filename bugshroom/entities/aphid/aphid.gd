@@ -36,9 +36,9 @@ func take_damage(amount: float) -> void:
 
 	# Random bounce direction
 	var dir := Vector3(
-		randf() * 2.0 - 1.0,
-		1.0,
-		randf() * 2.0 - 1.0
+		(randf() - 1.0) * 2.0,
+		0.3,
+		(randf() - 1.0) * 2.0
 	).normalized()
 
 	velocity = dir * bounce_force

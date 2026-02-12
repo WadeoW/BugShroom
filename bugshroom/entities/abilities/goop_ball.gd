@@ -2,13 +2,27 @@ extends RigidBody3D
 
 const GOOP_ABILITY = preload("res://entities/abilities/goop_ability.tscn")
 @onready var ray: RayCast3D = $RayCast3D
+@onready var player: CharacterBody3D
+@onready var children = get_parent().get_children()
 
+func _ready() -> void:
+	for child in children:
+		print(child)
+		if child is CharacterBody3D:
+			player = child
+			print(player)
 
 func _on_body_entered(body: Node) -> void:
-	print("Goop Ball collided with ", body.name)
-	var spawnedGoop = GOOP_ABILITY.instantiate()
-	add_sibling(spawnedGoop)
-	var collisionPoint = ray.get_collision_point()
-	if collisionPoint and ray.get_collider().name == "Floor":
-		spawnedGoop.position = collisionPoint + Vector3.UP * 0.1
-	queue_free()
+	if body.is_in_group("bug") or body.name == "Floor":
+		print("Goop Ball collided with ", body.name)
+		var spawnedGoop = GOOP_ABILITY.instantiate()
+		add_sibling(spawnedGoop)
+		if ray.is_colliding():
+			var collisionPoint = ray.get_collision_point()
+			if collisionPoint and ray.get_collider().name == "Floor":
+				spawnedGoop.position = collisionPoint + Vector3.UP * 0.1
+		else:
+			player.ability_active = false
+			print("goop ball floor ray cast didn't hit")
+			player.ability_cooldown.start()
+		queue_free()

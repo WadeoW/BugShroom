@@ -1,11 +1,10 @@
-[gd_scene load_steps=30 format=4 uid="uid://dl2tthivh6a3e"]
+[gd_scene load_steps=27 format=4 uid="uid://dl2tthivh6a3e"]
 
 [ext_resource type="Script" uid="uid://chivoxalb5yd" path="res://player/Puffshroom/puffball.gd" id="1_0vhsy"]
 [ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_4tcne"]
 [ext_resource type="AnimationLibrary" uid="uid://bde73mddq6b8c" path="res://player/Puffshroom/puffmushroom_animations.glb" id="2_7wi73"]
 [ext_resource type="Script" uid="uid://brrncwvvflgvk" path="res://player/health_bar.gd" id="3_xhpx3"]
 [ext_resource type="Script" uid="uid://duk35nosf216h" path="res://player/stamina_bar.gd" id="4_7wi73"]
-[ext_resource type="AudioStream" uid="uid://uirm0y8ru3pm" path="res://assets/Sound/death_player.m.mp3" id="6_invgw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxwlq"]
 resource_name = "Body.001"
@@ -333,9 +332,6 @@ _data = {
 &"uncrouch": SubResource("Animation_lchnv")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xhpx3"]
-size = Vector3(1.75, 1.5, 1.8)
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_kfrr7"]
 radius = 0.07
 
@@ -358,15 +354,10 @@ bg_color = Color(0.9, 0.66, 0, 1)
 radius = 0.559217
 height = 1.50688
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_invgw"]
-nodes/output/position = Vector2(1040, 140)
-
 [node name="Puffball" type="CharacterBody3D" node_paths=PackedStringArray("health_bar", "stamina_bar") groups=["Puffball", "player"]]
 collision_layer = 9
 collision_mask = 9
 script = ExtResource("1_0vhsy")
-current_health = 150
-max_health = 150
 health_bar = NodePath("CanvasLayer/HealthBar")
 stamina_bar = NodePath("CanvasLayer/StaminaBar")
 
@@ -439,12 +430,6 @@ libraries = {
 &"puffmushroom_animations": ExtResource("2_7wi73")
 }
 
-[node name="AttackHitBox" type="ShapeCast3D" parent="CharacterModel"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 7.4, 0)
-shape = SubResource("BoxShape3D_xhpx3")
-target_position = Vector3(0, 0, -1)
-collision_mask = 14
-
 [node name="CameraMount" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00626266, 1.78082, -0.00825548)
@@ -500,7 +485,6 @@ show_percentage = false
 script = ExtResource("3_xhpx3")
 
 [node name="StaminaBar" type="ProgressBar" parent="CanvasLayer"]
-visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -533,7 +517,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="StaminaText" type="RichTextLabel" parent="CanvasLayer"]
-visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -558,18 +541,6 @@ collision_mask = 9
 transform = Transform3D(-8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 0, 0, 2, 0, 0.6, 0)
 shape = SubResource("CapsuleShape3D_xhpx3")
 debug_color = Color(0.999465, 0, 0.112206, 0.42)
-
-[node name="Audio" type="Node3D" parent="."]
-
-[node name="DeathSound" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("6_invgw")
-
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Audio"]
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../CharacterModel")
-tree_root = SubResource("AnimationNodeBlendTree_invgw")
-anim_player = NodePath("../CharacterModel/AnimationPlayer")
 
 [connection signal="timeout" from="ChargeDuration" to="." method="_on_charge_duration_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
