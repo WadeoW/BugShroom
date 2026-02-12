@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://bv51mew2febqv" path="res://assets/environment/shelf_fungus/ChickenOfTheWoods.tscn" id="22_3b0ty"]
 [ext_resource type="PackedScene" uid="uid://dnddru36dgt1c" path="res://assets/environment/log/trunk.tscn" id="23_bg4s2"]
 [ext_resource type="PackedScene" uid="uid://bqyg7gpaalqpp" path="res://assets/environment/stick/stick.tscn" id="24_hhcpw"]
-[ext_resource type="PackedScene" uid="uid://blyc4qh43bbu0" path="res://entities/beetle/beetle_territory.tscn" id="25_mxvw5"]
+[ext_resource type="PackedScene" uid="uid://bi75gd3ried8r" path="res://entities/beetle/beetle_territory.tscn" id="25_mxvw5"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gh4u"]
 load_path = "res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-c7c740f4ba395b910b721a3d2075f764.s3tc.ctex"
