@@ -44,8 +44,10 @@ var stamina_drain_rate = 5.0 #stamina drained per second during action
 # grabbing variables
 var isGrabbingItem: bool = false
 @onready var grab_joint: Generic6DOFJoint3D = $"PlayerModel/Grab Joint"
+@onready var dead_ant_grab_position: Node3D = $"PlayerModel/Grab Joint/Dead Ant Grab Position"
 @onready var grab_hit_box: ShapeCast3D = $PlayerModel/GrabHitBox
-var grabbedItem
+@onready var player_model: Node3D = $PlayerModel # rotational basis
+var grabbedItem: PhysicsBody3D
 
 #attack variables
 @export var attack_range: float = 3.0
@@ -131,17 +133,22 @@ func _physics_process(delta):
 	if is_dead:
 		knockback = Vector2.ZERO
 
-# handle jump
+	# handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
 
 	if Input.is_action_just_pressed("attack_%s" % [player_id]) and attack_cooldown.is_stopped():
 		attack()
-	
+		
+	# grabbing
 	if Input.is_action_just_pressed("grab_%s" % [player_id]):
 		grab()
-	
+	if grabbedItem != null and grabbedItem.is_in_group("dead_bug"):
+		grabbedItem.position = grabbedItem.position.move_toward(dead_ant_grab_position.global_position, 30 * delta)
+		grabbedItem.rotation.y = lerp_angle(grabbedItem.rotation.y, player_model.rotation.y + (PI / 2), 30 * delta)
+		grabbedItem.is_being_carried = true
+		
 	# handle sprint
 	if Input.is_action_just_pressed("sprint_%s" % [player_id]) and current_stamina > 0:
 		isSprinting = !isSprinting
@@ -233,9 +240,10 @@ func attack():
 			kb_direction.x = horizontalKB.x
 			kb_direction.z = horizontalKB.y
 			kb_direction.y = 0.2
-			if collidedObject.is_in_group("bug") and !collidedObject.is_in_group("beetles"):
+			if collidedObject.is_in_group("bug"):
 				collidedObject.take_damage(attack_damage)
-				collidedObject.apply_knockback(kb_direction, 20)
+				if !collidedObject.is_in_group("beetles"):
+					collidedObject.apply_knockback(kb_direction, 20)
 			elif collidedObject.is_in_group("player"):
 				collidedObject.apply_knockback(kb_direction, 3)
 				print("player was attacked by other player")
@@ -256,29 +264,36 @@ func grab():
 			return
 		var total_collisions = grab_hit_box.get_collision_count()
 		var distanceToThing: float = 10000
-		var closestRigidBody: RigidBody3D
+		var closestBody: PhysicsBody3D
 		var i = 0
 		for collision in range(total_collisions):
 			var thing = grab_hit_box.get_collider(i)
 			var body := thing as Node
 			while body and not (body is PhysicsBody3D):
 				body = body.get_parent()
-			if not body.is_in_group("bug") and body is RigidBody3D:
+			if body is RigidBody3D:
 				if (thing.global_position - global_position).length() < distanceToThing:
 					distanceToThing = (thing.global_position - global_position).length()
-					closestRigidBody = body
+					closestBody = body
+			if body.is_in_group("dead_bug") and body is CharacterBody3D and not body.is_being_carried:
+				closestBody = body
 			i += 1
-		if closestRigidBody != null:
-			grabbedItem = closestRigidBody
-			grab_joint.node_b = closestRigidBody.get_path()
-			add_collision_exception_with(closestRigidBody)
+		if closestBody != null:
+			grabbedItem = closestBody
+			# body is part of environment
+			if closestBody is RigidBody3D:
+				grab_joint.node_b = closestBody.get_path()
+			add_collision_exception_with(closestBody)
 			print("grabbed ", grab_joint.node_b)
 			isGrabbingItem = true
 		else:
-			print("no rigid bodies to grab")
+			print("no rigid or character bodies to grab")
 	else:
 		print("released ", grab_joint.node_b)
 		remove_collision_exception_with(grabbedItem)
+		if grabbedItem.is_in_group("dead_bug"):
+			grabbedItem.is_being_carried = false
+		grabbedItem = null
 		grab_joint.node_b = NodePath()
 		isGrabbingItem = false
 
@@ -292,7 +307,6 @@ func die():
 	animation_state_playback.travel("die")
 	set_physics_process(false)
 	SignalBus.player_died.emit()
-	
 	await get_tree().create_timer(respawn_delay).timeout
 	respawn()
 	

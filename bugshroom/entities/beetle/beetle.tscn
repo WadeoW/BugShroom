@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dnyuja84wopu2"]
+[gd_scene load_steps=11 format=4 uid="uid://dnyuja84wopu2"]
 
 [ext_resource type="Script" uid="uid://bi5kql0tljcml" path="res://entities/beetle/beetle.gd" id="1_83cmc"]
 [ext_resource type="AnimationLibrary" uid="uid://1xbackui1r0x" path="res://entities/beetle/beetle_animations.glb" id="2_t1852"]
@@ -221,19 +221,23 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_83cmc"]
-radius = 2.51049
-height = 8.85552
+radius = 1.93233
+height = 8.69237
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t1852"]
-size = Vector3(0.0263672, 5.42261, 5.91315)
+size = Vector3(1.59, 4.643, 7.003)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ljpcp"]
+size = Vector3(4.135, 1, 5.62)
 
 [node name="Beetle" type="CharacterBody3D" groups=["beetles", "bug"]]
 collision_layer = 13
 collision_mask = 7
 script = ExtResource("1_83cmc")
+territorial = true
 
 [node name="beetle_walkanimation" type="Node3D" parent="."]
-transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 0, 0, 0)
+transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 0, 0, 1.17)
 
 [node name="Armature_001" type="Node3D" parent="beetle_walkanimation"]
 
@@ -369,9 +373,17 @@ libraries = {
 }
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -0.300378, 2.62272, 0)
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -0.300378, 3.14652, 0.732911)
 shape = SubResource("CapsuleShape3D_83cmc")
+debug_color = Color(0.988235, 0, 0, 0.419608)
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.184045, 0.0510345, 0.679901)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.184, 1.1408, 0.872476)
 shape = SubResource("BoxShape3D_t1852")
+debug_color = Color(0.992157, 0, 0, 0.419608)
+
+[node name="AttackHitBox" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.025, -2.5)
+shape = SubResource("BoxShape3D_ljpcp")
+target_position = Vector3(0, -2.7, 0)
+collide_with_areas = true
