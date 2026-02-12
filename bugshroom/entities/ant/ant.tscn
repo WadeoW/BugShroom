@@ -2,9 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cf8ryq2ykfj4y" path="res://entities/ant/ant.gd" id="1_oav7h"]
 [ext_resource type="AnimationLibrary" uid="uid://dapalebxirms0" path="res://entities/ant/ant_animations.glb" id="2_0fa7d"]
-[ext_resource type="AudioStream" uid="uid://pwh8rkl55ebi" path="res://assets/Sound/attack_SFX_Bug.mp3" id="3_7i056"]
-[ext_resource type="AudioStream" uid="uid://bcmpy3u02qyyy" path="res://assets/Sound/death_enemy.mp3" id="4_l0lss"]
-[ext_resource type="PackedScene" uid="uid://dhygx6l1k7gkq" path="res://entities/Bug/bug_health_bar.tscn" id="5_l0lss"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tqyqo"]
 resource_name = "ant mat"
@@ -584,15 +581,9 @@ states/ant_animations_attack/position = Vector2(422, 236)
 states/ant_animations_death/node = SubResource("AnimationNodeAnimation_ubgiu")
 states/ant_animations_death/position = Vector2(765, 134)
 states/ant_animations_walk/node = SubResource("AnimationNodeAnimation_7i056")
-states/ant_animations_walk/position = Vector2(470, 105)
+states/ant_animations_walk/position = Vector2(485, 47)
 transitions = ["Start", "ant_animations_walk", SubResource("AnimationNodeStateMachineTransition_l0lss"), "ant_animations_walk", "ant_animations_attack", SubResource("AnimationNodeStateMachineTransition_v63gx"), "ant_animations_walk", "ant_animations_death", SubResource("AnimationNodeStateMachineTransition_rhvf2"), "ant_animations_death", "End", SubResource("AnimationNodeStateMachineTransition_fwyw6"), "ant_animations_attack", "ant_animations_walk", SubResource("AnimationNodeStateMachineTransition_ohcfi")]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_l0lss"]
-viewport_path = NodePath("SubViewport")
-
-[node name="CharacterBody3D" type="CharacterBody3D" groups=["ants", "bug"]]
-collision_layer = 135
-collision_mask = 135
 [sub_resource type="BoxShape3D" id="BoxShape3D_ubgiu"]
 size = Vector3(2.055, 1, 1)
 
@@ -753,7 +744,7 @@ bones/20/parent = 19
 bones/20/rest = Transform3D(-0.0578173, -0.860069, 0.506891, 0.928685, -0.23265, -0.288821, 0.366334, 0.454043, 0.812185, 4.47035e-08, 1.72378, -1.8999e-07)
 bones/20/enabled = true
 bones/20/position = Vector3(4.47035e-08, 1.72378, -1.8999e-07)
-bones/20/rotation = Quaternion(0.29264, -0.265729, 0.573852, 0.717247)
+bones/20/rotation = Quaternion(0.301101, 0.056971, 0.725026, 0.61679)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/name = "Mid-2.R"
 bones/21/parent = 20
@@ -852,32 +843,6 @@ anim_player = NodePath("../ant/AnimationPlayer")
 parameters/conditions/is_attacking = false
 parameters/conditions/is_dead = false
 
-[node name="AttackSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_7i056")
-bus = &"playersfx"
-
-[node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_l0lss")
-bus = &"playersfx"
-
-[node name="AttackSound2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_7i056")
-
-[node name="DeathSound2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_l0lss")
-
-[node name="SubViewport" type="SubViewport" parent="."]
-disable_3d = true
-transparent_bg = true
-
-[node name="HealthBar" parent="SubViewport" instance=ExtResource("5_l0lss")]
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93596, 0)
-billboard = 1
-texture = SubResource("ViewportTexture_l0lss")
-
-[connection signal="finished" from="AttackSound" to="." method="_on_attack_sound_finished"]
 [node name="AttackHitBox" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.955, -0.525)
 shape = SubResource("BoxShape3D_ubgiu")

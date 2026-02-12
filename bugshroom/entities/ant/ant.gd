@@ -10,14 +10,6 @@ extends BugBase
 @onready var abdomin: MeshInstance3D = $ant/Armature/Skeleton3D/Abdomin
 const DEAD_ANT_MATERIAL = preload("res://entities/ant/dead_ant_material.tres")
 
-@onready var health_bar: ProgressBar = $SubViewport/HealthBar
-
-#sound variables
-@onready var attack_sound: AudioStreamPlayer3D = $AttackSound
-@onready var death_sound: AudioStreamPlayer3D = $DeathSound
-@onready var attack_sound_2: AudioStreamPlayer = $AttackSound2
-@onready var death_sound_2: AudioStreamPlayer = $DeathSound2
-
 var has_alerted_allies: bool = false
 
 func _ready():
@@ -30,10 +22,7 @@ func _ready():
 	add_to_group("ants")
 	add_to_group("bug")
 	super._ready()
-	
-	health_bar.max_value = ant_health
-	health_bar.value = health
-
+	#animation_player.play("walk")
 	animation_tree.active = true
 
 func _try_attack() -> void:
@@ -41,11 +30,6 @@ func _try_attack() -> void:
 		return
 	if not target or not can_attack:
 		return
-
-	var distance := global_position.distance_to(target.global_position)
-	if distance <= attack_range:
-		anim_state.travel("ant_animations_attack")
-		attack_sound_2.play()
 	if attack_hit_box.is_colliding():
 		var total_collisions = attack_hit_box.get_collision_count()
 		print("total enemy attack collisions: ", total_collisions)
@@ -95,15 +79,5 @@ func become_dead_bug() -> void:
 
 func die() -> void:
 	animation_tree.set("parameters/conditions/is_dead", true)
-	death_sound_2.play()
 	super.die()
 	
-func take_damage(amount: float) -> void:
-	super.take_damage(amount)
-	_update()
-
-func _update() -> void:
-	health_bar.value = health
-
-func _on_attack_sound_finished() -> void:
-	print("attack sound finished")
