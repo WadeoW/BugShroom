@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://blyc4qh43bbu0"]
+[gd_scene load_steps=5 format=3 uid="uid://cr22g20qxjtbq"]
 
-[ext_resource type="Script" uid="uid://c6pi8pqoilx75" path="res://beetle_territory.gd" id="1_m7cf4"]
+[ext_resource type="Script" path="res://beetle_territory.gd" id="1_m7cf4"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_o6x7y"]
 height = 5.0

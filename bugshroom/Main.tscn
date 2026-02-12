@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://8gxwurqg07or" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
 [ext_resource type="Script" uid="uid://j0ano1abul83" path="res://player_2_spawner.gd" id="13_mxvw5"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
-[ext_resource type="PackedScene" uid="uid://dt1373tohhcxl" path="res://assets/environment/tree/new_redwood.tscn" id="14_mxvw5"]
+[ext_resource type="PackedScene" path="res://assets/environment/tree/new_redwood.tscn" id="14_mxvw5"]
 [ext_resource type="PackedScene" uid="uid://beh73njk1ypty" path="res://assets/environment/log/log_bugshroom_v01.fbx" id="15_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://drjomi27mdxip" path="res://assets/environment/rock/rock_1.tscn" id="16_sc1dx"]
 [ext_resource type="PackedScene" uid="uid://ba406h63j4154" path="res://assets/environment/rock/big_rock.tscn" id="17_5tuhn"]
@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://bv51mew2febqv" path="res://assets/environment/shelf_fungus/ChickenOfTheWoods.tscn" id="22_3b0ty"]
 [ext_resource type="PackedScene" uid="uid://dnddru36dgt1c" path="res://assets/environment/log/trunk.tscn" id="23_bg4s2"]
 [ext_resource type="PackedScene" uid="uid://bqyg7gpaalqpp" path="res://assets/environment/stick/stick.tscn" id="24_hhcpw"]
-[ext_resource type="PackedScene" uid="uid://blyc4qh43bbu0" path="res://entities/beetle/beetle_territory.tscn" id="25_mxvw5"]
+[ext_resource type="PackedScene" uid="uid://cr22g20qxjtbq" path="res://entities/beetle/beetle_territory.tscn" id="25_mxvw5"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gh4u"]
 load_path = "res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-c7c740f4ba395b910b721a3d2075f764.s3tc.ctex"

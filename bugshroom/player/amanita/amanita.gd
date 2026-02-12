@@ -21,11 +21,10 @@ const MAX_KNOCKBACK_SPEED = 20
 #animation control variables
 var is_jumping = false
 @onready var animation_tree: AnimationTree = $AnimationTree
-@onready var animation_state_playback = animation_tree.get("parameters/AnimationNodeStateMachine/playback")
+@onready var animation_state_playback = animation_tree.get("parameters/playback")
 
 #sound variables
 @onready var jump_sound: AudioStreamPlayer = $PlayerModel/Audio/JumpSound
-@onready var audio_listener_3d: AudioListener3D = $PlayerModel/Audio/AudioListener3D
 @onready var walk_sound: AudioStreamPlayer = $PlayerModel/Audio/WalkSound
 @onready var death_sound: AudioStreamPlayer = $PlayerModel/Audio/DeathSound
 
