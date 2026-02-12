@@ -222,6 +222,12 @@ grab_2={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_8="goop ball"
+3d_physics/layer_9="grab"
+3d_physics/layer_10="floor"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

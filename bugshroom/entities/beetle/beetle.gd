@@ -24,7 +24,6 @@ func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
 
 func _on_animation_finished(anim_name: StringName):
-	print("on animation finished triggered")
 	if anim_name == "beetle_animations/beetle_attack2":
 		animation_player.play("beetle_walkanimation")
 
@@ -59,14 +58,13 @@ func hit_enemy() -> void:
 			if (collidedObject.is_in_group("player") or collidedObject.is_in_group("bug")) and not collidedObject.is_dead:
 				print("beetle hit enemy: ", collidedObject.name)
 				if collidedObject.has_method("take_damage"):
-					collidedObject.take_damage(damage / 10)
+					collidedObject.take_damage(damage)
 				if collidedObject.has_method("apply_knockback"):
 					var kb_direction = (collidedObject.global_position - global_position).normalized()
 					kb_direction.y = 0.5
 					if collidedObject.is_in_group("bug"):
 						kb_direction.y = 0.2
 					collidedObject.apply_knockback(kb_direction, knockback_force)
-					print("beetle knocking ", collidedObject.name, " back in direction: ", kb_direction)
 			i += 1
 		await get_tree().create_timer(beetle_attack_speed).timeout
 		can_attack = true

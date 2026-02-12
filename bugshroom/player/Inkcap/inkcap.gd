@@ -20,8 +20,6 @@ const MAX_KNOCKBACK_SPEED = 20
 #respawn
 @export var respawn_delay: float = 5.0
 
-
-
 #health variables
 @export var current_health = 100
 @export var max_health = 100
@@ -46,7 +44,9 @@ var can_attack: bool = true
 var isGrabbingItem: bool = false
 @onready var grab_hit_box: ShapeCast3D = $Inkshroom/GrabHitBox
 @onready var grab_joint: Generic6DOFJoint3D = $"Inkshroom/Grab Joint"
-var grabbedItem
+@onready var dead_ant_grab_position: Node3D = $"Inkshroom/Grab Joint/Dead Ant Grab Position"
+@onready var player_model: Node3D = $Inkshroom # rotational basis
+var grabbedItem: PhysicsBody3D
 
 #ability and class variables
 var can_cast_abil = true
@@ -134,7 +134,14 @@ func _physics_process(delta):
 #handle attack
 	if Input.is_action_just_pressed("attack_%s" % [player_id]) and attack_cooldown.is_stopped():
 		attack()
-		
+
+	# grabbing
+	if Input.is_action_just_pressed("grab_%s" % [player_id]):
+		grab()
+	if grabbedItem != null and grabbedItem.is_in_group("dead_bug"):
+		grabbedItem.position = grabbedItem.position.move_toward(dead_ant_grab_position.global_position, 30 * delta)
+		grabbedItem.rotation.y = lerp_angle(grabbedItem.rotation.y, player_model.rotation.y + (PI / 2), 30 * delta)
+		grabbedItem.is_being_carried = true
 
 	# handle sprint
 	if Input.is_action_just_pressed("sprint_%s" % [player_id]) and current_stamina > 0:
@@ -253,29 +260,36 @@ func grab():
 			return
 		var total_collisions = grab_hit_box.get_collision_count()
 		var distanceToThing: float = 10000
-		var closestRigidBody: RigidBody3D
+		var closestBody: PhysicsBody3D
 		var i = 0
 		for collision in range(total_collisions):
 			var thing = grab_hit_box.get_collider(i)
 			var body := thing as Node
 			while body and not (body is PhysicsBody3D):
 				body = body.get_parent()
-			if not body.is_in_group("bug") and body is RigidBody3D:
+			if body is RigidBody3D:
 				if (thing.global_position - global_position).length() < distanceToThing:
 					distanceToThing = (thing.global_position - global_position).length()
-					closestRigidBody = body
+					closestBody = body
+			if body.is_in_group("dead_bug") and body is CharacterBody3D and not body.is_being_carried:
+				closestBody = body
 			i += 1
-		if closestRigidBody != null:
-			grabbedItem = closestRigidBody
-			grab_joint.node_b = closestRigidBody.get_path()
-			add_collision_exception_with(closestRigidBody)
+		if closestBody != null:
+			grabbedItem = closestBody
+			# body is part of environment
+			if closestBody is RigidBody3D:
+				grab_joint.node_b = closestBody.get_path()
+			add_collision_exception_with(closestBody)
 			print("grabbed ", grab_joint.node_b)
 			isGrabbingItem = true
 		else:
-			print("no rigid bodies to grab")
+			print("no rigid or character bodies to grab")
 	else:
 		print("released ", grab_joint.node_b)
 		remove_collision_exception_with(grabbedItem)
+		if grabbedItem.is_in_group("dead_bug"):
+			grabbedItem.is_being_carried = false
+		grabbedItem = null
 		grab_joint.node_b = NodePath()
 		isGrabbingItem = false
 

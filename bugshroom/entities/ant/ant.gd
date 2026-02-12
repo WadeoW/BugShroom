@@ -7,14 +7,18 @@ extends BugBase
 @onready var animation_player: AnimationPlayer = $ant/AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var anim_state = animation_tree.get("parameters/playback")
-var has_alerted_allies: bool = false
+@onready var abdomin: MeshInstance3D = $ant/Armature/Skeleton3D/Abdomin
+const DEAD_ANT_MATERIAL = preload("res://entities/ant/dead_ant_material.tres")
 
+var has_alerted_allies: bool = false
 
 func _ready():
 	speed = ant_speed
 	health = ant_health
 	damage = ant_damage
 	aggressive = true
+	scavenger = true
+	mouth_position = $"Mouth Position"
 	add_to_group("ants")
 	add_to_group("bug")
 	super._ready()
@@ -30,25 +34,22 @@ func _try_attack() -> void:
 		var total_collisions = attack_hit_box.get_collision_count()
 		print("total enemy attack collisions: ", total_collisions)
 		can_attack = false
+		var hit_player := false
 		var i = 0
-		anim_state.travel("ant_animations_attack")
 		for collision in range(total_collisions):
 			var collidedObject = attack_hit_box.get_collider(i)
-			if collidedObject.is_in_group("player") and target.has_method("take_damage") and not target.is_dead:
+			if collidedObject.is_in_group("player") and collidedObject.has_method("take_damage") and not collidedObject.is_dead:
 				collidedObject.take_damage(damage)
 				print("Ant attacked player for ", damage, " damage!")
 			i += 1
+		if hit_player:
+			anim_state.travel("ant_animations_attack")
 		await get_tree().create_timer(attack_cooldown).timeout
 		can_attack = true
-	
 
 func _idle_behavior(delta):
 	has_alerted_allies = false
-	var forward = -transform.basis.z
-	forward.y = 0
-	forward = forward.normalized()
-	velocity.x = forward.x * wander_speed + knockback.x
-	velocity.z = forward.z * wander_speed + knockback.y
+	super._idle_behavior(delta)
 
 func _chase_target(toChase: Node3D):
 	if target and not has_alerted_allies:
@@ -65,11 +66,16 @@ func _alert_ants_nearby():
 			continue
 		if not (a is BugBase):
 			continue
-
+		
 		var dist = global_position.distance_to(a.global_position)
 		if dist <= ally_alert_radius:
 			a.target = target
 			a.is_chasing = true
+
+func become_dead_bug() -> void:
+	super.become_dead_bug()
+	abdomin.set_surface_override_material(0, DEAD_ANT_MATERIAL)
+	should_shrink_on_death = true
 
 func die() -> void:
 	animation_tree.set("parameters/conditions/is_dead", true)

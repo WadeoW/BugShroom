@@ -1803,6 +1803,7 @@ debug_shape_custom_color = Color(0.978998, 0, 0.159943, 1)
 transform = Transform3D(4.97512, 0, 0, 0, 4.97512, 0, 0, 0, 4.97512, 0, 3.9801, 0)
 shape = SubResource("BoxShape3D_6vy48")
 target_position = Vector3(0, 0, -0.985)
+collision_mask = 256
 debug_shape_custom_color = Color(0.978998, 0, 0.159943, 1)
 
 [node name="Grab Joint" type="Generic6DOFJoint3D" parent="Inkshroom"]
@@ -1811,6 +1812,9 @@ node_a = NodePath("../..")
 angular_limit_x/enabled = false
 angular_limit_y/enabled = false
 angular_limit_z/enabled = false
+
+[node name="Dead Ant Grab Position" type="Node3D" parent="Inkshroom/Grab Joint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55278, 0, -0.379052)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.985491, 0)

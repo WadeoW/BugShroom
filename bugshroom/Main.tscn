@@ -250,8 +250,8 @@ vertical_alignment = 1
 
 [node name="Floor" type="CSGBox3D" parent="."]
 use_collision = true
-collision_layer = 129
-collision_mask = 129
+collision_layer = 641
+collision_mask = 641
 size = Vector3(800, 1, 800)
 material = ExtResource("4_c2ibq")
 
@@ -383,6 +383,10 @@ collision_mask = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.3333, 3, 49.7152)
 collision_mask = 3
 
+[node name="BugManager#Ant14" parent="AntManager" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8515, 6, 63.4168)
+collision_mask = 3
+
 [node name="BeetleManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_timer")]
 script = ExtResource("3_r0du0")
 bug_scene = ExtResource("7_devvj")
@@ -398,12 +402,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 118.688, 0.279741, 112.598)
 
 [node name="Beetle2" parent="BeetleManager" instance=ExtResource("7_devvj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -253.061, 0.279741, -211.105)
-
-[node name="Beetle3" parent="BeetleManager" instance=ExtResource("7_devvj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.7639, 0.559478, 62.9872)
-
-[node name="Beetle4" parent="BeetleManager" instance=ExtResource("7_devvj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.8954, 1.11896, 15.9315)
 
 [node name="AphidManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_timer")]
 script = ExtResource("3_r0du0")
