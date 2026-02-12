@@ -388,16 +388,16 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.184
 shape = SubResource("BoxShape3D_t1852")
 debug_color = Color(0.992157, 0, 0, 0.419608)
 
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1.985, 0, 0, 0, 1.985, 0, 0, 0, 1.985, 0, 6.54725, -2.12919)
+billboard = 1
+texture = SubResource("ViewportTexture_ljpcp")
+
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true
 transparent_bg = true
 
 [node name="HealthBar3D" parent="SubViewport" instance=ExtResource("3_ljpcp")]
-
-[node name="Sprite3D" type="Sprite3D" parent="SubViewport"]
-transform = Transform3D(1.985, 0, 0, 0, 1.985, 0, 0, 0, 1.985, 0, 6.54725, -2.12919)
-billboard = 1
-texture = SubResource("ViewportTexture_ljpcp")
 
 [node name="Audio" type="Node3D" parent="."]
 

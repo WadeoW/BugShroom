@@ -10,6 +10,8 @@ extends BugBase
 @onready var animation_player: AnimationPlayer = $beetle_walkanimation/AnimationPlayer
 const hit_delay = 0.4 #change with attack animation speed
 
+@onready var health_bar: ProgressBar = $SubViewport/HealthBar3D
+
 func _ready() -> void:
 	speed = beetle_speed
 	health = beetle_health
@@ -22,6 +24,9 @@ func _ready() -> void:
 	super._ready()
 	animation_player.play("beetle_walkanimation")
 	animation_player.animation_finished.connect(_on_animation_finished)
+	health_bar.max_value = beetle_health
+	health_bar.value = beetle_health
+	
 
 func _on_animation_finished(anim_name: StringName):
 	if anim_name == "beetle_animations/beetle_attack2":
@@ -68,3 +73,17 @@ func hit_enemy() -> void:
 			i += 1
 		await get_tree().create_timer(beetle_attack_speed).timeout
 		can_attack = true
+
+func take_damage(amount: float) -> void:
+	if is_dead:
+		return
+	health -= amount
+	_update()
+	print(name, " took ", amount, " damage! Health: ", health)
+	if health <= 0:
+		die()
+
+
+
+func _update() -> void:
+	health_bar.value = health

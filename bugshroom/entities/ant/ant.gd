@@ -12,6 +12,8 @@ const DEAD_ANT_MATERIAL = preload("res://entities/ant/dead_ant_material.tres")
 
 var has_alerted_allies: bool = false
 
+@onready var health_bar: ProgressBar = $SubViewport/HealthBar3D
+
 func _ready():
 	speed = ant_speed
 	health = ant_health
@@ -24,6 +26,9 @@ func _ready():
 	super._ready()
 	#animation_player.play("walk")
 	animation_tree.active = true
+	
+	health_bar.max_value = ant_health
+	health_bar.value = ant_health
 
 func _try_attack() -> void:
 	if not aggressive:
@@ -73,6 +78,7 @@ func _alert_ants_nearby():
 			a.is_chasing = true
 
 func become_dead_bug() -> void:
+	health_bar.visible = false
 	super.become_dead_bug()
 	abdomin.set_surface_override_material(0, DEAD_ANT_MATERIAL)
 	should_shrink_on_death = true
@@ -80,4 +86,17 @@ func become_dead_bug() -> void:
 func die() -> void:
 	animation_tree.set("parameters/conditions/is_dead", true)
 	super.die()
-	
+
+func take_damage(amount: float) -> void:
+	if is_dead:
+		return
+	health -= amount
+	_update()
+	print(name, " took ", amount, " damage! Health: ", health)
+	if health <= 0:
+		die()
+
+
+
+func _update() -> void:
+	health_bar.value = health
