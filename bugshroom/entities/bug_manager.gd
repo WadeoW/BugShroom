@@ -46,7 +46,7 @@ func get_random_pos():
 func _on_bug_died():
 	if active_bugs.size() > 0:
 		active_bugs.remove_at(0)
-		print("diva down")
+		print("bug killed")
 		#print("current bug count: ", current_bugs.size())
 	else:
 		print("no more bugs!")

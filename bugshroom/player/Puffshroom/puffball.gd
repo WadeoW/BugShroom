@@ -8,7 +8,7 @@ var inputVelocity: Vector2 = Vector2.ZERO
 const ACCELERATION = 7
 const DIRECTIONAL_ACCELERATION: float = 2.0
 const MAX_SPEED = 12.0
-const JUMP_VELOCITY = 8
+const JUMP_VELOCITY = 6
 const SENSITIVITY = 0.005
 var gravity = 9.8
 var knockback: Vector2 = Vector2.ZERO
@@ -20,10 +20,6 @@ var direction
 
 #respawn
 @export var respawn_delay: float = 5.0
-
-#sound variables
-@onready var death_sound: AudioStreamPlayer = $Audio/DeathSound
-
 
 #health variables
 @export var current_health = 100
@@ -38,8 +34,6 @@ var stamina_drain_rate = 5.0 #stamina drained per second during action
 @export var stamina_bar = ProgressBar
 
 #attack variables
-@export var attack_range: float = 3.0
-@export var attack_damage: float = 20.0
 const ROLLING_ATTACK_DAMAGE: float = 5.0 # this is multiplied by speed in xz plane
 const MIN_ROLLING_SPEED_FOR_ATTACK: float = 5.0
 const MIN_ROLLING_SPEED_FOR_TERRAIN_BOUNCE: float = 8.0
@@ -47,9 +41,7 @@ const TERRAIN_BOUNCE_BACK: float = 0.5 # multiplied by incoming speed and sends 
 const BUG_KB = 10
 const SELF_KB_ON_BEETLE = 10
 const OTHER_PLAYER_KB = 7
-var can_attack: bool = true
-@onready var attack_cooldown: Timer = $AttackCooldown
-@onready var attack_hit_box: ShapeCast3D = $CharacterModel/AttackHitBox
+
 #sprint charge variables
 var chargeVector: Vector2 = Vector2.ZERO
 const CHARGE_SPEED = 15
@@ -134,10 +126,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
 		velocity.y = JUMP_VELOCITY
 
-	#handle attack
-	if Input.is_action_just_pressed("attack_%s" % [player_id]) and attack_cooldown.is_stopped():
-		attack()
-		
 	# handle sprint/charge attack
 	if Input.is_action_just_pressed("sprint_%s" % [player_id]) and charge_cooldown.is_stopped():
 		charge_attack()
@@ -211,25 +199,6 @@ func toggle_root():
 		animation_player.play("puffmushroom_animations/unsquash")
 		print("Uprooted")
 
-func attack():
-	#animation_player.play("mushroomdude_allanimations2/attack")
-	can_attack = false
-	attack_cooldown.start()
-	if attack_hit_box.is_colliding():
-		var total_collisions = attack_hit_box.get_collision_count()
-		print(total_collisions)
-		var i = 0
-		for collision in total_collisions:
-			if attack_hit_box.get_collider(i).is_in_group("bug"):
-				print(i, "has taken damage")
-				attack_hit_box.get_collider(i).take_damage(attack_damage)
-			elif attack_hit_box.get_collider(i).is_in_group("player"):
-				attack_hit_box.get_collider(i).take_damage(0)
-				print("player was attacked")
-				var kb_direction = attack_hit_box.get_collider(i).position - position
-				apply_knockback(kb_direction, 30) 
-			i += 1
-
 # area contact with enemies for speed based damage and knockback
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	var kb_direction: Vector2
@@ -280,7 +249,6 @@ func apply_knockback(direction: Vector3, force: float):
 func die():
 	cast_ability()
 	is_dead = true
-	death_sound.play()
 	print("Player", player_id, "has died!")
 	#animation_player.play("die")
 	set_physics_process(false)
@@ -292,10 +260,11 @@ func die():
 func respawn():
 	is_dead = false
 	knockback = Vector2.ZERO; velocity = Vector3.ZERO; chargeVector = Vector2.ZERO
-	animation_player.play("puffmushroom_animations/unsquash")
+	#animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 	global_position = Vector3(5, 1, 5)
 	print("player", player_id, "respawned!")
 	current_health = max_health
+	update()
 	current_stamina = max_stamina
 	update()
 	set_physics_process(true)
