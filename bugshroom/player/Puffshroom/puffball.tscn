@@ -353,6 +353,21 @@ bg_color = Color(0.73, 0.73, 0, 0.686275)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knpp7"]
 bg_color = Color(0.9, 0.66, 0, 1)
 
+[sub_resource type="Animation" id="Animation_nufpb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cover:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [100.0]
+}
+
 [sub_resource type="Animation" id="Animation_61bif"]
 resource_name = "cooldown"
 length = 5.0
@@ -367,21 +382,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [100.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_nufpb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cover:value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [100.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8ke3l"]
