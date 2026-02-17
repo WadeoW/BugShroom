@@ -118,12 +118,7 @@ func _physics_process(delta: float) -> void:
 			bug_being_carried.position = bug_being_carried.position.move_toward(mouth_position.global_position, 10 * delta)
 			bug_being_carried.rotation.y = lerp_angle(bug_being_carried.rotation.y, rotation.y + PI / 2, 20 * delta)
 	
-	# always rotate towards the current direction they are moving towards subtracting knockback
-	var velocityDirection := velocity.normalized() - Vector3(knockback.x, 0, knockback.y)
-	velocityDirection.y = 0.0
-	if velocityDirection.length() > 0.001:
-		var targetDirection := atan2(velocityDirection.x, velocityDirection.z) + PI
-		rotation.y = lerp_angle(rotation.y, targetDirection, rotationSpeed * delta)
+	_rotate_to_velocity(delta, rotationSpeed)
 	
 	move_and_slide()
 
@@ -134,10 +129,8 @@ func _get_closest_in_group(group: String ) -> Node3D:
 	var nodes := get_tree().get_nodes_in_group(group)
 	if nodes.is_empty():
 		return null
-
 	var closest: Node3D = null
 	var closest_dist := INF
-
 	for n in nodes:
 		if n and n.is_inside_tree() and self != n:
 			var node := n as Node3D
@@ -150,6 +143,14 @@ func _get_closest_in_group(group: String ) -> Node3D:
 #-----------------------------------
 # Behavior
 #-----------------------------------
+func _rotate_to_velocity(delta: float, rot_speed: float):
+	# always rotate towards the current direction they are moving towards subtracting knockback
+	var velocityDirection := velocity.normalized() - Vector3(knockback.x, 0, knockback.y)
+	velocityDirection.y = 0.0
+	if velocityDirection.length() > 0.001:
+		var targetDirection := atan2(velocityDirection.x, velocityDirection.z) + PI
+		rotation.y = lerp_angle(rotation.y, targetDirection, rot_speed * delta)
+		
 func _chase_target(node: Node3D) -> void:
 	if not node:
 		return
