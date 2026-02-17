@@ -21,8 +21,10 @@ func _on_body_entered(body: Node) -> void:
 			var collisionPoint = ray.get_collision_point()
 			if collisionPoint and ray.get_collider().name == "Floor":
 				spawnedGoop.position = collisionPoint + Vector3.UP * 0.1
+				player.ability_icon_animation_player.play("ability_active")
 		else:
 			player.ability_active = false
 			print("goop ball floor ray cast didn't hit")
 			player.ability_cooldown.start()
+			player.ability_icon_animation_player.play("cooldown")
 		queue_free()

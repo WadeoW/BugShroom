@@ -23,6 +23,7 @@ var is_jumping = false
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_state_playback = animation_tree.get("parameters/RootStateMachine/playback")
 @onready var animation_player: AnimationPlayer = $PlayerModel/AnimationPlayer
+@onready var ability_icon_animation_player: AnimationPlayer = $CanvasLayer/AbilityIcon/AbilityIconAnimationPlayer
 
 
 #sound variables
@@ -267,6 +268,7 @@ func attack():
 func cast_ability(ability_type):
 	animation_tree.set("parameters/AbilityUseOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	ability_active = true
+	ability_icon_animation_player.play("ability_active")
 	can_cast_abil = false
 	var spawn = ability_type.instantiate()
 	add_sibling(spawn)

@@ -75,6 +75,7 @@ var is_rooted = false
 @onready var animation_player: AnimationPlayer = $Inkshroom/AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var root_state_machine_playback = animation_tree.get("parameters/RootStateMachine/playback")
+@onready var ability_icon_animation_player: AnimationPlayer = $CanvasLayer/AbilityIcon/AbilityIconAnimationPlayer
 
 #camera variables
 @onready var camera_mount = $CameraMount

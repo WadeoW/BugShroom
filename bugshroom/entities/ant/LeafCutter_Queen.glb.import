@@ -1,15 +1,15 @@
 [remap]
 
-importer="animation_library"
+importer="scene"
 importer_version=1
-type="AnimationLibrary"
-uid="uid://kybdxnurhwko"
-path="res://.godot/imported/puff_charge_death.glb-f7768f4bf01d36d65e9eb2f49a39cfbf.res"
+type="PackedScene"
+uid="uid://c5aahcso0vbjf"
+path="res://.godot/imported/LeafCutter_Queen.glb-2a8fb41574383bd4c3f643f9e0de8cf2.scn"
 
 [deps]
 
-source_file="res://player/Puffshroom/puff_charge_death.glb"
-dest_files=["res://.godot/imported/puff_charge_death.glb-f7768f4bf01d36d65e9eb2f49a39cfbf.res"]
+source_file="res://entities/ant/LeafCutter_Queen.glb"
+dest_files=["res://.godot/imported/LeafCutter_Queen.glb-2a8fb41574383bd4c3f643f9e0de8cf2.scn"]
 
 [params]
 
@@ -32,6 +32,24 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:Egg": {
+"import/skip_import": true
+},
+"PATH:Front-LEg_001": {
+"import/skip_import": true
+},
+"PATH:Middle - Leg_001": {
+"import/skip_import": true
+},
+"PATH:Plane": {
+"import/skip_import": true
+},
+"PATH:Rear - Leg_001": {
+"import/skip_import": true
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

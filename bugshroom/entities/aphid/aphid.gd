@@ -45,4 +45,5 @@ func take_damage(amount: float) -> void:
 
 	print(name, " aphid took ", amount, " damage! Health: ", health)
 	if health <= 0:
+		animation_player.play("aphid_death/aphiddeath")
 		die()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=4 uid="uid://rtaecmo4qdss"]
+[gd_scene load_steps=12 format=4 uid="uid://rtaecmo4qdss"]
 
 [ext_resource type="Script" uid="uid://cvjckw3sv0cr2" path="res://entities/Aphid/aphid.gd" id="1_k1elt"]
+[ext_resource type="AnimationLibrary" uid="uid://cl77tpqe0mncq" path="res://entities/Aphid/aphid_death.glb" id="2_47hm1"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_k1elt"]
 
@@ -350,7 +351,8 @@ skin = SubResource("Skin_covgq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="aphid"]
 libraries = {
-&"": SubResource("AnimationLibrary_i128c")
+&"": SubResource("AnimationLibrary_i128c"),
+&"aphid_death": ExtResource("2_47hm1")
 }
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]

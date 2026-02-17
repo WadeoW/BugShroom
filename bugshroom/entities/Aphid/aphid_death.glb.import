@@ -3,13 +3,13 @@
 importer="animation_library"
 importer_version=1
 type="AnimationLibrary"
-uid="uid://kybdxnurhwko"
-path="res://.godot/imported/puff_charge_death.glb-f7768f4bf01d36d65e9eb2f49a39cfbf.res"
+uid="uid://cl77tpqe0mncq"
+path="res://.godot/imported/aphid_death.glb-e18c2c4ec726d627cd37294ae17119db.res"
 
 [deps]
 
-source_file="res://player/Puffshroom/puff_charge_death.glb"
-dest_files=["res://.godot/imported/puff_charge_death.glb-f7768f4bf01d36d65e9eb2f49a39cfbf.res"]
+source_file="res://entities/Aphid/aphid_death.glb"
+dest_files=["res://.godot/imported/aphid_death.glb-e18c2c4ec726d627cd37294ae17119db.res"]
 
 [params]
 

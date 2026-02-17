@@ -59,6 +59,7 @@ var is_rooted = false
 @export var root_stamina_regen = 15.0 #stamina regained per second while rooted
 
 @onready var animation_player: AnimationPlayer = $CharacterModel/AnimationPlayer
+@onready var ability_animation_player: AnimationPlayer = $CanvasLayer/AbilityIcon/AbilityAnimationPlayer
 
 #sound variables
 @onready var impact_sound_3d: AudioStreamPlayer3D = $Audio/ImpactSound3D
@@ -242,6 +243,8 @@ func cast_ability():
 func charge_attack():
 	print("charge attack")
 	charge_cooldown.start()
+	animation_player.play("puff_charge_death/charge")
+	ability_animation_player.play("cooldown")
 	charge_duration.start()
 
 func _on_charge_duration_timeout() -> void:
@@ -256,7 +259,7 @@ func die():
 	cast_ability()
 	is_dead = true
 	print("Player", player_id, "has died!")
-	#animation_player.play("die")
+	animation_player.play("puff_charge_death/death")
 	set_physics_process(false)
 	SignalBus.player_died.emit()
 	

@@ -34,6 +34,7 @@ func _on_lifetime_timeout() -> void:
 	player.ability_active = false
 	print("ability despawned")
 	player.ability_cooldown.start()
+	player.ability_icon_animation_player.play("cooldown")
 	queue_free()
 
 

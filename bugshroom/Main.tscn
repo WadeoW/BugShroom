@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=50 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://dnddru36dgt1c" path="res://assets/environment/log/trunk.tscn" id="23_bg4s2"]
 [ext_resource type="PackedScene" uid="uid://bqyg7gpaalqpp" path="res://assets/environment/stick/stick.tscn" id="24_hhcpw"]
 [ext_resource type="PackedScene" uid="uid://bi75gd3ried8r" path="res://entities/beetle/beetle_territory.tscn" id="25_mxvw5"]
+[ext_resource type="PackedScene" uid="uid://bfas6xneyxj0q" path="res://entities/ant/ant_queen.tscn" id="29_w3rk5"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gh4u"]
 load_path = "res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-c7c740f4ba395b910b721a3d2075f764.s3tc.ctex"
@@ -40,9 +41,10 @@ sky_material = SubResource("PanoramaSkyMaterial_5vvyt")
 
 [sub_resource type="Environment" id="Environment_glv2v"]
 background_mode = 1
-background_color = Color(0.627258, 0.868996, 1, 1)
+background_color = Color(0.47, 0.8145, 1, 1)
 sky = SubResource("Sky_c6i3y")
 ambient_light_source = 3
+fog_enabled = true
 fog_light_color = Color(0.556907, 0.63771, 0.707714, 1)
 fog_light_energy = 0.26
 
@@ -232,7 +234,9 @@ environment = SubResource("Environment_glv2v")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.947154, 0.00741801, 0.320693, -0.320614, -0.0101743, 0.947156, 0.0102889, -0.999921, -0.00725836, 0, 55.6146, 0)
+light_energy = 1.701
 shadow_enabled = true
+directional_shadow_max_distance = 1000.0
 
 [node name="NutrientDrainTimer" type="Timer" parent="."]
 autostart = true
@@ -280,57 +284,6 @@ theme_override_font_sizes/normal_font_size = 35
 text = "Colony nutrients"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="AntHill" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.936611, 0.350371, 0, -0.350371, 0.936611, 106.139, -0.892085, -259.326)
-
-[node name="AntHillWall1" parent="AntHill" instance=ExtResource("3_xrxkg")]
-transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, -1.65297, -9.15796)
-
-[node name="AntHillWall2" parent="AntHill" instance=ExtResource("3_xrxkg")]
-transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, 1.83635, -18.4856)
-
-[node name="AntHillWall3" parent="AntHill" instance=ExtResource("3_xrxkg")]
-transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, -5.15144, 0.194107)
-
-[node name="AntHillWall4" parent="AntHill" instance=ExtResource("3_xrxkg")]
-transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, -8.63703, 9.5118)
-
-[node name="AntHillWall5" parent="AntHill" instance=ExtResource("3_xrxkg")]
-transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, 5.32448, -27.81)
-
-[node name="AntHillWall6" parent="AntHill" instance=ExtResource("3_xrxkg")]
-transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, 8.81194, -37.1327)
-
-[node name="AntHillWall7" parent="AntHill" instance=ExtResource("3_xrxkg")]
-transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, -1.65298, -9.15796)
-
-[node name="AntHillWall8" parent="AntHill" instance=ExtResource("3_xrxkg")]
-transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, -5.15147, 0.194092)
-
-[node name="AntHillWall9" parent="AntHill" instance=ExtResource("3_xrxkg")]
-transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, -8.63703, 9.5118)
-
-[node name="AntHillWall10" parent="AntHill" instance=ExtResource("3_xrxkg")]
-transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, 1.83635, -18.4856)
-
-[node name="AntHillWall11" parent="AntHill" instance=ExtResource("3_xrxkg")]
-transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, 5.32448, -27.81)
-
-[node name="AntHillWall12" parent="AntHill" instance=ExtResource("3_xrxkg")]
-transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, 8.81193, -37.1327)
-
-[node name="AntHillRoof" parent="AntHill" instance=ExtResource("4_sqvbp")]
-transform = Transform3D(1, 0, 0, 0, 0.995562, 0.0941083, 0, -0.0941083, 0.995562, 5.72015, 6.6141, -25.2458)
-
-[node name="AntHillRoof2" parent="AntHill" instance=ExtResource("4_sqvbp")]
-transform = Transform3D(-0.999998, -5.48235e-05, 0.00174451, -0.000250539, 0.993664, -0.112388, -0.0017273, -0.112388, -0.993663, -4.23647, 6.6141, -25.2458)
-
-[node name="AntHillRoof3" parent="AntHill" instance=ExtResource("4_sqvbp")]
-transform = Transform3D(1, 0, 0, 0, 0.995562, 0.0941083, 0, -0.0941083, 0.995562, 5.51483, 5.53154, -35.0798)
-
-[node name="AntHillRoof4" parent="AntHill" instance=ExtResource("4_sqvbp")]
-transform = Transform3D(-0.999998, -5.48235e-05, 0.00174451, -0.000250539, 0.993664, -0.112388, -0.0017273, -0.112388, -0.993663, -4.44178, 5.53154, -35.0798)
 
 [node name="Floor" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -4713,7 +4666,7 @@ transform = Transform3D(1, 0, 0, 0, 0.305197, 0.952289, 0, -0.952289, 0.305197, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -177.137, 9.603, 151.278)
 
 [node name="Big_rock2" parent="environment/rocks" instance=ExtResource("17_5tuhn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.92, 9.603, -204.211)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 190.461, 9.603, -201.968)
 
 [node name="Big_rock3" parent="environment/rocks" instance=ExtResource("17_5tuhn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 326.586, 9.60298, 82.1746)
@@ -4838,22 +4791,22 @@ transform = Transform3D(0.47, 0, 0, 0, 0.47, 0, 0, 0, 0.47, -40.3898, 8.3527, -1
 transform = Transform3D(0.47, 0, 0, 0, 0.47, 0, 0, 0, 0.47, -33.897, 10.3321, -155.802)
 
 [node name="ChickenOfTheWoods6" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.495797, 0, -0.942555, 0, 1.065, 0, 0.942555, 0, 0.495797, -53.8554, 24.1612, -147.116)
+transform = Transform3D(0.407345, 0, -0.7744, 0, 0.875, 0, 0.7744, 0, 0.407345, -53.8554, 24.1612, -147.116)
 
 [node name="ChickenOfTheWoods7" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
 transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -66.7858, 27.1658, -140.649)
 
 [node name="ChickenOfTheWoods8" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -74.3466, 28.3226, -136.248)
+transform = Transform3D(0.216474, 0, -0.411538, 0, 0.465, 0, 0.411538, 0, 0.216474, -77.4219, 28.3226, -135.475)
 
 [node name="ChickenOfTheWoods9" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -82.3711, 30.4042, -139.701)
+transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -84.3098, 30.4042, -140.821)
 
 [node name="ChickenOfTheWoods10" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.165266, 0, -0.314185, 0, 0.355, 0, 0.314185, 0, 0.165266, -86.8406, 31.8252, -147.685)
+transform = Transform3D(0.165266, 0, -0.314185, 0, 0.355, 0, 0.314185, 0, 0.165266, -87.8115, 32.5407, -149.434)
 
 [node name="ChickenOfTheWoods11" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -90.8514, 31.8252, -158.055)
+transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -90.8514, 33.6395, -158.055)
 
 [node name="ChickenOfTheWoods12" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
 transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -94.3627, 41.468, -166.89)
@@ -4868,28 +4821,28 @@ transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593,
 transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -106.18, 35.1527, -191.309)
 
 [node name="ChickenOfTheWoods17" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -122.95, 38.4672, -203.093)
+transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -122.95, 43.0806, -203.093)
 
 [node name="ChickenOfTheWoods22" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -129.165, 39.5932, -196.436)
+transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -129.165, 44.6306, -196.436)
 
 [node name="ChickenOfTheWoods18" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.260701, 0, -0.495616, 0, 0.56, 0, 0.495616, 0, 0.260701, -135.267, 42.1527, -190.737)
+transform = Transform3D(0.260701, 0, -0.495616, 0, 0.56, 0, 0.495616, 0, 0.260701, -135.267, 47.19, -190.737)
 
 [node name="ChickenOfTheWoods19" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.0977628, 0, -0.185856, 0, 0.21, 0, 0.185856, 0, 0.0977628, -143.264, 42.1527, -194.865)
+transform = Transform3D(0.0977628, 0, -0.185856, 0, 0.21, 0, 0.185856, 0, 0.0977628, -143.264, 47.19, -194.865)
 
 [node name="ChickenOfTheWoods20" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.111729, 0, -0.212407, 0, 0.24, 0, 0.212407, 0, 0.111729, -148.598, 42.7089, -198.567)
+transform = Transform3D(0.111729, 0, -0.212407, 0, 0.24, 0, 0.212407, 0, 0.111729, -148.598, 47.7463, -198.567)
 
 [node name="ChickenOfTheWoods21" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.111729, 0, -0.212407, 0, 0.24, 0, 0.212407, 0, 0.111729, -155.831, 43.4718, -206.349)
+transform = Transform3D(0.111729, 0, -0.212407, 0, 0.24, 0, 0.212407, 0, 0.111729, -155.831, 48.5092, -206.349)
 
 [node name="MossBed5" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
 transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, -32.5672, 10.4647, -154.978)
 
 [node name="MossBed6" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
-transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -91.3505, 31.8037, -157.469)
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -91.3505, 33.618, -157.469)
 
 [node name="ChickenOfTheWoods13" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
 transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -95.4122, 19.0497, -164.642)
@@ -4953,6 +4906,95 @@ parameters/looping = true
 
 [node name="BeetleTerritory1" parent="." instance=ExtResource("25_mxvw5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188.271, 0.500011, 154.059)
+
+[node name="AntQueen" parent="." instance=ExtResource("29_w3rk5")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 104.34, 3.8147e-06, -240.468)
+
+[node name="AntHill" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.936611, 0.350371, 0, -0.350371, 0.936611, 106.139, -0.892085, -259.326)
+
+[node name="AntHillMound" type="CSGCombiner3D" parent="AntHill"]
+transform = Transform3D(1, 0, 0, 0, 0.936611, -0.350371, 0, 0.350371, 0.936611, 38.4112, -0.22052, 3.1356)
+use_collision = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="AntHill/AntHillMound"]
+transform = Transform3D(1.155, 0, 0, 0, 1.155, 0, 0, 0, 1.155, -37, 31.6605, 12.2916)
+radius = 45.0
+height = 19.0
+sides = 10
+cone = true
+material = ExtResource("4_c2ibq")
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="AntHill/AntHillMound"]
+transform = Transform3D(1.155, 0, 0, 0, 1.155, 0, 0, 0, 1.155, -37, 4.75, 12.2916)
+inner_radius = 36.0
+outer_radius = 50.0
+sides = 10
+ring_sides = 8
+material = ExtResource("4_c2ibq")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="AntHill/AntHillMound/CSGTorus3D"]
+transform = Transform3D(1.155, 0, 0, 0, -5.04867e-08, -1.155, 0, 1.155, -5.04867e-08, 0, -3.75172, 40.6453)
+operation = 2
+radius = 2.46973
+height = 13.5528
+material = ExtResource("4_c2ibq")
+
+[node name="CSGTorus3D2" type="CSGTorus3D" parent="AntHill/AntHillMound"]
+transform = Transform3D(1.155, 0, 0, 0, 1.155, 0, 0, 0, 1.155, -37, 15.75, 12.2916)
+inner_radius = 36.0
+outer_radius = 50.0
+sides = 10
+ring_sides = 8
+material = ExtResource("4_c2ibq")
+
+[node name="AntHillWall1" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, -1.65297, -9.15796)
+
+[node name="AntHillWall2" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, 1.83635, -18.4856)
+
+[node name="AntHillWall3" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, -5.15144, 0.194107)
+
+[node name="AntHillWall4" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, -8.63703, 9.5118)
+
+[node name="AntHillWall5" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, 5.32448, -27.81)
+
+[node name="AntHillWall6" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, 8.81194, -37.1327)
+
+[node name="AntHillWall7" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, -1.65298, -9.15796)
+
+[node name="AntHillWall8" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, -5.15147, 0.194092)
+
+[node name="AntHillWall9" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, -8.63703, 9.5118)
+
+[node name="AntHillWall10" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, 1.83635, -18.4856)
+
+[node name="AntHillWall11" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, 5.32448, -27.81)
+
+[node name="AntHillWall12" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, 8.81193, -37.1327)
+
+[node name="AntHillRoof" parent="AntHill" instance=ExtResource("4_sqvbp")]
+transform = Transform3D(1, 0, 0, 0, 0.995562, 0.0941083, 0, -0.0941083, 0.995562, 5.72015, 6.6141, -25.2458)
+
+[node name="AntHillRoof2" parent="AntHill" instance=ExtResource("4_sqvbp")]
+transform = Transform3D(-0.999998, -5.48235e-05, 0.00174451, -0.000250539, 0.993664, -0.112388, -0.0017273, -0.112388, -0.993663, -4.23647, 6.6141, -25.2458)
+
+[node name="AntHillRoof3" parent="AntHill" instance=ExtResource("4_sqvbp")]
+transform = Transform3D(1, 0, 0, 0, 0.995562, 0.0941083, 0, -0.0941083, 0.995562, 5.51483, 5.53154, -35.0798)
+
+[node name="AntHillRoof4" parent="AntHill" instance=ExtResource("4_sqvbp")]
+transform = Transform3D(-0.999998, -5.48235e-05, 0.00174451, -0.000250539, 0.993664, -0.112388, -0.0017273, -0.112388, -0.993663, -4.44178, 5.53154, -35.0798)
 
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]

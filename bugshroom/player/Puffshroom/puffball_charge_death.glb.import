@@ -1,15 +1,15 @@
 [remap]
 
-importer="animation_library"
+importer="scene"
 importer_version=1
-type="AnimationLibrary"
-uid="uid://kybdxnurhwko"
-path="res://.godot/imported/puff_charge_death.glb-f7768f4bf01d36d65e9eb2f49a39cfbf.res"
+type="PackedScene"
+uid="uid://ckypuypwl0gqv"
+path="res://.godot/imported/puffball_charge_death.glb-ed64c17eda76a6e9661eaca7fc16d749.scn"
 
 [deps]
 
-source_file="res://player/Puffshroom/puff_charge_death.glb"
-dest_files=["res://.godot/imported/puff_charge_death.glb-f7768f4bf01d36d65e9eb2f49a39cfbf.res"]
+source_file="res://player/Puffshroom/puffball_charge_death.glb"
+dest_files=["res://.godot/imported/puffball_charge_death.glb-ed64c17eda76a6e9661eaca7fc16d749.scn"]
 
 [params]
 
