@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=51 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://bv51mew2febqv" path="res://assets/environment/shelf_fungus/ChickenOfTheWoods.tscn" id="22_3b0ty"]
 [ext_resource type="PackedScene" uid="uid://dnddru36dgt1c" path="res://assets/environment/log/trunk.tscn" id="23_bg4s2"]
 [ext_resource type="PackedScene" uid="uid://bqyg7gpaalqpp" path="res://assets/environment/stick/stick.tscn" id="24_hhcpw"]
+[ext_resource type="AudioStream" uid="uid://cg7g1hrm4qfxq" path="res://assets/Sound/beetle_track_demo.mp3" id="25_5mvff"]
 [ext_resource type="PackedScene" uid="uid://bi75gd3ried8r" path="res://entities/beetle/beetle_territory.tscn" id="25_mxvw5"]
 [ext_resource type="PackedScene" uid="uid://bfas6xneyxj0q" path="res://entities/ant/ant_queen.tscn" id="29_w3rk5"]
 
@@ -41,7 +42,7 @@ sky_material = SubResource("PanoramaSkyMaterial_5vvyt")
 
 [sub_resource type="Environment" id="Environment_glv2v"]
 background_mode = 1
-background_color = Color(0.47, 0.8145, 1, 1)
+background_color = Color(0.316493, 0.773513, 1, 1)
 sky = SubResource("Sky_c6i3y")
 ambient_light_source = 3
 fog_light_color = Color(0.556907, 0.63771, 0.707714, 1)
@@ -4900,7 +4901,11 @@ visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
 process_material = SubResource("ParticleProcessMaterial_hhcpw")
 draw_pass_1 = SubResource("SphereMesh_xrxkg")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BeetleTrack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_5mvff")
+parameters/looping = true
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_2gh4u")
 volume_db = -15.0
 autoplay = true

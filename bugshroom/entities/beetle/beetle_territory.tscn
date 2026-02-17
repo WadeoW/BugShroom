@@ -29,8 +29,11 @@ shape = SubResource("CylinderShape3D_o6x7y")
 mesh = SubResource("TorusMesh_o6x7y")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3043, 0)
 stream = ExtResource("2_o6x7y")
-autoplay = true
+unit_size = 100.0
 max_distance = 50.0
+parameters/looping = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

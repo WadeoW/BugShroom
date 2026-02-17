@@ -129,7 +129,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_charge_duration_timer_timeout() -> void:
 	for object in enemies_hit_with_charge:
-		remove_collision_exception_with(object)
+		if object != null:
+			remove_collision_exception_with(object)
 	enemies_hit_with_charge.clear()
 	is_charging = false
 	charge_cooldown_timer.start()

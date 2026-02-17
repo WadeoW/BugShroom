@@ -17,6 +17,10 @@ var colony_nutrient_gain_rate = 25
 @onready var pause_menu_canvas_layer: CanvasLayer = $PauseMenuCanvasLayer
 
 
+@onready var background_music: AudioStreamPlayer = $BackgroundMusic
+@onready var beetle_track: AudioStreamPlayer = $BeetleTrack
+
+
 @onready var players = {"player_1": player1, "player_2": player2}
 
 func _ready() -> void:
@@ -24,6 +28,8 @@ func _ready() -> void:
 	SignalBus.stop_player_harvesting_nutrients.connect(Callable(self, "_on_stop_player_harvesting_nutrients"))
 	SignalBus.game_over.connect(Callable(self, "_on_game_over"))
 	SignalBus.player_died.connect(Callable(self, "_on_player_death"))
+	SignalBus.player_entered_beetle_territory.connect(Callable(self, "_on_player_entered_beetle_territory"))
+	SignalBus.player_exited_beetle_territory.connect(Callable(self, "_on_player_exited_beetle_territory"))
 
 func _process(_delta: float) -> void:
 	#allows you to hit the escape key to get mouse cursor back
@@ -60,3 +66,15 @@ func _on_start_player_harvesting_nutrients():
 
 func _on_stop_player_harvesting_nutrients():
 	nutrient_gain_timer.stop()
+
+func _on_player_entered_beetle_territory():
+	if background_music.playing:
+		background_music.stop()
+	if !beetle_track.playing:
+		beetle_track.play()
+
+func _on_player_exited_beetle_territory():
+	if beetle_track.playing:
+		beetle_track.stop()
+	if !background_music.playing:
+		background_music.play()
