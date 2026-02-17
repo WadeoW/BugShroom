@@ -222,6 +222,10 @@ offset_bottom = 71.72
 texture = ExtResource("3_qh1a7")
 expand_mode = 1
 
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_a3h8t")
 autoplay = true

@@ -102,7 +102,8 @@ func update() -> void:
 func _unhandled_input(event):
 	#root down input
 	if event.is_action_pressed("root_%s" % [player_id]):
-		toggle_root()
+		#toggle_root()
+		pass
 		
 	if event.is_action_pressed("interact_%s" % [player_id]) and ability_active == false and is_on_floor():
 		cast_ability()	
