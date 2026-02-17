@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cnm3a57l512oi"
+path="res://.godot/imported/beetle_boss_alert sound.mp3-bee87d139192a4550e8423ae688979bd.mp3str"
+
+[deps]
+
+source_file="res://assets/Sound/beetle_boss_alert sound.mp3"
+dest_files=["res://.godot/imported/beetle_boss_alert sound.mp3-bee87d139192a4550e8423ae688979bd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

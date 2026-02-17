@@ -8,7 +8,7 @@ var inputVelocity: Vector2 = Vector2.ZERO
 const ACCELERATION = 7
 const DIRECTIONAL_ACCELERATION: float = 2.0
 const MAX_SPEED = 12.0
-const JUMP_VELOCITY = 6
+const JUMP_VELOCITY = 10
 const SENSITIVITY = 0.005
 var gravity = 9.8
 var knockback: Vector2 = Vector2.ZERO
@@ -59,6 +59,10 @@ var is_rooted = false
 @export var root_stamina_regen = 15.0 #stamina regained per second while rooted
 
 @onready var animation_player: AnimationPlayer = $CharacterModel/AnimationPlayer
+
+#sound variables
+@onready var impact_sound_3d: AudioStreamPlayer3D = $Audio/ImpactSound3D
+
 
 @onready var camera_mount = $CameraMount
 @onready var camera_yaw = $CameraMount/CameraYaw
@@ -243,6 +247,7 @@ func _on_charge_duration_timeout() -> void:
 	chargeVector = Vector2(direction.x, direction.z) * CHARGE_SPEED
 
 func apply_knockback(direction: Vector3, force: float):
+	impact_sound_3d.play()
 	knockback += Vector2(direction.x, direction.z).normalized() * force
 	velocity.y += direction.normalized().y * force
 	

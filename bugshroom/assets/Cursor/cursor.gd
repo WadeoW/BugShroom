@@ -11,7 +11,7 @@ var is_overlapping = false
 
 func _input(event: InputEvent) -> void:
 	#if cursor_id == 1:
-	if event.is_action_pressed("click_%s" % [cursor_id]) and is_overlapping:
+	if event.is_action_pressed("click_%s" % [cursor_id]): # and is_overlapping:
 		var mouse_click_event = InputEventMouseButton.new()
 		mouse_click_event.button_index = MOUSE_BUTTON_LEFT
 		mouse_click_event.pressed = true
@@ -56,6 +56,8 @@ func _process(delta: float) -> void:
 
 	global_position.x = clamp(global_position.x, 0, screen_size.x)
 	global_position.y = clamp(global_position.y, 0, screen_size.y)
+	
+
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("button"):
 		overlapping_buttons.append(area)

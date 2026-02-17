@@ -21,12 +21,17 @@ const MAX_KNOCKBACK_SPEED = 20
 #animation control variables
 var is_jumping = false
 @onready var animation_tree: AnimationTree = $AnimationTree
-@onready var animation_state_playback = animation_tree.get("parameters/playback")
+@onready var animation_state_playback = animation_tree.get("parameters/RootStateMachine/playback")
+@onready var animation_player: AnimationPlayer = $PlayerModel/AnimationPlayer
+
 
 #sound variables
 @onready var jump_sound: AudioStreamPlayer = $PlayerModel/Audio/JumpSound
 @onready var walk_sound: AudioStreamPlayer = $PlayerModel/Audio/WalkSound
 @onready var death_sound: AudioStreamPlayer = $PlayerModel/Audio/DeathSound
+@onready var walk_sound_3d: AudioStreamPlayer3D = $PlayerModel/Audio/WalkSound3D
+@onready var jump_sound_3d: AudioStreamPlayer3D = $PlayerModel/Audio/JumpSound3D
+@onready var death_sound_3d: AudioStreamPlayer3D = $PlayerModel/Audio/DeathSound3D
 
 
 #respawn
@@ -72,7 +77,6 @@ var mushroom_type = PlayerData.MushroomType.Amanita
 var is_rooted = false
 @export var root_stamina_regen = 15.0 #stamina regained per second while rooted
 
-@onready var animation_player: AnimationPlayer = $PlayerModel/AnimationPlayer
 @onready var camera_mount = $CameraMount
 @onready var camera_yaw = $CameraMount/CameraYaw
 @onready var camera_pitch = $CameraMount/CameraYaw/CameraPitch
@@ -81,11 +85,10 @@ var is_rooted = false
 var last_direction = Vector3.FORWARD
 @export var rotation_speed = 5
 
-var current_animation: String = ""
+
 
 func _ready() -> void:
-	#animation_player.play("uncrouch")
-	var current_animation = animation_player.current_animation
+	animation_tree.set("parameters/SpawnOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	#class selection and ability loading
 	if player_id == 1:
 		mushroom_type = PlayerData.p1_mushroom_type
@@ -125,8 +128,7 @@ func _unhandled_input(event):
 			print("ability active = false")
 
 func _physics_process(delta):
-	if animation_player.animation_changed:
-		current_animation = animation_player.current_animation
+
 	
 	# add the gravity
 	if not is_on_floor():
@@ -140,7 +142,8 @@ func _physics_process(delta):
 
 # handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted:
-		jump_sound.play()
+		jump_sound_3d.play()
+		animation_tree.set("parameters/JumpOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
 
@@ -160,11 +163,11 @@ func _physics_process(delta):
 		isSprinting = !isSprinting
 	if isSprinting and current_stamina > 0:
 		speed = SPRINT_SPEED
-		if animation_player.current_animation == "walkanimation":
-			animation_player.speed_scale = 2
+		animation_tree.set("parameters/TimeScale/scale", 2)
+
 	else:
-		animation_player.speed_scale = 1
 		speed = WALK_SPEED
+		animation_tree.set("parameters/TimeScale/scale", 1)
 	
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left_%s" % [player_id], "move_right_%s" % [player_id], "move_up_%s" % [player_id], "move_down_%s" % [player_id])
@@ -186,6 +189,8 @@ func _physics_process(delta):
 		else:
 			inputVelocity.x = lerp(inputVelocity.x, direction.x * speed, delta * 7.0)
 			inputVelocity.y = lerp(inputVelocity.y, direction.z * speed, delta * 7.0)
+		var velocity_to_blend_pos = remap(Vector2(velocity.x, velocity.z).length(), 0, SPRINT_SPEED, 0, 2)
+		animation_tree.set("parameters/MovementBlendSpace1D/blend_position", velocity_to_blend_pos)
 			#if !animation_player.is_playing():
 				#animation_player.play("Mushroomdude_Idle_v2/Armature_002|Armature_002Action_001")
 		knockback = knockback.limit_length(MAX_KNOCKBACK_SPEED)
@@ -202,16 +207,11 @@ func _physics_process(delta):
 	$PlayerModel.rotation.y = lerp_angle($PlayerModel.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
 
 	move_and_slide()
-	
-	if velocity and not is_on_floor():
-		if not walk_sound.playing:
-			walk_sound.play()
-		else:
-			walk_sound.stop()
 
 	
 func take_damage(amount):
 	#animation_player.play("take_damage")
+	animation_tree.set("parameters/TakeDamageOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	current_health -= amount
 	update()
 	if current_health <= 0 and !is_dead:
@@ -224,10 +224,12 @@ func heal(amount):
 	
 #Root down toggle function
 func toggle_root():
+	animation_tree.set("parameters/MovementRootBlend2/blend_amount", 1)
 	is_rooted = !is_rooted
 	if is_rooted:
 		isSprinting = false
 		print("Rooting Down")
+		
 		animation_state_playback.travel("crouch")
 		#animation_player.play("crouch")
 	else:
@@ -237,7 +239,7 @@ func toggle_root():
 
 func attack():
 	#animation_player.play("mushroomdude_allanimations2/attack")
-	animation_state_playback.travel("attack")
+	animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	can_attack = false
 	attack_cooldown.start()
 	var kb_direction: Vector3
@@ -263,7 +265,7 @@ func attack():
 
 	
 func cast_ability(ability_type):
-	animation_player.play("headshakeanimation/headshake")
+	animation_tree.set("parameters/AbilityUseOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	ability_active = true
 	can_cast_abil = false
 	var spawn = ability_type.instantiate()
@@ -315,10 +317,10 @@ func apply_knockback(direction: Vector3, force: float):
 	velocity.y += direction.normalized().y * force
 	
 func die():
-	death_sound.play()
+	death_sound_3d.play()
 	is_dead = true
 	print("Player", player_id, "has died!")
-	animation_state_playback.travel("die")
+	animation_tree.set("parameters/DeathBlend2/blend_amount", 1)
 	set_physics_process(false)
 	SignalBus.player_died.emit()
 	await get_tree().create_timer(respawn_delay).timeout
@@ -328,7 +330,8 @@ func respawn():
 	is_dead = false
 	knockback = Vector2.ZERO; velocity = Vector3.ZERO; inputVelocity = Vector2.ZERO
 	global_position = Vector3(5, 1, 5)
-	animation_state_playback.travel("run")
+	animation_tree.set("parameters/DeathBlend2/blend_amount", 0)
+	animation_tree.set("parameters/SpawnOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	print("player", player_id, "respawned!")
 	current_health = max_health
 	current_stamina = max_stamina
@@ -340,3 +343,11 @@ func respawn():
 
 func _on_ability_cooldown_timeout() -> void:
 	can_cast_abil = true
+
+
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "uncrouch":
+		print("animation finished playing: uncrouch")
+		animation_tree.set("parameters/MovementRootBlend2/blend_amount", 0)
+	else:
+		print("animation finished playing: " + anim_name)

@@ -112,8 +112,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		is_seeking_dead_bug = false
 	if is_carrying_dead_bug:
-		bug_being_carried.position = bug_being_carried.position.move_toward(mouth_position.global_position, 10 * delta)
-		bug_being_carried.rotation.y = lerp_angle(bug_being_carried.rotation.y, rotation.y + PI / 2, 20 * delta)
+		if bug_being_carried == null:
+			return
+		else:
+			bug_being_carried.position = bug_being_carried.position.move_toward(mouth_position.global_position, 10 * delta)
+			bug_being_carried.rotation.y = lerp_angle(bug_being_carried.rotation.y, rotation.y + PI / 2, 20 * delta)
 	
 	# always rotate towards the current direction they are moving towards subtracting knockback
 	var velocityDirection := velocity.normalized() - Vector3(knockback.x, 0, knockback.y)

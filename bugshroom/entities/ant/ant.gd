@@ -14,6 +14,13 @@ var has_alerted_allies: bool = false
 
 @onready var health_bar: ProgressBar = $SubViewport/HealthBar3D
 
+#Sound Variables
+@onready var hit_sound_3d: AudioStreamPlayer3D = $Audio/HitSound3D
+@onready var walk_sound_3d: AudioStreamPlayer3D = $Audio/WalkSound3D
+@onready var death_sound_3d: AudioStreamPlayer3D = $Audio/DeathSound3D
+@onready var attack_sound_3d: AudioStreamPlayer3D = $Audio/AttackSound3D
+
+
 func _ready():
 	speed = ant_speed
 	health = ant_health
@@ -49,6 +56,7 @@ func _try_attack() -> void:
 			i += 1
 		if hit_player:
 			anim_state.travel("ant_animations_attack")
+			attack_sound_3d.play()
 		await get_tree().create_timer(attack_cooldown).timeout
 		can_attack = true
 
@@ -85,9 +93,12 @@ func become_dead_bug() -> void:
 
 func die() -> void:
 	animation_tree.set("parameters/conditions/is_dead", true)
+	death_sound_3d.play()
 	super.die()
 
 func take_damage(amount: float) -> void:
+	hit_sound_3d.play()
+	anim_state.travel("take_damage")
 	if is_dead:
 		return
 	health -= amount

@@ -8,7 +8,7 @@ var WALK_SPEED = 4.0
 var SPRINT_SPEED = 8.0
 var inputVelocity: Vector2
 var isSprinting: bool = false
-const JUMP_VELOCITY = 8
+const JUMP_VELOCITY = 9
 const SENSITIVITY = 0.005
 var gravity = 9.8
 var knockback: Vector2 = Vector2.ZERO
@@ -24,6 +24,9 @@ const MAX_KNOCKBACK_SPEED = 20
 @onready var walk_sound: AudioStreamPlayer = $Audio/WalkSound
 @onready var jump_sound: AudioStreamPlayer = $Audio/JumpSound
 @onready var death_sound: AudioStreamPlayer = $Audio/DeathSound
+@onready var walk_sound_3d: AudioStreamPlayer3D = $Audio/WalkSound3D
+@onready var jump_sound_3d: AudioStreamPlayer3D = $Audio/JumpSound3D
+@onready var death_sound_3d: AudioStreamPlayer3D = $Audio/DeathSound3D
 
 
 #health variables
@@ -142,7 +145,7 @@ func _physics_process(delta):
 # handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted:
 		velocity.y = JUMP_VELOCITY
-		jump_sound.play()
+		jump_sound_3d.play()
 		#animation_player.play("ink_jump")
 		animation_tree.set("parameters/JumpOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
@@ -180,7 +183,6 @@ func _physics_process(delta):
 	var direction = (camera_yaw.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if not is_rooted  and !is_dead:
 		if direction:
-			walk_sound.play()
 			last_direction = direction
 			#if animation_player.current_animation != "ink_walkcycle" and animation_player.current_animation != "goop" and animation_player.current_animation != "ink_attack" and animation_player.current_animation != "ink_takedmgwalk" and animation_player.current_animation != "ink_jump": 
 				#animation_player.play("ink_walkcycle")
@@ -199,8 +201,8 @@ func _physics_process(delta):
 			#if !animation_player.is_playing():
 				#animation_player.play("ink_idle")
 			#animation_tree.set("parameters/MovementBlendSpace1D/blend_position", 0)
-		animation_tree.set("parameters/MovementBlendSpace1D/blend_position", Vector2(velocity.x, velocity.z).length() / (speed * 0.5))
-			
+		var velocity_to_blend_pos = remap(Vector2(velocity.x, velocity.z).length(), 0, SPRINT_SPEED, 0, 2)
+		animation_tree.set("parameters/MovementBlendSpace1D/blend_position", velocity_to_blend_pos)
 		knockback = knockback.limit_length(MAX_KNOCKBACK_SPEED)
 		velocity = Vector3(inputVelocity.x, velocity.y, inputVelocity.y) + Vector3(knockback.x, 0, knockback.y)
 	else:
@@ -333,7 +335,7 @@ func apply_knockback(direction: Vector3, force: float):
 func die():
 	is_dead = true
 	print("Player", player_id, "has died!")
-	death_sound.play()
+	death_sound_3d.play()
 	animation_tree.set("parameters/DeathBlend2/blend_amount", 1)
 	#animation_player.play("ink_death")
 	

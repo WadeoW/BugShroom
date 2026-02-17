@@ -7,10 +7,19 @@ extends BugBase
 @export var knockback_force: float = 20.0
 @export var beetle_attack_range: float = 6
 @export var beetle_nutrient_value: float = 100
+
+@onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_player: AnimationPlayer = $beetle_walkanimation/AnimationPlayer
 const hit_delay = 0.4 #change with attack animation speed
 
 @onready var health_bar: ProgressBar = $SubViewport/HealthBar3D
+
+#Sound variables
+@onready var death_sound_3d: AudioStreamPlayer3D = $Audio/DeathSound3D
+@onready var walk_sound_3d: AudioStreamPlayer3D = $Audio/WalkSound3D
+
+@onready var children = get_parent().get_children()
+var territory: Area3D = null
 
 func _ready() -> void:
 	speed = beetle_speed
@@ -22,15 +31,21 @@ func _ready() -> void:
 	add_to_group("beetles")
 	add_to_group("bug")
 	super._ready()
-	animation_player.play("beetle_walkanimation")
-	animation_player.animation_finished.connect(_on_animation_finished)
+
 	health_bar.max_value = beetle_health
 	health_bar.value = beetle_health
 	
+	#sets up beetle's territory
+	for child in children:
+		if child is Area3D:
+			territory = child
+			print(child)
 
-func _on_animation_finished(anim_name: StringName):
-	if anim_name == "beetle_animations/beetle_attack2":
-		animation_player.play("beetle_walkanimation")
+	
+
+#func _on_animation_finished(anim_name: StringName):
+	#if anim_name == "beetle_animations/beetle_attack2":
+		#animation_player.play("beetle_walkanimation")
 
 # this initially checks for a player in the attack hitbox and then plays the attack animation and then waits hit_delay seconds
 # to call hit_player which checks again if the player is in the hitbox (so they have a small chance to escape) before applying damage
@@ -49,7 +64,8 @@ func _try_attack() -> void:
 				enemyInRange = true
 			i += 1
 		if enemyInRange:
-			animation_player.play("beetle_animations/beetle_attack2")
+			#animation_player.play("beetle_animations/beetle_attack2")
+			animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 			can_attack = false
 			await get_tree().create_timer(hit_delay).timeout
 			hit_enemy()
@@ -75,6 +91,7 @@ func hit_enemy() -> void:
 		can_attack = true
 
 func take_damage(amount: float) -> void:
+	animation_tree.set("parameters/TakeDamageOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	if is_dead:
 		return
 	health -= amount
@@ -87,3 +104,8 @@ func take_damage(amount: float) -> void:
 
 func _update() -> void:
 	health_bar.value = health
+
+func die() -> void:
+	death_sound_3d.play()
+	animation_tree.set("parameters/Transition/current_state", "dead")
+	super.die()

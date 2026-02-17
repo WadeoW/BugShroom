@@ -13,6 +13,10 @@ extends Node3D
 @export var colony_nutrient_drain_rate = 0
 var colony_nutrient_gain_rate = 25
 
+@onready var pause_menu: Control = $PauseMenuCanvasLayer/PauseMenu
+@onready var pause_menu_canvas_layer: CanvasLayer = $PauseMenuCanvasLayer
+
+
 @onready var players = {"player_1": player1, "player_2": player2}
 
 func _ready() -> void:
@@ -25,8 +29,11 @@ func _process(_delta: float) -> void:
 	#allows you to hit the escape key to get mouse cursor back
 	if Input.is_action_just_pressed("escape"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		#get_tree().paused = true
-		#get_tree().change_scene_to_file("res://levels/tutorial/tutorial.tscn")
+	if Input.is_action_just_pressed("options_1") and get_tree().paused == false:
+		pause_menu_canvas_layer.visible = true
+	if Input.is_action_just_pressed("options_1") and get_tree().paused == true:
+		pause_menu_canvas_layer.visible = false
+		
 
 func _on_game_over():
 	#get_tree().reload_current_scene()

@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://biha1l0ksdrlh"]
+
+[ext_resource type="Script" uid="uid://biw0q0xt5orhs" path="res://levels/PauseMenu/pause_menu.gd" id="1_a871q"]
+[ext_resource type="Texture2D" uid="uid://c0rng8mw1dqjy" path="res://assets/UI/Bugshroomtitlebg2.png" id="2_1fo56"]
+[ext_resource type="PackedScene" uid="uid://dbowfwd7ix33p" path="res://assets/Cursor/cursor.tscn" id="3_8ugw1"]
+[ext_resource type="Texture2D" uid="uid://btd2v25in45dy" path="res://assets/Cursor/Cursor icons-red and white.png" id="4_h5c4t"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a871q")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_1fo56")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.505
+anchor_top = 0.462
+anchor_right = 0.505
+anchor_bottom = 0.462
+offset_left = -152.6
+offset_top = -218.96
+offset_right = 91.4
+offset_bottom = 118.04
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.32, 1.32)
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Resume" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Resume
+"
+
+[node name="ChangeCharacter" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Change Character"
+
+[node name="Restart" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Restart
+"
+
+[node name="QuitToMenu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Return To Menu
+"
+
+[node name="Cursor1" parent="." instance=ExtResource("3_8ugw1")]
+position = Vector2(567, 385)
+
+[node name="Cursor2" parent="." instance=ExtResource("3_8ugw1")]
+position = Vector2(1451, 363)
+cursor_id = 2
+texture = ExtResource("4_h5c4t")
+
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/ChangeCharacter" to="." method="_on_change_character_pressed"]
+[connection signal="pressed" from="VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]

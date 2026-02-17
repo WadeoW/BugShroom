@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://pcb71pjtatty"]
+[gd_scene load_steps=13 format=3 uid="uid://pcb71pjtatty"]
 
 [ext_resource type="Script" uid="uid://dmvlfcyq4l7g1" path="res://levels/Class Selection/class_selection.gd" id="1_g06vg"]
 [ext_resource type="PackedScene" uid="uid://dbowfwd7ix33p" path="res://assets/Cursor/cursor.tscn" id="2_gypj8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dkqw1isth1pcb" path="res://assets/UI/Amanita Brown Cap Character Select.png" id="5_srpr0"]
 [ext_resource type="Texture2D" uid="uid://dbflkyp1yrawk" path="res://assets/UI/Puffball Character Select.png" id="6_srpr0"]
 [ext_resource type="AudioStream" uid="uid://b8vjc6o0gqfqd" path="res://assets/Sound/title_music_BugS.mp3" id="7_a3h8t"]
+[ext_resource type="Texture2D" uid="uid://cnux44833ynag" path="res://assets/Cursor/Cursor icons-brown version.png" id="7_ii3pa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gypj8"]
 size = Vector2(330, 79.125)
@@ -107,9 +108,11 @@ shape = SubResource("RectangleShape2D_gypj8")
 
 [node name="Cursor" parent="CanvasLayer2" instance=ExtResource("2_gypj8")]
 z_index = 2
+position = Vector2(358, 180)
 
 [node name="Cursor2" parent="CanvasLayer2" instance=ExtResource("2_gypj8")]
 z_index = 2
+position = Vector2(1570, 185)
 cursor_id = 2
 texture = ExtResource("3_qh1a7")
 
@@ -119,9 +122,8 @@ offset_top = 25.0
 offset_right = 195.0
 offset_bottom = 82.0
 action_mode = 0
-text = "back
+text = "Back
 "
-flat = true
 
 [node name="Area2D" type="Area2D" parent="CanvasLayer2/BackButton" groups=["button"]]
 
@@ -192,6 +194,32 @@ offset_bottom = 155.36
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_srpr0")
+expand_mode = 1
+
+[node name="Player1CursorIcon" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.243
+anchor_top = 0.351
+anchor_right = 0.243
+anchor_bottom = 0.351
+offset_left = -102.56
+offset_top = -72.08
+offset_right = 104.44
+offset_bottom = 71.92
+texture = ExtResource("7_ii3pa")
+expand_mode = 1
+
+[node name="Player2CursorIcon" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.857
+anchor_top = 0.366
+anchor_right = 0.857
+anchor_bottom = 0.366
+offset_left = -104.44
+offset_top = -72.28
+offset_right = 102.56
+offset_bottom = 71.72
+texture = ExtResource("3_qh1a7")
 expand_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

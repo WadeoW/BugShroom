@@ -1,10 +1,13 @@
-[gd_scene load_steps=46 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=49 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://biha1l0ksdrlh" path="res://levels/PauseMenu/pause_menu.tscn" id="2_hri7i"]
 [ext_resource type="Script" uid="uid://bxwpkxvlm8a0x" path="res://levels/colony_nutrient_bar.gd" id="3_c6i3y"]
 [ext_resource type="Script" uid="uid://b2362xpns3grh" path="res://entities/bug_manager.gd" id="3_r0du0"]
+[ext_resource type="PackedScene" uid="uid://b4tm7kqv2278e" path="res://assets/environment/anthill/AntHillWall.tscn" id="3_xrxkg"]
 [ext_resource type="Material" uid="uid://b3rnns3b04fv" path="res://assets/environment/ground/ground.tres" id="4_c2ibq"]
+[ext_resource type="PackedScene" uid="uid://cw42ewptdw71c" path="res://assets/environment/anthill/AntHillRoof.tscn" id="4_sqvbp"]
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dnyuja84wopu2" path="res://entities/beetle/beetle.tscn" id="7_devvj"]
 [ext_resource type="PackedScene" uid="uid://rtaecmo4qdss" path="res://entities/Aphid/aphid.tscn" id="8_3b0ty"]
@@ -13,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://8gxwurqg07or" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
 [ext_resource type="Script" uid="uid://j0ano1abul83" path="res://player_2_spawner.gd" id="13_mxvw5"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
-[ext_resource type="PackedScene" path="res://assets/environment/tree/new_redwood.tscn" id="14_mxvw5"]
+[ext_resource type="PackedScene" uid="uid://dt1373tohhcxl" path="res://assets/environment/tree/new_redwood.tscn" id="14_mxvw5"]
 [ext_resource type="PackedScene" uid="uid://beh73njk1ypty" path="res://assets/environment/log/log_bugshroom_v01.fbx" id="15_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://drjomi27mdxip" path="res://assets/environment/rock/rock_1.tscn" id="16_sc1dx"]
 [ext_resource type="PackedScene" uid="uid://ba406h63j4154" path="res://assets/environment/rock/big_rock.tscn" id="17_5tuhn"]
@@ -236,6 +239,12 @@ autostart = true
 
 [node name="NutrientGainTimer" type="Timer" parent="."]
 
+[node name="PauseMenuCanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+
+[node name="PauseMenu" parent="PauseMenuCanvasLayer" instance=ExtResource("2_hri7i")]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColonyNutrientBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("main")]
@@ -272,13 +281,81 @@ text = "Colony nutrients"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Floor" type="CSGBox3D" parent="."]
+[node name="AntHill" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.936611, 0.350371, 0, -0.350371, 0.936611, 106.139, -0.892085, -259.326)
+
+[node name="AntHillWall1" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, -1.65297, -9.15796)
+
+[node name="AntHillWall2" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, 1.83635, -18.4856)
+
+[node name="AntHillWall3" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, -5.15144, 0.194107)
+
+[node name="AntHillWall4" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, -8.63703, 9.5118)
+
+[node name="AntHillWall5" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, 5.32448, -27.81)
+
+[node name="AntHillWall6" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.37114e-08, 0, -1, -0.350371, 0.936611, 1.53152e-08, 0.936611, 0.350371, -4.09406e-08, -9.03093, 8.81194, -37.1327)
+
+[node name="AntHillWall7" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, -1.65298, -9.15796)
+
+[node name="AntHillWall8" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, -5.15147, 0.194092)
+
+[node name="AntHillWall9" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, -8.63703, 9.5118)
+
+[node name="AntHillWall10" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, 1.83635, -18.4856)
+
+[node name="AntHillWall11" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, 5.32448, -27.81)
+
+[node name="AntHillWall12" parent="AntHill" instance=ExtResource("3_xrxkg")]
+transform = Transform3D(-4.63067e-08, 9.62733e-10, 1, 0.350207, 0.936672, 1.53152e-08, -0.936672, 0.350207, -4.37114e-08, 9.39862, 8.81193, -37.1327)
+
+[node name="AntHillRoof" parent="AntHill" instance=ExtResource("4_sqvbp")]
+transform = Transform3D(1, 0, 0, 0, 0.995562, 0.0941083, 0, -0.0941083, 0.995562, 5.72015, 6.6141, -25.2458)
+
+[node name="AntHillRoof2" parent="AntHill" instance=ExtResource("4_sqvbp")]
+transform = Transform3D(-0.999998, -5.48235e-05, 0.00174451, -0.000250539, 0.993664, -0.112388, -0.0017273, -0.112388, -0.993663, -4.23647, 6.6141, -25.2458)
+
+[node name="AntHillRoof3" parent="AntHill" instance=ExtResource("4_sqvbp")]
+transform = Transform3D(1, 0, 0, 0, 0.995562, 0.0941083, 0, -0.0941083, 0.995562, 5.51483, 5.53154, -35.0798)
+
+[node name="AntHillRoof4" parent="AntHill" instance=ExtResource("4_sqvbp")]
+transform = Transform3D(-0.999998, -5.48235e-05, 0.00174451, -0.000250539, 0.993664, -0.112388, -0.0017273, -0.112388, -0.993663, -4.44178, 5.53154, -35.0798)
+
+[node name="Floor" type="CSGCombiner3D" parent="."]
 use_collision = true
 collision_layer = 641
 collision_mask = 641
-size = Vector3(800, 1, 800)
+
+[node name="Floor" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+use_collision = true
+collision_layer = 641
+collision_mask = 641
+size = Vector3(800, 10, 800)
 material = ExtResource("4_c2ibq")
 metadata/_edit_lock_ = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.655, -22.0398, -284.806)
+size = Vector3(36.627, 22.8735, 64.5287)
+material = ExtResource("4_c2ibq")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 0.903253, 0.429109, 0, -0.429109, 0.903253, 106.419, -5.04634, -274.464)
+operation = 2
+size = Vector3(21.8243, 13.1396, 81.3389)
+material = ExtResource("4_c2ibq")
 
 [node name="boxes" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.1401, 0, 113.883)
@@ -405,11 +482,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.6164, 1.49999, -289.786)
 collision_mask = 3
 
 [node name="BugManager#Ant13" parent="AntManager" instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.3333, 3, 49.7152)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.3333, 0.34343, 49.7152)
 collision_mask = 3
 
 [node name="BugManager#Ant14" parent="AntManager" instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8515, 6, 63.4168)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8515, 0.421632, 63.4168)
 collision_mask = 3
 
 [node name="BeetleManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_timer")]
@@ -464,7 +541,8 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+audio_listener_enable_3d = true
+size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
 [node name="Player1Spawner" type="Node3D" parent="GridContainer/SubViewportContainer/SubViewport"]
@@ -478,7 +556,8 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer2"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+audio_listener_enable_3d = true
+size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
 [node name="Player2Spawner" type="Node3D" parent="GridContainer/SubViewportContainer2/SubViewport"]
@@ -4448,37 +4527,37 @@ skeleton = NodePath("")
 [node name="redwoods" type="Node" parent="environment"]
 
 [node name="Redwood3" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
-transform = Transform3D(4.3, 0, 0, 0, 4.3, 0, 0, 0, 4.3, 289.63, 4.1954, -118.881)
+transform = Transform3D(4.3, 0, 0, 0, 4.3, 0, 0, 0, 4.3, 289.63, -2.45829, -118.881)
 
 [node name="Redwood4" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
-transform = Transform3D(8.555, 0, 0, 0, 8.555, 0, 0, 0, 8.555, 373.682, 4.1954, -373.414)
+transform = Transform3D(8.555, 0, 0, 0, 8.555, 0, 0, 0, 8.555, 373.682, -4.39394, -373.414)
 
 [node name="Redwood7" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
-transform = Transform3D(8.555, 0, 0, 0, 8.555, 0, 0, 0, 8.555, -367.126, 4.1954, -372.303)
+transform = Transform3D(8.555, 0, 0, 0, 8.555, 0, 0, 0, 8.555, -367.126, -4.54523, -372.303)
 
 [node name="Redwood5" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
 transform = Transform3D(8.555, 0, 0, 0, 8.555, 0, 0, 0, 8.555, 373.957, 4.19539, 370.871)
 
 [node name="Redwood6" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
-transform = Transform3D(8.555, 0, 0, 0, 8.555, 0, 0, 0, 8.555, -362.331, 4.19542, 362.905)
+transform = Transform3D(8.555, 0, 0, 0, 8.555, 0, 0, 0, 8.555, -362.331, -3.90609, 362.905)
 
 [node name="Redwood8" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
 transform = Transform3D(6.64905, 0, 5.38314, 0, 8.555, 0, -5.38314, 0, 6.64905, -94.3533, 4.19545, 341.745)
 
 [node name="Redwood9" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
-transform = Transform3D(2.82128, 0, 2.28414, 0, 3.63, 0, -2.28414, 0, 2.82128, 350.298, 4.19545, 147.067)
+transform = Transform3D(2.82128, 0, 2.28414, 0, 3.63, 0, -2.28414, 0, 2.82128, 350.298, -2.40162, 147.067)
 
 [node name="Redwood10" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
-transform = Transform3D(2.82128, 0, 2.28414, 0, 3.63, 0, -2.28414, 0, 2.82128, 331.076, 4.19545, 31.6468)
+transform = Transform3D(2.82128, 0, 2.28414, 0, 3.63, 0, -2.28414, 0, 2.82128, 331.076, 0.151482, 31.6468)
 
 [node name="Redwood" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
-transform = Transform3D(8.95712, 0, 4.44635, 0, 10, 0, -4.44635, 0, 8.95712, -62.547, 1.546, -183.127)
+transform = Transform3D(8.95712, 0, 4.44635, 0, 10, 0, -4.44635, 0, 8.95712, -62.547, -1.54526, -183.127)
 
 [node name="Redwood11" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
-transform = Transform3D(8.95712, 0, 4.44635, 0, 10, 0, -4.44635, 0, 8.95712, -339.892, 1.546, 81.4545)
+transform = Transform3D(8.95712, 0, 4.44635, 0, 10, 0, -4.44635, 0, 8.95712, -339.892, -2.22935, 81.4545)
 
 [node name="Redwood2" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
-transform = Transform3D(3.84864, 0, 4.57041, 0, 5.975, 0, -4.57041, 0, 3.84864, -138.143, 1.546, -219.53)
+transform = Transform3D(3.84864, 0, 4.57041, 0, 5.975, 0, -4.57041, 0, 3.84864, -138.143, -1.0716, -219.53)
 
 [node name="walls" type="Node" parent="environment"]
 
@@ -4708,7 +4787,7 @@ disable_mode = 1
 shape = SubResource("ConcavePolygonShape3D_kjvhd")
 
 [node name="MossBed" parent="environment" instance=ExtResource("21_devvj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7231, 0.514559, 6.46861)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7231, -0.411231, 6.46861)
 
 [node name="MossBed5" parent="environment" instance=ExtResource("21_devvj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 199.317, 0.514559, -285.652)
@@ -4720,7 +4799,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 174.554, 0.463755, 93.6566)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182.945, 0.514561, -184.545)
 
 [node name="MossBed4" parent="environment" instance=ExtResource("21_devvj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.0232, 0.514557, 33.7229)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.0232, 0.168289, 33.7229)
 
 [node name="FallenLog" parent="environment" instance=ExtResource("23_bg4s2")]
 transform = Transform3D(2.31332, 0, 1.23002, 0, 2.62, 0, -1.23002, 0, 2.31332, -80.2951, 1.31432, 55.16)
@@ -4746,19 +4825,19 @@ transform = Transform3D(-0.00198505, -0.475881, -0.879507, 0.999991, -0.00417128
 [node name="parkour section 1" type="Node3D" parent="environment"]
 
 [node name="ChickenOfTheWoods" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(-0.00323513, 0, -0.559991, 0, 0.56, 0, 0.559991, 0, -0.00323513, -59.1873, 4.00661, -145.322)
+transform = Transform3D(-0.00323513, 0, -0.559991, 0, 0.56, 0, 0.559991, 0, -0.00323513, -59.1873, 3.23773, -145.322)
 
 [node name="ChickenOfTheWoods4" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
 transform = Transform3D(-0.00210861, 0, -0.364994, 0, 0.365, 0, 0.364994, 0, -0.00210861, 1.81069, 2.23665, -4.03405)
 
 [node name="ChickenOfTheWoods2" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.0611525, 0, 0.450872, 0, 0.455, 0, -0.450872, 0, 0.0611525, -48.6228, 7.11967, -147.843)
+transform = Transform3D(0.0611525, 0, 0.450872, 0, 0.455, 0, -0.450872, 0, 0.0611525, -48.6228, 5.61391, -147.843)
 
 [node name="ChickenOfTheWoods3" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.47, 0, 0, 0, 0.47, 0, 0, 0, 0.47, -40.3898, 9.85721, -152.235)
+transform = Transform3D(0.47, 0, 0, 0, 0.47, 0, 0, 0, 0.47, -40.3898, 8.3527, -152.235)
 
 [node name="ChickenOfTheWoods5" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.47, 0, 0, 0, 0.47, 0, 0, 0, 0.47, -33.897, 11.6887, -155.802)
+transform = Transform3D(0.47, 0, 0, 0, 0.47, 0, 0, 0, 0.47, -33.897, 10.3321, -155.802)
 
 [node name="ChickenOfTheWoods6" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
 transform = Transform3D(0.495797, 0, -0.942555, 0, 1.065, 0, 0.942555, 0, 0.495797, -53.8554, 24.1612, -147.116)
@@ -4809,7 +4888,7 @@ transform = Transform3D(0.111729, 0, -0.212407, 0, 0.24, 0, 0.212407, 0, 0.11172
 transform = Transform3D(0.111729, 0, -0.212407, 0, 0.24, 0, 0.212407, 0, 0.111729, -155.831, 43.4718, -206.349)
 
 [node name="MossBed5" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
-transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, -32.5672, 11.8213, -154.978)
+transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, -32.5672, 10.4647, -154.978)
 
 [node name="MossBed6" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
 transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -91.3505, 31.8037, -157.469)
@@ -4860,6 +4939,7 @@ size = Vector3(5, 2, 5)
 
 [node name="mushroom base particles" type="GPUParticles3D" parent="environment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.92497, 0)
+visible = false
 amount = 150
 lifetime = 5.0
 explosiveness = 0.68

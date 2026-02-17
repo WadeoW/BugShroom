@@ -1,0 +1,123 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=24 format=3 uid="uid://bpjl6trnjfvqt"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_vniy1"]
+filters = ["Armature_002/Skeleton3D:clavicle.L", "Armature_002/Skeleton3D:clavicle.R", "Armature_002/Skeleton3D:fingers.L", "Armature_002/Skeleton3D:fingers.L.001", "Armature_002/Skeleton3D:fingers.R", "Armature_002/Skeleton3D:fingers.R.001", "Armature_002/Skeleton3D:forearm.L", "Armature_002/Skeleton3D:forearm.R", "Armature_002/Skeleton3D:head", "Armature_002/Skeleton3D:palm.L", "Armature_002/Skeleton3D:palm.R", "Armature_002/Skeleton3D:root", "Armature_002/Skeleton3D:spine", "Armature_002/Skeleton3D:thumb.L", "Armature_002/Skeleton3D:thumb.R", "Armature_002/Skeleton3D:upperarm.L", "Armature_002/Skeleton3D:upperarm.R"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8v3m4"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_pyapv"]
+filter_enabled = true
+filters = ["Armature_002/Skeleton3D:clavicle.R", "Armature_002/Skeleton3D:fingers.L", "Armature_002/Skeleton3D:fingers.L.001", "Armature_002/Skeleton3D:fingers.R", "Armature_002/Skeleton3D:fingers.R.001", "Armature_002/Skeleton3D:forearm.L", "Armature_002/Skeleton3D:forearm.R", "Armature_002/Skeleton3D:palm.L", "Armature_002/Skeleton3D:palm.R", "Armature_002/Skeleton3D:spine", "Armature_002/Skeleton3D:thumb.L", "Armature_002/Skeleton3D:thumb.R", "Armature_002/Skeleton3D:upperarm.L", "Armature_002/Skeleton3D:upperarm.R"]
+fadeout_time = 0.25
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_nm035"]
+fadein_time = 0.2
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8v3m4"]
+animation = &"ink_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r1g8r"]
+animation = &"ink_walkcycle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3l4bt"]
+animation = &"ink_run"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_r1g8r"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_8v3m4")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_r1g8r")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_3l4bt")
+blend_point_2/pos = 2.0
+max_space = 2.0
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vniy1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pyapv"]
+animation = &"sit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8e6dj"]
+animation = &"unsit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7e4ck"]
+xfade_time = 0.2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8lnm0"]
+xfade_time = 0.2
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0qxv1"]
+states/End/position = Vector2(901, 100)
+states/Start/position = Vector2(203, 100)
+states/sit/node = SubResource("AnimationNodeAnimation_pyapv")
+states/sit/position = Vector2(362, 130)
+states/unsit/node = SubResource("AnimationNodeAnimation_8e6dj")
+states/unsit/position = Vector2(623, 130)
+transitions = ["Start", "sit", SubResource("AnimationNodeStateMachineTransition_7e4ck"), "sit", "unsit", SubResource("AnimationNodeStateMachineTransition_8lnm0")]
+graph_offset = Vector2(-164, -44)
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_hbsc8"]
+fadeout_time = 0.2
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_r1g8r"]
+filter_enabled = true
+filters = ["", "Armature_002/Skeleton3D:clavicle.L", "Armature_002/Skeleton3D:clavicle.R", "Armature_002/Skeleton3D:fingers.L", "Armature_002/Skeleton3D:fingers.L.001", "Armature_002/Skeleton3D:fingers.R", "Armature_002/Skeleton3D:fingers.R.001", "Armature_002/Skeleton3D:forearm.L", "Armature_002/Skeleton3D:forearm.R", "Armature_002/Skeleton3D:head", "Armature_002/Skeleton3D:palm.L", "Armature_002/Skeleton3D:palm.R", "Armature_002/Skeleton3D:root", "Armature_002/Skeleton3D:spine", "Armature_002/Skeleton3D:thumb.L", "Armature_002/Skeleton3D:thumb.R", "Armature_002/Skeleton3D:upperarm.L", "Armature_002/Skeleton3D:upperarm.R"]
+fadein_time = 0.3
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_w7pg0"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nm035"]
+animation = &"ink_attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7e4ck"]
+animation = &"ink_death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vniy1"]
+animation = &"goop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2l8c3"]
+animation = &"ink_jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8lnm0"]
+animation = &" spawn"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_swqei"]
+animation = &"ink_takedmgwalk"
+
+[resource]
+graph_offset = Vector2(-614.886, -70.1375)
+nodes/AttackOneShot/node = SubResource("AnimationNodeOneShot_vniy1")
+nodes/AttackOneShot/position = Vector2(1060, 200)
+nodes/DeathBlend2/node = SubResource("AnimationNodeBlend2_8v3m4")
+nodes/DeathBlend2/position = Vector2(1940, 380)
+nodes/GoopOneShot/node = SubResource("AnimationNodeOneShot_pyapv")
+nodes/GoopOneShot/position = Vector2(1680, 300)
+nodes/JumpOneShot/node = SubResource("AnimationNodeOneShot_nm035")
+nodes/JumpOneShot/position = Vector2(780, 120)
+nodes/MovementBlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_r1g8r")
+nodes/MovementBlendSpace1D/position = Vector2(-140, -60)
+nodes/MovementRootBlend2/node = SubResource("AnimationNodeBlend2_vniy1")
+nodes/MovementRootBlend2/position = Vector2(240, 0)
+nodes/RootStateMachine/node = SubResource("AnimationNodeStateMachine_0qxv1")
+nodes/RootStateMachine/position = Vector2(-80, 260)
+nodes/SpawnOneShot/node = SubResource("AnimationNodeOneShot_hbsc8")
+nodes/SpawnOneShot/position = Vector2(2340, 420)
+nodes/TakeDamageOneShot/node = SubResource("AnimationNodeOneShot_r1g8r")
+nodes/TakeDamageOneShot/position = Vector2(1320, 220)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_w7pg0")
+nodes/TimeScale/position = Vector2(520, 60)
+nodes/attack/node = SubResource("AnimationNodeAnimation_nm035")
+nodes/attack/position = Vector2(660, 460)
+nodes/death/node = SubResource("AnimationNodeAnimation_7e4ck")
+nodes/death/position = Vector2(1660, 640)
+nodes/goop/node = SubResource("AnimationNodeAnimation_vniy1")
+nodes/goop/position = Vector2(1320, 620)
+nodes/jump/node = SubResource("AnimationNodeAnimation_2l8c3")
+nodes/jump/position = Vector2(400, 320)
+nodes/output/position = Vector2(2700, 480)
+nodes/spawn/node = SubResource("AnimationNodeAnimation_8lnm0")
+nodes/spawn/position = Vector2(1940, 720)
+nodes/take_damage/node = SubResource("AnimationNodeAnimation_swqei")
+nodes/take_damage/position = Vector2(980, 560)
+node_connections = [&"AttackOneShot", 0, &"JumpOneShot", &"AttackOneShot", 1, &"attack", &"DeathBlend2", 0, &"GoopOneShot", &"DeathBlend2", 1, &"death", &"GoopOneShot", 0, &"TakeDamageOneShot", &"GoopOneShot", 1, &"goop", &"JumpOneShot", 0, &"TimeScale", &"JumpOneShot", 1, &"jump", &"MovementRootBlend2", 0, &"MovementBlendSpace1D", &"MovementRootBlend2", 1, &"RootStateMachine", &"SpawnOneShot", 0, &"DeathBlend2", &"SpawnOneShot", 1, &"spawn", &"TakeDamageOneShot", 0, &"AttackOneShot", &"TakeDamageOneShot", 1, &"take_damage", &"TimeScale", 0, &"MovementRootBlend2", &"output", 0, &"SpawnOneShot"]

@@ -3,7 +3,7 @@ extends Area3D
 
 #@export var AbilType: Resource
 @export var abilDamage: int = 0
-@export var abilRadius: int = 3
+@export var abilRadius: int = 4
 @export var despawnTime: int = 7
 
 
@@ -42,6 +42,7 @@ func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("bug"):
 		bodies_in_area.append(body)
 		body.speed = body.speed * 0.25
+		body.rotationSpeed = body.rotationSpeed * 0.5
 		print(bodies_in_area)
 		
 
@@ -49,13 +50,15 @@ func _on_body_entered(body: Node3D) -> void:
 func _on_body_exited(body: Node3D) -> void:
 	if body in bodies_in_area:
 		body.speed = body.speed * 4
+		body.rotationSpeed = body.rotationSpeed * 2
 		bodies_in_area.erase(body)
 		print(bodies_in_area)
 
 
 func _on_damage_tick_timer_timeout() -> void:
-	var damage = abilDamage
-	for body in bodies_in_area:
-		if body.has_method("take_damage"):
-			body.take_damage(damage)
-			print("damage ticked")
+	pass
+	#var damage = abilDamage
+	#for body in bodies_in_area:
+		#if body.has_method("take_damage"):
+			#body.take_damage(damage)
+			#print("damage ticked")

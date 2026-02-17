@@ -19,8 +19,8 @@ var cursor_speed = 500
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
-	cursor.global_position = Vector2(100, 100)
-	cursor_2.global_position = Vector2(200, 100)
+	#cursor.global_position = Vector2(100, 100)
+	#cursor_2.global_position = Vector2(200, 100)
 	
 
 func _process(delta: float) -> void:
