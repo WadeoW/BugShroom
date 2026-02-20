@@ -35,11 +35,11 @@ var stamina_drain_rate = 5.0 #stamina drained per second during action
 
 #attack variables
 const ROLLING_ATTACK_DAMAGE: float = 5.0 # this is multiplied by speed in xz plane
-const MIN_ROLLING_SPEED_FOR_ATTACK: float = 5.0
+const MIN_ROLLING_SPEED_FOR_ATTACK: float = 3.0
 const MIN_ROLLING_SPEED_FOR_TERRAIN_BOUNCE: float = 8.0
 const TERRAIN_BOUNCE_BACK: float = 0.5 # multiplied by incoming speed and sends you in opposite direction from what you hit
 const BUG_KB = 10
-const SELF_KB_ON_BEETLE = 10
+const SELF_KB_ON_BEETLE = 3
 const OTHER_PLAYER_KB = 7
 
 #sprint charge variables
@@ -217,7 +217,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			body.apply_knockback(Vector3(kb_direction.x, 1, kb_direction.y), BUG_KB)
 		if body.is_in_group("beetles"):
 			apply_knockback(Vector3(-kb_direction.x, 2, -kb_direction.y), SELF_KB_ON_BEETLE)
-		var rollDamage = clampf(Vector2(velocity.x, velocity.z).length() * ROLLING_ATTACK_DAMAGE, 10, 100)
+		var rollDamage = clampf(Vector2(velocity.x, velocity.z).length() * ROLLING_ATTACK_DAMAGE, 25, 100)
 		body.take_damage(rollDamage)
 		print(body.name, " took ", rollDamage, " rolling damage")
 		return
