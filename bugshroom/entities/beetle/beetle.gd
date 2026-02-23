@@ -32,6 +32,8 @@ var charge_target: Node3D
 @onready var death_sound_3d: AudioStreamPlayer3D = $Audio/DeathSound3D
 @onready var walk_sound_3d: AudioStreamPlayer3D = $Audio/WalkSound3D
 
+# territory variables
+var in_territory := true
 @onready var children = get_parent().get_children()
 var territory: Area3D = null
 
@@ -55,35 +57,42 @@ func _ready() -> void:
 			territory = child
 			print(child)
 
-	
-
-#func _on_animation_finished(anim_name: StringName):
-	#if anim_name == "beetle_animations/beetle_attack2":
-		#animation_player.play("beetle_walkanimation")
 func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		super._physics_process(delta)
+		return
 	if can_charge:
 		var closest_bug = super._get_closest_in_group("bug")
 		var closest_player = super._get_closest_in_group("player")
 		if (is_chasing):
 			charge_target = closest_player
 			is_charging = true
-		if (is_chasing_bug):
+		elif (is_chasing_bug):
 			charge_target = closest_bug
 			is_charging = true
 		if is_charging:
 			can_charge = false
 			has_hit_enemy_with_charge = false
-			charge_direction = charge_target.global_position - global_position
-			charge_direction.y = 0
-			charge_direction = charge_direction.normalized()
+			charge_direction = charge_target.global_position - global_position; charge_direction.y = 0; charge_direction = charge_direction.normalized()
+			# this will more or less stop the charge pretty soon after the beetle passes its target
+			var charge_duration = sqrt((charge_target.global_position - global_position).length()) / 2
+			charge_duration_timer.wait_time = charge_duration
 			charge_duration_timer.start()
 			velocity = velocity * 0.5
 	
 	if not is_charging:
-		super._physics_process(delta)
+		if not in_territory:
+			var direction_to_territory := territory.position - position
+			direction_to_territory.y = 0
+			direction_to_territory = direction_to_territory.normalized()
+			velocity = direction_to_territory * speed
+			_rotate_to_velocity(delta, rotationSpeed)
+			move_and_slide()
+		else:
+			super._physics_process(delta)
 		return
-	
 	if not charge_target:
+		super._physics_process(delta)
 		return
 	
 	var desired

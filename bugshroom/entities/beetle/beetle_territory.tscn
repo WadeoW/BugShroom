@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://cg7g1hrm4qfxq" path="res://assets/Sound/beetle_track_demo.mp3" id="2_o6x7y"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_o6x7y"]
-height = 5.0
+height = 50.0
 radius = 50.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m7cf4"]
@@ -22,7 +22,7 @@ ring_segments = 16
 script = ExtResource("1_m7cf4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 0)
 shape = SubResource("CylinderShape3D_o6x7y")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -35,5 +35,10 @@ unit_size = 100.0
 max_distance = 50.0
 parameters/looping = true
 
+[node name="Respawn" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Respawn" to="." method="_on_respawn_timeout"]

@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://bp75styrftfwv" path="res://player_1_spawner.gd" id="9_hhcpw"]
 [ext_resource type="PackedScene" uid="uid://bwv1obth85s1a" path="res://tasks/dead_bug_task_spawner.tscn" id="10_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://8gxwurqg07or" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
-[ext_resource type="Script" uid="uid://j0ano1abul83" path="res://player_2_spawner.gd" id="13_mxvw5"]
+[ext_resource type="Script" path="res://player_2_spawner.gd" id="13_mxvw5"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://dt1373tohhcxl" path="res://assets/environment/tree/new_redwood.tscn" id="14_mxvw5"]
 [ext_resource type="PackedScene" uid="uid://beh73njk1ypty" path="res://assets/environment/log/log_bugshroom_v01.fbx" id="15_fpfj3"]
@@ -456,7 +456,7 @@ wait_time = 4.0
 autostart = true
 
 [node name="Beetle" parent="BeetleManager" instance=ExtResource("7_devvj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.2052, 0.279741, 73.0386)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.0894, 0.279741, 40.1955)
 
 [node name="Beetle2" parent="BeetleManager" instance=ExtResource("7_devvj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -253.061, 0.279741, -211.105)
@@ -4912,7 +4912,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="BeetleTerritory1" parent="." instance=ExtResource("25_mxvw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188.271, 0.500011, 154.059)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.40526, 0.500011, 97.4781)
 
 [node name="AntQueen" parent="." instance=ExtResource("29_w3rk5")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 104.34, 3.8147e-06, -240.468)
