@@ -45,7 +45,7 @@ var knockback: Vector2 = Vector2.ZERO
 var should_shrink_on_death := false
 var dead_bug_seeking_distance := 30.0
 var dead_bug_pick_up_distance := 2.0
-var become_dead_bug_chance := 1
+var become_dead_bug_chance := 0.5
 var is_carrying_dead_bug := false
 var bug_being_carried: CharacterBody3D
 var is_being_carried := false
@@ -115,7 +115,7 @@ func _physics_process(delta: float) -> void:
 		if bug_being_carried == null:
 			return
 		else:
-			bug_being_carried.position = bug_being_carried.position.move_toward(mouth_position.global_position, 10 * delta)
+			bug_being_carried.position = bug_being_carried.position.move_toward(mouth_position.global_position, 200 * delta)
 			bug_being_carried.rotation.y = lerp_angle(bug_being_carried.rotation.y, rotation.y + PI / 2, 20 * delta)
 	
 	_rotate_to_velocity(delta, rotationSpeed)
