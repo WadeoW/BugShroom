@@ -129,14 +129,14 @@ func _physics_process(delta):
 		chargeVector = Vector2.ZERO
 	
 	# handle jump
-	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0:
+	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0 and charge_duration.is_stopped():
 		velocity.y = JUMP_VELOCITY
 
 	# handle sprint/charge attack
 	if Input.is_action_just_pressed("sprint_%s" % [player_id]) and charge_cooldown.is_stopped():
 		charge_attack()
 		inputVelocity = Vector2.ZERO
-	if charge_duration.time_left > 0:
+	if charge_duration.time_left > 0 and is_on_floor():
 		velocity = Vector3(0, velocity.y, 0)
 	
 	# Get the input direction and handle the movement/deceleration.
@@ -248,7 +248,11 @@ func charge_attack():
 	charge_duration.start()
 
 func _on_charge_duration_timeout() -> void:
-	chargeVector = Vector2(direction.x, direction.z) * CHARGE_SPEED
+	if direction.length() != 0:
+		chargeVector = Vector2(direction.x, direction.z) * CHARGE_SPEED
+	else:
+		var v = -camera_yaw.transform.basis.z.normalized()
+		chargeVector = Vector2(v.x, v.z) * CHARGE_SPEED
 
 func apply_knockback(direction: Vector3, force: float):
 	impact_sound_3d.play()

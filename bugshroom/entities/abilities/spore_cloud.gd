@@ -2,7 +2,7 @@ extends Area3D
 
 
 #@export var AbilType: Resource
-@export var abilDamage: int = 0
+@export var abilDamage: int = 5
 @export var abilRadius: int = 3
 @export var despawnTime: int = 5
 

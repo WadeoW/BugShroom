@@ -75,12 +75,14 @@ func _physics_process(delta: float) -> void:
 	# Only aggressive bugs look for players
 	if aggressive:
 		target = _get_closest_in_group("player")
+		var closest_taunt_ability = _get_closest_in_group("taunt_ability")
+		if closest_taunt_ability != null and (global_position.distance_to(closest_taunt_ability.global_position) < global_position.distance_to(target.global_position)):
+			target = closest_taunt_ability
 	else:
 		target = null  # passive bugs don't chase at all
 
 	if aggressive and target:
 		var distance := global_position.distance_to(target.global_position)
-
 		# Chase player if within detection range
 		if distance <= detection_range:
 			is_chasing = true
