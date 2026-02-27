@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://dddtfdxql1gyo"]
+
+[ext_resource type="Texture2D" uid="uid://c1bfpx5jnmk5a" path="res://assets/environment/anthill/Materials/BigChamberMat/Big_Chamber_BaseColor.png" id="1_ijgfu"]
+[ext_resource type="Texture2D" uid="uid://bb30xh8o2c4oc" path="res://assets/environment/anthill/Materials/BigChamberMat/Big_Chamber_Height.png" id="2_o6obj"]
+[ext_resource type="Texture2D" uid="uid://bu4wkuqf0d87o" path="res://assets/environment/anthill/Materials/BigChamberMat/Big_Chamber_Metallic.png" id="3_x3sbm"]
+[ext_resource type="Texture2D" uid="uid://dh46xk3dmi1r" path="res://assets/environment/anthill/Materials/BigChamberMat/Big_Chamber_Normal.png" id="4_nvwg7"]
+[ext_resource type="Texture2D" uid="uid://cdi2cpqdphed1" path="res://assets/environment/anthill/Materials/BigChamberMat/Big_Chamber_Roughness.png" id="5_cbst7"]
+
+[resource]
+albedo_texture = ExtResource("1_ijgfu")
+metallic = 1.0
+metallic_texture = ExtResource("3_x3sbm")
+roughness_texture = ExtResource("5_cbst7")
+normal_enabled = true
+normal_texture = ExtResource("4_nvwg7")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_o6obj")

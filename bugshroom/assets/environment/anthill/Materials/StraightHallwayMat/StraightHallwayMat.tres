@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://ilhovwm8o7cv"]
+
+[ext_resource type="Texture2D" uid="uid://c04p1ok00qgjm" path="res://assets/environment/anthill/Materials/StraightHallwayMat/Straight_BaseColor.png" id="1_j4rmk"]
+[ext_resource type="Texture2D" uid="uid://dcyv8wewxflq6" path="res://assets/environment/anthill/Materials/StraightHallwayMat/Straight_Height.png" id="2_e75o7"]
+[ext_resource type="Texture2D" uid="uid://bi4chjprox4sk" path="res://assets/environment/anthill/Materials/StraightHallwayMat/Straight_Metallic.png" id="3_xgch8"]
+[ext_resource type="Texture2D" uid="uid://dmu6fkpyqovc0" path="res://assets/environment/anthill/Materials/StraightHallwayMat/Straight_Normal.png" id="4_anmyq"]
+[ext_resource type="Texture2D" uid="uid://cy387sbtkxlxc" path="res://assets/environment/anthill/Materials/StraightHallwayMat/Straight_Roughness.png" id="5_2u7uc"]
+
+[resource]
+albedo_texture = ExtResource("1_j4rmk")
+metallic = 1.0
+metallic_texture = ExtResource("3_xgch8")
+roughness_texture = ExtResource("5_2u7uc")
+normal_enabled = true
+normal_texture = ExtResource("4_anmyq")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_e75o7")

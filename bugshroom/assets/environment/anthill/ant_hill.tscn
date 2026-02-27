@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpfbrftkm6xvc"]
+
+[ext_resource type="PackedScene" uid="uid://4rl5deukn8ci" path="res://assets/environment/anthill/StraightHallway1x3AntHill.tscn" id="1_r7kxl"]
+[ext_resource type="PackedScene" uid="uid://bl0yfwut55wt6" path="res://assets/environment/anthill/4WayConnectorAntHill.tscn" id="2_blfhh"]
+[ext_resource type="PackedScene" uid="uid://c1nmslox2m61g" path="res://assets/environment/anthill/CornerTurn3x3AntHill.tscn" id="3_sjtk2"]
+[ext_resource type="PackedScene" uid="uid://ba81hax3xjdae" path="res://assets/environment/anthill/SmallChamber2EntranceAntHill.tscn" id="4_dt8wp"]
+[ext_resource type="PackedScene" uid="uid://dn335qo3wbk7l" path="res://assets/environment/anthill/YJunction3x4AntHill.tscn" id="5_v1ugs"]
+
+[node name="AntHill" type="Node3D"]
+
+[node name="StraightHallway" parent="." instance=ExtResource("1_r7kxl")]
+
+[node name="StraightHallway2" parent="." instance=ExtResource("1_r7kxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
+
+[node name="4WayConnector" parent="." instance=ExtResource("2_blfhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, -30)
+
+[node name="Corner" parent="." instance=ExtResource("3_sjtk2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 60, 0, -30)
+
+[node name="StraightHallway3" parent="." instance=ExtResource("1_r7kxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 0, -60)
+
+[node name="SmallCave" parent="." instance=ExtResource("4_dt8wp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -40)
+
+[node name="YJunction" parent="." instance=ExtResource("5_v1ugs")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 140, 0, 0)
+
+[node name="Corner2" parent="." instance=ExtResource("3_sjtk2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 120, 0, 70)
+
+[node name="Corner5" parent="." instance=ExtResource("3_sjtk2")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 160, 0, 70)
+
+[node name="Corner3" parent="." instance=ExtResource("3_sjtk2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 100, 0, 10)
+
+[node name="Corner4" parent="." instance=ExtResource("3_sjtk2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 0, 60)
+
+[node name="4WayConnector2" parent="." instance=ExtResource("2_blfhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87, 0, 102)

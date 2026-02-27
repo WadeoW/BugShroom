@@ -75,18 +75,20 @@ func _on_spawn_timer_timeout() -> void:
 	#if bug_type == "ant":
 		# Only spawn if we're under the cap
 		if active_bugs.size() < max_bugs:
-			#print("trying to spawn bug")
+			print("trying to spawn bug of type: ", bug_type)
 			spawn_bug()
+			print("bug spawned of type: ", bug_type)
 
 
 
 
 func _on_spawn_timer_1_timeout() -> void:
-	#if bug_type == "beetle":
+	if bug_type == "beetle":
 		# Only spawn if we're under the cap
 		if active_bugs.size() < max_bugs:
-			print("trying to spawn bug")
+			print("trying to spawn bug of type: ", bug_type)
 			spawn_bug()
+			print("bug spawned of type: ", bug_type)
 			
 
 
@@ -95,5 +97,6 @@ func _on_spawn_timer_2_timeout() -> void:
 	#if bug_type == "aphid":
 		# Only spawn if we're under the cap
 		if active_bugs.size() < max_bugs:
-			print("trying to spawn bug")
+			print("trying to spawn bug of type: ", bug_type)
 			spawn_bug()
+			print("bug spawned of type: ", bug_type)

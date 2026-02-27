@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://cbp3oco2f0ij4"]
+
+[ext_resource type="Texture2D" uid="uid://dniy5fmyanlyd" path="res://assets/environment/anthill/Materials/YJunctionMat/YFork_UV_BaseColor.png" id="1_pcrku"]
+[ext_resource type="Texture2D" uid="uid://denbfem1i48xf" path="res://assets/environment/anthill/Materials/YJunctionMat/YFork_UV_Height.png" id="2_pip5m"]
+[ext_resource type="Texture2D" uid="uid://diglfs42mo5ky" path="res://assets/environment/anthill/Materials/YJunctionMat/YFork_UV_Metallic.png" id="3_ukkaf"]
+[ext_resource type="Texture2D" uid="uid://ch1myuivmwq62" path="res://assets/environment/anthill/Materials/YJunctionMat/YFork_UV_Normal.png" id="4_x5qb2"]
+[ext_resource type="Texture2D" uid="uid://d37gm2djicf41" path="res://assets/environment/anthill/Materials/YJunctionMat/YFork_UV_Roughness.png" id="5_vtliu"]
+
+[resource]
+albedo_texture = ExtResource("1_pcrku")
+metallic = 1.0
+metallic_texture = ExtResource("3_ukkaf")
+roughness_texture = ExtResource("5_vtliu")
+normal_enabled = true
+normal_texture = ExtResource("4_x5qb2")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_pip5m")

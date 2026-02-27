@@ -5,7 +5,7 @@ var current_bugs_in_radius = []
 var beetle : CharacterBody3D = null
 @onready var beetle_scene = preload("res://entities/beetle/beetle.tscn")
 @onready var respawn_timer: Timer = $Respawn
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var audio_stream_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 var first_spawn := true
 
