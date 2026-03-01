@@ -4920,6 +4920,22 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 104.34
 [node name="AntHill" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.936611, 0.350371, 0, -0.350371, 0.936611, 106.139, -0.892085, -259.326)
 
+[node name="Entrance Position" type="Node3D" parent="AntHill"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78854, -24.014, 66.5231)
+
+[node name="Drop Off Position" type="Node3D" parent="AntHill"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78854, -9.00957, 26.4133)
+
+[node name="Turn Around" type="Node3D" parent="AntHill"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177429, -9.00957, 26.4133)
+
+[node name="Exit" type="Node3D" parent="AntHill"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177002, -29.2034, 80.3944)
+
 [node name="AntHillMound" type="CSGCombiner3D" parent="AntHill"]
 transform = Transform3D(1, 0, 0, 0, 0.936611, -0.350371, 0, 0.350371, 0.936611, 38.4112, -0.22052, 3.1356)
 use_collision = true

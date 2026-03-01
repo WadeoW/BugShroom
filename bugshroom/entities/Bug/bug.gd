@@ -40,12 +40,18 @@ var is_seeking_dead_bug: bool = false
 # Other
 var knockback: Vector2 = Vector2.ZERO
 @onready var attack_hit_box = get_node_or_null("AttackHitBox")
+# Dropping off dead ant variables
+var next_anthill_position: Node3D = null
+@onready var anthill_entrance_position: Node3D = %"Entrance Position"
+@onready var anthill_drop_off_position: Node3D = %"Drop Off Position"
+@onready var anthill_turn_around: Node3D = %"Turn Around"
+@onready var anthill_exit: Node3D = %"Exit"
 
 # dead bug variables
 var should_shrink_on_death := false
 var dead_bug_seeking_distance := 30.0
 var dead_bug_pick_up_distance := 2.0
-var become_dead_bug_chance := 0.5
+var become_dead_bug_chance := 1
 var is_carrying_dead_bug := false
 var bug_being_carried: CharacterBody3D
 var is_being_carried := false
@@ -119,9 +125,11 @@ func _physics_process(delta: float) -> void:
 		else:
 			bug_being_carried.position = bug_being_carried.position.move_toward(mouth_position.global_position, 200 * delta)
 			bug_being_carried.rotation.y = lerp_angle(bug_being_carried.rotation.y, rotation.y + PI / 2, 20 * delta)
+	if next_anthill_position != null:
+		_seek_ant_hill()
+	
 	
 	_rotate_to_velocity(delta, rotationSpeed)
-	
 	move_and_slide()
 
 #--------------------
@@ -197,23 +205,45 @@ func _seek_dead_bug(delta: float):
 		is_seeking_dead_bug = false
 		return
 	is_seeking_dead_bug = true
-	var vector_to_dead_bug = (closest_dead_bug.position - position)
+	var vector_to_dead_bug = (closest_dead_bug.global_position - global_position)
 	# is close enough to go to bug
 	if vector_to_dead_bug.length() < dead_bug_seeking_distance:
 		velocity.x = vector_to_dead_bug.normalized().x * wander_speed + knockback.x
 		velocity.z = vector_to_dead_bug.normalized().z * wander_speed + knockback.y
 	# is close enough to pick up bug
 	if vector_to_dead_bug.length() < dead_bug_pick_up_distance:
-		print("should pick up bug")
+		next_anthill_position = anthill_entrance_position
 		bug_being_carried = closest_dead_bug
 		is_carrying_dead_bug = true
 		bug_being_carried.is_being_carried = true
 
-func _release_dead_bug():
+
+func _seek_ant_hill():
+	# manually control ant to enter the hill and drop its dead ant at the queen then exit
+	if global_position.distance_to(anthill_entrance_position.global_position) < 0.3:
+		next_anthill_position = anthill_drop_off_position
+	elif global_position.distance_to(anthill_drop_off_position.global_position) < 0.3:
+		_release_dead_bug(true)
+		next_anthill_position = anthill_turn_around
+	elif global_position.distance_to(anthill_turn_around.global_position) < 0.3:
+		next_anthill_position = anthill_exit
+	elif global_position.distance_to(anthill_exit.global_position) < 0.3:
+		next_anthill_position = null
+	if next_anthill_position != null:
+		var direction_to_next_position := (next_anthill_position.global_position - global_position).normalized()
+		velocity.x = direction_to_next_position.x * speed + knockback.x
+		velocity.z = direction_to_next_position.z * speed + knockback.y
+	
+func _release_dead_bug(shouldDestroy: bool):
 	if bug_being_carried != null:
-		bug_being_carried.is_being_carried = false
+		var bug = bug_being_carried
 		bug_being_carried = null
+		bug.is_being_carried = false
 		is_carrying_dead_bug = false
+		if shouldDestroy:
+			await get_tree().create_timer(2.0).timeout
+			if is_instance_valid(bug):
+				bug.queue_free()
 #-----------------------------------
 # Damage & Death
 #-----------------------------------
