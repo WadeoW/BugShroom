@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://d24x2quphacku"]
+
+[ext_resource type="Texture2D" uid="uid://ccicce4whdsyc" path="res://assets/environment/Pedestal/PedestalMat/mushroom_pedastal_BaseColor.png" id="1_mrpcg"]
+[ext_resource type="Texture2D" uid="uid://b26o1idy48dk2" path="res://assets/environment/Pedestal/PedestalMat/mushroom_pedastal_Height.png" id="2_akllf"]
+[ext_resource type="Texture2D" uid="uid://cwn4uqxow7uht" path="res://assets/environment/Pedestal/PedestalMat/mushroom_pedastal_Metallic.png" id="3_kg20j"]
+[ext_resource type="Texture2D" uid="uid://c4yph7edhnyw4" path="res://assets/environment/Pedestal/PedestalMat/mushroom_pedastal_Normal.png" id="4_yip41"]
+[ext_resource type="Texture2D" uid="uid://dcqj2m06sl40j" path="res://assets/environment/Pedestal/PedestalMat/mushroom_pedastal_Roughness.png" id="5_mq7r3"]
+
+[resource]
+albedo_texture = ExtResource("1_mrpcg")
+metallic = 1.0
+metallic_texture = ExtResource("3_kg20j")
+roughness_texture = ExtResource("5_mq7r3")
+normal_enabled = true
+normal_texture = ExtResource("4_yip41")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_akllf")
