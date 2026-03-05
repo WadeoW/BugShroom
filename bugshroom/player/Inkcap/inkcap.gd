@@ -217,7 +217,7 @@ func _physics_process(delta):
 		update()
 	
 	$Inkshroom.rotation.y = lerp_angle($Inkshroom.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
-	attack_hit_box.rotation.y = lerp_angle(attack_hit_box.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
+	#attack_hit_box.rotation.y = lerp_angle(attack_hit_box.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
 	move_and_slide()
 
 	
@@ -287,7 +287,7 @@ func cast_ability(ability_type):
 	spawn.position = position + Vector3.UP * 2
 	var launchDirection = -camera_pitch.global_transform.basis.z
 	spawn.linear_velocity = launchDirection.normalized() * goop_ball_launch_speed + Vector3.UP * 5
-	print("ability has been cast")
+	print("goop ball ability has been cast")
 
 func grab():
 	if not isGrabbingItem:

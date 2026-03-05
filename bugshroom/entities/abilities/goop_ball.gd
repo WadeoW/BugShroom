@@ -20,11 +20,16 @@ func _on_body_entered(body: Node) -> void:
 		if ray.is_colliding():
 			var collisionPoint = ray.get_collision_point()
 			if collisionPoint and ray.get_collider().name == "Floor":
-				spawnedGoop.position = collisionPoint + Vector3.UP * 0.1
+				spawnedGoop.position = collisionPoint
 				player.ability_icon_animation_player.play("ability_active")
 		else:
-			player.ability_active = false
 			print("goop ball floor ray cast didn't hit")
-			player.ability_cooldown.start()
-			player.ability_icon_animation_player.play("cooldown")
+			# if raycast doesnt hit and ball is close to player, just spawn goop puddle under player
+			if global_position.distance_to(player.global_position) < 4:
+				spawnedGoop.position = player.global_position
+				player.ability_icon_animation_player.play("ability_active")
+			else:
+				player.ability_active = false
+				player.ability_cooldown.start()
+				player.ability_icon_animation_player.play("cooldown")
 		queue_free()

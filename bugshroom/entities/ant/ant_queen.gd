@@ -3,9 +3,6 @@ extends BugBase
 @export var ant_speed: float = 5.0
 @export var ant_health: float = 1000.0
 @export var ant_damage: float = 80.0
-@export var ally_alert_radius: float = 100.0
-
-var has_alerted_allies: bool = false
 
 
 #sound variables
@@ -27,12 +24,48 @@ func _ready():
 	add_to_group("ants")
 	add_to_group("bug")
 	super._ready()
-
+	
 	health_bar_3d.max_value = ant_health
 	health_bar_3d.value = ant_health
+
+
+func _physics_process(delta: float) -> void:
+	# Gravity
+	if not is_on_floor():
+		velocity.y -= 9.8 * delta
+	# Manually get rid of knockback over time
+	knockback = knockback.move_toward(Vector2.ZERO, 20 * delta)
 	
+	if is_dead:
+		if should_shrink_on_death:
+			scale = scale.move_toward(Vector3(0.5, 0.5, 0.5), delta)
+		if not is_being_carried:
+			move_and_slide()
+		return
 	
+	# Only aggressive bugs look for players
+	if aggressive:
+		target = _get_closest_in_group("player")
+		var closest_taunt_ability = _get_closest_in_group("taunt_ability")
+		if closest_taunt_ability != null and (global_position.distance_to(closest_taunt_ability.global_position) < global_position.distance_to(target.global_position)):
+			target = closest_taunt_ability
+	else:
+		target = null  # passive bugs don't chase at all
 	
+	if aggressive and target:
+		var distance := global_position.distance_to(target.global_position)
+		# Chase player if within detection range
+		if distance <= detection_range:
+			is_chasing = true
+			_chase_target(target)
+			_try_attack()
+		else:
+			is_chasing = false
+			_idle_behavior(delta)
+	else:
+		# Passive bugs or no close enough target: just wander
+		is_chasing = false
+		_idle_behavior(delta)
 
 func _try_attack() -> void:
 	if not aggressive:
@@ -57,30 +90,8 @@ func _try_attack() -> void:
 		await get_tree().create_timer(attack_cooldown).timeout
 		can_attack = true
 
-func _idle_behavior(delta):
-	has_alerted_allies = false
-	super._idle_behavior(delta)
-
 func _chase_target(toChase: Node3D):
-	if target and not has_alerted_allies:
-		has_alerted_allies = true
-		_alert_ants_nearby()
 	super._chase_target(target)
-
-func _alert_ants_nearby():
-	var ants = get_tree().get_nodes_in_group("ants")
-	for a in ants:
-		if a == self:
-			continue
-		if not a or not a.is_inside_tree():
-			continue
-		if not (a is BugBase):
-			continue
-		
-		var dist = global_position.distance_to(a.global_position)
-		if dist <= ally_alert_radius:
-			a.target = target
-			a.is_chasing = true
 
 func become_dead_bug() -> void:
 	health_bar_3d.visible = false
