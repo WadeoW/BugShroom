@@ -70,6 +70,7 @@ func _chase_target(toChase: Node3D):
 		_alert_ants_nearby()
 	super._chase_target(target)
 
+
 func _alert_ants_nearby():
 	var ants = get_tree().get_nodes_in_group("ants")
 	for a in ants:

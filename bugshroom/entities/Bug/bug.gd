@@ -40,12 +40,14 @@ var is_seeking_dead_bug: bool = false
 # Other
 var knockback: Vector2 = Vector2.ZERO
 @onready var attack_hit_box = get_node_or_null("AttackHitBox")
+var pathfinding_raycast: RayCast3D # only used by ants
+
 # Dropping off dead ant variables
 var next_anthill_position: Node3D = null
-@onready var anthill_entrance_position: Node3D = %"Entrance Position"
-@onready var anthill_drop_off_position: Node3D = %"Drop Off Position"
-@onready var anthill_turn_around: Node3D = %"Turn Around"
-@onready var anthill_exit: Node3D = %"Exit"
+@onready var anthill_entrance_position: Node3D = get_tree().current_scene.get_node("AntHill/Entrance Position")
+@onready var anthill_drop_off_position: Node3D = get_tree().current_scene.get_node("AntHill/Drop Off Position")
+@onready var anthill_turn_around: Node3D = get_tree().current_scene.get_node("AntHill/Turn Around")
+@onready var anthill_exit: Node3D = get_tree().current_scene.get_node("AntHill/Exit")
 
 # dead bug variables
 var should_shrink_on_death := false
@@ -61,6 +63,8 @@ var is_being_carried := false
 #-----------------------------------
 func _ready():
 	target = _get_closest_in_group("player")
+	if scavenger:
+		pathfinding_raycast = $"Pathfinding Raycast"
 #-----------------------------------
 # Main loop
 #-----------------------------------
@@ -120,13 +124,15 @@ func _physics_process(delta: float) -> void:
 	else:
 		is_seeking_dead_bug = false
 	if is_carrying_dead_bug:
+		if next_anthill_position == null:
+			next_anthill_position = anthill_entrance_position
 		if bug_being_carried == null:
 			return
 		else:
 			bug_being_carried.position = bug_being_carried.position.move_toward(mouth_position.global_position, 200 * delta)
 			bug_being_carried.rotation.y = lerp_angle(bug_being_carried.rotation.y, rotation.y + PI / 2, 20 * delta)
 	if next_anthill_position != null:
-		_seek_ant_hill()
+		self._seek_ant_hill()
 	
 	
 	_rotate_to_velocity(delta, rotationSpeed)
@@ -214,9 +220,9 @@ func _seek_dead_bug(delta: float):
 	if vector_to_dead_bug.length() < dead_bug_pick_up_distance:
 		next_anthill_position = anthill_entrance_position
 		bug_being_carried = closest_dead_bug
+		pathfinding_raycast.add_exception(bug_being_carried)
 		is_carrying_dead_bug = true
 		bug_being_carried.is_being_carried = true
-
 
 func _seek_ant_hill():
 	# manually control ant to enter the hill and drop its dead ant at the queen then exit
@@ -231,13 +237,49 @@ func _seek_ant_hill():
 		next_anthill_position = null
 	if next_anthill_position != null:
 		var direction_to_next_position := (next_anthill_position.global_position - global_position).normalized()
-		velocity.x = direction_to_next_position.x * speed + knockback.x
-		velocity.z = direction_to_next_position.z * speed + knockback.y
+		pathfinding_raycast.target_position = direction_to_next_position * 7
+		pathfinding_raycast.force_raycast_update()
+		if not pathfinding_raycast.is_colliding() || pathfinding_raycast.get_collider() is CSGShape3D:
+			var raycast_dir := pathfinding_raycast.target_position.normalized()
+			velocity.x = raycast_dir.x * speed + knockback.x
+			velocity.z = raycast_dir.z * speed + knockback.y
+			return
+		var i = 0
+		# rotate ray cast left until you dont collide
+		while (pathfinding_raycast.is_colliding() && i <= 16):
+			pathfinding_raycast.target_position = pathfinding_raycast.target_position.rotated(Vector3.UP, PI/8)
+			pathfinding_raycast.force_raycast_update()
+			i += 1
+		var left_pathfinding_raycast = pathfinding_raycast
+		var left_rotations = i
+		# rotate ray cast right until you dont collide
+		pathfinding_raycast.target_position = direction_to_next_position * 7
+		pathfinding_raycast.force_raycast_update()
+		i = 0
+		while (pathfinding_raycast.is_colliding() && i <= 16):
+			pathfinding_raycast.target_position = pathfinding_raycast.target_position.rotated(Vector3.UP, -PI/8)
+			pathfinding_raycast.force_raycast_update()
+			i += 1
+		var right_pathfinding_raycast = pathfinding_raycast
+		var right_rotations = i
+		# see which direction, left or right, is closer to the actual direction you are trying to go and rotate one more time in that direction
+		if left_rotations != 0 || right_rotations != 0:
+			if left_rotations <= right_rotations:
+				pathfinding_raycast = left_pathfinding_raycast
+				pathfinding_raycast.target_position = pathfinding_raycast.target_position.rotated(Vector3.UP, PI/8)
+			else:
+				pathfinding_raycast = right_pathfinding_raycast
+				pathfinding_raycast.target_position = pathfinding_raycast.target_position.rotated(Vector3.UP, -PI/8)
+			pathfinding_raycast.force_raycast_update()
+		var raycast_dir := pathfinding_raycast.target_position.normalized()
+		velocity.x = raycast_dir.x * speed + knockback.x
+		velocity.z = raycast_dir.z * speed + knockback.y
 	
 func _release_dead_bug(shouldDestroy: bool):
 	if bug_being_carried != null:
 		var bug = bug_being_carried
 		bug_being_carried = null
+		pathfinding_raycast.remove_exception(bug)
 		bug.is_being_carried = false
 		is_carrying_dead_bug = false
 		if shouldDestroy:

@@ -405,11 +405,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pyfdu")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_3hd3d"]
-size = Vector3(21.1306, 13.9959, 7.61201)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7y4xc"]
+radius = 1.5
+height = 6.65863
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ehiki"]
-size = Vector3(10, 10, 8)
+size = Vector3(3, 2, 3)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_efju6"]
 viewport_path = NodePath("SubViewport")
@@ -4806,8 +4807,7 @@ collision_mask = 7
 script = ExtResource("1_uhf6q")
 
 [node name="LeafCutter_Queen" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-visible = false
+transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 0, 0, 0)
 
 [node name="Armature" type="Node3D" parent="LeafCutter_Queen"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7392, 10.5974, 0.464278)
@@ -5151,20 +5151,20 @@ mesh = SubResource("ArrayMesh_2vthv")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0984876, 6.95544, 5.48153)
-shape = SubResource("BoxShape3D_3hd3d")
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -0.147, 1.5, 1.24871)
+shape = SubResource("CapsuleShape3D_7y4xc")
 
 [node name="AttackHitBox" type="ShapeCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.173, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_ehiki")
-target_position = Vector3(0, -10.475, 0)
+target_position = Vector3(0, -3, 0)
 collide_with_areas = true
 
 [node name="Mouth Position" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.566056, 0.997329, -1.2751)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(5.285, 0, 0, 0, 5.285, 0, 0, 0, 5.285, 0, 17.5857, -5.08817)
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 4.25303, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_efju6")
 
@@ -5197,7 +5197,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="ant_queen2" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+visible = false
 
 [node name="ant_queen" type="Node3D" parent="ant_queen2"]
 transform = Transform3D(1.71957, 0, 0, 0, 1.71957, 0, 0, 0, 1.71957, 0, 0, 0)
@@ -5243,7 +5243,7 @@ bones/5/parent = 4
 bones/5/rest = Transform3D(0.711029, -0.695003, -0.106813, 0.503265, 0.609077, -0.612984, 0.491083, 0.382094, 0.782842, -5.96046e-08, 1.33418, -2.98023e-07)
 bones/5/enabled = true
 bones/5/position = Vector3(-5.96046e-08, 1.33418, -2.98023e-07)
-bones/5/rotation = Quaternion(0.282449, -0.16971, 0.340123, 0.880759)
+bones/5/rotation = Quaternion(0.282449, -0.16971, 0.340123, 0.88076)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Bone.033_2"
 bones/6/parent = 3
@@ -5278,7 +5278,7 @@ bones/10/parent = 9
 bones/10/rest = Transform3D(0.999341, 0.0362398, -0.00213743, -0.0362371, 0.992265, -0.118734, -0.00218201, 0.118734, 0.992924, -3.65078e-07, 1.92587, -8.9407e-08)
 bones/10/enabled = true
 bones/10/position = Vector3(-3.65078e-07, 1.92587, -8.9407e-08)
-bones/10/rotation = Quaternion(0.0594821, 1.11677e-05, -0.0181544, 0.998064)
+bones/10/rotation = Quaternion(0.0594821, 1.11676e-05, -0.0181544, 0.998064)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "Mid-1.L_2"
 bones/11/parent = 10
@@ -5355,7 +5355,7 @@ bones/21/parent = 20
 bones/21/rest = Transform3D(0.999341, 0.0362405, 0.00213782, -0.0362379, 0.992265, 0.118734, 0.0021817, -0.118733, 0.992924, 9.68575e-08, 1.92588, 1.63913e-07)
 bones/21/enabled = true
 bones/21/position = Vector3(9.68575e-08, 1.92588, 1.63913e-07)
-bones/21/rotation = Quaternion(-0.059482, -1.09932e-05, -0.0181547, 0.998064)
+bones/21/rotation = Quaternion(-0.059482, -1.09934e-05, -0.0181547, 0.998064)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "Mid-1.R_2"
 bones/22/parent = 21

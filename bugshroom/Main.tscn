@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=53 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
@@ -57,6 +57,11 @@ bg_color = Color(0.827451, 0.054902, 0.121569, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fpfj3"]
 albedo_color = Color(0.287756, 0.433515, 0.273107, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5mvff"]
+size = Vector3(3, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oye8v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0l325"]
 resource_name = "grass1_mat"
@@ -527,6 +532,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.2591, 2.37678, -144.54)
 [node name="MushroomBase" parent="." instance=ExtResource("12_c6i3y")]
 
 [node name="environment" type="Node" parent="."]
+
+[node name="Box" type="StaticBody3D" parent="environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110.776, 0, -168.191)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/Box"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("BoxShape3D_5mvff")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="environment/Box"]
+transform = Transform3D(30, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("BoxMesh_oye8v")
 
 [node name="grass_bugshroom" type="Node" parent="environment"]
 
