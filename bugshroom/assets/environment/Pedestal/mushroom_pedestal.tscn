@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://c5mbgxtnp8p44"]
+[gd_scene load_steps=13 format=4 uid="uid://c5mbgxtnp8p44"]
 
 [ext_resource type="Material" uid="uid://d24x2quphacku" path="res://assets/environment/Pedestal/PedestalMat/Mushroom_Pedestal_Mat.tres" id="1_tx5d8"]
 [ext_resource type="Script" uid="uid://5uiin0aq7lue" path="res://assets/environment/Pedestal/mushroom_pedestal.gd" id="1_uf7e0"]
+[ext_resource type="FontFile" uid="uid://c63rn2imkgci8" path="res://assets/Fonts/Bugshroomfont-Regular (3).ttf" id="3_ixysq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sfmiu"]
 
@@ -43,6 +44,9 @@ data = PackedVector3Array(0.2613, 1.4378, -0.1509, 0.2117, 1.4756, -0.3666, 0.15
 [sub_resource type="ViewportTexture" id="ViewportTexture_tx5d8"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_uf7e0"]
+radius = 2.0
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ixysq"]
 emission_shape_scale = Vector3(2, 2, 2)
 direction = Vector3(0, 1, 0)
@@ -78,11 +82,22 @@ transparent_bg = true
 [node name="HintText" type="RichTextLabel" parent="SubViewport"]
 offset_right = 512.0
 offset_bottom = 512.0
+theme_override_fonts/normal_font = ExtResource("3_ixysq")
 horizontal_alignment = 1
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 billboard = 1
 texture = SubResource("ViewportTexture_tx5d8")
+
+[node name="SnappingPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.17375, 0)
+
+[node name="SnappingRadius" type="Area3D" parent="."]
+collision_mask = 257
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SnappingRadius"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12741, 0)
+shape = SubResource("SphereShape3D_uf7e0")
 
 [node name="CelebrationParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80249, 0)
@@ -93,3 +108,6 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_ixysq")
 draw_pass_1 = SubResource("SphereMesh_p5gs6")
+
+[connection signal="body_entered" from="SnappingRadius" to="." method="_on_snapping_radius_body_entered"]
+[connection signal="body_exited" from="SnappingRadius" to="." method="_on_snapping_radius_body_exited"]

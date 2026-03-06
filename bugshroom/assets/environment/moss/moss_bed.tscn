@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://tks3mby8em48"]
+[gd_scene load_steps=14 format=4 uid="uid://tks3mby8em48"]
 
 [ext_resource type="Script" uid="uid://dnnpfvmn2if2w" path="res://assets/environment/moss/moss_bed.gd" id="1_c4eqk"]
 [ext_resource type="Texture2D" uid="uid://bcdn5g6d5vsmc" path="res://assets/environment/moss/moss textures/mossbed_v02_moss_be_mat_BaseColor.png" id="2_0b5n8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://8m2e4ahjr48v" path="res://assets/environment/moss/moss textures/mossbed_v02_moss_be_mat_Metallic.png" id="4_6gwgn"]
 [ext_resource type="Texture2D" uid="uid://faeadrnc7g2e" path="res://assets/environment/moss/moss textures/mossbed_v02_moss_be_mat_Normal.png" id="5_0aeq4"]
 [ext_resource type="Texture2D" uid="uid://o77nra57k3nj" path="res://assets/environment/moss/moss textures/mossbed_v02_moss_be_mat_Roughness.png" id="6_2ofih"]
+[ext_resource type="AudioStream" uid="uid://doyd2t5e628xy" path="res://assets/Sound/JUMP_pad_sound.mp3" id="7_86ald"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4on2i"]
 albedo_texture = ExtResource("2_0b5n8")
@@ -85,5 +86,9 @@ shape = SubResource("ConvexPolygonShape3D_6veus")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.498077, 0)
 shape = SubResource("CylinderShape3D_c4eqk")
+
+[node name="BounceSound3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_86ald")
+volume_db = -10.0
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
