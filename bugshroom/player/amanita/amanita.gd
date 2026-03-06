@@ -33,6 +33,7 @@ var is_jumping = false
 @onready var walk_sound_3d: AudioStreamPlayer3D = $PlayerModel/Audio/WalkSound3D
 @onready var jump_sound_3d: AudioStreamPlayer3D = $PlayerModel/Audio/JumpSound3D
 @onready var death_sound_3d: AudioStreamPlayer3D = $PlayerModel/Audio/DeathSound3D
+@onready var pick_up_sound_3d: AudioStreamPlayer3D = $PlayerModel/Audio/PickUpSound3D
 
 
 #respawn
@@ -76,7 +77,7 @@ var mushroom_type = PlayerData.MushroomType.Amanita
 
 #Root Down Mechanic
 var is_rooted = false
-@export var root_stamina_regen = 15.0 #stamina regained per second while rooted
+@export var root_stamina_regen = 25.0 #stamina regained per second while rooted
 
 @onready var camera_mount = $CameraMount
 @onready var camera_yaw = $CameraMount/CameraYaw
@@ -302,6 +303,7 @@ func grab():
 				grab_joint.node_b = closestBody.get_path()
 			add_collision_exception_with(closestBody)
 			print("grabbed ", grab_joint.node_b)
+			pick_up_sound_3d.play()
 			isGrabbingItem = true
 		else:
 			print("no rigid or character bodies to grab")

@@ -69,7 +69,7 @@ var mushroom_type = PlayerData.MushroomType.Inkcap
 
 #Root Down Mechanic
 var is_rooted = false
-@export var root_stamina_regen = 15.0 #stamina regained per second while rooted
+@export var root_stamina_regen = 25.0 #stamina regained per second while rooted
 
 #Animation variables
 @onready var animation_player: AnimationPlayer = $Inkshroom/AnimationPlayer
