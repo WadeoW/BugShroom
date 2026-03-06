@@ -50,7 +50,7 @@ func _try_attack() -> void:
 		var i = 0
 		for collision in range(total_collisions):
 			var collidedObject = attack_hit_box.get_collider(i)
-			if collidedObject.is_in_group("player") and collidedObject.has_method("take_damage") and not collidedObject.is_dead:
+			if collidedObject != null and collidedObject.is_in_group("player") and collidedObject.has_method("take_damage") and not collidedObject.is_dead:
 				collidedObject.take_damage(damage)
 				print("Ant attacked player for ", damage, " damage!")
 			i += 1
@@ -69,7 +69,6 @@ func _chase_target(toChase: Node3D):
 		has_alerted_allies = true
 		_alert_ants_nearby()
 	super._chase_target(target)
-
 
 func _alert_ants_nearby():
 	var ants = get_tree().get_nodes_in_group("ants")
