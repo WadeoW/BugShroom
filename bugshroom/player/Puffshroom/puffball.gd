@@ -214,7 +214,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	var speed = Vector2(velocity.x, velocity.z).length()
 	if body.is_in_group("bug") and speed > MIN_ROLLING_SPEED_FOR_ATTACK:
 		if body.is_in_group("ants") or body.is_in_group("aphids"):
-			add_collision_exception_with(body)
+			temp_disable_collision(body, 0.5)
 			body.apply_knockback(Vector3(kb_direction.x, 1, kb_direction.y), BUG_KB)
 		if body.is_in_group("beetles"):
 			apply_knockback(Vector3(-kb_direction.x, 2, -kb_direction.y), SELF_KB_ON_BEETLE)
@@ -232,6 +232,11 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	# terrain collision, not working with logs
 	if body.name != "floor" and speed > MIN_ROLLING_SPEED_FOR_TERRAIN_BOUNCE:
 		apply_knockback(Vector3(-kb_direction.x, 2, -kb_direction.y), Vector2(velocity.x, velocity.z).length() * TERRAIN_BOUNCE_BACK)
+
+func temp_disable_collision(body: Node3D, time: float):
+	add_collision_exception_with(body)
+	await get_tree().create_timer(time).timeout
+	remove_collision_exception_with(body)
 
 func cast_ability():
 	animation_player.play("ability_use")

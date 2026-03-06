@@ -236,6 +236,7 @@ options_1={
 
 [layer_names]
 
+3d_physics/layer_4="players"
 3d_physics/layer_8="goop ball"
 3d_physics/layer_9="grab"
 3d_physics/layer_10="floor"

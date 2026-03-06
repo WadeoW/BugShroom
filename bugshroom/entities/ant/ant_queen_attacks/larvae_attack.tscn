@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c87s2ugm04ueo"]
+
+[ext_resource type="Script" uid="uid://74vyj8pft3tx" path="res://entities/ant/ant_queen_attacks/larvae_attack.gd" id="1_pj7ef"]
+
+[node name="larvae_attack" type="Node3D"]
+script = ExtResource("1_pj7ef")
+
+[node name="destroy_timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="destroy_timer" to="." method="_on_timer_timeout"]

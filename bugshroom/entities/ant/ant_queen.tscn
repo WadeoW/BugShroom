@@ -5429,3 +5429,12 @@ skin = SubResource("Skin_vqn1p")
 libraries = {
 &"": SubResource("AnimationLibrary_sa6qp")
 }
+
+[node name="Larvae Attack Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="larvae attack spawnpoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35059, 4.04923)
+
+[connection signal="timeout" from="Larvae Attack Timer" to="." method="_on_larvae_attack_timer_timeout"]

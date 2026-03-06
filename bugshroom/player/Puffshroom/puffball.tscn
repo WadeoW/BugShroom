@@ -611,11 +611,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_8ke3l")
 }
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="puffball_hitbox" type="Area3D" parent="."]
 collision_layer = 9
 collision_mask = 9
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="puffball_hitbox"]
 transform = Transform3D(-8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 0, 0, 2, 0, 0.6, 0)
 shape = SubResource("CapsuleShape3D_xhpx3")
 debug_color = Color(0.999465, 0, 0.112206, 0.42)
@@ -627,4 +627,4 @@ stream = ExtResource("6_invgw")
 volume_db = -15.0
 
 [connection signal="timeout" from="ChargeDuration" to="." method="_on_charge_duration_timeout"]
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="puffball_hitbox" to="." method="_on_area_3d_body_entered"]
