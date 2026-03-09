@@ -42,15 +42,16 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	if navigating_to_queen and queen != null:
-		if navigation_agent_3d.target_position == Vector3.ZERO:
-			navigation_agent_3d.set_target_position(queen.global_position)
-		var next_point = navigation_agent_3d.get_next_path_position()
-		var direction = (next_point - global_position).normalized()
-		velocity.x = direction.x * speed + knockback.x
-		velocity.z = direction.z * speed + knockback.y
-		move_and_slide()
-		_rotate_to_velocity(delta, rotationSpeed)
-		return
+		if navigation_agent_3d:
+			if navigation_agent_3d.target_position == Vector3.ZERO:
+				navigation_agent_3d.set_target_position(queen.global_position)
+			var next_point = navigation_agent_3d.get_next_path_position()
+			var direction = (next_point - global_position).normalized()
+			velocity.x = direction.x * speed + knockback.x
+			velocity.z = direction.z * speed + knockback.y
+			move_and_slide()
+			_rotate_to_velocity(delta, rotationSpeed)
+			return
 	else:
 		super._physics_process(delta)
 

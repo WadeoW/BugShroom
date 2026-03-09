@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpfbrftkm6xvc"]
+[gd_scene load_steps=11 format=3 uid="uid://dpfbrftkm6xvc"]
 
 [ext_resource type="PackedScene" uid="uid://4rl5deukn8ci" path="res://assets/environment/anthill/StraightHallway1x3AntHill.tscn" id="1_r7kxl"]
 [ext_resource type="PackedScene" uid="uid://bl0yfwut55wt6" path="res://assets/environment/anthill/4WayConnectorAntHill.tscn" id="2_blfhh"]

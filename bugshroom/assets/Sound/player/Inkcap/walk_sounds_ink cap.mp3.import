@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cno5iv1f4tp0a"
+path="res://.godot/imported/walk_sounds_ink cap.mp3-85971caed8f8995d359e86d0ade6e8be.mp3str"
+
+[deps]
+
+source_file="res://assets/Sound/player/Inkcap/walk_sounds_ink cap.mp3"
+dest_files=["res://.godot/imported/walk_sounds_ink cap.mp3-85971caed8f8995d359e86d0ade6e8be.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

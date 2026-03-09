@@ -3,11 +3,11 @@
 [ext_resource type="Material" uid="uid://dxxhpx75toqb1" path="res://entities/beetle/bossbeetlemat/Boss_Beetle_Mat.tres" id="1_l5fyi"]
 [ext_resource type="Script" uid="uid://dgc707s8xvrm4" path="res://entities/beetle/boss_beetle.gd" id="1_ypxma"]
 [ext_resource type="PackedScene" uid="uid://dhygx6l1k7gkq" path="res://entities/Bug/bug_health_bar.tscn" id="3_ypxma"]
-[ext_resource type="AudioStream" uid="uid://bcmpy3u02qyyy" path="res://assets/Sound/death_enemy.mp3" id="4_xhh0w"]
-[ext_resource type="AudioStream" uid="uid://pwh8rkl55ebi" path="res://assets/Sound/attack_SFX_Bug.mp3" id="5_4ijom"]
-[ext_resource type="AudioStream" uid="uid://xyd6gkd8h6ws" path="res://assets/Sound/beetle_walk_sound.mp3" id="6_tdu0p"]
-[ext_resource type="AudioStream" uid="uid://cnm3a57l512oi" path="res://assets/Sound/beetle_boss_alert sound.mp3" id="7_4ijom"]
-[ext_resource type="AudioStream" uid="uid://b23h160ut7nxy" path="res://assets/Sound/beetle_charge_mockup.mp3" id="8_tdu0p"]
+[ext_resource type="AudioStream" uid="uid://bcmpy3u02qyyy" path="res://assets/Sound/Bugs/death_enemy.mp3" id="4_xhh0w"]
+[ext_resource type="AudioStream" uid="uid://pwh8rkl55ebi" path="res://assets/Sound/Bugs/attack_SFX_Bug.mp3" id="5_4ijom"]
+[ext_resource type="AudioStream" uid="uid://xyd6gkd8h6ws" path="res://assets/Sound/Bugs/Beetle/beetle_walk_sound.mp3" id="6_tdu0p"]
+[ext_resource type="AudioStream" uid="uid://cnm3a57l512oi" path="res://assets/Sound/Bugs/Beetle/beetle_boss_alert sound.mp3" id="7_4ijom"]
+[ext_resource type="AudioStream" uid="uid://b23h160ut7nxy" path="res://assets/Sound/Bugs/Beetle/beetle_charge_mockup.mp3" id="8_tdu0p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwvs4"]
 resource_name = "boss_beetle"

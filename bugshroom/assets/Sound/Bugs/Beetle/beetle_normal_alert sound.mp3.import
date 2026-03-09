@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d03jceoqogjga"
+path="res://.godot/imported/beetle_normal_alert sound.mp3-66bd55aa3b974d2128ef93d80c0eb640.mp3str"
+
+[deps]
+
+source_file="res://assets/Sound/Bugs/Beetle/beetle_normal_alert sound.mp3"
+dest_files=["res://.godot/imported/beetle_normal_alert sound.mp3-66bd55aa3b974d2128ef93d80c0eb640.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

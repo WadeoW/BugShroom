@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://8m2e4ahjr48v" path="res://assets/environment/moss/moss textures/mossbed_v02_moss_be_mat_Metallic.png" id="4_6gwgn"]
 [ext_resource type="Texture2D" uid="uid://faeadrnc7g2e" path="res://assets/environment/moss/moss textures/mossbed_v02_moss_be_mat_Normal.png" id="5_0aeq4"]
 [ext_resource type="Texture2D" uid="uid://o77nra57k3nj" path="res://assets/environment/moss/moss textures/mossbed_v02_moss_be_mat_Roughness.png" id="6_2ofih"]
-[ext_resource type="AudioStream" uid="uid://doyd2t5e628xy" path="res://assets/Sound/JUMP_pad_sound.mp3" id="7_86ald"]
+[ext_resource type="AudioStream" uid="uid://doyd2t5e628xy" path="res://assets/Sound/Environment/JUMP_pad_sound.mp3" id="7_86ald"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4on2i"]
 albedo_texture = ExtResource("2_0b5n8")

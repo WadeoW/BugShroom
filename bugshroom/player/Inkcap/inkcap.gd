@@ -21,12 +21,12 @@ const MAX_KNOCKBACK_SPEED = 20
 @export var respawn_delay: float = 5.0
 
 #sound variables
-@onready var walk_sound: AudioStreamPlayer = $Audio/WalkSound
-@onready var jump_sound: AudioStreamPlayer = $Audio/JumpSound
-@onready var death_sound: AudioStreamPlayer = $Audio/DeathSound
 @onready var walk_sound_3d: AudioStreamPlayer3D = $Audio/WalkSound3D
 @onready var jump_sound_3d: AudioStreamPlayer3D = $Audio/JumpSound3D
 @onready var death_sound_3d: AudioStreamPlayer3D = $Audio/DeathSound3D
+@onready var damage_sound_3d: AudioStreamPlayer3D = $Audio/DamageSound3D
+@onready var pickup_sound_3d: AudioStreamPlayer3D = $Audio/PickupSound3D
+
 
 
 #health variables
@@ -37,10 +37,13 @@ var is_dead = false
 
 
 #stamina variables
-@export var max_stamina = 100.0
-@export var current_stamina = 100.0
+@export var max_stamina = 150.0
+@export var current_stamina = 150.0
 var stamina_drain_rate = 5.0 #stamina drained per second during action
 @onready var stamina_bar: ProgressBar = $CanvasLayer/StaminaBar
+@export var root_stamina_regen = 25.0 #stamina regained per second while rooted
+@export var passive_stamina_regen = 5
+
 
 #attack variables
 @export var attack_range: float = 3.0
@@ -69,7 +72,6 @@ var mushroom_type = PlayerData.MushroomType.Inkcap
 
 #Root Down Mechanic
 var is_rooted = false
-@export var root_stamina_regen = 25.0 #stamina regained per second while rooted
 
 #Animation variables
 @onready var animation_player: AnimationPlayer = $Inkshroom/AnimationPlayer
@@ -147,7 +149,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted:
 		velocity.y = JUMP_VELOCITY
 		jump_sound_3d.play()
-		#animation_player.play("ink_jump")
 		animation_tree.set("parameters/JumpOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 #handle attack
@@ -199,16 +200,19 @@ func _physics_process(delta):
 		else:
 			inputVelocity.x = lerp(inputVelocity.x, direction.x * speed, delta * 7.0)
 			inputVelocity.y = lerp(inputVelocity.y, direction.z * speed, delta * 7.0)
-			#if !animation_player.is_playing():
-				#animation_player.play("ink_idle")
-			#animation_tree.set("parameters/MovementBlendSpace1D/blend_position", 0)
 		var velocity_to_blend_pos = remap(Vector2(velocity.x, velocity.z).length(), 0, SPRINT_SPEED, 0, 2)
 		animation_tree.set("parameters/MovementBlendSpace1D/blend_position", velocity_to_blend_pos)
 		knockback = knockback.limit_length(MAX_KNOCKBACK_SPEED)
 		velocity = Vector3(inputVelocity.x, velocity.y, inputVelocity.y) + Vector3(knockback.x, 0, knockback.y)
+		if not isSprinting and current_stamina < max_stamina:
+			current_stamina += passive_stamina_regen * delta
+			update()
 	else:
 		velocity.x = 0
 		velocity.z = 0 
+		if not isSprinting and current_stamina < max_stamina:
+			current_stamina += passive_stamina_regen * delta
+			update()
 
 	
 	if is_rooted:
@@ -224,6 +228,7 @@ func _physics_process(delta):
 func take_damage(amount):
 	#animation_player.play("ink_takedmgwalk")
 	animation_tree.set("parameters/TakeDamageOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	damage_sound_3d.play()
 	current_health -= amount
 	update()
 	if current_health <= 0 and !is_dead:

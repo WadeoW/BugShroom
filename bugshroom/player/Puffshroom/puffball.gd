@@ -63,6 +63,12 @@ var is_rooted = false
 
 #sound variables
 @onready var impact_sound_3d: AudioStreamPlayer3D = $Audio/ImpactSound3D
+@onready var jump_sound_3d: AudioStreamPlayer3D = $Audio/JumpSound3D
+@onready var rolling_sound_3d: AudioStreamPlayer3D = $Audio/RollingSound3D
+@onready var death_sound_3d: AudioStreamPlayer3D = $Audio/DeathSound3D
+@onready var damage_sound_3d: AudioStreamPlayer3D = $Audio/DamageSound3D
+
+
 
 
 @onready var camera_mount = $CameraMount
@@ -130,6 +136,7 @@ func _physics_process(delta):
 	
 	# handle jump
 	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0 and charge_duration.is_stopped():
+		jump_sound_3d.play()
 		velocity.y = JUMP_VELOCITY
 
 	# handle sprint/charge attack
@@ -185,6 +192,7 @@ func _physics_process(delta):
 	
 func take_damage(amount):
 	animation_player.play("take_damage")
+	damage_sound_3d.play()
 	current_health -= amount
 	update()
 	if current_health <= 0 and !is_dead:
@@ -266,6 +274,7 @@ func apply_knockback(direction: Vector3, force: float):
 	
 func die():
 	cast_ability()
+	death_sound_3d.play()
 	is_dead = true
 	print("Player", player_id, "has died!")
 	animation_player.play("puff_charge_death/death")

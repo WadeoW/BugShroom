@@ -91,7 +91,10 @@ texture = SubResource("ViewportTexture_moiim")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.716797, 0)
 shape = SubResource("CylinderShape3D_unby7")
 
+[node name="PlayerHealTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="DetectionArea3D" to="." method="_on_detection_area_3d_body_entered"]
 [connection signal="body_exited" from="DetectionArea3D" to="." method="_on_detection_area_3d_body_exited"]
+[connection signal="timeout" from="PlayerHealTimer" to="." method="_on_player_heal_timer_timeout"]
 
 [editable path="Bettle"]

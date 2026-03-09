@@ -4,19 +4,23 @@ extends Node3D
 @export var player1 = CharacterBody3D
 @export var player2 = CharacterBody3D
 @onready var mushroom_base = $MushroomBase
-@onready var nutrient_drain_timer: Timer = $NutrientDrainTimer
-@onready var nutrient_gain_timer: Timer = $NutrientGainTimer
 
+
+#Colony nutrient variables
 @export var colony_nutrient_bar = ProgressBar
 @export var current_colony_nutrients: int = 1000
 @export var max_colony_nutrients: int = 1000
 @export var colony_nutrient_drain_rate = 0
 var colony_nutrient_gain_rate = 25
+@onready var nutrient_drain_timer: Timer = $NutrientDrainTimer
+@onready var nutrient_gain_timer: Timer = $NutrientGainTimer
 
+
+#pause menue variables
 @onready var pause_menu: Control = $PauseMenuCanvasLayer/PauseMenu
 @onready var pause_menu_canvas_layer: CanvasLayer = $PauseMenuCanvasLayer
 
-
+#Sound Variables
 @onready var background_music: AudioStreamPlayer = $BackgroundMusic
 @onready var beetle_track: AudioStreamPlayer = $BeetleTrack
 

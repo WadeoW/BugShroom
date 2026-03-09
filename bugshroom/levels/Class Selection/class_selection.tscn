@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://brqhog6s6paks" path="res://assets/UI/1TALLGRASSfinalcharselect.png" id="4_srpr0"]
 [ext_resource type="Texture2D" uid="uid://dkqw1isth1pcb" path="res://assets/UI/Amanita Brown Cap Character Select.png" id="5_srpr0"]
 [ext_resource type="Texture2D" uid="uid://dbflkyp1yrawk" path="res://assets/UI/Puffball Character Select.png" id="6_srpr0"]
-[ext_resource type="AudioStream" uid="uid://b8vjc6o0gqfqd" path="res://assets/Sound/title_music_BugS.mp3" id="7_a3h8t"]
+[ext_resource type="AudioStream" uid="uid://b8vjc6o0gqfqd" path="res://assets/Sound/background tracks/title_music_BugS.mp3" id="7_a3h8t"]
 [ext_resource type="Texture2D" uid="uid://cnux44833ynag" path="res://assets/Cursor/Cursor icons-brown version.png" id="7_ii3pa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gypj8"]

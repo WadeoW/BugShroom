@@ -86,7 +86,6 @@ func _try_attack() -> void:
 	if not target or not can_attack:
 		return
 	if attack_hit_box.is_colliding():
-		animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		var total_collisions = attack_hit_box.get_collision_count()
 		print("total enemy attack collisions: ", total_collisions)
 		can_attack = false
@@ -99,7 +98,7 @@ func _try_attack() -> void:
 				print("Ant attacked player for ", damage, " damage!")
 			i += 1
 		if hit_player:
-			#anim_state.travel("ant_animations_attack")
+			animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 			attack_sound_3d.play()
 		await get_tree().create_timer(attack_cooldown).timeout
 		can_attack = true
@@ -123,7 +122,6 @@ func die() -> void:
 
 func take_damage(amount: float) -> void:
 	hit_sound_3d.play()
-	#anim_state.travel("take_damage")
 	if is_dead:
 		return
 	health -= amount
