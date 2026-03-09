@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpfbrftkm6xvc"]
+[gd_scene load_steps=8 format=3 uid="uid://dpfbrftkm6xvc"]
 
 [ext_resource type="PackedScene" uid="uid://4rl5deukn8ci" path="res://assets/environment/anthill/StraightHallway1x3AntHill.tscn" id="1_r7kxl"]
 [ext_resource type="PackedScene" uid="uid://bl0yfwut55wt6" path="res://assets/environment/anthill/4WayConnectorAntHill.tscn" id="2_blfhh"]
 [ext_resource type="PackedScene" uid="uid://c1nmslox2m61g" path="res://assets/environment/anthill/CornerTurn3x3AntHill.tscn" id="3_sjtk2"]
 [ext_resource type="PackedScene" uid="uid://ba81hax3xjdae" path="res://assets/environment/anthill/SmallChamber2EntranceAntHill.tscn" id="4_dt8wp"]
 [ext_resource type="PackedScene" uid="uid://dn335qo3wbk7l" path="res://assets/environment/anthill/YJunction3x4AntHill.tscn" id="5_v1ugs"]
+[ext_resource type="PackedScene" uid="uid://davxfgabsorky" path="res://assets/environment/anthill/BigChamber2EntranceAntHill.tscn" id="6_sjtk2"]
+[ext_resource type="Material" uid="uid://ilhovwm8o7cv" path="res://assets/environment/anthill/Materials/StraightHallwayMat/StraightHallwayMat.tres" id="7_dt8wp"]
 
 [node name="AntHill" type="Node3D"]
 
@@ -17,10 +19,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, -30)
 
 [node name="Corner" parent="." instance=ExtResource("3_sjtk2")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 60, 0, -30)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 60, 0, -60)
 
 [node name="StraightHallway3" parent="." instance=ExtResource("1_r7kxl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 0, -60)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 0, -90)
 
 [node name="SmallCave" parent="." instance=ExtResource("4_dt8wp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -40)
@@ -60,3 +62,196 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 78, 0,
 
 [node name="Corner6" parent="." instance=ExtResource("3_sjtk2")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 60, 0, 130)
+
+[node name="StraightHallway8" parent="." instance=ExtResource("1_r7kxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160, 0, 60)
+
+[node name="Corner7" parent="." instance=ExtResource("3_sjtk2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 220, 0, 40)
+
+[node name="YJunction2" parent="." instance=ExtResource("5_v1ugs")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 240, 0, 0)
+
+[node name="YJunction3" parent="." instance=ExtResource("5_v1ugs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 0, -100)
+
+[node name="Corner8" parent="." instance=ExtResource("3_sjtk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 190, 0, -90)
+
+[node name="4WayConnector2" parent="." instance=ExtResource("2_blfhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -140)
+
+[node name="BigChamber" parent="." instance=ExtResource("6_sjtk2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 443, 0, -5)
+
+[node name="StraightHallway11" parent="." instance=ExtResource("1_r7kxl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 220, 0, 0)
+
+[node name="keychamber" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 200, 0, -140)
+
+[node name="StraightHallway13" parent="keychamber" instance=ExtResource("1_r7kxl")]
+
+[node name="YJunction6" parent="keychamber" instance=ExtResource("5_v1ugs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -10)
+
+[node name="Corner14" parent="keychamber" instance=ExtResource("3_sjtk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 0, 10)
+
+[node name="Corner15" parent="keychamber" instance=ExtResource("3_sjtk2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 120, 0, 70)
+
+[node name="Corner18" parent="keychamber" instance=ExtResource("3_sjtk2")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 150, 0, 40)
+
+[node name="Corner16" parent="keychamber" instance=ExtResource("3_sjtk2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 100, 0, -30)
+
+[node name="Corner17" parent="keychamber" instance=ExtResource("3_sjtk2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 90, 0, -30)
+
+[node name="Corner19" parent="keychamber" instance=ExtResource("3_sjtk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 0, -60)
+
+[node name="YJunction7" parent="keychamber" instance=ExtResource("5_v1ugs")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 160, 0, -30)
+
+[node name="YJunction8" parent="keychamber" instance=ExtResource("5_v1ugs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 130, 0, 40)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185, 5, 35)
+material_override = ExtResource("7_dt8wp")
+use_collision = true
+collision_layer = 641
+size = Vector3(10, 10, 10)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 205, 5, -65)
+material_override = ExtResource("7_dt8wp")
+use_collision = true
+collision_layer = 641
+size = Vector3(10, 10, 10)
+
+[node name="StraightHallway15" parent="." instance=ExtResource("1_r7kxl")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 240, 0, -100)
+
+[node name="StraightHallway16" parent="." instance=ExtResource("1_r7kxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 0, -113)
+
+[node name="StraightHallway18" parent="." instance=ExtResource("1_r7kxl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 60, 0, -30)
+
+[node name="YJunction9" parent="." instance=ExtResource("5_v1ugs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160, 0, -110)
+
+[node name="Corner20" parent="." instance=ExtResource("3_sjtk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160, 0, -80)
+
+[node name="YJunction10" parent="." instance=ExtResource("5_v1ugs")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 200, 0, -50)
+
+[node name="YJunction11" parent="." instance=ExtResource("5_v1ugs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 170, 0, 30)
+
+[node name="YJunction12" parent="." instance=ExtResource("5_v1ugs")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 300, 0, 40)
+
+[node name="Corner22" parent="." instance=ExtResource("3_sjtk2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 320, 0, 40)
+
+[node name="Corner23" parent="." instance=ExtResource("3_sjtk2")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 260, 0, 70)
+
+[node name="StraightHallway20" parent="." instance=ExtResource("1_r7kxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 260, 0, 60)
+
+[node name="YJunction7" parent="." instance=ExtResource("5_v1ugs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 210, 0, -30)
+
+[node name="Diamond" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 448, 0, -78)
+
+[node name="StraightHallway13" parent="Diamond" instance=ExtResource("1_r7kxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 28)
+
+[node name="StraightHallway14" parent="Diamond" instance=ExtResource("1_r7kxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, -32)
+
+[node name="YJunction6" parent="Diamond" instance=ExtResource("5_v1ugs")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 122, 0, 38)
+
+[node name="YJunction8" parent="Diamond" instance=ExtResource("5_v1ugs")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 122, 0, -2)
+
+[node name="YJunction13" parent="Diamond" instance=ExtResource("5_v1ugs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0, -12)
+
+[node name="YJunction17" parent="Diamond" instance=ExtResource("5_v1ugs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, -42)
+
+[node name="StraightHallway21" parent="Diamond" instance=ExtResource("1_r7kxl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -28, 0, -22)
+
+[node name="StraightHallway22" parent="Diamond" instance=ExtResource("1_r7kxl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -28, 0, 38)
+
+[node name="StraightHallway23" parent="Diamond" instance=ExtResource("1_r7kxl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 12, 0, 8)
+
+[node name="StraightHallway24" parent="Diamond" instance=ExtResource("1_r7kxl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 42, 0, 8)
+
+[node name="YJunction14" parent="Diamond" instance=ExtResource("5_v1ugs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98, 0, -32)
+
+[node name="YJunction15" parent="Diamond" instance=ExtResource("5_v1ugs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98, 0, 8)
+
+[node name="YJunction16" parent="Diamond" instance=ExtResource("5_v1ugs")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18, 0, 18)
+
+[node name="YJunction18" parent="Diamond" instance=ExtResource("5_v1ugs")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 52, 0, -12)
+
+[node name="YJunction19" parent="Diamond" instance=ExtResource("5_v1ugs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 18)
+
+[node name="Corner9" parent="Diamond" instance=ExtResource("3_sjtk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 122, 0, -22)
+
+[node name="Corner10" parent="Diamond" instance=ExtResource("3_sjtk2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 152, 0, -2)
+
+[node name="YJunction20" parent="Diamond" instance=ExtResource("5_v1ugs")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 52, 0, 48)
+
+[node name="Corner11" parent="Diamond" instance=ExtResource("3_sjtk2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -128, 0, 48)
+
+[node name="Corner11" parent="." instance=ExtResource("3_sjtk2")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 350, 0, -90)
+
+[node name="Corner12" parent="." instance=ExtResource("3_sjtk2")]
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 300, 0, -150)
+
+[node name="YJunction4" parent="." instance=ExtResource("5_v1ugs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 240, 0, -150)
+
+[node name="StraightHallway12" parent="." instance=ExtResource("1_r7kxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 280, 0, -150)
+
+[node name="Corner9" parent="." instance=ExtResource("3_sjtk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 280, 0, -130)
+
+[node name="StraightHallway13" parent="." instance=ExtResource("1_r7kxl")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 310, 0, -100)
+
+[node name="StraightHallway14" parent="." instance=ExtResource("1_r7kxl")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 330, 0, -30)
+
+[node name="YJunction5" parent="." instance=ExtResource("5_v1ugs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 280, 0, -30)
+
+[node name="YJunction6" parent="." instance=ExtResource("5_v1ugs")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 310, 0, -30)

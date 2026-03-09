@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=4 uid="uid://dc02nr86bcj3n"]
+[gd_scene load_steps=89 format=4 uid="uid://c1hd8mm8jg54t"]
 
 [ext_resource type="Material" uid="uid://ilhovwm8o7cv" path="res://assets/environment/anthill/Materials/StraightHallwayMat/StraightHallwayMat.tres" id="1_p6aob"]
 [ext_resource type="Material" uid="uid://bwsrefgnrq6ku" path="res://assets/environment/anthill/Materials/4WayConnectorMat/4WayConnectorMat.tres" id="2_cwgx7"]
@@ -1150,6 +1150,20 @@ transform = Transform3D(4.17233e-05, -100, 0, 0, 0, 100, -100, -4.47035e-05, 0, 
 material_override = ExtResource("6_tvevw")
 mesh = SubResource("ArrayMesh_guqtp")
 skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pieces-LayOut-With-PremadeMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -263, -12, -13)
+material_override = ExtResource("6_tvevw")
+use_collision = true
+collision_layer = 641
+size = Vector3(325, 1, 453)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pieces-LayOut-With-PremadeMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -145, 0, 74.5)
+material_override = ExtResource("6_tvevw")
+use_collision = true
+collision_layer = 641
+size = Vector3(29, 1, 30)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(100, -2.38419e-05, -4.9738e-12, 0, -1.19209e-05, 100, -2.38419e-05, -100, -1.19209e-05, -229.84, 0, -9.98978)

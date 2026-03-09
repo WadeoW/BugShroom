@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=55 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
@@ -30,7 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://c5mbgxtnp8p44" path="res://assets/environment/Pedestal/mushroom_pedestal.tscn" id="29_5mvff"]
 [ext_resource type="PackedScene" uid="uid://bfas6xneyxj0q" path="res://entities/ant/ant_queen.tscn" id="29_w3rk5"]
 [ext_resource type="PackedScene" uid="uid://cp14j0gmpdxl0" path="res://entities/Collectibles/Pinecone.tscn" id="30_5mvff"]
-[ext_resource type="PackedScene" uid="uid://dc02nr86bcj3n" path="res://assets/environment/anthill/prebuilt_anthill.tscn" id="31_40n85"]
+[ext_resource type="PackedScene" uid="uid://c1hd8mm8jg54t" path="res://assets/environment/anthill/prebuilt_anthill.tscn" id="31_40n85"]
 [ext_resource type="Material" uid="uid://bkmyk6fqjc4aq" path="res://assets/environment/anthill/Materials/SmallChamberMat/SmallChamberMat.tres" id="32_gb15f"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gh4u"]
@@ -4636,7 +4636,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -145.848, 0.627389, -352.02)
 [node name="Rock_type_2" parent="environment/rocks" instance=ExtResource("18_kjvhd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1099, 0.934938, 9.96147)
 
-[node name="Rock_type_17" parent="environment/rocks" instance=ExtResource("18_kjvhd")]
+[node name="Rock_type_17" parent="environment/rocks" groups=["Collectible"] instance=ExtResource("18_kjvhd")]
 transform = Transform3D(0.262307, -0.964984, 0, 0.964984, 0.262307, 0, 0, 0, 1, -228.849, 0.934938, -236.807)
 mass = 100.0
 
