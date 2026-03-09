@@ -11,15 +11,18 @@ extends BugBase
 const DEAD_ANT_MATERIAL = preload("res://entities/ant/dead_ant_material.tres")
 
 var has_alerted_allies: bool = false
+# Navigation
+@onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
+@export var navigating_to_queen := false
+@export var randomly_navigating := false
+@onready var queen: Node3D = get_tree().current_scene.get_node("AntQueen")
 
 @onready var health_bar: ProgressBar = $SubViewport/HealthBar3D
-
-#Sound Variables
+# Sound Variables
 @onready var hit_sound_3d: AudioStreamPlayer3D = $Audio/HitSound3D
 @onready var walk_sound_3d: AudioStreamPlayer3D = $Audio/WalkSound3D
 @onready var death_sound_3d: AudioStreamPlayer3D = $Audio/DeathSound3D
 @onready var attack_sound_3d: AudioStreamPlayer3D = $Audio/AttackSound3D
-
 
 func _ready():
 	speed = ant_speed
@@ -36,6 +39,20 @@ func _ready():
 	
 	health_bar.max_value = ant_health
 	health_bar.value = ant_health
+
+func _physics_process(delta: float) -> void:
+	if navigating_to_queen and queen != null:
+		if navigation_agent_3d.target_position == Vector3.ZERO:
+			navigation_agent_3d.set_target_position(queen.global_position)
+		var next_point = navigation_agent_3d.get_next_path_position()
+		var direction = (next_point - global_position).normalized()
+		velocity.x = direction.x * speed + knockback.x
+		velocity.z = direction.z * speed + knockback.y
+		move_and_slide()
+		_rotate_to_velocity(delta, rotationSpeed)
+		return
+	else:
+		super._physics_process(delta)
 
 func _try_attack() -> void:
 	if not aggressive:

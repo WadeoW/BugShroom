@@ -44,10 +44,8 @@ var pathfinding_raycast: RayCast3D # only used by ants
 
 # Dropping off dead ant variables
 var next_anthill_position: Node3D = null
-@onready var anthill_entrance_position: Node3D = get_tree().current_scene.get_node("AntHill/Entrance Position")
-@onready var anthill_drop_off_position: Node3D = get_tree().current_scene.get_node("AntHill/Drop Off Position")
-@onready var anthill_turn_around: Node3D = get_tree().current_scene.get_node("AntHill/Turn Around")
-@onready var anthill_exit: Node3D = get_tree().current_scene.get_node("AntHill/Exit")
+@onready var anthill_entrance_position: Node3D = get_tree().current_scene.get_node("AntHill2/Entrance")
+@onready var anthill_exit: Node3D = get_tree().current_scene.get_node("AntHill2/Exit")
 
 # dead bug variables
 var should_shrink_on_death := false
@@ -224,14 +222,10 @@ func _seek_dead_bug(delta: float):
 		is_carrying_dead_bug = true
 		bug_being_carried.is_being_carried = true
 
+# go to ant hill and drop dead ant off
 func _seek_ant_hill():
-	# manually control ant to enter the hill and drop its dead ant at the queen then exit
 	if global_position.distance_to(anthill_entrance_position.global_position) < 0.3:
-		next_anthill_position = anthill_drop_off_position
-	elif global_position.distance_to(anthill_drop_off_position.global_position) < 0.3:
 		_release_dead_bug(true)
-		next_anthill_position = anthill_turn_around
-	elif global_position.distance_to(anthill_turn_around.global_position) < 0.3:
 		next_anthill_position = anthill_exit
 	elif global_position.distance_to(anthill_exit.global_position) < 0.3:
 		next_anthill_position = null
