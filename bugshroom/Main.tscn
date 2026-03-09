@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=59 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://ba406h63j4154" path="res://assets/environment/rock/big_rock.tscn" id="17_5tuhn"]
 [ext_resource type="Material" uid="uid://c8ct5wrjs116m" path="res://assets/environment/log/log_textures/log_texture.tres" id="17_sc1dx"]
 [ext_resource type="PackedScene" uid="uid://cj7pwf21i24i8" path="res://assets/environment/rock/rock_type_2.tscn" id="18_kjvhd"]
+[ext_resource type="PackedScene" uid="uid://cqar7qxclgxr5" path="res://entities/Collectibles/Rock_Collectible/rock_collectible.tscn" id="18_sph85"]
 [ext_resource type="AudioStream" uid="uid://ik5107csyasx" path="res://assets/Sound/mushroom_whimsy (2).mp3" id="20_2gh4u"]
 [ext_resource type="PackedScene" uid="uid://tks3mby8em48" path="res://assets/environment/moss/moss_bed.tscn" id="21_devvj"]
 [ext_resource type="PackedScene" uid="uid://bv51mew2febqv" path="res://assets/environment/shelf_fungus/ChickenOfTheWoods.tscn" id="22_3b0ty"]
@@ -32,6 +33,9 @@
 [ext_resource type="PackedScene" uid="uid://cp14j0gmpdxl0" path="res://entities/Collectibles/Pinecone.tscn" id="30_5mvff"]
 [ext_resource type="PackedScene" uid="uid://c1hd8mm8jg54t" path="res://assets/environment/anthill/prebuilt_anthill.tscn" id="31_40n85"]
 [ext_resource type="Material" uid="uid://bkmyk6fqjc4aq" path="res://assets/environment/anthill/Materials/SmallChamberMat/SmallChamberMat.tres" id="32_gb15f"]
+[ext_resource type="PackedScene" uid="uid://dpfbrftkm6xvc" path="res://assets/environment/anthill/ant_hill.tscn" id="33_gb15f"]
+[ext_resource type="PackedScene" uid="uid://dh3xd6254bg32" path="res://entities/Collectibles/Boss_Beetle_Head/boss_beetle_collectible.tscn" id="35_vi5kq"]
+[ext_resource type="PackedScene" uid="uid://bkm5bkdyn3f4g" path="res://entities/Collectibles/Ant_Queen_Head/ant_queen_collectible.tscn" id="36_5mkgo"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gh4u"]
 load_path = "res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-c7c740f4ba395b910b721a3d2075f764.s3tc.ctex"
@@ -311,6 +315,7 @@ metadata/_edit_lock_ = true
 
 [node name="boxes" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.1401, 0, 113.883)
+visible = false
 material_override = SubResource("StandardMaterial3D_fpfj3")
 use_collision = true
 
@@ -460,7 +465,8 @@ max_bugs = 3
 spawn_timer = NodePath("SpawnTimer1")
 
 [node name="SpawnTimer1" type="Timer" parent="BeetleManager"]
-wait_time = 4.0
+wait_time = 30.0
+one_shot = true
 autostart = true
 
 [node name="Beetle" parent="BeetleManager" instance=ExtResource("7_devvj")]
@@ -4513,7 +4519,7 @@ transform = Transform3D(8.555, 0, 0, 0, 8.555, 0, 0, 0, 8.555, 373.957, 4.19539,
 transform = Transform3D(8.555, 0, 0, 0, 8.555, 0, 0, 0, 8.555, -362.331, -3.90609, 362.905)
 
 [node name="Redwood8" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
-transform = Transform3D(6.64905, 0, 5.38314, 0, 8.555, 0, -5.38314, 0, 6.64905, -94.3533, 4.19545, 341.745)
+transform = Transform3D(6.64905, 0, 5.38314, 0, 8.555, 0, -5.38314, 0, 6.64905, -94.3533, -0.675093, 341.745)
 
 [node name="Redwood9" parent="environment/redwoods" instance=ExtResource("14_mxvw5")]
 transform = Transform3D(2.82128, 0, 2.28414, 0, 3.63, 0, -2.28414, 0, 2.82128, 350.298, -2.40162, 147.067)
@@ -4562,6 +4568,13 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 11.
 material_override = ExtResource("14_fpfj3")
 size = Vector3(2, 23.9198, 800)
 
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="environment/walls/CSGCombiner3D/CSGBox3D4"]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 1, -4.37114e-08, 4.37114e-08, -4.37114e-08, -4.37114e-08, 1, 0, -9, 143)
+material_override = ExtResource("14_fpfj3")
+operation = 2
+radius = 4.0
+height = 5.0
+
 [node name="rocks" type="Node" parent="environment"]
 
 [node name="rock circle" type="Node" parent="environment/rocks"]
@@ -4609,7 +4622,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.8026, 0.6274, 98.1259)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 154.017, 0.627404, -124.48)
 
 [node name="Rock3" parent="environment/rocks" instance=ExtResource("16_sc1dx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.468842, 0.627404, -18.8732)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.42402, 0.627404, -28.2532)
 
 [node name="Rock4" parent="environment/rocks" instance=ExtResource("16_sc1dx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.1601, 0.627404, -179.995)
@@ -4633,12 +4646,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -303.492, 0.627404, -141.946)
 [node name="Rock10" parent="environment/rocks" instance=ExtResource("16_sc1dx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -145.848, 0.627389, -352.02)
 
-[node name="Rock_type_2" parent="environment/rocks" instance=ExtResource("18_kjvhd")]
+[node name="Rock_type_2" parent="environment/rocks" groups=["Collectible", "Rock_Collectible"] instance=ExtResource("18_kjvhd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1099, 0.934938, 9.96147)
 
-[node name="Rock_type_17" parent="environment/rocks" groups=["Collectible"] instance=ExtResource("18_kjvhd")]
+[node name="Rock_Collectible" parent="environment/rocks" instance=ExtResource("18_sph85")]
 transform = Transform3D(0.262307, -0.964984, 0, 0.964984, 0.262307, 0, 0, 0, 1, -228.849, 0.934938, -236.807)
-mass = 100.0
 
 [node name="Rock_type_4" parent="environment/rocks" instance=ExtResource("18_kjvhd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -111.146, 0.934938, -101.473)
@@ -4718,7 +4730,7 @@ shape = SubResource("ConcavePolygonShape3D_kjvhd")
 transform = Transform3D(-2.88216, 0, -0.832547, 0, 3, 0, 0.832547, 0, -2.88216, 44.7369, 52.2762, -341.81)
 
 [node name="Cylinder" parent="environment/log/log_bugshroom_v05" index="0"]
-transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, -10.0065, 0)
+transform = Transform3D(100, 3.8147e-06, 2.27374e-13, 0, -1.19209e-05, 100, 3.8147e-06, -100, -1.19209e-05, 12.4014, -10.0065, 5.85583)
 material_override = ExtResource("17_sc1dx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="environment/log/log_bugshroom_v05/Cylinder" index="0"]
@@ -4877,7 +4889,7 @@ transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -95.9112, 19.0281
 transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -106.935, 35.0726, -192.135)
 
 [node name="MossBed6" parent="environment" instance=ExtResource("21_devvj")]
-transform = Transform3D(0.0133856, 0.917187, 0.398233, -0.996399, 0.0455813, -0.0714884, -0.0837202, -0.395842, 0.914494, -306.215, 4.47355, 80.0995)
+transform = Transform3D(0.91706, 0, 0.398749, 0, 1, 0, -0.398749, 0, 0.91706, -298.697, -0.298677, 80.0995)
 
 [node name="Node3D" type="CSGCombiner3D" parent="environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222122, 0, 0.0406113)
@@ -4940,61 +4952,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -259.786, 0.500001, -191.766)
 [node name="AntQueen" parent="." instance=ExtResource("29_w3rk5")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 64.056, 3.8147e-06, -240.468)
 
-[node name="AntHill" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.936611, 0.350371, 0, -0.350371, 0.936611, 106.139, -0.892085, -259.326)
-
-[node name="Entrance Position" type="Node3D" parent="AntHill"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78854, -24.014, 66.5231)
-
-[node name="Drop Off Position" type="Node3D" parent="AntHill"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78854, -9.00957, 26.4133)
-
-[node name="Turn Around" type="Node3D" parent="AntHill"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177429, -9.00957, 26.4133)
-
-[node name="Exit" type="Node3D" parent="AntHill"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177002, -29.2034, 80.3944)
-
-[node name="AntHillMound" type="CSGCombiner3D" parent="AntHill"]
-transform = Transform3D(1, 0, 0, 0, 0.936611, -0.350371, 0, 0.350371, 0.936611, 38.4112, -0.22052, 3.1356)
-visible = false
-use_collision = true
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="AntHill/AntHillMound"]
-transform = Transform3D(1.155, 0, 0, 0, 1.155, 0, 0, 0, 1.155, -37, 31.6605, 12.2916)
-radius = 45.0
-height = 19.0
-sides = 10
-cone = true
-material = ExtResource("4_c2ibq")
-
-[node name="CSGTorus3D" type="CSGTorus3D" parent="AntHill/AntHillMound"]
-transform = Transform3D(1.155, 0, 0, 0, 1.155, 0, 0, 0, 1.155, -37, 4.75, 12.2916)
-inner_radius = 36.0
-outer_radius = 50.0
-sides = 10
-ring_sides = 8
-material = ExtResource("4_c2ibq")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="AntHill/AntHillMound/CSGTorus3D"]
-transform = Transform3D(1.155, 0, 0, 0, -5.04867e-08, -1.155, 0, 1.155, -5.04867e-08, 0, -3.75172, 40.6453)
-operation = 2
-radius = 2.46973
-height = 13.5528
-material = ExtResource("4_c2ibq")
-
-[node name="CSGTorus3D2" type="CSGTorus3D" parent="AntHill/AntHillMound"]
-transform = Transform3D(1.155, 0, 0, 0, 1.155, 0, 0, 0, 1.155, -37, 15.75, 12.2916)
-inner_radius = 36.0
-outer_radius = 50.0
-sides = 10
-ring_sides = 8
-material = ExtResource("4_c2ibq")
-
 [node name="MushroomPedestal" parent="." instance=ExtResource("29_5mvff")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8618, 0, 33.4685)
 
@@ -5043,11 +5000,29 @@ material_override = ExtResource("32_gb15f")
 use_collision = true
 size = Vector3(10, 10, 10)
 
+[node name="AntHill2" parent="." instance=ExtResource("33_gb15f")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 138, -2, -399)
+
+[node name="BossBeetleCollectible" parent="." instance=ExtResource("35_vi5kq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 2, 28)
+
+[node name="AntQueenCollectible" parent="." instance=ExtResource("36_5mkgo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 4, 30)
+
+[node name="BossBeetleSpawnpoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -267, 0, 235)
+
+[node name="BossBeetleSpawner" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]
 [connection signal="timeout" from="AntManager/SpawnTimer" to="AntManager" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="BeetleManager/SpawnTimer1" to="BeetleManager" method="_on_spawn_timer_1_timeout"]
 [connection signal="timeout" from="AphidManager/SpawnTimer2" to="AphidManager" method="_on_spawn_timer_2_timeout"]
+[connection signal="timeout" from="BossBeetleSpawner" to="." method="_on_boss_beetle_spawner_timeout"]
 
 [editable path="environment/log/log_bugshroom_v01"]
 [editable path="environment/log/log_bugshroom_v05"]

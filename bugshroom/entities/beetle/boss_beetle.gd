@@ -1,7 +1,7 @@
 extends BugBase
 
-@export var beetle_speed: float = 4.0
-@export var beetle_health: float = 300.0
+@export var beetle_speed: float = 6.0
+@export var beetle_health: float = 1000.0
 @export var beetle_damage: float = 40.0
 @export var beetle_attack_speed: float = 2.5
 
@@ -9,10 +9,10 @@ extends BugBase
 @export var beetle_attack_range: float = 6
 @export var beetle_nutrient_value: float = 100
 
-@export var is_boss_beetle = false
+@export var is_boss_beetle = true
 
 @onready var animation_tree: AnimationTree = $AnimationTree
-@onready var animation_player: AnimationPlayer = $beetle_walkanimation/AnimationPlayer
+@onready var animation_player: AnimationPlayer = $boss_beetle2/AnimationPlayer
 const hit_delay = 0.4 #change with attack animation speed
 
 @onready var health_bar: ProgressBar = $SubViewport/HealthBar3D
@@ -33,6 +33,8 @@ var charge_target: Node3D
 #Sound variables
 @onready var death_sound_3d: AudioStreamPlayer3D = $Audio/DeathSound3D
 @onready var walk_sound_3d: AudioStreamPlayer3D = $Audio/WalkSound3D
+@onready var boss_beetle_alert_sound_3d: AudioStreamPlayer3D = $Audio/BossBeetleAlertSound3D
+@onready var beetle_charge_sound_3d: AudioStreamPlayer3D = $Audio/BeetleChargeSound3D
 
 # territory variables
 var in_territory := true
@@ -73,6 +75,7 @@ func _physics_process(delta: float) -> void:
 			charge_target = closest_bug
 			is_charging = true
 		if is_charging:
+			boss_beetle_alert_sound_3d.play()
 			can_charge = false
 			has_hit_enemy_with_charge = false
 			charge_direction = charge_target.global_position - global_position; charge_direction.y = 0; charge_direction = charge_direction.normalized()
@@ -191,7 +194,7 @@ func hit_enemy() -> void:
 		can_attack = true
 
 func take_damage(amount: float) -> void:
-	animation_tree.set("parameters/TakeDamageOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	#animation_tree.set("parameters/TakeDamageOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	if is_dead:
 		return
 	health -= amount
@@ -207,5 +210,5 @@ func _update() -> void:
 
 func die() -> void:
 	death_sound_3d.play()
-	animation_tree.set("parameters/Transition/current_state", "dead")
+	#animation_tree.set("parameters/Transition/current_state", "dead")
 	super.die()

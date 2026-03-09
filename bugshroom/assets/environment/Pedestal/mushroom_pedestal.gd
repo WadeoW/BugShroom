@@ -36,8 +36,14 @@ func snap_object(collectible):
 
 func _on_snapping_radius_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Collectible") and body is RigidBody3D and currently_holding_object == false:
-		snap_object(body)
-		
+		if pedestal_number == 1 and body.is_in_group("Pinecone"):
+			snap_object(body)
+		if pedestal_number == 2 and body.is_in_group("Rock_Collectible"):
+			snap_object(body)
+		if pedestal_number ==3 and body.is_in_group("Ant_Queen_Head"):
+			snap_object(body)
+		if pedestal_number == 4 and body.is_in_group("Boss_Beetle_Head"):
+			snap_object(body)
 
 
 func _on_snapping_radius_body_exited(body: Node3D) -> void:

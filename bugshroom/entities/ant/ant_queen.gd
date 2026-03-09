@@ -13,6 +13,13 @@ extends BugBase
 # attack variables
 @onready var larvae_attack = preload("res://entities/ant/ant_queen_attacks/larvae_attack.tscn")
 @onready var larvae_attack_spawnpoint: Node3D = $"larvae attack spawnpoint"
+#collectible variables
+@onready var ant_queen_head = preload("res://entities/Collectibles/Ant_Queen_Head/ant_queen_collectible.tscn")
+
+#Animation variables
+@onready var animation_player: AnimationPlayer = $antqueen_animations/AnimationPlayer
+@onready var animation_tree: AnimationTree = $AnimationTree
+
 
 func _ready():
 	speed = ant_speed
@@ -65,11 +72,13 @@ func _physics_process(delta: float) -> void:
 
 func _on_larvae_attack_timer_timeout() -> void:
 	print("larvae attacking")
+	animation_tree.set("parameters/SummonAntOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	var distance := global_position.distance_to(_get_closest_in_group("player").global_position)
 	if distance <= detection_range * 3:
 		var attack = larvae_attack.instantiate()
 		add_sibling(attack)
 		attack.global_position = larvae_attack_spawnpoint.global_position
+		
 
 func _try_attack() -> void:
 	if not aggressive:
@@ -77,6 +86,7 @@ func _try_attack() -> void:
 	if not target or not can_attack:
 		return
 	if attack_hit_box.is_colliding():
+		animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		var total_collisions = attack_hit_box.get_collision_count()
 		print("total enemy attack collisions: ", total_collisions)
 		can_attack = false
@@ -104,8 +114,11 @@ func become_dead_bug() -> void:
 	should_shrink_on_death = true
 
 func die() -> void:
-	#animation_tree.set("parameters/conditions/is_dead", true)
+	animation_tree.set("parameters/Transition/current_state", "dead")
 	death_sound_3d.play()
+	var collectible = ant_queen_head.instantiate()
+	add_sibling(collectible)
+	collectible.global_position = global_position
 	super.die()
 
 func take_damage(amount: float) -> void:

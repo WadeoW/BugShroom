@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://dcfak4nea553t"]
+
+[ext_resource type="Texture2D" uid="uid://d4f0y6f1ljr1b" path="res://entities/ant/Ant_Queen/ant_queen_BaseColor.png" id="1_7vtow"]
+[ext_resource type="Texture2D" uid="uid://c68ul22hkqoip" path="res://entities/ant/Ant_Queen/ant_queen_Height.png" id="2_j4bco"]
+[ext_resource type="Texture2D" uid="uid://31jblo87o57y" path="res://entities/ant/Ant_Queen/ant_queen_Metallic.png" id="3_y2ihf"]
+[ext_resource type="Texture2D" uid="uid://c5skl5c6kn5al" path="res://entities/ant/Ant_Queen/ant_queen_Normal.png" id="4_g8cl8"]
+[ext_resource type="Texture2D" uid="uid://of74nw1v15m1" path="res://entities/ant/Ant_Queen/ant_queen_Roughness.png" id="5_hmglo"]
+
+[resource]
+albedo_texture = ExtResource("1_7vtow")
+metallic = 1.0
+metallic_texture = ExtResource("3_y2ihf")
+roughness_texture = ExtResource("5_hmglo")
+normal_enabled = true
+normal_texture = ExtResource("4_g8cl8")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_j4bco")

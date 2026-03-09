@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://dxxhpx75toqb1"]
+
+[ext_resource type="Texture2D" uid="uid://cypmjcxnbr1en" path="res://entities/beetle/bossbeetlemat/boss_beetle_BaseColor.png" id="1_5hg65"]
+[ext_resource type="Texture2D" uid="uid://l60bgqmt2dhf" path="res://entities/beetle/bossbeetlemat/boss_beetle_Height.png" id="2_tyvlw"]
+[ext_resource type="Texture2D" uid="uid://beq476ve3ldda" path="res://entities/beetle/bossbeetlemat/boss_beetle_Metallic.png" id="3_xg8vp"]
+[ext_resource type="Texture2D" uid="uid://bu1a6yninl7y0" path="res://entities/beetle/bossbeetlemat/boss_beetle_Normal.png" id="4_gdj8e"]
+[ext_resource type="Texture2D" uid="uid://d1kn1jp3w3ofi" path="res://entities/beetle/bossbeetlemat/boss_beetle_Roughness.png" id="5_3wq4a"]
+
+[resource]
+albedo_texture = ExtResource("1_5hg65")
+metallic = 1.0
+metallic_texture = ExtResource("3_xg8vp")
+roughness_texture = ExtResource("5_3wq4a")
+normal_enabled = true
+normal_texture = ExtResource("4_gdj8e")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_tyvlw")

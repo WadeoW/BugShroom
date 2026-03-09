@@ -20,6 +20,10 @@ var colony_nutrient_gain_rate = 25
 @onready var background_music: AudioStreamPlayer = $BackgroundMusic
 @onready var beetle_track: AudioStreamPlayer = $BeetleTrack
 
+#BossBeetleSpawning variables
+@onready var boss_beetle_scene = preload("res://entities/beetle/BossBeetle.tscn")
+@onready var boss_beetle_spawnpoint: Node3D = $BossBeetleSpawnpoint
+
 
 @onready var players = {"player_1": player1, "player_2": player2}
 
@@ -78,3 +82,9 @@ func _on_player_exited_beetle_territory():
 		beetle_track.stop()
 	if !background_music.playing:
 		background_music.play()
+
+
+func _on_boss_beetle_spawner_timeout() -> void:
+	var boss_beetle = boss_beetle_scene.instantiate()
+	add_child(boss_beetle)
+	boss_beetle.global_position = boss_beetle_spawnpoint.global_position
