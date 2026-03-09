@@ -28,11 +28,11 @@
 [ext_resource type="PackedScene" uid="uid://bqyg7gpaalqpp" path="res://assets/environment/stick/stick.tscn" id="24_hhcpw"]
 [ext_resource type="AudioStream" uid="uid://cg7g1hrm4qfxq" path="res://assets/Sound/beetle_track_demo.mp3" id="25_5mvff"]
 [ext_resource type="PackedScene" uid="uid://bi75gd3ried8r" path="res://entities/beetle/beetle_territory.tscn" id="25_mxvw5"]
+[ext_resource type="AudioStream" uid="uid://dmtf55pe2hgbw" path="res://assets/Sound/ant_track_bugshroom.mp3" id="26_sph85"]
 [ext_resource type="PackedScene" uid="uid://c5mbgxtnp8p44" path="res://assets/environment/Pedestal/mushroom_pedestal.tscn" id="29_5mvff"]
 [ext_resource type="PackedScene" uid="uid://bfas6xneyxj0q" path="res://entities/ant/ant_queen.tscn" id="29_w3rk5"]
 [ext_resource type="PackedScene" uid="uid://cp14j0gmpdxl0" path="res://entities/Collectibles/Pinecone.tscn" id="30_5mvff"]
 [ext_resource type="PackedScene" uid="uid://dpfbrftkm6xvc" path="res://assets/environment/anthill/ant_hill.tscn" id="33_gb15f"]
-[ext_resource type="PackedScene" uid="uid://dh3xd6254bg32" path="res://entities/Collectibles/Boss_Beetle_Head/boss_beetle_collectible.tscn" id="35_vi5kq"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gh4u"]
 load_path = "res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-c7c740f4ba395b910b721a3d2075f764.s3tc.ctex"
@@ -4924,6 +4924,14 @@ visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
 process_material = SubResource("ParticleProcessMaterial_hhcpw")
 draw_pass_1 = SubResource("SphereMesh_xrxkg")
 
+[node name="AntHillTrack" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 165, 32, -830)
+stream = ExtResource("26_sph85")
+attenuation_model = 3
+volume_db = -10.0
+max_distance = 450.0
+parameters/looping = true
+
 [node name="BeetleTrack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_5mvff")
 parameters/looping = true
@@ -4944,14 +4952,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -259.786, 0.500001, -191.766)
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 64.056, 3.8147e-06, -240.468)
 
 [node name="MushroomPedestal" parent="." instance=ExtResource("29_5mvff")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8618, 0, 33.4685)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2618, 0, 33.0685)
 
 [node name="MushroomPedestal2" parent="." instance=ExtResource("29_5mvff")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.69381, 4.76837e-07, 23.854)
 pedestal_number = 2
 
 [node name="MushroomPedestal3" parent="." instance=ExtResource("29_5mvff")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.70098, 0, 21.8798)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.10098, 0, 23.2798)
 pedestal_number = 3
 
 [node name="MushroomPedestal4" parent="." instance=ExtResource("29_5mvff")]
@@ -4963,9 +4971,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -157.286, 48.8196, -205.181)
 
 [node name="AntHill" parent="." instance=ExtResource("33_gb15f")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 138, -2, -399)
-
-[node name="BossBeetleCollectible" parent="." instance=ExtResource("35_vi5kq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 2, 28)
 
 [node name="BossBeetleSpawnpoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -267, 0, 235)

@@ -4,11 +4,11 @@ class_name Inkcap
 signal player_death
 
 var speed
-var WALK_SPEED = 4.0
-var SPRINT_SPEED = 8.0
+var WALK_SPEED = 5.0
+var SPRINT_SPEED = 10.0
 var inputVelocity: Vector2
 var isSprinting: bool = false
-const JUMP_VELOCITY = 9
+const JUMP_VELOCITY = 8
 const SENSITIVITY = 0.005
 var gravity = 9.8
 var knockback: Vector2 = Vector2.ZERO

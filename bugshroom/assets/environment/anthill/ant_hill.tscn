@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpfbrftkm6xvc"]
+[gd_scene load_steps=9 format=3 uid="uid://dpfbrftkm6xvc"]
 
 [ext_resource type="PackedScene" uid="uid://4rl5deukn8ci" path="res://assets/environment/anthill/StraightHallway1x3AntHill.tscn" id="1_r7kxl"]
 [ext_resource type="PackedScene" uid="uid://bl0yfwut55wt6" path="res://assets/environment/anthill/4WayConnectorAntHill.tscn" id="2_blfhh"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dn335qo3wbk7l" path="res://assets/environment/anthill/YJunction3x4AntHill.tscn" id="5_v1ugs"]
 [ext_resource type="PackedScene" uid="uid://davxfgabsorky" path="res://assets/environment/anthill/BigChamber2EntranceAntHill.tscn" id="6_sjtk2"]
 [ext_resource type="Material" uid="uid://ilhovwm8o7cv" path="res://assets/environment/anthill/Materials/StraightHallwayMat/StraightHallwayMat.tres" id="7_dt8wp"]
+[ext_resource type="PackedScene" uid="uid://d23vp82ailbcn" path="res://assets/environment/anthill/Larva/egg.tscn" id="8_dt8wp"]
 
 [node name="AntHill" type="Node3D"]
 
@@ -366,3 +367,18 @@ transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 350, 0
 
 [node name="4WayConnector4" parent="." instance=ExtResource("2_blfhh")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 270, 10, 180)
+
+[node name="Egg" parent="." instance=ExtResource("8_dt8wp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112, 0.8, -31)
+
+[node name="Egg2" parent="." instance=ExtResource("8_dt8wp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110, 0.6, -10)
+
+[node name="Egg4" parent="." instance=ExtResource("8_dt8wp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130.2, 0.6, -24)
+
+[node name="Egg5" parent="." instance=ExtResource("8_dt8wp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 122.3, 0.6, -27.9)
+
+[node name="Egg3" parent="." instance=ExtResource("8_dt8wp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130, 0.6, -12)

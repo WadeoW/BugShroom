@@ -36,6 +36,9 @@ var charge_target: Node3D
 @onready var boss_beetle_alert_sound_3d: AudioStreamPlayer3D = $Audio/BossBeetleAlertSound3D
 @onready var beetle_charge_sound_3d: AudioStreamPlayer3D = $Audio/BeetleChargeSound3D
 
+#Collectible variables
+@onready var boss_beetle_head = preload("res://entities/Collectibles/Boss_Beetle_Head/boss_beetle_collectible.tscn")
+
 # territory variables
 var in_territory := true
 @onready var children = get_parent().get_children()
@@ -210,5 +213,8 @@ func _update() -> void:
 
 func die() -> void:
 	death_sound_3d.play()
+	var collectible = boss_beetle_head.instantiate()
+	add_sibling(collectible)
+	collectible.global_position = global_position
 	#animation_tree.set("parameters/Transition/current_state", "dead")
 	super.die()
