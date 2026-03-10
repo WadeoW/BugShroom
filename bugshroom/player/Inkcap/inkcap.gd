@@ -5,7 +5,7 @@ signal player_death
 
 var speed
 var WALK_SPEED = 5.0
-var SPRINT_SPEED = 50.0
+var SPRINT_SPEED = 10.0
 var inputVelocity: Vector2
 var isSprinting: bool = false
 const JUMP_VELOCITY = 8

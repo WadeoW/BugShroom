@@ -4973,7 +4973,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6188, 2.14794, 5.00752)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -267, 0, 235)
 
 [node name="BossBeetleSpawner" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 300.0
 one_shot = true
 autostart = true
 
