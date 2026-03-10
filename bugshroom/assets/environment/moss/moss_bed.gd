@@ -10,6 +10,10 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is not RigidBody3D:
 		body.velocity.y = 20
 		bounce_sound_3d.play()
+	else:
+		print("Moss collision with " + body.name)
+		body.linear_velocity.y = 20
+		bounce_sound_3d.play()
 	if body.is_in_group("aphids"):
 		body.velocity.y = 10
 		body.velocity.x = randf_range(-15, 15)

@@ -229,10 +229,10 @@ func take_damage(amount):
 		die()
 		
 func heal(amount):
-	if current_health < max_health:
-		current_health += amount
+	current_health += amount
+	current_health = clampf(current_health, 0, max_health)
 	update()
-	
+
 #Root down toggle function
 func toggle_root():
 	animation_tree.set("parameters/MovementRootBlend2/blend_amount", 1)

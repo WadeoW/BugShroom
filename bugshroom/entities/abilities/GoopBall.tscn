@@ -1,6 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfe4mxsr5rr3b"]
+[gd_scene load_steps=8 format=3 uid="uid://dfe4mxsr5rr3b"]
 
 [ext_resource type="Script" uid="uid://csd0u7aewt8ef" path="res://entities/abilities/goop_ball.gd" id="1_w42yo"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w42yo"]
+friction = 0.0
+bounce = 0.8
 
 [sub_resource type="SphereMesh" id="SphereMesh_llpyh"]
 
@@ -27,7 +31,7 @@ radial_segments = 16
 rings = 8
 
 [node name="Goop Ball" type="RigidBody3D"]
-collision_layer = 0
+physics_material_override = SubResource("PhysicsMaterial_w42yo")
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_w42yo")

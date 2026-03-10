@@ -188,12 +188,10 @@ func take_damage(amount):
 	if current_health <= 0 and !is_dead:
 		die()
 
-
 func heal(amount):
-	if current_health < max_health:
-		current_health += amount
+	current_health += amount
+	current_health = clampf(current_health, 0, max_health)
 	update()
-
 
 #Root down toggle function
 func toggle_root():
@@ -216,9 +214,9 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		if body.is_in_group("ants") or body.is_in_group("aphids"):
 			temp_disable_collision(body, 0.5)
 			body.apply_knockback(Vector3(kb_direction.x, 1, kb_direction.y), BUG_KB)
-		if body.is_in_group("beetles"):
+		if body.is_in_group("beetles") or body.is_in_group("ant_queen"):
 			apply_knockback(Vector3(-kb_direction.x, 2, -kb_direction.y), SELF_KB_ON_BEETLE)
-		var rollDamage = clampf(Vector2(velocity.x, velocity.z).length() * ROLLING_ATTACK_DAMAGE, 10, 100)
+		var rollDamage = clampf(Vector2(velocity.x, velocity.z).length() * ROLLING_ATTACK_DAMAGE, 10, 70)
 		body.take_damage(rollDamage)
 		print(body.name, " took ", rollDamage, " rolling damage")
 		return
