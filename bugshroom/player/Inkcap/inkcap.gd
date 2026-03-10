@@ -325,6 +325,7 @@ func grab():
 				grab_joint.node_b = closestBody.get_path()
 			add_collision_exception_with(closestBody)
 			print("grabbed ", grab_joint.node_b)
+			pickup_sound_3d.play()
 			isGrabbingItem = true
 		else:
 			print("no rigid or character bodies to grab")

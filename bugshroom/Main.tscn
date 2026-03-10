@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=62 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
@@ -37,8 +37,6 @@
 [ext_resource type="PackedScene" uid="uid://cp14j0gmpdxl0" path="res://entities/Collectibles/Pinecone.tscn" id="30_5mvff"]
 [ext_resource type="PackedScene" uid="uid://dpfbrftkm6xvc" path="res://assets/environment/anthill/ant_hill.tscn" id="33_gb15f"]
 [ext_resource type="PackedScene" uid="uid://cbyehopjbh684" path="res://assets/UI/CharacterSelectPopup.tscn" id="34_sph85"]
-[ext_resource type="PackedScene" uid="uid://bkm5bkdyn3f4g" path="res://entities/Collectibles/Ant_Queen_Head/ant_queen_collectible.tscn" id="38_ny7u2"]
-[ext_resource type="PackedScene" uid="uid://dh3xd6254bg32" path="res://entities/Collectibles/Boss_Beetle_Head/boss_beetle_collectible.tscn" id="39_x3yn0"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gh4u"]
 load_path = "res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-c7c740f4ba395b910b721a3d2075f764.s3tc.ctex"
@@ -66,6 +64,21 @@ bg_color = Color(0.828566, 0.595706, 0.566381, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2ibq"]
 bg_color = Color(0.827451, 0.054902, 0.121569, 1)
 
+[sub_resource type="Animation" id="Animation_3ccbu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_5mkgo"]
 resource_name = "flashing"
 length = 7.5
@@ -80,21 +93,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 0, 0, 0), Color(1, 0, 0, 1), Color(1, 0, 0, 0), Color(1, 0, 0, 1), Color(1, 0, 0, 0), Color(1, 0, 0, 1), Color(1, 0, 0, 0), Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_3ccbu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ny7u2"]
@@ -273,6 +271,9 @@ radius = 0.125
 height = 0.25
 radial_segments = 4
 rings = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5mkgo"]
+size = Vector3(1678, 3, 2003)
 
 [node name="World" type="Node3D" node_paths=PackedStringArray("colony_nutrient_bar")]
 script = ExtResource("1_5vvyt")
@@ -528,9 +529,6 @@ wait_time = 30.0
 one_shot = true
 autostart = true
 
-[node name="Beetle" parent="BeetleManager" instance=ExtResource("7_devvj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 195.694, 0.00524178, 118.782)
-
 [node name="AphidManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_timer")]
 script = ExtResource("3_r0du0")
 bug_scene = ExtResource("8_3b0ty")
@@ -599,13 +597,13 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.0627, 2.37678, -18.4488)
 
 [node name="dead_bug_task4" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.442, 2.37679, 200.258)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.442, 1.57679, 200.258)
 
 [node name="dead_bug_task5" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 240.549, 2.37679, 189.272)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 240.549, 1.37679, 189.272)
 
 [node name="dead_bug_task3" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 170.797, 2.37678, -40.997)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 170.797, 1.37678, -40.997)
 
 [node name="dead_bug_task2" parent="DeadBugTaskSpawner" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190.492, 2.37678, -92.2028)
@@ -4986,6 +4984,9 @@ transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -96.6099, 47.897,
 [node name="MossBed8" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
 transform = Transform3D(0.43, 0, 0, 0, 0.43, 0, 0, 0, 0.43, -105.668, 55.9631, -188.524)
 
+[node name="ChickenOfTheWoods9" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -82.3786, 29.4219, -142.22)
+
 [node name="MossBed6" parent="environment" instance=ExtResource("21_devvj")]
 transform = Transform3D(0.91706, 0, 0.398749, 0, 1, 0, -0.398749, 0, 0.91706, -298.697, -0.298677, 80.0995)
 
@@ -4997,27 +4998,27 @@ use_collision = true
 collision_layer = 129
 
 [node name="CSGBox3D" type="CSGBox3D" parent="environment/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.658, 1, 192.781)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 1, 192)
 material_override = ExtResource("4_c2ibq")
 size = Vector3(25, 2, 25)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="environment/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.658, 3, 192.781)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 3, 192)
 material_override = ExtResource("4_c2ibq")
 size = Vector3(20, 2, 20)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="environment/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.658, 5, 192.781)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 5, 192)
 material_override = ExtResource("4_c2ibq")
 size = Vector3(15, 2, 15)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="environment/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.658, 7, 192.781)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 7, 192)
 material_override = ExtResource("4_c2ibq")
 size = Vector3(10, 2, 10)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="environment/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.658, 9, 192.781)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 9, 192)
 material_override = ExtResource("4_c2ibq")
 size = Vector3(5, 2, 5)
 
@@ -5048,6 +5049,14 @@ stream = ExtResource("20_2gh4u")
 volume_db = -15.0
 autoplay = true
 parameters/looping = true
+
+[node name="KillZone" type="Area3D" parent="BackgroundMusic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackgroundMusic/KillZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, -217.5)
+shape = SubResource("BoxShape3D_5mkgo")
+debug_color = Color(0.7, 0, 0.0583334, 0.419608)
 
 [node name="BeetleTerritory1" parent="." instance=ExtResource("25_mxvw5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 210.036, 0.500003, 118.019)
@@ -5086,33 +5095,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.631897, 2.14794, 5.00752)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6188, 2.14794, 5.00752)
 
 [node name="BossBeetleSpawnpoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -267, 0, 235)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -230, 0, 230)
 
 [node name="BossBeetleSpawner" type="Timer" parent="."]
-wait_time = 180.0
+wait_time = 300.0
 one_shot = true
 autostart = true
-
-[node name="ChickenOfTheWoods9" parent="." instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -82.3786, 29.4219, -142.22)
-
-[node name="Pinecone2" parent="." instance=ExtResource("30_5mvff")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72274, 0.265531, 12.5867)
-
-[node name="AntQueenCollectible" parent="." instance=ExtResource("38_ny7u2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88632, -9.53674e-07, 14.3413)
-
-[node name="RockCollectible" parent="." instance=ExtResource("18_sph85")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.50095, 0.269316, 9.65402)
-
-[node name="BossBeetleCollectible" parent="." instance=ExtResource("39_x3yn0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.47656, 0.360856, 16.6868)
 
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]
 [connection signal="timeout" from="AntManager/SpawnTimer" to="AntManager" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="BeetleManager/SpawnTimer1" to="BeetleManager" method="_on_spawn_timer_1_timeout"]
 [connection signal="timeout" from="AphidManager/SpawnTimer2" to="AphidManager" method="_on_spawn_timer_2_timeout"]
+[connection signal="body_entered" from="BackgroundMusic/KillZone" to="." method="_on_kill_zone_body_entered"]
 [connection signal="timeout" from="BossBeetleSpawner" to="." method="_on_boss_beetle_spawner_timeout"]
 
 [editable path="environment/log/log_bugshroom_v01"]

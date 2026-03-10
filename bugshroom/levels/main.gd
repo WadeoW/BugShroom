@@ -121,3 +121,10 @@ func _on_boss_beetle_spawner_timeout() -> void:
 	boss_beetle.global_position = boss_beetle_spawnpoint.global_position
 	boss_beetle_alert_sound.play()
 	boss_beetle_animation_player.play("flashing")
+
+
+func _on_kill_zone_body_entered(body: Node3D) -> void:
+	if body.has_method("take_damage"):
+		body.take_damage(15000)
+	if body is RigidBody3D:
+		body.global_position = Vector3(38, 12, 192)
