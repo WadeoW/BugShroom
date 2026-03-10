@@ -1,11 +1,12 @@
-[gd_scene load_steps=37 format=4 uid="uid://dl2tthivh6a3e"]
+[gd_scene load_steps=34 format=4 uid="uid://dl2tthivh6a3e"]
 
 [ext_resource type="Script" uid="uid://chivoxalb5yd" path="res://player/Puffshroom/puffball.gd" id="1_0vhsy"]
 [ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_4tcne"]
 [ext_resource type="AnimationLibrary" uid="uid://bde73mddq6b8c" path="res://player/Puffshroom/puffmushroom_animations.glb" id="2_7wi73"]
 [ext_resource type="AnimationLibrary" uid="uid://kybdxnurhwko" path="res://player/Puffshroom/puff_charge_death.glb" id="2_p64ml"]
 [ext_resource type="Script" uid="uid://brrncwvvflgvk" path="res://player/health_bar.gd" id="3_xhpx3"]
-[ext_resource type="Script" uid="uid://duk35nosf216h" path="res://player/stamina_bar.gd" id="4_7wi73"]
+[ext_resource type="Texture2D" uid="uid://cmqy41dcpxgrh" path="res://assets/UI/Player/HUD/HealthBarTransSmall.png" id="5_3yfoa"]
+[ext_resource type="Texture2D" uid="uid://c3j1x5dlxgx63" path="res://assets/UI/Player/HUD/HealthBarGreenSmall.png" id="6_ci1bd"]
 [ext_resource type="AudioStream" uid="uid://eabyk3002fp5" path="res://assets/Sound/player/Puffball/puffball_impact.mp3" id="6_invgw"]
 [ext_resource type="Texture2D" uid="uid://bc7qxbl4d2bem" path="res://assets/UI/Speedicon.png" id="7_p64ml"]
 [ext_resource type="AudioStream" uid="uid://wosljyqty5pq" path="res://assets/Sound/player/Puffball/puffball_jump.mp3" id="9_8ke3l"]
@@ -345,18 +346,6 @@ radius = 0.07
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4tcne"]
 points = PackedVector3Array(1.75489, 5.61266, 7.73127, -1.75246, 5.32175, -7.76359, -1.69574, 8.1668, -7.51313, 9.41714, 3.84347, -1.93704, -6.67572, 0.39051, 1.57074, -2.90173, 12.2882, 1.57041, 6.37172, 11.1181, -1.32705, -9.07557, 7.3652, 0.413411, 4.93062, -0.186224, -1.32893, -6.63503, 1.57893, -4.78379, 6.35209, 1.86329, 5.02651, 6.03803, 9.64403, 4.43004, -3.75207, 7.92471, 6.7596, 5.50957, 2.71611, -5.96915, -5.18586, 1.29673, 5.30338, -5.4539, 10.4992, -4.47504, 4.5921, 10.496, -5.04638, -8.43999, 3.28516, -3.95369, -8.78239, 3.26914, 2.46254, 2.57849, 11.0645, 4.70305, 1.44685, 12.5698, -1.61761, -1.74218, -0.480462, 1.85995, -2.88462, 0.425045, -4.49638, 9.04752, 6.48688, 1.57802, -5.75385, 10.2209, 4.14522, 4.64872, 7.64695, -6.56135, 3.74897, 1.00389, 5.30839, 8.43606, 7.35678, -3.07869, -7.52302, 9.95609, -1.90402, 8.7641, 1.81416, -0.46212, -2.02958, 3.58531, 7.37003, -6.38237, 5.61645, 5.63167)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_invgw"]
-bg_color = Color(0.808137, 3.27289e-06, 7.70092e-07, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lchnv"]
-bg_color = Color(0.197707, 0.719829, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p64ml"]
-bg_color = Color(0.73, 0.73, 0, 0.686275)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knpp7"]
-bg_color = Color(0.9, 0.66, 0, 1)
-
 [sub_resource type="Animation" id="Animation_nufpb"]
 length = 0.001
 tracks/0/type = "value"
@@ -398,12 +387,10 @@ _data = {
 radius = 0.559217
 height = 1.50688
 
-[node name="Puffball" type="CharacterBody3D" node_paths=PackedStringArray("health_bar", "stamina_bar") groups=["Puffball", "player"]]
+[node name="Puffball" type="CharacterBody3D" groups=["Puffball", "player"]]
 collision_layer = 9
 collision_mask = 9
 script = ExtResource("1_0vhsy")
-health_bar = NodePath("CanvasLayer/HealthBar")
-stamina_bar = NodePath("CanvasLayer/StaminaBar")
 
 [node name="CharacterModel" type="Node3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
@@ -516,72 +503,20 @@ shape = SubResource("ConvexPolygonShape3D_4tcne")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = -96.0
-offset_right = 170.0
-offset_bottom = -66.0
+offset_left = 66.0
+offset_top = -118.0
+offset_right = 525.0
+offset_bottom = 12.0
 grow_vertical = 0
-scale = Vector2(1.76, 1.76)
-theme_override_styles/background = SubResource("StyleBoxFlat_invgw")
-theme_override_styles/fill = SubResource("StyleBoxFlat_lchnv")
+scale = Vector2(0.5, 0.5)
 value = 100.0
-show_percentage = false
+texture_under = ExtResource("5_3yfoa")
+texture_progress = ExtResource("6_ci1bd")
 script = ExtResource("3_xhpx3")
-
-[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer"]
-visible = false
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -293.0
-offset_top = -96.0
-offset_right = -153.0
-offset_bottom = -66.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(1.76, 1.76)
-theme_override_styles/background = SubResource("StyleBoxFlat_p64ml")
-theme_override_styles/fill = SubResource("StyleBoxFlat_knpp7")
-show_percentage = false
-script = ExtResource("4_7wi73")
-
-[node name="HealthText" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = -96.0
-offset_right = 170.0
-offset_bottom = -66.0
-grow_vertical = 0
-scale = Vector2(1.76, 1.76)
-text = "health"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StaminaText" type="RichTextLabel" parent="CanvasLayer"]
-visible = false
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -293.0
-offset_top = -96.0
-offset_right = -153.0
-offset_bottom = -66.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(1.76, 1.76)
-text = "Stamina"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="AbilityIcon" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 3

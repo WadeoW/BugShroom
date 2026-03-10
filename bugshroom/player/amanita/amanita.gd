@@ -43,14 +43,14 @@ var in_menu = false
 #health variables
 @export var current_health = 100
 @export var max_health = 100
-@onready var health_bar: ProgressBar = $CanvasLayer/HealthBar
+@onready var health_bar: TextureProgressBar = $CanvasLayer/HealthBar
 var is_dead = false
 
 #stamina variables
 @export var max_stamina = 100.0
 @export var current_stamina = 100.0
 var stamina_drain_rate = 5.0 #stamina drained per second during action
-@onready var stamina_bar: ProgressBar = $CanvasLayer/StaminaBar
+@onready var stamina_bar: TextureProgressBar = $CanvasLayer/StaminaBar
 @export var passive_stamina_regen = 5
 @export var root_stamina_regen = 25.0 #stamina regained per second while rooted
 

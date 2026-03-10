@@ -513,8 +513,8 @@ render_target_update_mode = 4
 [node name="Player1Spawner" type="Node3D" parent="GridContainer/SubViewportContainer/SubViewport"]
 script = ExtResource("9_hhcpw")
 
-[node name="CharacterSelectPopupP1" parent="GridContainer/SubViewportContainer" instance=ExtResource("34_sph85")]
-layout_mode = 2
+[node name="CharacterSelectPopup" parent="GridContainer/SubViewportContainer/SubViewport/Player1Spawner" instance=ExtResource("34_sph85")]
+visible = false
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="GridContainer"]
 layout_mode = 2
@@ -530,7 +530,8 @@ render_target_update_mode = 4
 [node name="Player2Spawner" type="Node3D" parent="GridContainer/SubViewportContainer2/SubViewport"]
 script = ExtResource("13_mxvw5")
 
-[node name="CharacterSelectPopUp2" parent="GridContainer/SubViewportContainer2/SubViewport" instance=ExtResource("12_o7g6l")]
+[node name="CharacterSelectPopUp2" parent="GridContainer/SubViewportContainer2/SubViewport/Player2Spawner" instance=ExtResource("12_o7g6l")]
+visible = false
 
 [node name="DeadBugTaskSpawner" parent="." instance=ExtResource("10_c2ibq")]
 
@@ -4994,7 +4995,6 @@ autostart = true
 [connection signal="timeout" from="AphidManager/SpawnTimer2" to="AphidManager" method="_on_spawn_timer_2_timeout"]
 [connection signal="timeout" from="BossBeetleSpawner" to="." method="_on_boss_beetle_spawner_timeout"]
 
-[editable path="GridContainer/SubViewportContainer/CharacterSelectPopupP1"]
 [editable path="environment/log/log_bugshroom_v01"]
 [editable path="environment/log/log_bugshroom_v05"]
 [editable path="environment/log/log_bugshroom_v02"]

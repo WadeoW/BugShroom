@@ -27,14 +27,9 @@ var in_menu = false
 #health variables
 @export var current_health = 100
 @export var max_health = 100
-@export var health_bar = ProgressBar
+@onready var health_bar: TextureProgressBar = $CanvasLayer/HealthBar
 var is_dead = false
 
-#stamina variables
-@export var max_stamina = 100.0
-@export var current_stamina = 100.0
-var stamina_drain_rate = 5.0 #stamina drained per second during action
-@export var stamina_bar = ProgressBar
 
 #attack variables
 const ROLLING_ATTACK_DAMAGE: float = 5.0 # this is multiplied by speed in xz plane
@@ -59,7 +54,7 @@ var mushroom_type = PlayerData.MushroomType.Puffball
 
 #Root Down Mechanic
 var is_rooted = false
-@export var root_stamina_regen = 15.0 #stamina regained per second while rooted
+
 
 @onready var animation_player: AnimationPlayer = $CharacterModel/AnimationPlayer
 @onready var ability_animation_player: AnimationPlayer = $CanvasLayer/AbilityIcon/AbilityAnimationPlayer
@@ -99,15 +94,12 @@ func _ready() -> void:
 	
 	#set up health and stamina bars
 	health_bar.max_value = max_health
-	stamina_bar.max_value = max_stamina
 	health_bar.value = health_bar.max_value
-	stamina_bar.value = stamina_bar.max_value
 	
 	
 
 func update() -> void:
 	health_bar.value = current_health
-	stamina_bar.value = current_stamina 
 	
 func _unhandled_input(event):
 	#root down input
@@ -138,7 +130,7 @@ func _physics_process(delta):
 		chargeVector = Vector2.ZERO
 	
 	# handle jump
-	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and current_stamina > 0 and charge_duration.is_stopped():
+	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and charge_duration.is_stopped():
 		jump_sound_3d.play()
 		velocity.y = JUMP_VELOCITY
 
@@ -183,16 +175,11 @@ func _physics_process(delta):
 	if charge_duration.time_left == 0:
 		velocity = Vector3(clampedVelocity.x, velocity.y, clampedVelocity.y) + Vector3(clampedKnockback.x, 0, clampedKnockback.y) + Vector3(chargeVector.x, 0, chargeVector.y)
 
-	if is_rooted:
-		if current_stamina <= max_stamina:
-			current_stamina += root_stamina_regen * delta
-		update()
-	
 	$CharacterModel.rotation.y = lerp_angle($CharacterModel.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
-	
+
 	move_and_slide()
 
-	
+
 func take_damage(amount):
 	animation_player.play("take_damage")
 	damage_sound_3d.play()
@@ -200,12 +187,14 @@ func take_damage(amount):
 	update()
 	if current_health <= 0 and !is_dead:
 		die()
-		
+
+
 func heal(amount):
 	if current_health < max_health:
 		current_health += amount
 	update()
-	
+
+
 #Root down toggle function
 func toggle_root():
 	is_rooted = !is_rooted
@@ -294,7 +283,5 @@ func respawn():
 	global_position = Vector3(5, 1, 5)
 	print("player", player_id, "respawned!")
 	current_health = max_health
-	update()
-	current_stamina = max_stamina
 	update()
 	set_physics_process(true)
