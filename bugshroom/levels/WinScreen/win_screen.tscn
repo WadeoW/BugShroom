@@ -1,0 +1,139 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsr2sudsy6ras"]
+
+[ext_resource type="Script" uid="uid://d0d8mhmso46gm" path="res://levels/WinScreen/win_screen.gd" id="1_7dcgd"]
+[ext_resource type="Texture2D" uid="uid://lhxl7tiuy2od" path="res://assets/UI/MenuScreens/bugshroom_endscreen.png" id="1_hioyo"]
+[ext_resource type="Texture2D" uid="uid://c0y1bklfxvwxu" path="res://assets/UI/startbuttonconcept.png" id="2_ol5i4"]
+[ext_resource type="PackedScene" uid="uid://dbowfwd7ix33p" path="res://assets/Cursor/cursor.tscn" id="4_8n5g1"]
+[ext_resource type="Texture2D" uid="uid://ccpgi04gn2nmr" path="res://assets/UI/creditbutton.png" id="4_nnrk6"]
+[ext_resource type="Texture2D" uid="uid://btd2v25in45dy" path="res://assets/Cursor/Cursor icons-red and white.png" id="5_nnrk6"]
+[ext_resource type="Texture2D" uid="uid://sbmqdnkgfo4v" path="res://assets/UI/Postboard.png" id="7_nnrk6"]
+[ext_resource type="FontFile" uid="uid://c63rn2imkgci8" path="res://assets/Fonts/Bugshroomfont-Regular (3).ttf" id="8_picvv"]
+
+[node name="WinScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7dcgd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_hioyo")
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="StartButton" type="Button" parent="CanvasLayer2" groups=["button"]]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -692.0
+offset_top = 82.0
+offset_right = 46.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 27
+icon = ExtResource("2_ol5i4")
+flat = true
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer2/StartButton" groups=["button"]]
+position = Vector2(36, 9)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="CanvasLayer2/StartButton/Area2D"]
+position = Vector2(339, 156)
+polygon = PackedVector2Array(322.5, 107.5, 300, -15, 147.5, -107.5, -17.5, -137.5, -217.5, -80, -330, 7.5, -340, 120)
+
+[node name="CreditsButton" type="Button" parent="CanvasLayer2" groups=["button"]]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 369.0
+offset_top = 197.0
+offset_right = 1077.0
+offset_bottom = 457.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.41, 0.41)
+icon = ExtResource("4_nnrk6")
+flat = true
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer2/CreditsButton" groups=["button"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasLayer2/CreditsButton/Area2D"]
+position = Vector2(-17, -9)
+polygon = PackedVector2Array(700, 255, 702.5, 170, 642.5, 95, 450, 25, 215, 35, 57.5, 125, 55, 255)
+
+[node name="Cursor" parent="CanvasLayer2" instance=ExtResource("4_8n5g1")]
+position = Vector2(483, 467)
+
+[node name="Cursor2" parent="CanvasLayer2" instance=ExtResource("4_8n5g1")]
+position = Vector2(1334, 354)
+cursor_id = 2
+texture = ExtResource("5_nnrk6")
+
+[node name="Credits" type="TextureRect" parent="CanvasLayer2"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 513.0
+offset_top = 172.0
+offset_right = -604.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_nnrk6")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2/Credits"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.112
+anchor_top = 0.046
+anchor_right = 0.908
+anchor_bottom = 0.95
+offset_left = 0.0639954
+offset_top = 0.173996
+offset_right = -0.124023
+offset_bottom = -0.450073
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_picvv")
+theme_override_font_sizes/normal_font_size = 29
+text = "BugShroom
+Credits:
+
+Creative Director - Wade Watson
+
+Producer - Nam Hoang
+
+Programming - Wade Watson, Zander Watson, Halle Fouche
+
+3D Assets - Nam Hoang, Jesus Barrios
+
+Animation - Jenny Tsai
+
+2D Art - Melody Garcia, Mila Marques
+
+Sound - Ed Perez, Nam Hoang
+
+Level Design - Wade Watson, Jesus Barrios"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer2/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer2/CreditsButton" to="." method="_on_credits_button_pressed"]

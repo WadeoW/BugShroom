@@ -27,14 +27,26 @@ var colony_nutrient_gain_rate = 25
 #BossBeetleSpawning variables
 @onready var boss_beetle_scene = preload("res://entities/beetle/BossBeetle.tscn")
 @onready var boss_beetle_spawnpoint: Node3D = $BossBeetleSpawnpoint
+@onready var boss_beetle_warning: RichTextLabel = $CanvasLayer/BossBeetleWarning
+@onready var boss_beetle_animation_player: AnimationPlayer = $CanvasLayer/BossBeetleWarning/BossBeetleAnimationPlayer
+@onready var boss_beetle_alert_sound: AudioStreamPlayer = $CanvasLayer/BossBeetleWarning/BossBeetleAnimationPlayer/BossBeetleAlertSound
 
+#player spawners
 @onready var player_1_spawner: Node3D = $GridContainer/SubViewportContainer/SubViewport/Player1Spawner
 @onready var player_2_spawner: Node3D = $GridContainer/SubViewportContainer2/SubViewport/Player2Spawner
 
-
 @onready var players = {"player_1": player1, "player_2": player2}
 
+#pedestal collection variables
+@onready var mushroom_pedestal: StaticBody3D = $MushroomPedestal
+@onready var mushroom_pedestal_2: StaticBody3D = $MushroomPedestal2
+@onready var mushroom_pedestal_3: StaticBody3D = $MushroomPedestal3
+@onready var mushroom_pedestal_4: StaticBody3D = $MushroomPedestal4
+
+
+
 func _ready() -> void:
+	boss_beetle_warning.self_modulate = Color(0, 0, 0, 0)
 	SignalBus.start_player_harvesting_nutrients.connect(Callable(self, "_on_start_player_harvesting_nutrients"))
 	SignalBus.stop_player_harvesting_nutrients.connect(Callable(self, "_on_stop_player_harvesting_nutrients"))
 	SignalBus.game_over.connect(Callable(self, "_on_game_over"))
@@ -43,9 +55,13 @@ func _ready() -> void:
 	SignalBus.player_exited_beetle_territory.connect(Callable(self, "_on_player_exited_beetle_territory"))
 
 func _process(_delta: float) -> void:
+	if mushroom_pedestal.pinecone_collected and mushroom_pedestal_2.rock_collected and mushroom_pedestal_3.ant_queen_head_collected and mushroom_pedestal_4.boss_beetle_head_collected:
+			get_tree().change_scene_to_file("res://levels/WinScreen/win_screen.tscn")
+	
 	#allows you to hit the escape key to get mouse cursor back
 	if Input.is_action_just_pressed("escape"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
 	if Input.is_action_just_pressed("options_1") and get_tree().paused == false:
 		pause_menu_canvas_layer.visible = true
 	if Input.is_action_just_pressed("options_1") and get_tree().paused == true:
@@ -103,3 +119,5 @@ func _on_boss_beetle_spawner_timeout() -> void:
 	var boss_beetle = boss_beetle_scene.instantiate()
 	add_child(boss_beetle)
 	boss_beetle.global_position = boss_beetle_spawnpoint.global_position
+	boss_beetle_alert_sound.play()
+	boss_beetle_animation_player.play("flashing")

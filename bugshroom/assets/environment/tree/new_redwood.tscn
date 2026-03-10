@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://dt1373tohhcxl"]
+[gd_scene load_steps=7 format=4 uid="uid://dt1373tohhcxl"]
 
 [ext_resource type="Material" uid="uid://dwk25ccrx6y48" path="res://assets/environment/tree/redwood materials/Material.002.tres" id="1_oim5p"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="2_5k8mk"]
@@ -61,8 +61,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_e4pu3")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4vwfx"]
-size = Vector3(6.80624, 73.8265, 6.7803)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ayfrj"]
+points = PackedVector3Array(-3.645, 0, 3.075, -3.648, 0, -2.6, -3.126, 0, -3.125, 2.26, 0, -3.121, 3.108, 0, -2.259, 3.109, 0, 2.27, 1.754, 0, 3.638, -3.091, 0, 3.63, -3.491, 15, 2.862, -3.493, 15, -2.369, -2.876, 15, -2.988, 1.994, 15, -2.985, 3.004, 15, -1.976, 3.006, 15, 1.917, 1.415, 15, 3.516, -2.837, 15, 3.513, -2.982, 56, 2.317, -3.057, 56, -1.707, -2.185, 56, -2.581, 1.272, 56, -2.583, 2.679, 56, -1.168, 2.703, 56, 0.931, 0.482, 56, 3.148, -2.117, 56, 3.178)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mt3jf"]
+height = 75.5725
+radius = 3.4917
 
 [node name="Redwood" type="StaticBody3D"]
 collision_layer = 129
@@ -74,6 +78,11 @@ transform = Transform3D(-731.059, 300.805, 202.333, 468.128, -1.09573e-05, 461.6
 mesh = SubResource("ArrayMesh_o580x")
 skeleton = NodePath("")
 
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.302245, 0)
+shape = SubResource("ConvexPolygonShape3D_ayfrj")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262694, 36.7532, 0.2603)
-shape = SubResource("BoxShape3D_4vwfx")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262694, 37.6615, 0.167337)
+visible = false
+shape = SubResource("CylinderShape3D_mt3jf")

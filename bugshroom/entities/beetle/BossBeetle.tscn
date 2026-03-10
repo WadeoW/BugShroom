@@ -2105,6 +2105,7 @@ node_connections = [&"AttackOneShot", 0, &"Transition", &"AttackOneShot", 1, &"A
 
 [node name="BossBeetle" type="CharacterBody3D"]
 script = ExtResource("1_ypxma")
+beetle_health = 50.0
 
 [node name="boss_beetle2" type="Node3D" parent="."]
 transform = Transform3D(-4.15258e-08, 0, -0.95, 0, 0.95, 0, 0.95, 0, -4.15258e-08, 0, 0, 3.495)

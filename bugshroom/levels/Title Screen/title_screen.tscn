@@ -1,12 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://btwanigppk4jf"]
+[gd_scene load_steps=11 format=3 uid="uid://btwanigppk4jf"]
 
 [ext_resource type="Script" uid="uid://bjvnturu0wkvw" path="res://levels/Title Screen/title_screen.gd" id="1_xrj4a"]
 [ext_resource type="PackedScene" uid="uid://dbowfwd7ix33p" path="res://assets/Cursor/cursor.tscn" id="2_ksdvi"]
 [ext_resource type="Texture2D" uid="uid://c0y1bklfxvwxu" path="res://assets/UI/startbuttonconcept.png" id="2_usom8"]
 [ext_resource type="Texture2D" uid="uid://btd2v25in45dy" path="res://assets/Cursor/Cursor icons-red and white.png" id="3_4lyju"]
 [ext_resource type="Texture2D" uid="uid://c57j5ysnut3lc" path="res://assets/UI/settingsbuttonconcept.png" id="3_qtb2c"]
+[ext_resource type="Texture2D" uid="uid://ccpgi04gn2nmr" path="res://assets/UI/creditbutton.png" id="4_nxlrr"]
 [ext_resource type="AudioStream" uid="uid://b8vjc6o0gqfqd" path="res://assets/Sound/background tracks/title_music_BugS.mp3" id="5_4lyju"]
 [ext_resource type="Texture2D" uid="uid://xpofvdd18ny" path="res://assets/UI/Bugshroomtitle.png" id="5_usom8"]
+[ext_resource type="Texture2D" uid="uid://sbmqdnkgfo4v" path="res://assets/UI/Postboard.png" id="7_g80iy"]
+[ext_resource type="FontFile" uid="uid://c63rn2imkgci8" path="res://assets/Fonts/Bugshroomfont-Regular (3).ttf" id="8_g80iy"]
 
 [node name="TitleScreen" type="Control"]
 y_sort_enabled = true
@@ -39,6 +42,7 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 27
 icon = ExtResource("2_usom8")
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="CanvasLayer2/StartButton" groups=["button"]]
 position = Vector2(36, 9)
@@ -62,11 +66,35 @@ grow_vertical = 2
 scale = Vector2(0.4, 0.4)
 icon = ExtResource("3_qtb2c")
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="CanvasLayer2/TutorialButton" groups=["button"]]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasLayer2/TutorialButton/Area2D"]
 position = Vector2(0, 2.5)
+polygon = PackedVector2Array(700, 255, 702.5, 170, 642.5, 95, 450, 25, 215, 35, 57.5, 125, 55, 255)
+
+[node name="CreditsButton" type="Button" parent="CanvasLayer2" groups=["button"]]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 363.0
+offset_right = 588.0
+offset_bottom = 681.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+icon = ExtResource("4_nxlrr")
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer2/CreditsButton" groups=["button"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasLayer2/CreditsButton/Area2D"]
+position = Vector2(-32.5, 30)
 polygon = PackedVector2Array(700, 255, 702.5, 170, 642.5, 95, 450, 25, 215, 35, 57.5, 125, 55, 255)
 
 [node name="Cursor" parent="CanvasLayer2" instance=ExtResource("2_ksdvi")]
@@ -77,6 +105,54 @@ z_index = 6
 position = Vector2(1397, 290)
 cursor_id = 2
 texture = ExtResource("3_4lyju")
+
+[node name="Credits" type="TextureRect" parent="CanvasLayer2"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 542.0
+offset_top = 5.0
+offset_right = -575.0
+offset_bottom = -144.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_g80iy")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2/Credits"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.112
+anchor_top = 0.046
+anchor_right = 0.908
+anchor_bottom = 0.95
+offset_left = 0.0639954
+offset_top = 0.173996
+offset_right = -0.124023
+offset_bottom = -0.450073
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_g80iy")
+theme_override_font_sizes/normal_font_size = 29
+text = "BugShroom
+Credits:
+
+Creative Director - Wade Watson
+
+Producer - Nam Hoang
+
+Programming - Wade Watson, Zander Watson, Halle Fouche
+
+3D Assets - Nam Hoang, Jesus Barrios
+
+Animation - Jenny Tsai
+
+2D Art - Melody Garcia, Mila Marques
+
+Sound - Ed Perez, Nam Hoang
+
+Level Design - Wade Watson, Jesus Barrios"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_4lyju")
@@ -99,3 +175,4 @@ metadata/_edit_lock_ = true
 [connection signal="item_rect_changed" from="." to="." method="_on_item_rect_changed"]
 [connection signal="pressed" from="CanvasLayer2/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="CanvasLayer2/CreditsButton" to="." method="_on_credits_button_pressed"]

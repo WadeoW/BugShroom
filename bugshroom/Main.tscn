@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=65 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://bxwpkxvlm8a0x" path="res://levels/colony_nutrient_bar.gd" id="3_c6i3y"]
 [ext_resource type="Script" uid="uid://b2362xpns3grh" path="res://entities/bug_manager.gd" id="3_r0du0"]
 [ext_resource type="Material" uid="uid://b3rnns3b04fv" path="res://assets/environment/ground/ground.tres" id="4_c2ibq"]
+[ext_resource type="FontFile" uid="uid://c63rn2imkgci8" path="res://assets/Fonts/Bugshroomfont-Regular (3).ttf" id="4_vi5kq"]
+[ext_resource type="AudioStream" uid="uid://cnm3a57l512oi" path="res://assets/Sound/Bugs/Beetle/beetle_boss_alert sound.mp3" id="5_5mkgo"]
 [ext_resource type="PackedScene" uid="uid://c86brgigfa1ak" path="res://tasks/dead_bug_task.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dnyuja84wopu2" path="res://entities/beetle/beetle.tscn" id="7_devvj"]
 [ext_resource type="PackedScene" uid="uid://rtaecmo4qdss" path="res://entities/Aphid/aphid.tscn" id="8_3b0ty"]
@@ -35,6 +37,8 @@
 [ext_resource type="PackedScene" uid="uid://cp14j0gmpdxl0" path="res://entities/Collectibles/Pinecone.tscn" id="30_5mvff"]
 [ext_resource type="PackedScene" uid="uid://dpfbrftkm6xvc" path="res://assets/environment/anthill/ant_hill.tscn" id="33_gb15f"]
 [ext_resource type="PackedScene" uid="uid://cbyehopjbh684" path="res://assets/UI/CharacterSelectPopup.tscn" id="34_sph85"]
+[ext_resource type="PackedScene" uid="uid://bkm5bkdyn3f4g" path="res://entities/Collectibles/Ant_Queen_Head/ant_queen_collectible.tscn" id="38_ny7u2"]
+[ext_resource type="PackedScene" uid="uid://dh3xd6254bg32" path="res://entities/Collectibles/Boss_Beetle_Head/boss_beetle_collectible.tscn" id="39_x3yn0"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gh4u"]
 load_path = "res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-c7c740f4ba395b910b721a3d2075f764.s3tc.ctex"
@@ -61,6 +65,43 @@ bg_color = Color(0.828566, 0.595706, 0.566381, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2ibq"]
 bg_color = Color(0.827451, 0.054902, 0.121569, 1)
+
+[sub_resource type="Animation" id="Animation_5mkgo"]
+resource_name = "flashing"
+length = 7.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.533333, 1.53333, 2, 2.96667, 3.5, 4.5, 5, 6.5, 7.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0), Color(1, 0, 0, 1), Color(1, 0, 0, 0), Color(1, 0, 0, 1), Color(1, 0, 0, 0), Color(1, 0, 0, 1), Color(1, 0, 0, 0), Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3ccbu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ny7u2"]
+_data = {
+&"RESET": SubResource("Animation_3ccbu"),
+&"flashing": SubResource("Animation_5mkgo")
+}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fpfj3"]
 albedo_color = Color(0.287756, 0.433515, 0.273107, 1)
@@ -297,6 +338,30 @@ theme_override_font_sizes/normal_font_size = 35
 text = "Colony nutrients"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BossBeetleWarning" type="RichTextLabel" parent="CanvasLayer"]
+self_modulate = Color(1, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 490.0
+offset_top = 266.0
+offset_right = -490.0
+offset_bottom = -700.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_vi5kq")
+theme_override_font_sizes/normal_font_size = 65
+text = "A Boss Beetle Has Spawned!!!"
+horizontal_alignment = 1
+
+[node name="BossBeetleAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/BossBeetleWarning"]
+libraries = {
+&"": SubResource("AnimationLibrary_ny7u2")
+}
+
+[node name="BossBeetleAlertSound" type="AudioStreamPlayer" parent="CanvasLayer/BossBeetleWarning/BossBeetleAnimationPlayer"]
+stream = ExtResource("5_5mkgo")
 
 [node name="Floor" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -4813,79 +4878,130 @@ transform = Transform3D(-0.00198505, -0.475881, -0.879507, 0.999991, -0.00417128
 [node name="parkour section 1" type="Node3D" parent="environment"]
 
 [node name="ChickenOfTheWoods" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(-0.00323513, 0, -0.559991, 0, 0.56, 0, 0.559991, 0, -0.00323513, -59.1873, 3.23773, -145.322)
+transform = Transform3D(-0.00323513, 0, -0.559991, 0, 0.56, 0, 0.559991, 0, -0.00323513, -58.8195, 3.23773, -142.426)
 
 [node name="ChickenOfTheWoods2" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.0611525, 0, 0.450872, 0, 0.455, 0, -0.450872, 0, 0.0611525, -48.6228, 5.61391, -147.843)
+transform = Transform3D(0.0611525, 0, 0.450872, 0, 0.455, 0, -0.450872, 0, 0.0611525, -48.828, 5.61391, -145.861)
 
 [node name="ChickenOfTheWoods3" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.47, 0, 0, 0, 0.47, 0, 0, 0, 0.47, -40.3898, 8.3527, -152.235)
+transform = Transform3D(0.47, 0, 0, 0, 0.47, 0, 0, 0, 0.47, -40.6502, 8.3527, -150.44)
 
 [node name="ChickenOfTheWoods5" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.47, 0, 0, 0, 0.47, 0, 0, 0, 0.47, -33.897, 10.3321, -155.802)
+transform = Transform3D(0.47, 0, 0, 0, 0.47, 0, 0, 0, 0.47, -33.0204, 10.3321, -155.498)
 
 [node name="ChickenOfTheWoods6" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.407345, 0, -0.7744, 0, 0.875, 0, 0.7744, 0, 0.407345, -53.8554, 24.1612, -147.116)
+transform = Transform3D(0.407345, 0, -0.7744, 0, 0.875, 0, 0.7744, 0, 0.407345, -57.8143, 24.1612, -144.214)
 
 [node name="ChickenOfTheWoods7" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -66.7858, 27.1658, -140.649)
+transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -125.918, 98.0979, -199.519)
+
+[node name="ChickenOfTheWoods23" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(-0.145635, 0, -0.227356, 0, 0.27, 0, 0.227356, 0, -0.145635, -117.572, 98.7905, -209.664)
+
+[node name="ChickenOfTheWoods24" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(-0.195435, 0, 0.34096, 0, 0.393, 0, -0.34096, 0, -0.195435, -101.198, 95.4682, -197.109)
+
+[node name="ChickenOfTheWoods25" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(-0.195435, 0, 0.34096, 0, 0.393, 0, -0.34096, 0, -0.195435, -101.927, 96.3266, -182.198)
+
+[node name="ChickenOfTheWoods26" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(-0.195435, 0, 0.34096, 0, 0.393, 0, -0.34096, 0, -0.195435, -93.939, 97.8121, -165.581)
+
+[node name="ChickenOfTheWoods27" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.31752, 0, 0.231582, 0, 0.393, 0, -0.231582, 0, 0.31752, -88.8964, 99.0121, -154.033)
+
+[node name="ChickenOfTheWoods28" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.0435582, 0, 0.203388, 0, 0.208, 0, -0.203388, 0, 0.0435582, -82.7623, 99.6335, -144.479)
+
+[node name="ChickenOfTheWoods34" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.0435582, 0, 0.203388, 0, 0.208, 0, -0.203388, 0, 0.0435582, -73.5676, 99.1962, -137.625)
+
+[node name="ChickenOfTheWoods35" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.300805, 0, 0.0661855, 0, 0.308, 0, -0.0661855, 0, 0.300805, -62.0409, 99.8284, -140.477)
+
+[node name="ChickenOfTheWoods29" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(-0.195435, 0, 0.34096, 0, 0.393, 0, -0.34096, 0, -0.195435, -51.4934, 100.709, -144.661)
+
+[node name="ChickenOfTheWoods30" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(-0.163112, 0, 0.284567, 0, 0.328, 0, -0.284567, 0, -0.163112, -64.4186, 117.996, -138.752)
+
+[node name="ChickenOfTheWoods31" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(-0.195435, 0, 0.34096, 0, 0.393, 0, -0.34096, 0, -0.195435, -44.6833, 131.409, -148.726)
+
+[node name="ChickenOfTheWoods32" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(-0.195435, 0, 0.34096, 0, 0.393, 0, -0.34096, 0, -0.195435, -59, 151.044, -141.898)
+
+[node name="ChickenOfTheWoods33" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.524165, 0, 0.512387, 0, 0.733, 0, -0.512387, 0, 0.524165, -42.5412, 164.397, -148.012)
 
 [node name="ChickenOfTheWoods8" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.216474, 0, -0.411538, 0, 0.465, 0, 0.411538, 0, 0.216474, -77.4219, 28.3226, -135.475)
-
-[node name="ChickenOfTheWoods9" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -84.3098, 30.4042, -140.821)
+transform = Transform3D(0.216474, 0, -0.411538, 0, 0.465, 0, 0.411538, 0, 0.216474, -74.492, 27.3591, -135.196)
 
 [node name="ChickenOfTheWoods10" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.165266, 0, -0.314185, 0, 0.355, 0, 0.314185, 0, 0.165266, -87.8115, 32.5407, -149.434)
+transform = Transform3D(0.165266, 0, -0.314185, 0, 0.355, 0, 0.314185, 0, 0.165266, -87.3083, 31.3514, -149.827)
 
 [node name="ChickenOfTheWoods11" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -90.8514, 33.6395, -158.055)
+transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -90.5329, 32.789, -157.999)
 
 [node name="ChickenOfTheWoods12" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -94.3627, 41.468, -166.89)
+transform = Transform3D(0.230441, 0, -0.438089, 0, 0.495, 0, 0.438089, 0, 0.230441, -135.016, 96.6137, -191.032)
 
 [node name="ChickenOfTheWoods14" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -102.254, 41.468, -181.782)
+transform = Transform3D(0.408859, 0, -0.13317, 0, 0.43, 0, 0.13317, 0, 0.408859, -158.035, 95.2855, -206.005)
 
 [node name="ChickenOfTheWoods15" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -98.5565, 40.4083, -173.745)
+transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -145.521, 95.7235, -196.45)
 
 [node name="ChickenOfTheWoods16" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -106.18, 35.1527, -191.309)
+transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -105.398, 56.0109, -189.126)
 
 [node name="ChickenOfTheWoods17" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -122.95, 43.0806, -203.093)
+transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -122.95, 71.531, -203.093)
 
 [node name="ChickenOfTheWoods22" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -129.165, 44.6306, -196.436)
+transform = Transform3D(0.167593, 0, -0.31861, 0, 0.36, 0, 0.31861, 0, 0.167593, -164.889, 78.3226, -212.508)
 
 [node name="ChickenOfTheWoods18" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.260701, 0, -0.495616, 0, 0.56, 0, 0.495616, 0, 0.260701, -135.267, 47.19, -190.737)
+transform = Transform3D(0.325876, 0, -0.61952, 0, 0.7, 0, 0.61952, 0, 0.325876, -136.335, 74.137, -189.848)
 
 [node name="ChickenOfTheWoods19" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.0977628, 0, -0.185856, 0, 0.21, 0, 0.185856, 0, 0.0977628, -143.264, 47.19, -194.865)
+transform = Transform3D(0.0977628, 0, -0.185856, 0, 0.21, 0, 0.185856, 0, 0.0977628, -146.343, 75.1439, -197.368)
 
 [node name="ChickenOfTheWoods20" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.111729, 0, -0.212407, 0, 0.24, 0, 0.212407, 0, 0.111729, -148.598, 47.7463, -198.567)
+transform = Transform3D(0.111729, 0, -0.212407, 0, 0.24, 0, 0.212407, 0, 0.111729, -148.598, 75.9612, -198.619)
 
 [node name="ChickenOfTheWoods21" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.19087, 0, -0.362862, 0, 0.41, 0, 0.362862, 0, 0.19087, -156.413, 48.4156, -206.124)
+transform = Transform3D(0.19087, 0, -0.362862, 0, 0.41, 0, 0.362862, 0, 0.19087, -158.338, 77.2097, -205.734)
 
 [node name="MossBed5" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
-transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, -32.5672, 10.4647, -154.978)
+transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, -31.6895, 10.2436, -154.663)
+
+[node name="MossBed10" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
+transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, -64.4165, 117.887, -138.845)
+
+[node name="MossBed12" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
+transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, -44.9275, 131.266, -148.901)
+
+[node name="MossBed13" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
+transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, -59.1303, 150.93, -142.681)
+
+[node name="MossBed11" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
+transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, -51.4841, 100.569, -144.952)
+
+[node name="MossBed9" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
+transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, -164.829, 78.2178, -213.027)
 
 [node name="MossBed6" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
-transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -91.3505, 33.618, -157.469)
+transform = Transform3D(0.295, 0, 0.000231692, 0, 0.295, 0, -0.000231692, 0, 0.295, -91.032, 32.7675, -157.413)
 
 [node name="ChickenOfTheWoods13" parent="environment/parkour section 1" instance=ExtResource("22_3b0ty")]
-transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -95.4122, 19.0497, -164.642)
+transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -96.1109, 47.9186, -169.323)
 
 [node name="MossBed7" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
-transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -95.9112, 19.0281, -164.056)
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -96.6099, 47.897, -168.737)
 
 [node name="MossBed8" parent="environment/parkour section 1" instance=ExtResource("21_devvj")]
-transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -106.935, 35.0726, -192.135)
+transform = Transform3D(0.43, 0, 0, 0, 0.43, 0, 0, 0, 0.43, -105.668, 55.9631, -188.524)
 
 [node name="MossBed6" parent="environment" instance=ExtResource("21_devvj")]
 transform = Transform3D(0.91706, 0, 0.398749, 0, 1, 0, -0.398749, 0, 0.91706, -298.697, -0.298677, 80.0995)
@@ -4975,7 +5091,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.33818, -1.90735e-06, 32.29
 pedestal_number = 4
 
 [node name="Pinecone" parent="." instance=ExtResource("30_5mvff")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -157.286, 48.8196, -205.181)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.161, 165.409, -147.949)
 
 [node name="AntHill" parent="." instance=ExtResource("33_gb15f")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 138, -2, -399)
@@ -4984,9 +5100,24 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 138, -
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -267, 0, 235)
 
 [node name="BossBeetleSpawner" type="Timer" parent="."]
-wait_time = 300.0
+wait_time = 180.0
 one_shot = true
 autostart = true
+
+[node name="ChickenOfTheWoods9" parent="." instance=ExtResource("22_3b0ty")]
+transform = Transform3D(0.125695, 0, -0.238958, 0, 0.27, 0, 0.238958, 0, 0.125695, -82.3786, 29.4219, -142.22)
+
+[node name="Pinecone2" parent="." instance=ExtResource("30_5mvff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72274, 0.265531, 12.5867)
+
+[node name="AntQueenCollectible" parent="." instance=ExtResource("38_ny7u2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88632, -9.53674e-07, 14.3413)
+
+[node name="RockCollectible" parent="." instance=ExtResource("18_sph85")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.50095, 0.269316, 9.65402)
+
+[node name="BossBeetleCollectible" parent="." instance=ExtResource("39_x3yn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.47656, 0.360856, 16.6868)
 
 [connection signal="timeout" from="NutrientDrainTimer" to="." method="_on_nutrient_drain_timer_timeout"]
 [connection signal="timeout" from="NutrientGainTimer" to="." method="_on_nutrient_gain_timer_timeout"]

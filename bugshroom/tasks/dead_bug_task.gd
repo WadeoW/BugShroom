@@ -50,4 +50,4 @@ func despawn():
 func _on_player_heal_timer_timeout() -> void:
 	for body in bodies_in_radius:
 		if body.has_method("heal"):
-			body.heal(10)
+			body.heal(3)
