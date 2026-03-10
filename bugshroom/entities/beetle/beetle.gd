@@ -69,9 +69,6 @@ func _physics_process(delta: float) -> void:
 		if (is_chasing):
 			charge_target = closest_player
 			is_charging = true
-		elif (is_chasing_bug):
-			charge_target = closest_bug
-			is_charging = true
 		if is_charging:
 			can_charge = false
 			has_hit_enemy_with_charge = false
@@ -84,7 +81,7 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_charging:
 		if not in_territory:
-			var direction_to_territory := territory.position - position
+			var direction_to_territory := territory.global_position - global_position
 			direction_to_territory.y = 0
 			direction_to_territory = direction_to_territory.normalized()
 			velocity = direction_to_territory * speed
