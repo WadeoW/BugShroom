@@ -39,30 +39,18 @@ var charge_target: Node3D
 #Collectible variables
 @onready var boss_beetle_head = preload("res://entities/Collectibles/Boss_Beetle_Head/boss_beetle_collectible.tscn")
 
-# territory variables
-var in_territory := true
-@onready var children = get_parent().get_children()
-var territory: Area3D = null
-
 func _ready() -> void:
 	speed = beetle_speed
 	health = beetle_health
 	damage = beetle_damage
 	attack_range = beetle_attack_range
 	aggressive = true
-	territorial = true
 	add_to_group("beetles")
 	add_to_group("bug")
 	super._ready()
 
 	health_bar.max_value = beetle_health
 	health_bar.value = beetle_health
-	
-	#sets up beetle's territory
-	for child in children:
-		if child is Area3D:
-			territory = child
-			print(child)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -87,22 +75,12 @@ func _physics_process(delta: float) -> void:
 			charge_duration_timer.wait_time = charge_duration
 			charge_duration_timer.start()
 			velocity = velocity * 0.5
-	
 	if not is_charging:
-		if not in_territory:
-			var direction_to_territory := territory.position - position
-			direction_to_territory.y = 0
-			direction_to_territory = direction_to_territory.normalized()
-			velocity = direction_to_territory * speed
-			_rotate_to_velocity(delta, rotationSpeed)
-			move_and_slide()
-		else:
-			super._physics_process(delta)
+		super._physics_process(delta)
 		return
 	if not charge_target:
 		super._physics_process(delta)
 		return
-	
 	var desired
 	if not has_hit_enemy_with_charge:
 		desired = charge_target.global_position - global_position
@@ -182,7 +160,7 @@ func hit_enemy() -> void:
 		var i = 0
 		for collision in range(total_collisions):
 			var collidedObject = attack_hit_box.get_collider(i)
-			if (collidedObject.is_in_group("player") or collidedObject.is_in_group("bug")) and not collidedObject.is_dead:
+			if collidedObject != null and (collidedObject.is_in_group("player") or collidedObject.is_in_group("bug")) and not collidedObject.is_dead:
 				print("beetle hit enemy: ", collidedObject.name)
 				if collidedObject.has_method("take_damage"):
 					collidedObject.take_damage(damage)

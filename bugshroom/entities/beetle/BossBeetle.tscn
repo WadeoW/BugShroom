@@ -2314,6 +2314,9 @@ parameters/Transition/current_index = 0
 wait_time = 2.0
 one_shot = true
 
-[node name="ChargeCooldownTimer" type="Timer" parent="."]
+[node name="ChargeCooldownTimer" type="Timer" parent="." groups=["beetles", "bug"]]
 wait_time = 10.0
 one_shot = true
+
+[connection signal="timeout" from="ChargeDurationTimer" to="." method="_on_charge_duration_timer_timeout"]
+[connection signal="timeout" from="ChargeCooldownTimer" to="." method="_on_charge_cooldown_timer_timeout"]

@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpfbrftkm6xvc"]
+[gd_scene load_steps=10 format=3 uid="uid://dpfbrftkm6xvc"]
 
 [ext_resource type="PackedScene" uid="uid://4rl5deukn8ci" path="res://assets/environment/anthill/StraightHallway1x3AntHill.tscn" id="1_r7kxl"]
 [ext_resource type="PackedScene" uid="uid://bl0yfwut55wt6" path="res://assets/environment/anthill/4WayConnectorAntHill.tscn" id="2_blfhh"]
-[ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_dd5od"]
 [ext_resource type="PackedScene" uid="uid://c1nmslox2m61g" path="res://assets/environment/anthill/CornerTurn3x3AntHill.tscn" id="3_sjtk2"]
 [ext_resource type="PackedScene" uid="uid://ba81hax3xjdae" path="res://assets/environment/anthill/SmallChamber2EntranceAntHill.tscn" id="4_dt8wp"]
 [ext_resource type="PackedScene" uid="uid://dn335qo3wbk7l" path="res://assets/environment/anthill/YJunction3x4AntHill.tscn" id="5_v1ugs"]
@@ -16,15 +15,8 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Arr
 geometry_parsed_geometry_type = 1
 agent_height = 1.0
 
-[node name="AntHill" type="NavigationRegion3D"]
+[node name="AntHill" type="NavigationRegion3D" groups=["anthill_walls"]]
 navigation_mesh = SubResource("NavigationMesh_sjtk2")
-
-[node name="AntQueen" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.5907, 1.18949, -17.2851)
-
-[node name="Ant" parent="." instance=ExtResource("2_dd5od")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92022, 1.48422, 4.40531)
-navigating_to_queen = true
 
 [node name="StraightHallway" parent="." instance=ExtResource("1_r7kxl")]
 
@@ -144,35 +136,35 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 160, 0
 [node name="YJunction8" parent="keychamber" instance=ExtResource("5_v1ugs")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 130, 0, 40)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." groups=["anthill_walls"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185, 5, 35)
 material_override = ExtResource("7_dt8wp")
 use_collision = true
 collision_layer = 641
 size = Vector3(10, 10, 10)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+[node name="CSGBox3D4" type="CSGBox3D" parent="." groups=["anthill_walls"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 315, 5, 175)
 material_override = ExtResource("7_dt8wp")
 use_collision = true
 collision_layer = 641
 size = Vector3(10, 10, 10)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+[node name="CSGBox3D3" type="CSGBox3D" parent="." groups=["anthill_walls"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 295, 5, -25)
 material_override = ExtResource("7_dt8wp")
 use_collision = true
 collision_layer = 641
 size = Vector3(10, 10, 10)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+[node name="CSGBox3D5" type="CSGBox3D" parent="." groups=["anthill_walls"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 435, 5, -15)
 material_override = ExtResource("7_dt8wp")
 use_collision = true
 collision_layer = 641
 size = Vector3(10, 10, 10)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+[node name="CSGBox3D2" type="CSGBox3D" parent="." groups=["anthill_walls"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 205, 5, -65)
 material_override = ExtResource("7_dt8wp")
 use_collision = true

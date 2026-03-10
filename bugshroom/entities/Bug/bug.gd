@@ -44,8 +44,8 @@ var pathfinding_raycast: RayCast3D # only used by ants
 
 # Dropping off dead ant variables
 var next_anthill_position: Node3D = null
-@onready var anthill_entrance_position: Node3D = get_tree().current_scene.get_node("AntHill2/Entrance")
-@onready var anthill_exit: Node3D = get_tree().current_scene.get_node("AntHill2/Exit")
+@onready var anthill_entrance_position: Node3D = get_tree().current_scene.get_node("AntHill/Entrance")
+@onready var anthill_exit: Node3D = get_tree().current_scene.get_node("AntHill/Exit")
 
 # dead bug variables
 var should_shrink_on_death := false
@@ -148,10 +148,11 @@ func _get_closest_in_group(group: String ) -> Node3D:
 	for n in nodes:
 		if n and n.is_inside_tree() and self != n:
 			var node := n as Node3D
-			var dist := global_position.distance_to(node.global_position)
-			if dist < closest_dist:
-				closest_dist = dist
-				closest = node
+			if node != null:
+				var dist := global_position.distance_to(node.global_position)
+				if dist < closest_dist:
+					closest_dist = dist
+					closest = node
 	return closest
 
 #-----------------------------------

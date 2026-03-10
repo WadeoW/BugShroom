@@ -5,7 +5,7 @@ signal player_death
 
 var speed
 var WALK_SPEED = 5.0
-var SPRINT_SPEED = 10.0
+var SPRINT_SPEED = 50.0
 var inputVelocity: Vector2
 var isSprinting: bool = false
 const JUMP_VELOCITY = 8
@@ -227,7 +227,6 @@ func _physics_process(delta):
 	#attack_hit_box.rotation.y = lerp_angle(attack_hit_box.rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
 	move_and_slide()
 
-	
 func take_damage(amount):
 	#animation_player.play("ink_takedmgwalk")
 	animation_tree.set("parameters/TakeDamageOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -238,10 +237,10 @@ func take_damage(amount):
 		die()
 
 func heal(amount):
-	if current_health < max_health:
-		current_health += amount
+	current_health += amount
+	current_health = clampf(current_health, 0, max_health)
 	update()
-	
+
 #Root down toggle function
 func toggle_root():
 	animation_tree.set("parameters/MovementRootBlend2/blend_amount", 1)
@@ -292,6 +291,7 @@ func cast_ability(ability_type):
 	can_cast_abil = false
 	var spawn := load("res://entities/abilities/GoopBall.tscn").instantiate() as RigidBody3D
 	add_sibling(spawn)
+	spawn.add_collision_exception_with(self)
 	spawn.position = position + Vector3.UP * 2
 	var launchDirection = -camera_pitch.global_transform.basis.z
 	spawn.linear_velocity = launchDirection.normalized() * goop_ball_launch_speed + Vector3.UP * 5
@@ -365,13 +365,9 @@ func respawn():
 	current_stamina = max_stamina
 	update()
 	set_physics_process(true)
-	
-	
-
 
 func _on_ability_cooldown_timeout() -> void:
 	can_cast_abil = true
-
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "unsit":

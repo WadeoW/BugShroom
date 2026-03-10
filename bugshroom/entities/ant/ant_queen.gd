@@ -13,6 +13,8 @@ extends BugBase
 # attack variables
 @onready var larvae_attack = preload("res://entities/ant/ant_queen_attacks/larvae_attack.tscn")
 @onready var larvae_attack_spawnpoint: Node3D = $"larvae attack spawnpoint"
+var knockback_resistance = 0.25
+var knockback_force := 20.0
 #collectible variables
 @onready var ant_queen_head = preload("res://entities/Collectibles/Ant_Queen_Head/ant_queen_collectible.tscn")
 
@@ -22,12 +24,12 @@ extends BugBase
 
 
 func _ready():
-	speed = ant_speed
+	speed = ant_speed / 2
 	health = ant_health
 	damage = ant_damage
 	aggressive = true
 	scavenger = false
-	detection_range = 10
+	detection_range = 25
 	add_to_group("ants")
 	add_to_group("bug")
 	super._ready()
@@ -68,13 +70,14 @@ func _physics_process(delta: float) -> void:
 		# Passive bugs or no close enough target: just wander
 		is_chasing = false
 		_idle_behavior(delta)
-		
+	
+	_rotate_to_velocity(delta, rotationSpeed)
+	move_and_slide()
 
 func _on_larvae_attack_timer_timeout() -> void:
-	print("larvae attacking")
 	animation_tree.set("parameters/SummonAntOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	var distance := global_position.distance_to(_get_closest_in_group("player").global_position)
-	if distance <= detection_range * 3:
+	if distance <= detection_range * 1.5:
 		var attack = larvae_attack.instantiate()
 		add_sibling(attack)
 		attack.global_position = larvae_attack_spawnpoint.global_position
@@ -93,9 +96,13 @@ func _try_attack() -> void:
 		var i = 0
 		for collision in range(total_collisions):
 			var collidedObject = attack_hit_box.get_collider(i)
-			if collidedObject.is_in_group("player") and collidedObject.has_method("take_damage") and not collidedObject.is_dead:
+			if collidedObject != null and collidedObject.is_in_group("player") and collidedObject.has_method("take_damage") and not collidedObject.is_dead:
 				collidedObject.take_damage(damage)
 				print("Ant attacked player for ", damage, " damage!")
+				if collidedObject.has_method("apply_knockback"):
+					var kb_direction = (collidedObject.global_position - global_position).normalized()
+					kb_direction.y = 0.4
+					collidedObject.apply_knockback(kb_direction, knockback_force)
 			i += 1
 		if hit_player:
 			animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -109,7 +116,6 @@ func _chase_target(toChase: Node3D):
 func become_dead_bug() -> void:
 	health_bar_3d.visible = false
 	super.become_dead_bug()
-	#abdomin.set_surface_override_material(0, DEAD_ANT_MATERIAL)
 	should_shrink_on_death = true
 
 func die() -> void:
@@ -130,7 +136,9 @@ func take_damage(amount: float) -> void:
 	if health <= 0:
 		die()
 
-
-
+func apply_knockback(direction: Vector3, force: float):
+	knockback += Vector2(direction.x, direction.z).normalized() * (force * knockback_resistance)
+	velocity.y += direction.normalized().y * (force * knockback_resistance)
+	
 func _update() -> void:
 	health_bar_3d.value = health
