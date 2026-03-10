@@ -28,6 +28,10 @@ var colony_nutrient_gain_rate = 25
 @onready var boss_beetle_scene = preload("res://entities/beetle/BossBeetle.tscn")
 @onready var boss_beetle_spawnpoint: Node3D = $BossBeetleSpawnpoint
 
+@onready var player_1_spawner: Node3D = $GridContainer/SubViewportContainer/SubViewport/Player1Spawner
+@onready var player_2_spawner: Node3D = $GridContainer/SubViewportContainer2/SubViewport/Player2Spawner
+@onready var character_select_popup_p_1: MarginContainer = $GridContainer/SubViewportContainer/CharacterSelectPopupP1
+@onready var character_select_popup_p_2: MarginContainer = $GridContainer/SubViewportContainer2/CharacterSelectPopupP2
 
 @onready var players = {"player_1": player1, "player_2": player2}
 
@@ -47,14 +51,25 @@ func _process(_delta: float) -> void:
 		pause_menu_canvas_layer.visible = true
 	if Input.is_action_just_pressed("options_1") and get_tree().paused == true:
 		pause_menu_canvas_layer.visible = false
-		
+	#if Input.is_action_just_pressed("char_select_toggle_1"): #and character_select_popup_p_1.optionbutton.visible == false:
+		#character_select_popup_p_1.visible = !character_select_popup_p_1.visible
+	#if Input.is_action_just_pressed("char_select_toggle_2"):
+		#character_select_popup_p_2.visible = !character_select_popup_p_2.visible
+
 
 func _on_game_over():
 	#get_tree().reload_current_scene()
 	get_tree().change_scene_to_file("res://levels/gameover/game_over.tscn")
 
-func _on_player_death():
+func _on_player_death(player):
 	current_colony_nutrients -= 100
+	if player == 1:
+		print("player 1 has died")
+		player_1_spawner.spawn_player()
+	if player == 2:
+		print("player 2 has died")
+		player_2_spawner.spawn_player()
+	
 
 func _on_nutrient_drain_timer_timeout() -> void:
 	current_colony_nutrients -= colony_nutrient_drain_rate

@@ -1,6 +1,6 @@
 extends Node
 
-signal player_died
+signal player_died(player)
 
 signal game_over
 

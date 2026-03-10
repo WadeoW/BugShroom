@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=58 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bp75styrftfwv" path="res://player_1_spawner.gd" id="9_hhcpw"]
 [ext_resource type="PackedScene" uid="uid://bwv1obth85s1a" path="res://tasks/dead_bug_task_spawner.tscn" id="10_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://8gxwurqg07or" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
+[ext_resource type="PackedScene" uid="uid://b3u0oi8cp7nov" path="res://assets/UI/character_select_pop_up_2.tscn" id="12_o7g6l"]
 [ext_resource type="Script" uid="uid://j0ano1abul83" path="res://player_2_spawner.gd" id="13_mxvw5"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://dt1373tohhcxl" path="res://assets/environment/tree/new_redwood.tscn" id="14_mxvw5"]
@@ -33,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://bfas6xneyxj0q" path="res://entities/ant/ant_queen.tscn" id="29_w3rk5"]
 [ext_resource type="PackedScene" uid="uid://cp14j0gmpdxl0" path="res://entities/Collectibles/Pinecone.tscn" id="30_5mvff"]
 [ext_resource type="PackedScene" uid="uid://dpfbrftkm6xvc" path="res://assets/environment/anthill/ant_hill.tscn" id="33_gb15f"]
+[ext_resource type="PackedScene" uid="uid://cbyehopjbh684" path="res://assets/UI/CharacterSelectPopup.tscn" id="34_sph85"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gh4u"]
 load_path = "res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-c7c740f4ba395b910b721a3d2075f764.s3tc.ctex"
@@ -511,6 +513,9 @@ render_target_update_mode = 4
 [node name="Player1Spawner" type="Node3D" parent="GridContainer/SubViewportContainer/SubViewport"]
 script = ExtResource("9_hhcpw")
 
+[node name="CharacterSelectPopupP1" parent="GridContainer/SubViewportContainer" instance=ExtResource("34_sph85")]
+layout_mode = 2
+
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -524,6 +529,8 @@ render_target_update_mode = 4
 
 [node name="Player2Spawner" type="Node3D" parent="GridContainer/SubViewportContainer2/SubViewport"]
 script = ExtResource("13_mxvw5")
+
+[node name="CharacterSelectPopUp2" parent="GridContainer/SubViewportContainer2/SubViewport" instance=ExtResource("12_o7g6l")]
 
 [node name="DeadBugTaskSpawner" parent="." instance=ExtResource("10_c2ibq")]
 
@@ -4976,7 +4983,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 138, -
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -267, 0, 235)
 
 [node name="BossBeetleSpawner" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 300.0
 one_shot = true
 autostart = true
 
@@ -4987,6 +4994,7 @@ autostart = true
 [connection signal="timeout" from="AphidManager/SpawnTimer2" to="AphidManager" method="_on_spawn_timer_2_timeout"]
 [connection signal="timeout" from="BossBeetleSpawner" to="." method="_on_boss_beetle_spawner_timeout"]
 
+[editable path="GridContainer/SubViewportContainer/CharacterSelectPopupP1"]
 [editable path="environment/log/log_bugshroom_v01"]
 [editable path="environment/log/log_bugshroom_v05"]
 [editable path="environment/log/log_bugshroom_v02"]

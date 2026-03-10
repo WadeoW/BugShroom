@@ -34,6 +34,8 @@ var is_jumping = false
 @onready var player_damage_sound_3d: AudioStreamPlayer3D = $PlayerModel/Audio/PlayerDamageSound3D
 
 
+#char select variables
+var in_menu = false
 
 #respawn
 @export var respawn_delay: float = 5.0
@@ -87,6 +89,7 @@ var is_rooted = false
 #used for making smooth player turning
 var last_direction = Vector3.FORWARD
 @export var rotation_speed = 5
+
 
 
 
@@ -144,7 +147,7 @@ func _physics_process(delta):
 		knockback = Vector2.ZERO
 
 # handle jump
-	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted:
+	if Input.is_action_just_pressed("jump_%s" % [player_id]) and is_on_floor() and !is_rooted and !in_menu:
 		jump_sound_3d.play()
 		animation_tree.set("parameters/JumpOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		velocity.y = JUMP_VELOCITY
@@ -176,7 +179,7 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("move_left_%s" % [player_id], "move_right_%s" % [player_id], "move_up_%s" % [player_id], "move_down_%s" % [player_id])
 	#new vector3 direction taking into account movement inputs and camera rotation
 	var direction = (camera_yaw.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if not is_rooted  and !is_dead:
+	if not is_rooted  and !is_dead and !in_menu:
 		if direction:
 			last_direction = direction
 			#if animation_player.current_animation != "walkanimation" and animation_player.current_animation != "mushroomdude_allanimations2/attack" and animation_player.current_animation != "headshakeanimation/headshake" and animation_player.current_animation != "take_damage": 
@@ -196,6 +199,9 @@ func _physics_process(delta):
 		animation_tree.set("parameters/MovementBlendSpace1D/blend_position", velocity_to_blend_pos)
 		knockback = knockback.limit_length(MAX_KNOCKBACK_SPEED)
 		velocity = Vector3(inputVelocity.x, velocity.y, inputVelocity.y) + Vector3(knockback.x, 0, knockback.y)
+		if not isSprinting and current_stamina < max_stamina:
+			current_stamina += passive_stamina_regen * delta
+			update()
 	else:
 		velocity.x = 0
 		velocity.z = 0
@@ -329,10 +335,11 @@ func die():
 	print("Player", player_id, "has died!")
 	animation_tree.set("parameters/DeathBlend2/blend_amount", 1)
 	set_physics_process(false)
-	SignalBus.player_died.emit()
 	await get_tree().create_timer(respawn_delay).timeout
-	respawn()
-	
+	#respawn()
+	SignalBus.player_died.emit(player_id)
+	queue_free()
+
 func respawn():
 	is_dead = false
 	knockback = Vector2.ZERO; velocity = Vector3.ZERO; inputVelocity = Vector2.ZERO
@@ -340,6 +347,7 @@ func respawn():
 	animation_tree.set("parameters/DeathBlend2/blend_amount", 0)
 	animation_tree.set("parameters/SpawnOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	print("player", player_id, "respawned!")
+	#Resets and updates health and stamina
 	current_health = max_health
 	current_stamina = max_stamina
 	update()

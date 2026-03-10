@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbyehopjbh684"]
+
+[ext_resource type="Texture2D" uid="uid://bld0fs2kvyfg0" path="res://assets/UI/Other/AmanitaCharSelectIcon.png" id="1_a0igm"]
+[ext_resource type="FontFile" uid="uid://c63rn2imkgci8" path="res://assets/Fonts/Bugshroomfont-Regular (3).ttf" id="1_o2nh5"]
+[ext_resource type="Texture2D" uid="uid://dpt1lrbc5gjax" path="res://assets/UI/Other/InkCapCharSelectIcon.png" id="2_j7n6r"]
+[ext_resource type="Texture2D" uid="uid://coeo1loy30xfg" path="res://assets/UI/Other/PuffballCharSelectIcon.png" id="3_o2nh5"]
+[ext_resource type="Script" uid="uid://cfju5kc1fjdnl" path="res://assets/UI/CharacterSelectButton.gd" id="4_j7n6r"]
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_o2nh5"]
+button_index = 10
+
+[sub_resource type="Shortcut" id="Shortcut_j7n6r"]
+events = [SubResource("InputEventJoypadButton_o2nh5")]
+
+[node name="CharacterSelectPopUp1" type="MarginContainer"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 960.0
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_o2nh5")
+shortcut = SubResource("Shortcut_j7n6r")
+flat = true
+icon_alignment = 1
+selected = 0
+allow_reselect = true
+item_count = 3
+popup/item_0/text = "Amanita"
+popup/item_0/icon = ExtResource("1_a0igm")
+popup/item_0/id = 0
+popup/item_1/text = "InkCap"
+popup/item_1/icon = ExtResource("2_j7n6r")
+popup/item_1/id = 1
+popup/item_2/text = "Puffball"
+popup/item_2/icon = ExtResource("3_o2nh5")
+popup/item_2/id = 2
+script = ExtResource("4_j7n6r")
+
+[connection signal="focus_entered" from="ScrollContainer/VBoxContainer/OptionButton" to="ScrollContainer/VBoxContainer/OptionButton" method="_on_focus_entered"]
+[connection signal="item_focused" from="ScrollContainer/VBoxContainer/OptionButton" to="ScrollContainer/VBoxContainer/OptionButton" method="_on_item_focused"]
+[connection signal="item_selected" from="ScrollContainer/VBoxContainer/OptionButton" to="ScrollContainer/VBoxContainer/OptionButton" method="_on_item_selected"]

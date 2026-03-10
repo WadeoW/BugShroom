@@ -18,6 +18,9 @@ const MAX_KNOCKBACK_SPEED = 20
 @export var sens_vertical = 0.5
 var direction
 
+#char select variables
+var in_menu = false
+
 #respawn
 @export var respawn_delay: float = 5.0
 
@@ -151,7 +154,7 @@ func _physics_process(delta):
 	
 	#new vector3 direction taking into account movement inputs and camera rotation
 	direction = (camera_yaw.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if not is_rooted  and !is_dead:
+	if not is_rooted and !is_dead and !in_menu:
 		if direction:
 			last_direction = direction
 			if animation_player.current_animation != "puffmushroom_animations/roll" and animation_player.current_animation != "ability_use" and animation_player.current_animation != "take_damage": 
@@ -279,10 +282,10 @@ func die():
 	print("Player", player_id, "has died!")
 	animation_player.play("puff_charge_death/death")
 	set_physics_process(false)
-	SignalBus.player_died.emit()
-	
 	await get_tree().create_timer(respawn_delay).timeout
-	respawn()
+	SignalBus.player_died.emit(player_id)
+	queue_free()
+	#respawn()
 	
 func respawn():
 	is_dead = false

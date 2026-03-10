@@ -17,6 +17,9 @@ const MAX_KNOCKBACK_SPEED = 20
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
 
+#char select variables
+var in_menu = false
+
 #respawn
 @export var respawn_delay: float = 5.0
 
@@ -183,7 +186,7 @@ func _physics_process(delta):
 	
 	#new vector3 direction taking into account movement inputs and camera rotation
 	var direction = (camera_yaw.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if not is_rooted  and !is_dead:
+	if not is_rooted  and !is_dead and !in_menu:
 		if direction:
 			last_direction = direction
 			#if animation_player.current_animation != "ink_walkcycle" and animation_player.current_animation != "goop" and animation_player.current_animation != "ink_attack" and animation_player.current_animation != "ink_takedmgwalk" and animation_player.current_animation != "ink_jump": 
@@ -344,12 +347,11 @@ func die():
 	death_sound_3d.play()
 	animation_tree.set("parameters/DeathBlend2/blend_amount", 1)
 	#animation_player.play("ink_death")
-	
 	set_physics_process(false)
-	SignalBus.player_died.emit()
-	
 	await get_tree().create_timer(respawn_delay).timeout
-	respawn()
+	SignalBus.player_died.emit(player_id)
+	queue_free()
+	#respawn()
 	
 func respawn():
 	is_dead = false
