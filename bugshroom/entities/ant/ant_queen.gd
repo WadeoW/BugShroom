@@ -15,6 +15,8 @@ extends BugBase
 @onready var larvae_attack_spawnpoint: Node3D = $"larvae attack spawnpoint"
 var knockback_resistance = 0.25
 var knockback_force := 20.0
+var spawned_ants: Array = []
+var max_spawned_ants := 5
 #collectible variables
 @onready var ant_queen_head = preload("res://entities/Collectibles/Ant_Queen_Head/ant_queen_collectible.tscn")
 
@@ -81,6 +83,7 @@ func _on_larvae_attack_timer_timeout() -> void:
 		var attack = larvae_attack.instantiate()
 		add_sibling(attack)
 		attack.global_position = larvae_attack_spawnpoint.global_position
+		attack.parent_queen = self
 		
 
 func _try_attack() -> void:

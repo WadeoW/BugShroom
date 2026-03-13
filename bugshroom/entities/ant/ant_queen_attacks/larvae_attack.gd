@@ -7,6 +7,7 @@ extends Node3D
 var flight_time := 3.2
 var launch_interval_time := 0.25
 var projectiles := 4
+var parent_queen
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -16,6 +17,7 @@ func _ready() -> void:
 		var proj = projectile.instantiate()
 		add_child(proj)
 		proj.global_position = global_position
+		proj.parent_queen = parent_queen
 		# random position around the player and disregard y value (always on ground)
 		var landing_position = Vector3(closest_player.global_position.x, 0, closest_player.global_position.z) + Vector3(randf_range(-5,5), 0, randf_range(-5,5))
 		print("landing position is ", landing_position)

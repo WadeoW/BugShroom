@@ -308,9 +308,11 @@ func grab():
 		if closestBody != null:
 			grabbedItem = closestBody
 			# body is part of environment
-			if closestBody is RigidBody3D:
-				grab_joint.node_b = closestBody.get_path()
-			add_collision_exception_with(closestBody)
+			if grabbedItem is RigidBody3D:
+				grab_joint.node_b = grabbedItem.get_path()
+			if closestBody is CharacterBody3D:
+				grabbedItem.is_being_carried = true
+			add_collision_exception_with(grabbedItem)
 			print("grabbed ", grab_joint.node_b)
 			pick_up_sound_3d.play()
 			isGrabbingItem = true
@@ -321,6 +323,7 @@ func grab():
 		remove_collision_exception_with(grabbedItem)
 		if grabbedItem.is_in_group("dead_bug"):
 			grabbedItem.is_being_carried = false
+			grabbedItem.dead_bug_despawn_timer = 0
 		grabbedItem = null
 		grab_joint.node_b = NodePath()
 		isGrabbingItem = false

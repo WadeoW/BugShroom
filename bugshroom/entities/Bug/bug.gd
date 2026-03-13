@@ -52,6 +52,8 @@ var should_shrink_on_death := false
 var dead_bug_seeking_distance := 30.0
 var dead_bug_pick_up_distance := 2.0
 var become_dead_bug_chance := 1
+const dead_bug_despawn_time := 45.0
+var dead_bug_despawn_timer := 0.0
 var is_carrying_dead_bug := false
 var bug_being_carried: CharacterBody3D
 var is_being_carried := false
@@ -74,9 +76,13 @@ func _physics_process(delta: float) -> void:
 	knockback = knockback.move_toward(Vector2.ZERO, 20 * delta)
 	
 	if is_dead:
-		if should_shrink_on_death:
+		if should_shrink_on_death and scale.length() > Vector3(0.51, 0.51, 0.51).length():
 			scale = scale.move_toward(Vector3(0.5, 0.5, 0.5), delta)
 		if not is_being_carried:
+			dead_bug_despawn_timer += delta
+			if dead_bug_despawn_timer > dead_bug_despawn_time:
+				queue_free()
+				return
 			move_and_slide()
 		return
 
@@ -131,7 +137,6 @@ func _physics_process(delta: float) -> void:
 			bug_being_carried.rotation.y = lerp_angle(bug_being_carried.rotation.y, rotation.y + PI / 2, 20 * delta)
 	if next_anthill_position != null:
 		self._seek_ant_hill()
-	
 	
 	_rotate_to_velocity(delta, rotationSpeed)
 	move_and_slide()
@@ -276,6 +281,7 @@ func _release_dead_bug(shouldDestroy: bool):
 		bug_being_carried = null
 		pathfinding_raycast.remove_exception(bug)
 		bug.is_being_carried = false
+		bug.dead_bug_despawn_timer = 0
 		is_carrying_dead_bug = false
 		if shouldDestroy:
 			await get_tree().create_timer(2.0).timeout
@@ -304,6 +310,7 @@ func become_dead_bug() -> void:
 	collision_mask = 0
 	set_collision_layer_value(9, true)
 	set_collision_mask_value(10, true)
+	
 
 func die() -> void:
 	if is_dead:

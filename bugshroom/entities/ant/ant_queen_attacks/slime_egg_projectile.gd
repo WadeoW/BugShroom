@@ -8,6 +8,7 @@ var proj_contact_dmg := 10
 var proj_kb_force := 3
 var landing_damage := 20
 var landing_kb_force := 5
+var parent_queen
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -27,8 +28,11 @@ func _process(delta: float) -> void:
 				body.take_damage(landing_damage)
 				var kb_dir = (body.global_position - landing_marker.global_position).normalized()
 				body.apply_knockback(kb_dir, landing_kb_force)
-		if randf() <= larva_spawn_chance:
+		if parent_queen != null and parent_queen.spawned_ants.size() < parent_queen.max_spawned_ants and randf() <= larva_spawn_chance:
 			var spawned_larva = larva_scene.instantiate()
+			parent_queen.spawned_ants.append(spawned_larva)
+			spawned_larva.parent_queen = parent_queen
+			spawned_larva.become_dead_bug_chance = 0 # remove line if this isn't an ant
 			spawned_larva.global_position = landing_marker.global_position
 			# parent is larva_attack whose parent is main/world
 			self.get_parent().add_sibling(spawned_larva) # sets spawned_larva parent to world

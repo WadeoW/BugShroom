@@ -24,6 +24,8 @@ var has_alerted_allies: bool = false
 @onready var death_sound_3d: AudioStreamPlayer3D = $Audio/DeathSound3D
 @onready var attack_sound_3d: AudioStreamPlayer3D = $Audio/AttackSound3D
 
+var parent_queen
+
 func _ready():
 	speed = ant_speed
 	health = ant_health
@@ -108,10 +110,13 @@ func become_dead_bug() -> void:
 	super.become_dead_bug()
 	abdomin.set_surface_override_material(0, DEAD_ANT_MATERIAL)
 	should_shrink_on_death = true
+	
 
 func die() -> void:
 	animation_tree.set("parameters/conditions/is_dead", true)
 	death_sound_3d.play()
+	if parent_queen != null:
+		parent_queen.spawned_ants.erase(self)
 	super.die()
 
 func take_damage(amount: float) -> void:
