@@ -13,6 +13,7 @@ extends BugBase
 # attack variables
 @onready var larvae_attack = preload("res://entities/ant/ant_queen_attacks/larvae_attack.tscn")
 @onready var larvae_attack_spawnpoint: Node3D = $"larvae attack spawnpoint"
+@onready var attack_no_move_timer: Timer = $"Attack No Move Timer"
 var knockback_resistance = 0.25
 var knockback_force := 20.0
 var spawned_ants: Array = []
@@ -32,6 +33,7 @@ func _ready():
 	aggressive = true
 	scavenger = false
 	detection_range = 25
+	despawn_timer = 2
 	add_to_group("ants")
 	add_to_group("bug")
 	super._ready()
@@ -49,6 +51,11 @@ func _physics_process(delta: float) -> void:
 			scale = scale.move_toward(Vector3(0.5, 0.5, 0.5), delta)
 		if not is_being_carried:
 			move_and_slide()
+		return
+	if !attack_no_move_timer.is_stopped():
+		velocity.x = 0 + knockback.x
+		velocity.z = 0 + knockback.y
+		move_and_slide()
 		return
 	# Only aggressive bugs look for players
 	if aggressive:
@@ -77,14 +84,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_larvae_attack_timer_timeout() -> void:
-	animation_tree.set("parameters/SummonAntOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	var distance := global_position.distance_to(_get_closest_in_group("player").global_position)
 	if distance <= detection_range * 1.5:
+		animation_tree.set("parameters/SummonAntOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		attack_no_move_timer.start()
 		var attack = larvae_attack.instantiate()
 		add_sibling(attack)
 		attack.global_position = larvae_attack_spawnpoint.global_position
 		attack.parent_queen = self
-		
 
 func _try_attack() -> void:
 	if not aggressive:

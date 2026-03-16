@@ -121,22 +121,9 @@ func _physics_process(delta: float) -> void:
 			_try_attack()
 		else:
 			is_chasing_bug = false
-
-	# dead bug behaviors
-	if scavenger and !is_chasing and !is_carrying_dead_bug:
-		_seek_dead_bug(delta)
-	else:
-		is_seeking_dead_bug = false
-	if is_carrying_dead_bug:
-		if next_anthill_position == null:
-			next_anthill_position = anthill_entrance_position
-		if bug_being_carried == null:
-			return
-		else:
-			bug_being_carried.position = bug_being_carried.position.move_toward(mouth_position.global_position, 200 * delta)
-			bug_being_carried.rotation.y = lerp_angle(bug_being_carried.rotation.y, rotation.y + PI / 2, 20 * delta)
-	if next_anthill_position != null:
-		self._seek_ant_hill()
+	
+	# putting these lines method for clarity and use in ant.gd
+	dead_bug_behaviors(delta)
 	
 	_rotate_to_velocity(delta, rotationSpeed)
 	move_and_slide()
@@ -190,6 +177,22 @@ func _idle_behavior(delta: float) -> void:
 		velocity.x = wander_direction.x * wander_speed + knockback.x
 		velocity.z = wander_direction.z * wander_speed + knockback.y
 
+func dead_bug_behaviors(delta: float):
+	if scavenger and !is_chasing and !is_carrying_dead_bug:
+		_seek_dead_bug(delta)
+	else:
+		is_seeking_dead_bug = false
+	if is_carrying_dead_bug:
+		if next_anthill_position == null:
+			next_anthill_position = anthill_entrance_position
+		if bug_being_carried == null:
+			return
+		else:
+			bug_being_carried.position = bug_being_carried.position.move_toward(mouth_position.global_position, 200 * delta)
+			bug_being_carried.rotation.y = lerp_angle(bug_being_carried.rotation.y, rotation.y + PI / 2, 20 * delta)
+	if next_anthill_position != null:
+		self._seek_ant_hill()
+
 func _try_attack() -> void:
 	if not aggressive:
 		return
@@ -230,10 +233,9 @@ func _seek_dead_bug(delta: float):
 
 # go to ant hill and drop dead ant off
 func _seek_ant_hill():
-	if global_position.distance_to(anthill_entrance_position.global_position) < 0.3:
-		_release_dead_bug(true)
-		next_anthill_position = anthill_exit
-	elif global_position.distance_to(anthill_exit.global_position) < 0.3:
+	if global_position.distance_to(anthill_entrance_position.global_position) < 1:
+		self.navigating_to_queen = true
+		self.update_nav_timer = INF
 		next_anthill_position = null
 	if next_anthill_position != null:
 		var direction_to_next_position := (next_anthill_position.global_position - global_position).normalized()

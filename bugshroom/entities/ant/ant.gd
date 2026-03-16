@@ -14,9 +14,11 @@ var has_alerted_allies: bool = false
 # Navigation
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @export var navigating_to_queen := false
+@export var navigating_to_entrance := false
 @export var randomly_navigating := false
 @onready var queen: Node3D = get_tree().current_scene.get_node("AntQueen")
-
+var update_nav_timer := 0.0
+const update_nav_time := 2.0
 @onready var health_bar: ProgressBar = $SubViewport/HealthBar3D
 # Sound Variables
 @onready var hit_sound_3d: AudioStreamPlayer3D = $Audio/HitSound3D
@@ -43,24 +45,49 @@ func _ready():
 	health_bar.value = ant_health
 
 func _physics_process(delta: float) -> void:
-	if navigating_to_queen and queen != null:
-		if navigation_agent_3d:
-			if navigation_agent_3d.target_position == Vector3.ZERO:
-				navigation_agent_3d.set_target_position(queen.global_position)
-			var next_point = navigation_agent_3d.get_next_path_position()
-			var direction = (next_point - global_position).normalized()
-			velocity.x = direction.x * speed + knockback.x
-			velocity.z = direction.z * speed + knockback.y
-			move_and_slide()
-			_rotate_to_velocity(delta, rotationSpeed)
-			return
-	else:
+	if not navigating_to_queen:
 		super._physics_process(delta)
+		return
+
+	# Basic behavior
+	if is_dead:
+		navigating_to_queen = false
+		return
+	if not is_on_floor():
+		velocity.y -= 9.8 * delta
+	knockback = knockback.move_toward(Vector2.ZERO, 20 * delta)
+	dead_bug_behaviors(delta)
+	
+	# Navigation
+	if navigating_to_queen and queen != null:
+		navigate_to_target(queen, delta)
+	elif navigating_to_entrance:
+		navigate_to_target(anthill_entrance_position, delta)
+	
+	_rotate_to_velocity(delta, rotationSpeed)
+	move_and_slide()
+
+# Navigation
+func _on_navigation_agent_3d_target_reached() -> void:
+	if navigating_to_queen:
+		navigating_to_queen = false
+		navigating_to_entrance = true
+	if navigating_to_entrance:
+		navigating_to_entrance = false
+	update_nav_timer = INF
+	_release_dead_bug(true)
+	
+func navigate_to_target(target: Node3D, delta: float):
+	update_nav_timer += delta
+	if update_nav_timer > update_nav_time:
+		navigation_agent_3d.set_target_position(target.global_position)
+	var next_point = navigation_agent_3d.get_next_path_position()
+	var direction = (next_point - global_position).normalized()
+	velocity.x = direction.x * speed + knockback.x
+	velocity.z = direction.z * speed + knockback.y
 
 func _try_attack() -> void:
-	if not aggressive:
-		return
-	if not target or not can_attack:
+	if not aggressive or is_carrying_dead_bug or not target or not can_attack:
 		return
 	if attack_hit_box.is_colliding():
 		var total_collisions = attack_hit_box.get_collision_count()
@@ -129,8 +156,6 @@ func take_damage(amount: float) -> void:
 	print(name, " took ", amount, " damage! Health: ", health)
 	if health <= 0:
 		die()
-
-
 
 func _update() -> void:
 	health_bar.value = health
