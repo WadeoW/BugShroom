@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://kkya7qj3c2nn"
-path="res://.godot/imported/ShroomLongHouse.fbx-23dd220bb2ba8cf1df7302872eabe82b.scn"
+uid="uid://brkb2bbc64lls"
+path="res://.godot/imported/ShroomLongHouse (1).fbx-4f7272de8210b9b08e6d5696048b15ec.scn"
 
 [deps]
 
-source_file="res://assets/environment/ShroomLongHouse.fbx"
-dest_files=["res://.godot/imported/ShroomLongHouse.fbx-23dd220bb2ba8cf1df7302872eabe82b.scn"]
+source_file="res://assets/environment/longshroom/ShroomLongHouse (1).fbx"
+dest_files=["res://.godot/imported/ShroomLongHouse (1).fbx-4f7272de8210b9b08e6d5696048b15ec.scn"]
 
 [params]
 
