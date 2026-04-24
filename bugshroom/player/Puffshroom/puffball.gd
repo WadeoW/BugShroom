@@ -30,6 +30,9 @@ var in_menu = false
 @onready var health_bar: TextureProgressBar = $CanvasLayer/HealthBar
 var is_dead = false
 
+#stamina
+var current_stamina = 100
+var max_stamina = 100
 
 #attack variables
 const ROLLING_ATTACK_DAMAGE: float = 5.0 # this is multiplied by speed in xz plane

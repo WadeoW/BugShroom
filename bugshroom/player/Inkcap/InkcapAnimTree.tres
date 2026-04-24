@@ -86,7 +86,6 @@ animation = &" spawn"
 animation = &"ink_takedmgwalk"
 
 [resource]
-graph_offset = Vector2(-614.886, -70.1375)
 nodes/AttackOneShot/node = SubResource("AnimationNodeOneShot_vniy1")
 nodes/AttackOneShot/position = Vector2(1060, 200)
 nodes/DeathBlend2/node = SubResource("AnimationNodeBlend2_8v3m4")

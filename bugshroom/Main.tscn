@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=63 format=4 uid="uid://ch8yce5nnahu3"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://cp14j0gmpdxl0" path="res://entities/Collectibles/Pinecone.tscn" id="30_5mvff"]
 [ext_resource type="PackedScene" uid="uid://dpfbrftkm6xvc" path="res://assets/environment/anthill/ant_hill.tscn" id="33_gb15f"]
 [ext_resource type="PackedScene" uid="uid://cbyehopjbh684" path="res://assets/UI/CharacterSelectPopup.tscn" id="34_sph85"]
+[ext_resource type="Material" uid="uid://ilhovwm8o7cv" path="res://assets/environment/anthill/Materials/StraightHallwayMat/StraightHallwayMat.tres" id="38_3ccbu"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gh4u"]
 load_path = "res://.godot/imported/ground_v01_gorund_mat_BaseColor.png-c7c740f4ba395b910b721a3d2075f764.s3tc.ctex"
@@ -620,6 +621,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190.492, 2.37678, -92.2028)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.2591, 2.37678, -144.54)
 
 [node name="MushroomBase" parent="." instance=ExtResource("12_c6i3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4882, 0, 0)
 
 [node name="environment" type="Node" parent="."]
 
@@ -5101,6 +5103,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.12637, 2.14794, 5.00752)
 
 [node name="Exit" type="Node3D" parent="AntHill"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6188, 2.14794, 5.00752)
+
+[node name="EntranceRamp" type="CSGBox3D" parent="AntHill"]
+transform = Transform3D(0.965926, 0.258819, -1.48943e-09, -0.258819, 0.965926, -1.13133e-08, -1.48944e-09, 1.13133e-08, 1, 4.04468, 0.663713, 4.82956)
+use_collision = true
+collision_layer = 129
+size = Vector3(6.58791, 1, 10.6591)
+material = ExtResource("38_3ccbu")
 
 [node name="BossBeetleSpawnpoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -230, 0, 230)

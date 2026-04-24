@@ -31,7 +31,8 @@ func _ready() -> void:
 	
 
 func _on_lifetime_timeout() -> void:
-	player.ability_active = false
+	if player != null:
+		player.ability_active = false
 	print("ability despawned")
 	if player.ability_cooldown.is_stopped():
 		player.ability_cooldown.start()

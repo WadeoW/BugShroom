@@ -84,7 +84,6 @@ animation = &"amanita_spawn/amanita_spawn"
 animation = &"amanita_spawn/headshake"
 
 [resource]
-graph_offset = Vector2(-206.134, -124.282)
 nodes/AbilityUseOneShot/node = SubResource("AnimationNodeOneShot_pyapv")
 nodes/AbilityUseOneShot/position = Vector2(1680, 300)
 nodes/AttackOneShot/node = SubResource("AnimationNodeOneShot_vniy1")
