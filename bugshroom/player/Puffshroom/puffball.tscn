@@ -5,8 +5,8 @@
 [ext_resource type="AnimationLibrary" uid="uid://bde73mddq6b8c" path="res://player/Puffshroom/puffmushroom_animations.glb" id="2_7wi73"]
 [ext_resource type="AnimationLibrary" uid="uid://kybdxnurhwko" path="res://player/Puffshroom/puff_charge_death.glb" id="2_p64ml"]
 [ext_resource type="Script" uid="uid://brrncwvvflgvk" path="res://player/health_bar.gd" id="3_xhpx3"]
-[ext_resource type="Texture2D" uid="uid://cmqy41dcpxgrh" path="res://assets/UI/Player/HUD/HealthBarTransSmall.png" id="5_3yfoa"]
-[ext_resource type="Texture2D" uid="uid://c3j1x5dlxgx63" path="res://assets/UI/Player/HUD/HealthBarGreenSmall.png" id="6_ci1bd"]
+[ext_resource type="Texture2D" uid="uid://bquxksy131opk" path="res://assets/UI/Player/HUD/mushroomhealthtransparent.png" id="5_3yfoa"]
+[ext_resource type="Texture2D" uid="uid://bvbalvcuvrpni" path="res://assets/UI/Player/HUD/mushroomhealthbarred.png" id="6_ci1bd"]
 [ext_resource type="AudioStream" uid="uid://eabyk3002fp5" path="res://assets/Sound/player/Puffball/puffball_impact.mp3" id="6_invgw"]
 [ext_resource type="Texture2D" uid="uid://bc7qxbl4d2bem" path="res://assets/UI/Speedicon.png" id="7_p64ml"]
 [ext_resource type="AudioStream" uid="uid://wosljyqty5pq" path="res://assets/Sound/player/Puffball/puffball_jump.mp3" id="9_8ke3l"]
@@ -507,12 +507,12 @@ shape = SubResource("ConvexPolygonShape3D_4tcne")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 66.0
-offset_top = -141.0
-offset_right = 525.0
-offset_bottom = -11.0
+offset_left = -110.0
+offset_top = -380.0
+offset_right = 1810.0
+offset_bottom = 700.0
 grow_vertical = 0
-scale = Vector2(0.65, 0.65)
+scale = Vector2(0.5, 0.5)
 value = 100.0
 texture_under = ExtResource("5_3yfoa")
 texture_progress = ExtResource("6_ci1bd")
@@ -524,10 +524,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -245.0
-offset_top = -248.0
-offset_right = -40.0
-offset_bottom = -43.0
+offset_left = -219.0
+offset_top = -279.0
+offset_right = -13.9999
+offset_bottom = -74.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.66, 0.66)
@@ -562,21 +562,21 @@ debug_color = Color(0.999465, 0, 0.112206, 0.42)
 
 [node name="Audio" type="Node3D" parent="."]
 
-[node name="ImpactSound3D" type="AudioStreamPlayer3D" parent="Audio"]
+[node name="ImpactSound3D" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("6_invgw")
 volume_db = -15.0
 
-[node name="JumpSound3D" type="AudioStreamPlayer3D" parent="Audio"]
+[node name="JumpSound3D" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("9_8ke3l")
 
-[node name="RollingSound3D" type="AudioStreamPlayer3D" parent="Audio"]
+[node name="RollingSound3D" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("10_3yfoa")
 volume_db = -10.0
 
-[node name="DeathSound3D" type="AudioStreamPlayer3D" parent="Audio"]
+[node name="DeathSound3D" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("11_ci1bd")
 
-[node name="DamageSound3D" type="AudioStreamPlayer3D" parent="Audio"]
+[node name="DamageSound3D" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("12_1y3d1")
 volume_db = -10.0
 

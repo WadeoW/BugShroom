@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpfbrftkm6xvc"]
+[gd_scene load_steps=12 format=3 uid="uid://dpfbrftkm6xvc"]
 
 [ext_resource type="PackedScene" uid="uid://4rl5deukn8ci" path="res://assets/environment/anthill/StraightHallway1x3AntHill.tscn" id="1_r7kxl"]
+[ext_resource type="Script" uid="uid://b8wbi8qq7g1a4" path="res://assets/environment/anthill/ant_hill.gd" id="1_v1ugs"]
 [ext_resource type="PackedScene" uid="uid://bl0yfwut55wt6" path="res://assets/environment/anthill/4WayConnectorAntHill.tscn" id="2_blfhh"]
 [ext_resource type="PackedScene" uid="uid://c1nmslox2m61g" path="res://assets/environment/anthill/CornerTurn3x3AntHill.tscn" id="3_sjtk2"]
 [ext_resource type="PackedScene" uid="uid://ba81hax3xjdae" path="res://assets/environment/anthill/SmallChamber2EntranceAntHill.tscn" id="4_dt8wp"]
@@ -15,8 +16,13 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Arr
 geometry_parsed_geometry_type = 1
 agent_height = 1.0
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dd5od"]
+height = 62.1475
+radius = 318.0
+
 [node name="AntHill" type="NavigationRegion3D" groups=["anthill_walls"]]
 navigation_mesh = SubResource("NavigationMesh_sjtk2")
+script = ExtResource("1_v1ugs")
 
 [node name="StraightHallway" parent="." instance=ExtResource("1_r7kxl")]
 
@@ -389,3 +395,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 122.3, 0.6, -27.9)
 
 [node name="Egg3" parent="." instance=ExtResource("8_dt8wp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130, 0.6, -12)
+
+[node name="PlayerDetectionRadius" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionRadius"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 302.572, 20.2212, -28)
+shape = SubResource("CylinderShape3D_dd5od")
+
+[connection signal="body_entered" from="PlayerDetectionRadius" to="." method="_on_player_detection_radius_body_entered"]
+[connection signal="body_exited" from="PlayerDetectionRadius" to="." method="_on_player_detection_radius_body_exited"]

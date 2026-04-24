@@ -63,11 +63,11 @@ var is_rooted = false
 @onready var ability_animation_player: AnimationPlayer = $CanvasLayer/AbilityIcon/AbilityAnimationPlayer
 
 #sound variables
-@onready var impact_sound_3d: AudioStreamPlayer3D = $Audio/ImpactSound3D
-@onready var jump_sound_3d: AudioStreamPlayer3D = $Audio/JumpSound3D
-@onready var rolling_sound_3d: AudioStreamPlayer3D = $Audio/RollingSound3D
-@onready var death_sound_3d: AudioStreamPlayer3D = $Audio/DeathSound3D
-@onready var damage_sound_3d: AudioStreamPlayer3D = $Audio/DamageSound3D
+@onready var impact_sound_3d: AudioStreamPlayer = $Audio/ImpactSound3D
+@onready var jump_sound_3d: AudioStreamPlayer = $Audio/JumpSound3D
+@onready var rolling_sound_3d: AudioStreamPlayer = $Audio/RollingSound3D
+@onready var death_sound_3d: AudioStreamPlayer = $Audio/DeathSound3D
+@onready var damage_sound_3d: AudioStreamPlayer = $Audio/DamageSound3D
 
 
 

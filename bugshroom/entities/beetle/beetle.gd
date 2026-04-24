@@ -31,8 +31,9 @@ var charge_target: Node3D
 @onready var charge_cooldown_timer: Timer = $ChargeCooldownTimer
 
 #Sound variables
-@onready var death_sound_3d: AudioStreamPlayer3D = $Audio/DeathSound3D
-@onready var walk_sound_3d: AudioStreamPlayer3D = $Audio/WalkSound3D
+@onready var death_sound_3d: AudioStreamPlayer = $Audio/DeathSound3D
+@onready var walk_sound_3d: AudioStreamPlayer = $Audio/WalkSound3D
+@onready var attack_sound: AudioStreamPlayer = $Audio/AttackSound
 
 # territory variables
 var in_territory := true
@@ -128,6 +129,7 @@ func _physics_process(delta: float) -> void:
 			add_collision_exception_with(collidedObject)
 			if collidedObject.has_method("take_damage"):
 				collidedObject.take_damage(damage)
+				
 			if collidedObject.has_method("apply_knockback"):
 				var kb_direction = (collidedObject.global_position - global_position).normalized()
 				kb_direction.y = 0.4
@@ -161,7 +163,7 @@ func _try_attack() -> void:
 				enemyInRange = true
 			i += 1
 		if enemyInRange:
-			#animation_player.play("beetle_animations/beetle_attack2")
+			attack_sound.play()
 			animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 			can_attack = false
 			await get_tree().create_timer(hit_delay).timeout

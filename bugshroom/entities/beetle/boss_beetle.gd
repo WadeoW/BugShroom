@@ -31,10 +31,10 @@ var charge_target: Node3D
 @onready var charge_cooldown_timer: Timer = $ChargeCooldownTimer
 
 #Sound variables
-@onready var death_sound_3d: AudioStreamPlayer3D = $Audio/DeathSound3D
-@onready var walk_sound_3d: AudioStreamPlayer3D = $Audio/WalkSound3D
-@onready var boss_beetle_alert_sound_3d: AudioStreamPlayer3D = $Audio/BossBeetleAlertSound3D
-@onready var beetle_charge_sound_3d: AudioStreamPlayer3D = $Audio/BeetleChargeSound3D
+@onready var death_sound_3d: AudioStreamPlayer = $Audio/DeathSound3D
+@onready var walk_sound_3d: AudioStreamPlayer = $Audio/WalkSound3D
+@onready var boss_beetle_alert_sound_3d: AudioStreamPlayer = $Audio/BossBeetleAlertSound3D
+@onready var beetle_charge_sound_3d: AudioStreamPlayer = $Audio/BeetleChargeSound3D
 
 #Collectible variables
 @onready var boss_beetle_head = preload("res://entities/Collectibles/Boss_Beetle_Head/boss_beetle_collectible.tscn")

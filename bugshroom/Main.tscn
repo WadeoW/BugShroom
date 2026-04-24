@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=4 uid="uid://ch8yce5nnahu3"]
+[gd_scene load_steps=117 format=4 uid="uid://b8aoygte66rpu"]
 
 [ext_resource type="Script" uid="uid://dq87fiqc3xggs" path="res://levels/main.gd" id="1_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://c3xd2dwnrje22" path="res://entities/ant/ant.tscn" id="2_h2yge"]
@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://bp75styrftfwv" path="res://player_1_spawner.gd" id="9_hhcpw"]
 [ext_resource type="PackedScene" uid="uid://bwv1obth85s1a" path="res://tasks/dead_bug_task_spawner.tscn" id="10_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://8gxwurqg07or" path="res://assets/environment/mushroom_base/mushroom_base.tscn" id="12_c6i3y"]
-[ext_resource type="PackedScene" uid="uid://b3u0oi8cp7nov" path="res://assets/UI/character_select_pop_up_2.tscn" id="12_o7g6l"]
+[ext_resource type="PackedScene" path="res://assets/UI/character_select_pop_up_2.tscn" id="12_o7g6l"]
 [ext_resource type="Script" uid="uid://j0ano1abul83" path="res://player_2_spawner.gd" id="13_mxvw5"]
 [ext_resource type="Material" uid="uid://7pp3cb7owijo" path="res://assets/environment/tree/redwood materials/wood.tres" id="14_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://dt1373tohhcxl" path="res://assets/environment/tree/new_redwood.tscn" id="14_mxvw5"]
@@ -36,7 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://bfas6xneyxj0q" path="res://entities/ant/ant_queen.tscn" id="29_w3rk5"]
 [ext_resource type="PackedScene" uid="uid://cp14j0gmpdxl0" path="res://entities/Collectibles/Pinecone.tscn" id="30_5mvff"]
 [ext_resource type="PackedScene" uid="uid://dpfbrftkm6xvc" path="res://assets/environment/anthill/ant_hill.tscn" id="33_gb15f"]
-[ext_resource type="PackedScene" uid="uid://cbyehopjbh684" path="res://assets/UI/CharacterSelectPopup.tscn" id="34_sph85"]
+[ext_resource type="PackedScene" path="res://assets/UI/CharacterSelectPopup.tscn" id="34_sph85"]
 [ext_resource type="Texture2D" uid="uid://7wlq87jfm1ki" path="res://assets/environment/acorn_house/acorn_house_textures/acornhouseP7_DefaultMaterial_BaseColor.png" id="39_1w2xm"]
 [ext_resource type="PackedScene" uid="uid://d015j6a5sv0v4" path="res://assets/environment/acorn_house/acornhouseP7.fbx" id="39_x3yn0"]
 [ext_resource type="PackedScene" uid="uid://qu1feyepr0v0" path="res://assets/environment/stump_hosue/stump_house_bugshroom_v03_uvs.fbx" id="40_nx4yo"]
@@ -5361,12 +5361,9 @@ shape = SubResource("ConcavePolygonShape3D_xncey")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="environment/mushroom_town/MonsterCan-House/NurbsPath_006/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_skfvt")
 
-[node name="AntHillTrack" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 165, 32, -830)
+[node name="AntHillTrack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_sph85")
-attenuation_model = 3
-volume_db = -10.0
-max_distance = 450.0
+volume_db = -9.0
 parameters/looping = true
 
 [node name="BeetleTrack" type="AudioStreamPlayer" parent="."]
@@ -5375,7 +5372,7 @@ parameters/looping = true
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_2gh4u")
-volume_db = -15.0
+volume_db = -13.0
 autoplay = true
 parameters/looping = true
 

@@ -23,6 +23,7 @@ var colony_nutrient_gain_rate = 25
 #Sound Variables
 @onready var background_music: AudioStreamPlayer = $BackgroundMusic
 @onready var beetle_track: AudioStreamPlayer = $BeetleTrack
+@onready var ant_hill_track: AudioStreamPlayer = $AntHillTrack
 
 #BossBeetleSpawning variables
 @onready var boss_beetle_scene = preload("res://entities/beetle/BossBeetle.tscn")
@@ -53,6 +54,8 @@ func _ready() -> void:
 	SignalBus.player_died.connect(Callable(self, "_on_player_death"))
 	SignalBus.player_entered_beetle_territory.connect(Callable(self, "_on_player_entered_beetle_territory"))
 	SignalBus.player_exited_beetle_territory.connect(Callable(self, "_on_player_exited_beetle_territory"))
+	SignalBus.player_entered_ant_hill.connect(Callable(self, "_on_player_entered_ant_hill"))
+	SignalBus.all_players_exited_ant_hill.connect(Callable(self, "_on_all_players_exited_ant_hill"))
 
 func _process(_delta: float) -> void:
 	if mushroom_pedestal.pinecone_collected and mushroom_pedestal_2.rock_collected and mushroom_pedestal_3.ant_queen_head_collected and mushroom_pedestal_4.boss_beetle_head_collected:
@@ -105,15 +108,28 @@ func _on_stop_player_harvesting_nutrients():
 func _on_player_entered_beetle_territory():
 	if background_music.playing:
 		background_music.stop()
-	if !beetle_track.playing:
+	if !beetle_track.playing and !ant_hill_track.playing:
 		beetle_track.play()
 
 func _on_player_exited_beetle_territory():
 	if beetle_track.playing:
 		beetle_track.stop()
-	if !background_music.playing:
+	if !background_music.playing and !ant_hill_track.playing:
 		background_music.play()
 
+func _on_player_entered_ant_hill():
+	if background_music.playing:
+		background_music.stop()
+	if beetle_track.playing:
+		beetle_track.stop()
+	if !ant_hill_track.playing:
+		ant_hill_track.play()
+		
+func _on_all_players_exited_ant_hill():
+	if ant_hill_track.playing:
+		ant_hill_track.stop()
+	if !background_music.playing and !beetle_track.playing:
+		background_music.play()
 
 func _on_boss_beetle_spawner_timeout() -> void:
 	var boss_beetle = boss_beetle_scene.instantiate()

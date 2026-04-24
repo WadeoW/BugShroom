@@ -24,11 +24,11 @@ var in_menu = false
 @export var respawn_delay: float = 5.0
 
 #sound variables
-@onready var walk_sound_3d: AudioStreamPlayer3D = $Audio/WalkSound3D
-@onready var jump_sound_3d: AudioStreamPlayer3D = $Audio/JumpSound3D
-@onready var death_sound_3d: AudioStreamPlayer3D = $Audio/DeathSound3D
-@onready var damage_sound_3d: AudioStreamPlayer3D = $Audio/DamageSound3D
-@onready var pickup_sound_3d: AudioStreamPlayer3D = $Audio/PickupSound3D
+@onready var walk_sound_3d: AudioStreamPlayer = $Audio/WalkSound3D
+@onready var jump_sound_3d: AudioStreamPlayer = $Audio/JumpSound3D
+@onready var death_sound_3d: AudioStreamPlayer = $Audio/DeathSound3D
+@onready var damage_sound_3d: AudioStreamPlayer = $Audio/DamageSound3D
+@onready var pickup_sound_3d: AudioStreamPlayer = $Audio/PickupSound3D
 
 
 

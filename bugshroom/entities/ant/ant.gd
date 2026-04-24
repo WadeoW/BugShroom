@@ -21,10 +21,10 @@ var update_nav_timer := 0.0
 const update_nav_time := 2.0
 @onready var health_bar: ProgressBar = $SubViewport/HealthBar3D
 # Sound Variables
-@onready var hit_sound_3d: AudioStreamPlayer3D = $Audio/HitSound3D
-@onready var walk_sound_3d: AudioStreamPlayer3D = $Audio/WalkSound3D
-@onready var death_sound_3d: AudioStreamPlayer3D = $Audio/DeathSound3D
-@onready var attack_sound_3d: AudioStreamPlayer3D = $Audio/AttackSound3D
+@onready var hit_sound_3d: AudioStreamPlayer = $Audio/HitSound3D
+@onready var walk_sound_3d: AudioStreamPlayer = $Audio/WalkSound3D
+@onready var death_sound_3d: AudioStreamPlayer = $Audio/DeathSound3D
+@onready var attack_sound_3d: AudioStreamPlayer = $Audio/AttackSound3D
 
 var parent_queen
 
@@ -38,7 +38,6 @@ func _ready():
 	add_to_group("ants")
 	add_to_group("bug")
 	super._ready()
-	#animation_player.play("walk")
 	animation_tree.active = true
 	
 	health_bar.max_value = ant_health
@@ -103,6 +102,7 @@ func _try_attack() -> void:
 			i += 1
 		if hit_player:
 			anim_state.travel("ant_animations_attack")
+			
 			attack_sound_3d.play()
 		await get_tree().create_timer(attack_cooldown).timeout
 		can_attack = true

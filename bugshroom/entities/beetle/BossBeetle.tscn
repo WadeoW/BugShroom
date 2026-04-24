@@ -2276,18 +2276,16 @@ volume_db = 5.0
 stream = ExtResource("5_4ijom")
 volume_db = 8.0
 
-[node name="DeathSound3D" type="AudioStreamPlayer3D" parent="Audio"]
+[node name="DeathSound3D" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("4_xhh0w")
-max_distance = 25.0
 
-[node name="WalkSound3D" type="AudioStreamPlayer3D" parent="Audio"]
+[node name="WalkSound3D" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("6_tdu0p")
-max_distance = 30.0
 
-[node name="BossBeetleAlertSound3D" type="AudioStreamPlayer3D" parent="Audio"]
+[node name="BossBeetleAlertSound3D" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("7_4ijom")
 
-[node name="BeetleChargeSound3D" type="AudioStreamPlayer3D" parent="Audio"]
+[node name="BeetleChargeSound3D" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("8_tdu0p")
 
 [node name="AttackHitBox" type="ShapeCast3D" parent="."]

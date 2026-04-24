@@ -19,3 +19,7 @@ signal bug_died
 signal player_entered_beetle_territory
 
 signal player_exited_beetle_territory
+
+signal player_entered_ant_hill
+
+signal all_players_exited_ant_hill

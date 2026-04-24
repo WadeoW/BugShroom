@@ -4,10 +4,10 @@ extends BugBase
 @export var ant_health: float = 1000.0
 @export var ant_damage: float = 80.0
 #sound variables
-@onready var hit_sound_3d: AudioStreamPlayer3D = $Audio/HitSound3D
-@onready var walk_sound_3d: AudioStreamPlayer3D = $Audio/WalkSound3D
-@onready var death_sound_3d: AudioStreamPlayer3D = $Audio/DeathSound3D
-@onready var attack_sound_3d: AudioStreamPlayer3D = $Audio/AttackSound3D
+@onready var hit_sound_3d: AudioStreamPlayer = $Audio/HitSound3D
+#@onready var walk_sound_3d: AudioStreamPlayer = $Audio/WalkSound3D
+@onready var death_sound_3d: AudioStreamPlayer = $Audio/DeathSound3D
+@onready var attack_sound_3d: AudioStreamPlayer = $Audio/AttackSound3D
 #healthbar variables
 @onready var health_bar_3d: ProgressBar = $SubViewport/HealthBar3D
 # attack variables

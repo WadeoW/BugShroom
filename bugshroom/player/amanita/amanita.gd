@@ -27,11 +27,11 @@ var is_jumping = false
 
 
 #sound variables
-@onready var walk_sound_3d: AudioStreamPlayer3D = $PlayerModel/Audio/WalkSound3D
-@onready var jump_sound_3d: AudioStreamPlayer3D = $PlayerModel/Audio/JumpSound3D
-@onready var death_sound_3d: AudioStreamPlayer3D = $PlayerModel/Audio/DeathSound3D
-@onready var pick_up_sound_3d: AudioStreamPlayer3D = $PlayerModel/Audio/PickUpSound3D
-@onready var player_damage_sound_3d: AudioStreamPlayer3D = $PlayerModel/Audio/PlayerDamageSound3D
+@onready var walk_sound_3d: AudioStreamPlayer = $PlayerModel/Audio/WalkSound3D
+@onready var jump_sound_3d: AudioStreamPlayer = $PlayerModel/Audio/JumpSound3D
+@onready var death_sound_3d: AudioStreamPlayer = $PlayerModel/Audio/DeathSound3D
+@onready var pick_up_sound_3d: AudioStreamPlayer = $PlayerModel/Audio/PickUpSound3D
+@onready var player_damage_sound_3d: AudioStreamPlayer = $PlayerModel/Audio/PlayerDamageSound3D
 
 
 #char select variables
