@@ -10,6 +10,7 @@ class_name AbilityBase
 @onready var lifetime: Timer = $Lifetime
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var player: CharacterBody3D
+@onready var ability_sound: AudioStreamPlayer = $AbilitySound
 
 @onready var children = get_parent().get_children()
 
@@ -17,7 +18,7 @@ var bodies_in_area = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	ability_sound.play()
 	for child in children:
 		print(child)
 		if child is CharacterBody3D:

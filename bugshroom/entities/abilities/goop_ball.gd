@@ -2,6 +2,7 @@ extends RigidBody3D
 
 const GOOP_ABILITY = preload("res://entities/abilities/goop_ability.tscn")
 @onready var ray: RayCast3D = $RayCast3D
+@onready var ability_sound: AudioStreamPlayer = $AbilitySound
 @onready var player: CharacterBody3D
 @onready var children = get_parent().get_children()
 var bounces = 0
@@ -32,6 +33,7 @@ func _on_body_entered(body: Node) -> void:
 			if collisionPoint and (ray.get_collider().name == "Floor" or ray.get_collider().is_in_group("anthill_walls")):
 				var normal: Vector3 = ray.get_collision_normal()
 				var slope_angle_deg := rad_to_deg(normal.angle_to(Vector3.UP))
+				ability_sound.play()
 				if slope_angle_deg < 20:
 					print("Goop Ball collided with ", body.name)
 					var spawnedGoop = GOOP_ABILITY.instantiate()

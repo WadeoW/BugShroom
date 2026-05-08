@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dnn5p52tfmf1d"]
+[gd_scene load_steps=11 format=3 uid="uid://dnn5p52tfmf1d"]
 
 [ext_resource type="Script" uid="uid://yi0sgrwmq733" path="res://entities/abilities/ability.gd" id="1_tf6v8"]
+[ext_resource type="AudioStream" uid="uid://drpohqr5qhxxy" path="res://assets/Sound/player/Amanita/amanita_ability.mp3" id="2_gruh6"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gruh6"]
 height = 2.70093
@@ -76,6 +77,9 @@ draw_pass_2 = SubResource("TorusMesh_gruh6")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000602961, 0)
 mesh = SubResource("TorusMesh_1h3aq")
+
+[node name="AbilitySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gruh6")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

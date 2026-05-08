@@ -29,7 +29,7 @@ var in_menu = false
 @onready var death_sound_3d: AudioStreamPlayer = $Audio/DeathSound3D
 @onready var damage_sound_3d: AudioStreamPlayer = $Audio/DamageSound3D
 @onready var pickup_sound_3d: AudioStreamPlayer = $Audio/PickupSound3D
-
+@onready var ability_sound: AudioStreamPlayer = $Audio/AbilitySound
 
 
 #health variables
@@ -287,6 +287,7 @@ func attack():
 func cast_ability(ability_type):
 	#animation_player.play("goop")
 	animation_tree.set("parameters/GoopOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	ability_sound.play()
 	ability_active = true
 	can_cast_abil = false
 	var spawn := load("res://entities/abilities/GoopBall.tscn").instantiate() as RigidBody3D

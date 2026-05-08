@@ -1,18 +1,19 @@
-[gd_scene load_steps=34 format=4 uid="uid://dl2tthivh6a3e"]
+[gd_scene load_steps=35 format=4 uid="uid://dl2tthivh6a3e"]
 
 [ext_resource type="Script" uid="uid://chivoxalb5yd" path="res://player/Puffshroom/puffball.gd" id="1_0vhsy"]
 [ext_resource type="Script" uid="uid://nrfwy8ates2i" path="res://player/camera_mount.gd" id="2_4tcne"]
 [ext_resource type="AnimationLibrary" uid="uid://bde73mddq6b8c" path="res://player/Puffshroom/puffmushroom_animations.glb" id="2_7wi73"]
 [ext_resource type="AnimationLibrary" uid="uid://kybdxnurhwko" path="res://player/Puffshroom/puff_charge_death.glb" id="2_p64ml"]
 [ext_resource type="Script" uid="uid://brrncwvvflgvk" path="res://player/health_bar.gd" id="3_xhpx3"]
-[ext_resource type="Texture2D" uid="uid://bquxksy131opk" path="res://assets/UI/Player/HUD/mushroomhealthtransparent.png" id="5_3yfoa"]
-[ext_resource type="Texture2D" uid="uid://bvbalvcuvrpni" path="res://assets/UI/Player/HUD/mushroomhealthbarred.png" id="6_ci1bd"]
+[ext_resource type="Texture2D" uid="uid://2lpc0ehmv13n" path="res://assets/UI/Player/HUD/NewMushroomHealthBarTransparent.png" id="5_ci1bd"]
+[ext_resource type="Texture2D" uid="uid://cs6exh2rlro8l" path="res://assets/UI/Player/HUD/NewMushroomHealthBarRed.png" id="6_1y3d1"]
 [ext_resource type="AudioStream" uid="uid://eabyk3002fp5" path="res://assets/Sound/player/Puffball/puffball_impact.mp3" id="6_invgw"]
 [ext_resource type="Texture2D" uid="uid://bc7qxbl4d2bem" path="res://assets/UI/Speedicon.png" id="7_p64ml"]
 [ext_resource type="AudioStream" uid="uid://wosljyqty5pq" path="res://assets/Sound/player/Puffball/puffball_jump.mp3" id="9_8ke3l"]
 [ext_resource type="AudioStream" uid="uid://o6t153omqh7d" path="res://assets/Sound/player/Puffball/Puffball_Rolling.mp3" id="10_3yfoa"]
 [ext_resource type="AudioStream" uid="uid://c3ysyay3jy4xs" path="res://assets/Sound/player/death_player_V2.mp3" id="11_ci1bd"]
 [ext_resource type="AudioStream" uid="uid://drnc3ju718gtt" path="res://assets/Sound/player/player_damage sound.mp3" id="12_1y3d1"]
+[ext_resource type="AudioStream" uid="uid://c244pysu6apgs" path="res://assets/Sound/player/Puffball/puffball_ability.mp3" id="14_ci1bd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxwlq"]
 resource_name = "Body.001"
@@ -507,15 +508,15 @@ shape = SubResource("ConvexPolygonShape3D_4tcne")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -110.0
-offset_top = -380.0
-offset_right = 1810.0
-offset_bottom = 700.0
+offset_left = 83.0
+offset_top = -153.0
+offset_right = 912.0
+offset_bottom = -17.0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
 value = 100.0
-texture_under = ExtResource("5_3yfoa")
-texture_progress = ExtResource("6_ci1bd")
+texture_under = ExtResource("5_ci1bd")
+texture_progress = ExtResource("6_1y3d1")
 script = ExtResource("3_xhpx3")
 
 [node name="AbilityIcon" type="TextureRect" parent="CanvasLayer"]
@@ -579,6 +580,9 @@ stream = ExtResource("11_ci1bd")
 [node name="DamageSound3D" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("12_1y3d1")
 volume_db = -10.0
+
+[node name="AbilitySound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("14_ci1bd")
 
 [connection signal="timeout" from="ChargeDuration" to="." method="_on_charge_duration_timeout"]
 [connection signal="body_entered" from="puffball_hitbox" to="." method="_on_area_3d_body_entered"]

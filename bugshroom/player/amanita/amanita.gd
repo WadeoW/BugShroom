@@ -34,6 +34,7 @@ var is_jumping = false
 @onready var player_damage_sound_3d: AudioStreamPlayer = $PlayerModel/Audio/PlayerDamageSound3D
 
 
+
 #char select variables
 var in_menu = false
 

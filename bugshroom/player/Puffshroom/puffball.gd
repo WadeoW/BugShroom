@@ -68,6 +68,7 @@ var is_rooted = false
 @onready var rolling_sound_3d: AudioStreamPlayer = $Audio/RollingSound3D
 @onready var death_sound_3d: AudioStreamPlayer = $Audio/DeathSound3D
 @onready var damage_sound_3d: AudioStreamPlayer = $Audio/DamageSound3D
+@onready var ability_sound: AudioStreamPlayer = $Audio/AbilitySound
 
 
 
@@ -248,6 +249,7 @@ func cast_ability():
 
 func charge_attack():
 	print("charge attack")
+	ability_sound.play()
 	charge_cooldown.start()
 	animation_player.play("puff_charge_death/charge")
 	ability_animation_player.play("cooldown")

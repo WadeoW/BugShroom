@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfe4mxsr5rr3b"]
+[gd_scene load_steps=9 format=3 uid="uid://dfe4mxsr5rr3b"]
 
 [ext_resource type="Script" uid="uid://csd0u7aewt8ef" path="res://entities/abilities/goop_ball.gd" id="1_w42yo"]
+[ext_resource type="AudioStream" uid="uid://cm8oenmme1ffn" path="res://assets/Sound/player/Inkcap/inkcap_bounce.mp3" id="2_d2w45"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w42yo"]
 friction = 0.0
@@ -62,5 +63,8 @@ process_material = SubResource("ParticleProcessMaterial_w42yo")
 draw_passes = 2
 draw_pass_1 = SubResource("SphereMesh_d2w45")
 draw_pass_2 = null
+
+[node name="AbilitySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_d2w45")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
