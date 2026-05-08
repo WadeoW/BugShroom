@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://sv3p68isjnny"]
 
-[ext_resource type="Script" uid="uid://gl5pnaiuknn1" path="res://levels/gameover/game_over.gd" id="1_vfsup"]
+[ext_resource type="Script" uid="uid://gl5pnaiuknn1" path="res://levels/GameOver/game_over.gd" id="1_vfsup"]
 [ext_resource type="Texture2D" uid="uid://dt3rkp2orl1h1" path="res://assets/UI/TRYAGAIN.BUGSH.png" id="2_3ccqh"]
 [ext_resource type="PackedScene" uid="uid://dbowfwd7ix33p" path="res://assets/Cursor/cursor.tscn" id="3_a7rtp"]
 [ext_resource type="Texture2D" uid="uid://btd2v25in45dy" path="res://assets/Cursor/Cursor icons-red and white.png" id="4_alkcx"]

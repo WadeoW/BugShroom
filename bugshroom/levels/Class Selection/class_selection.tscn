@@ -137,7 +137,6 @@ flat = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/BackButton/Area2D"]
 position = Vector2(867.242, 498.276)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_qh1a7")
 
 [node name="StartButton" type="Button" parent="CanvasLayer2" groups=["button"]]
@@ -188,7 +187,6 @@ position = Vector2(38, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/Info1Button/Area2D" groups=["button"]]
 position = Vector2(256.521, 395.11)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_hv60o")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

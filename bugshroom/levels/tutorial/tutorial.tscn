@@ -39,7 +39,6 @@ flat = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/BackButton/Area2D"]
 position = Vector2(865.923, 498.276)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_cui05")
 
 [node name="description" type="RichTextLabel" parent="CanvasLayer"]
