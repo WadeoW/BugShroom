@@ -996,6 +996,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.2591, 2.37678, -144.54)
 
 [node name="MushroomBase" parent="." instance=ExtResource("12_c6i3y")]
 
+[node name="mothermushroom" parent="MushroomBase" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -160.366, 0, 0)
+
 [node name="environment" type="Node" parent="."]
 
 [node name="grass_bugshroom" type="Node" parent="environment"]
@@ -5854,7 +5857,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.1541, 0, 173.399)
 [node name="background" type="Node" parent="."]
 
 [node name="front_1" type="MeshInstance3D" parent="background"]
-transform = Transform3D(518.708, 0, 0, 0, -8.7581e-08, -583.643, 0, 2.00362, -2.55118e-05, 0, 581.36, -406.219)
+transform = Transform3D(518.708, 0, 0, 0, -8.7581e-08, -583.643, 0, 2.00362, -2.55118e-05, 0, 595.961, -406.219)
 material_override = SubResource("StandardMaterial3D_xncey")
 mesh = SubResource("PlaneMesh_skfvt")
 
@@ -5874,7 +5877,7 @@ material_override = SubResource("StandardMaterial3D_xncey")
 mesh = SubResource("PlaneMesh_skfvt")
 
 [node name="front_trees_1" type="MeshInstance3D" parent="background"]
-transform = Transform3D(640.449, 0, 0, 0, -1.08136e-07, -442.045, 0, 2.47387, -1.93224e-05, 0.098805, 396.539, -495.006)
+transform = Transform3D(640.449, 0, 0, 0, -1.08136e-07, -376.383, 0, 2.47387, -1.64522e-05, 0.098805, 396.539, -495.006)
 material_override = SubResource("StandardMaterial3D_nn00d")
 mesh = SubResource("PlaneMesh_skfvt")
 
@@ -5894,7 +5897,7 @@ material_override = SubResource("StandardMaterial3D_nn00d")
 mesh = SubResource("PlaneMesh_skfvt")
 
 [node name="back_1" type="MeshInstance3D" parent="background"]
-transform = Transform3D(880.044, 0, 0, 0, -1.48591e-07, -607.417, 0, 3.39936, -2.6551e-05, 0.293263, 344.171, -669.746)
+transform = Transform3D(880.044, 0, 0, 0, -1.48591e-07, -329.798, 0, 3.39936, -1.44159e-05, 0.293263, 356.75, -669.746)
 material_override = SubResource("StandardMaterial3D_oy6xi")
 mesh = SubResource("PlaneMesh_skfvt")
 
@@ -6025,7 +6028,6 @@ transform = Transform3D(120.757, -3.8147e-06, 0, 0, -1.43953e-05, 120.757, 0, -1
 shape = SubResource("ConcavePolygonShape3D_dfq0k")
 
 [node name="MotherShroom" parent="." instance=ExtResource("82_5y3io")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.6987, 0.00805283, 63.9754)
 
 [node name="Light" parent="MotherShroom" index="0"]
 visible = false
@@ -6168,6 +6170,7 @@ visible = false
 [connection signal="body_entered" from="BackgroundMusic/KillZone" to="." method="_on_kill_zone_body_entered"]
 [connection signal="timeout" from="BossBeetleSpawner" to="." method="_on_boss_beetle_spawner_timeout"]
 
+[editable path="MushroomBase"]
 [editable path="environment/log/log_bugshroom_v01"]
 [editable path="environment/log/log_bugshroom_v05"]
 [editable path="environment/log/log_bugshroom_v02"]
