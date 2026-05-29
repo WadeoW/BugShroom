@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bii30xpd7c1d7"]
+
+[ext_resource type="Shader" uid="uid://sh0xu0gx5hiw" path="res://assets/environment/clover/Clover_Mesh.gdshader" id="1_j0jcg"]
+[ext_resource type="Texture2D" uid="uid://c0reytv6d1xae" path="res://assets/environment/clover/Clover texture sheet .png" id="2_dxnvr"]
+[ext_resource type="ArrayMesh" uid="uid://bdoeuepqf6k3q" path="res://assets/environment/clover/clover_mesh.tres" id="3_ek2kq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4myjv"]
+render_priority = 0
+shader = ExtResource("1_j0jcg")
+shader_parameter/clover_texture = ExtResource("2_dxnvr")
+shader_parameter/wind_direction = Vector3(1, 0, 0.5)
+shader_parameter/wind_speed = 2.0
+shader_parameter/wind_strength = 0.2
+shader_parameter/root_y_offset = 0.0
+shader_parameter/stem_height = 1.0
+shader_parameter/height_small = 0.6
+shader_parameter/height_medium = 0.85
+shader_parameter/height_large = 1.1
+shader_parameter/height_jitter = 0.1
+
+[node name="clover" type="Node3D"]
+
+[node name="Clover_Mesh" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_4myjv")
+mesh = ExtResource("3_ek2kq")
