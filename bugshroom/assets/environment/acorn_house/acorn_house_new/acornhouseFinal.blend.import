@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bdne0mnyoj2w6"
-valid=false
+path="res://.godot/imported/acornhouseFinal.blend-eb8e626f5715e74e7bac8482b9f0d7c5.scn"
 
 [deps]
 
 source_file="res://assets/environment/acorn_house/acorn_house_new/acornhouseFinal.blend"
+dest_files=["res://.godot/imported/acornhouseFinal.blend-eb8e626f5715e74e7bac8482b9f0d7c5.scn"]
 
 [params]
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cenmrtg5vnw77"
-path="res://.godot/imported/MotherShroom.blend-c4a15eb8d892b1524d7e5050ca828b00.scn"
+uid="uid://dtuf2oi6775f2"
+path="res://.godot/imported/bugarena2.blend-1835f2150a2f5a590a1b4569c75a2f48.scn"
 
 [deps]
 
-source_file="res://assets/environment/mother/mother_new/MotherShroom.blend"
-dest_files=["res://.godot/imported/MotherShroom.blend-c4a15eb8d892b1524d7e5050ca828b00.scn"]
+source_file="res://assets/environment/bug_arena_2/bugarena2.blend"
+dest_files=["res://.godot/imported/bugarena2.blend-1835f2150a2f5a590a1b4569c75a2f48.scn"]
 
 [params]
 

@@ -4,12 +4,11 @@ importer="animation_library"
 importer_version=1
 type="AnimationLibrary"
 uid="uid://gkg56vw8h66s"
-path="res://.godot/imported/headshakeanimation.blend-4281ca1f5e67e8375e3795c02e643db0.res"
+valid=false
 
 [deps]
 
 source_file="res://player/animations/headshakeanimation.blend"
-dest_files=["res://.godot/imported/headshakeanimation.blend-4281ca1f5e67e8375e3795c02e643db0.res"]
 
 [params]
 

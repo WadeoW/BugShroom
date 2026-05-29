@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bmimytw2l2cn"
-valid=false
+path="res://.godot/imported/MonsterCan-House.blend-0b17cf2762b5548e2946021178f93b99.scn"
 
 [deps]
 
 source_file="res://assets/environment/can_home/MonsterCan-House.blend"
+dest_files=["res://.godot/imported/MonsterCan-House.blend-0b17cf2762b5548e2946021178f93b99.scn"]
 
 [params]
 
