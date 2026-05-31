@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://g5xjcd75cup2"]
+[gd_scene load_steps=16 format=4 uid="uid://g5xjcd75cup2"]
 
 [ext_resource type="Texture2D" uid="uid://c5eixecag3pdn" path="res://assets/environment/spikeplant/spikeplant_textures/flower5_stemleaf_BaseColor.png" id="1_5wckp"]
 [ext_resource type="Texture2D" uid="uid://c4pgqtklunlg3" path="res://assets/environment/spikeplant/spikeplant_textures/flower5_Flower_BaseColor.png" id="2_gragr"]
@@ -151,6 +151,9 @@ albedo_texture = ExtResource("3_llp33")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qq8ni"]
 albedo_texture = ExtResource("4_pb2vm")
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5wckp"]
+height = 1.18652
+
 [node name="flower6" type="Node3D"]
 
 [node name="Empty" type="Node3D" parent="."]
@@ -167,3 +170,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0vlpt")
 surface_material_override/1 = SubResource("StandardMaterial3D_btbya")
 surface_material_override/2 = SubResource("StandardMaterial3D_i1n6p")
 surface_material_override/3 = SubResource("StandardMaterial3D_qq8ni")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stem_leaf"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stem_leaf/StaticBody3D"]
+transform = Transform3D(0.00123229, 0, 0, 0, -1.31134e-09, -0.00123766, 0, 0.03, -5.40998e-11, 0, -0.000317808, 0.0182632)
+shape = SubResource("CylinderShape3D_5wckp")

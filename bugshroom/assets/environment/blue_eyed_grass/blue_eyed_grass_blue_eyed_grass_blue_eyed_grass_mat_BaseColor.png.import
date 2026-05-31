@@ -1,0 +1,39 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://siu3ab3i61tg"
+path.s3tc="res://.godot/imported/blue_eyed_grass_blue_eyed_grass_blue_eyed_grass_mat_BaseColor.png-e90d5ff893c8c17c39bab5e731080d97.s3tc.ctex"
+path.etc2="res://.godot/imported/blue_eyed_grass_blue_eyed_grass_blue_eyed_grass_mat_BaseColor.png-e90d5ff893c8c17c39bab5e731080d97.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "9a1fc2e9f349ad12b4bab87124b8dfdf"
+}
+
+[deps]
+
+source_file="res://assets/environment/blue_eyed_grass/blue_eyed_grass_blue_eyed_grass_blue_eyed_grass_mat_BaseColor.png"
+dest_files=["res://.godot/imported/blue_eyed_grass_blue_eyed_grass_blue_eyed_grass_mat_BaseColor.png-e90d5ff893c8c17c39bab5e731080d97.s3tc.ctex", "res://.godot/imported/blue_eyed_grass_blue_eyed_grass_blue_eyed_grass_mat_BaseColor.png-e90d5ff893c8c17c39bab5e731080d97.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
