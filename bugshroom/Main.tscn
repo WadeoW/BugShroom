@@ -6266,7 +6266,7 @@ one_shot = true
 autostart = true
 
 [node name="terrain" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.7195, 0, 0, 0, 0.7195, 0, 0, 0, 0.7195, 30.1557, -1.0005, 256.983)
+transform = Transform3D(0.7195, 0, 0, 0, 0.7195, 0, 0, 0, 0.7195, 30.1557, -2.42526, 280.034)
 material_override = SubResource("ShaderMaterial_fykug")
 mesh = SubResource("ArrayMesh_a8v76")
 skeleton = NodePath("")
@@ -6274,6 +6274,61 @@ skeleton = NodePath("")
 [node name="terrain" type="StaticBody3D" parent="terrain"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/terrain"]
+shape = SubResource("ConcavePolygonShape3D_rteaf")
+
+[node name="terrain5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.10305, 0, 0, 0, 1.10305, 0, 0, 0, 1.10305, -407.765, -19.0854, 289.41)
+material_override = SubResource("ShaderMaterial_fykug")
+mesh = SubResource("ArrayMesh_a8v76")
+skeleton = NodePath("")
+
+[node name="terrain" type="StaticBody3D" parent="terrain5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain5/terrain"]
+shape = SubResource("ConcavePolygonShape3D_rteaf")
+
+[node name="terrain6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.10305, 0, 0, 0, 1.10305, 0, 0, 0, 1.10305, -292.737, -13.4266, 436.147)
+material_override = SubResource("ShaderMaterial_fykug")
+mesh = SubResource("ArrayMesh_a8v76")
+skeleton = NodePath("")
+
+[node name="terrain" type="StaticBody3D" parent="terrain6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain6/terrain"]
+shape = SubResource("ConcavePolygonShape3D_rteaf")
+
+[node name="terrain2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.343713, 0, 0.632093, 0, 0.7195, 0, -0.632093, 0, 0.343713, 291.592, -8.38391, 210.578)
+material_override = SubResource("ShaderMaterial_fykug")
+mesh = SubResource("ArrayMesh_a8v76")
+skeleton = NodePath("")
+
+[node name="terrain" type="StaticBody3D" parent="terrain2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain2/terrain"]
+shape = SubResource("ConcavePolygonShape3D_rteaf")
+
+[node name="terrain3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.0229333, 0, 0.897335, 0, 0.897628, 0, -0.897335, 0, -0.0229333, 369.51, -8.38391, -333.55)
+material_override = SubResource("ShaderMaterial_fykug")
+mesh = SubResource("ArrayMesh_a8v76")
+skeleton = NodePath("")
+
+[node name="terrain" type="StaticBody3D" parent="terrain3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain3/terrain"]
+shape = SubResource("ConcavePolygonShape3D_rteaf")
+
+[node name="terrain4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.0229333, 0, 0.897335, 0, 0.897628, 0, -0.897335, 0, -0.0229333, -344.762, -8.38391, -349.82)
+material_override = SubResource("ShaderMaterial_fykug")
+mesh = SubResource("ArrayMesh_a8v76")
+skeleton = NodePath("")
+
+[node name="terrain" type="StaticBody3D" parent="terrain4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain4/terrain"]
 shape = SubResource("ConcavePolygonShape3D_rteaf")
 
 [node name="bugshroom_terrain" type="Node3D" parent="."]
@@ -7018,6 +7073,12 @@ transform = Transform3D(8.02798, 0, 0, 0, 8.02798, 0, 0, 0, 8.02798, -283.978, -
 [node name="flower6" parent="." instance=ExtResource("87_sef48")]
 transform = Transform3D(6.56083, 0, 0, 0, 6.56083, 0, 0, 0, 6.56083, 198.176, -3.09398, 25.5435)
 
+[node name="Stem_leaf" parent="flower6" index="2"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+surface_material_override/2 = null
+surface_material_override/3 = null
+
 [node name="flower8" parent="." instance=ExtResource("87_sef48")]
 transform = Transform3D(15.0474, 0, 0, 0, 15.0474, 0, 0, 0, 15.0474, -233.872, -23.4933, 242.17)
 
@@ -7048,6 +7109,18 @@ light_volumetric_fog_energy = 3.63
 spot_range = 526.332
 spot_attenuation = 0.22
 spot_angle = 25.0
+spot_angle_attenuation = 1.46409
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.648811, -0.645365, 0.403174, -3.17712e-08, 0.52983, 0.848104, -0.76095, 0.550259, -0.343759, -137.764, 296.261, 125.316)
+light_color = Color(1, 1, 0.796078, 1)
+light_energy = 10.276
+light_indirect_energy = 1.145
+light_volumetric_fog_energy = 3.63
+light_specular = 0.0
+spot_range = 526.332
+spot_attenuation = 0.22
+spot_angle = 16.1663
 spot_angle_attenuation = 1.46409
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="."]
